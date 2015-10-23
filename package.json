@@ -1,0 +1,28 @@
+{
+  "name": "google-maps-services-js",
+  "version": "0.0.1",
+  "description": "NodeJS/browser client library for Google Maps API Web Services",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/googlemaps/google-maps-services-js.git"
+  },
+  "keywords": [
+    "google",
+    "maps",
+    "service",
+    "api"
+  ],
+  "author": "",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/googlemaps/google-maps-services-js/issues"
+  },
+  "homepage": "https://github.com/googlemaps/google-maps-services-js",
+  "devDependencies": {
+    "jasmine": "^2.3.2"
+  }
+}
