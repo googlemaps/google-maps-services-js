@@ -1,5 +1,5 @@
-exports.init = function(apiKey, Promise) {
+exports.init = function(apiKey, fetch) {
   return {
-    geocode: require('./geocode').init(apiKey, Promise)
+    geocode: require('./geocode').inject(apiKey, fetch).geocode
   };
 };

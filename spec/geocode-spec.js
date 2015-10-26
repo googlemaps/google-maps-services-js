@@ -1,28 +1,31 @@
 var apiKey = null;  // TODO(step): Read key out of environment.
-var Promise = require('q').Promise;
+var fetch = require('node-fetch');
+fetch.Promise = require('q').Promise;
 
 describe('geocode client library', function() {
-  var googleServices;
+  var googleMaps;
   beforeEach(function() {
-    googleServices = require('../index').init(apiKey, Promise);
+    googleMaps = require('../index').init(apiKey, fetch);
   });
 
   it('gets the coordinates for the Sydney Opera House', function(done) {
-    googleServices.geocode({
+    googleMaps.geocode({
       address: 'Sydney Opera House'
     })
-    .then(function(responseJSON) {
-      expect(responseJSON.results).toEqual(
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(json) {
+      expect(json.results).toEqual(
           jasmine.arrayContaining([
             jasmine.objectContaining({
               place_id: 'ChIJidzEjmauEmsRwb535u6rCA4'
             })
           ]));
-      done();
     })
-    .fail(function(e) {
+    .then(null, function(e) {
       expect(e.message).toBeFalsy();
-      done();
-    });
+    })
+    .then(done);
   });
 });
