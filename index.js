@@ -1,5 +1,5 @@
-exports.init = function(apiKey) {
+exports.init = function(apiKey, Promise) {
   return {
-    geocode: require('./geocode').init(apiKey)
+    geocode: require('./geocode').init(apiKey, Promise)
   };
 };

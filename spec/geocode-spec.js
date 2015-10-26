@@ -1,15 +1,17 @@
 var apiKey = null;  // TODO(step): Read key out of environment.
+var Promise = require('q').Promise;
 
 describe('geocode client library', function() {
   var googleServices;
   beforeEach(function() {
-    googleServices = require('../index').init(apiKey);
+    googleServices = require('../index').init(apiKey, Promise);
   });
 
   it('gets the coordinates for the Sydney Opera House', function(done) {
     googleServices.geocode({
       address: 'Sydney Opera House'
-    }, function(responseJSON) {
+    })
+    .then(function(responseJSON) {
       expect(responseJSON.results).toEqual(
           jasmine.arrayContaining([
             jasmine.objectContaining({
@@ -17,7 +19,8 @@ describe('geocode client library', function() {
             })
           ]));
       done();
-    }).on('error', function(e) {
+    })
+    .fail(function(e) {
       expect(e.message).toBeFalsy();
       done();
     });

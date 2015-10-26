@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/googlemaps/google-maps-services-js",
   "devDependencies": {
-    "jasmine": "^2.3.2"
+    "jasmine": "^2.3.2",
+    "q": "^1.4.1"
   }
 }
