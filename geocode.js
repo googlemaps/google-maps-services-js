@@ -1,15 +1,7 @@
-var url = require('url');
-
-exports.inject = function(apiKey, fetch) {
+exports.inject = function(requester) {
   return {
-
-    geocode: function(query) {
-      // TODO(step): Sanitize the query, and do something with apiKey.
-      return fetch(url.format({
-        pathname: 'https://maps.googleapis.com/maps/api/geocode/json',
-        query: query
-      }));
+    geocode: function(query, callback) {
+      return requester('/maps/api/geocode/json', query, callback);
     }
-
   };
 };
