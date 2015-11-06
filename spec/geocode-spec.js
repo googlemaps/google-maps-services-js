@@ -5,7 +5,7 @@ fetch.Promise = require('q').Promise;
 describe('geocode client library', function() {
   var googleMaps;
   beforeEach(function() {
-    googleMaps = require('../index').init(apiKey, fetch);
+    googleMaps = require('../lib/index').init(apiKey, fetch);
   });
 
   it('gets the coordinates for the Sydney Opera House', function(done) {
