@@ -1,8 +1,19 @@
 {
   "name": "google-maps-services-js",
   "version": "0.0.1",
+  "author": "Google Inc.",
   "description": "NodeJS/browser client library for Google Maps API Web Services",
-  "main": "index.js",
+  "main": "./lib",
+  "contributors": [
+    {
+      "name": "Stephen Farrar",
+      "email": "step@google.com"
+    },
+    {
+      "name": "Stephen McDonald",
+      "email": "stephenmcd@google.com"
+    }
+  ],
   "scripts": {
     "test": "jasmine"
   },
@@ -16,7 +27,6 @@
     "service",
     "api"
   ],
-  "author": "",
   "license": "Apache 2.0",
   "bugs": {
     "url": "https://github.com/googlemaps/google-maps-services-js/issues"
