@@ -1,5 +1,3 @@
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 100;
-
 describe('attempt', () => {
   beforeEach(() => {
     jasmine.clock().install();
@@ -27,7 +25,7 @@ describe('attempt', () => {
         callback();
       });
     };
-    attempt = require('../attempt').inject(fakeSetTimeout).attempt;
+    attempt = require('../lib/attempt').inject(fakeSetTimeout).attempt;
   });
 
   var doSomething, equalTo200;
