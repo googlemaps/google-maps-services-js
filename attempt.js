@@ -1,13 +1,13 @@
 exports.inject = (setTimeout) => ({
-  attempt: (doSomething, wasSuccessful, callback) => {
+  attempt: (options, callback) => {
     (function tryItAndSee() {
-      doSomething((err, result) => {
+      options.do((err, result) => {
         process.nextTick(() => {
           if (err != null) {
             callback(err, null);
             return;
           }
-          if (wasSuccessful(result)) {
+          if (options.until(result)) {
             callback(null, result);
             return;
           }

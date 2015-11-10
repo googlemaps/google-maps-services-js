@@ -11,17 +11,15 @@ describe('attempt', () => {
     attempt = require('../attempt').inject(fakeSetTimeout).attempt;
   });
 
-  var doSomething, wasSuccessful;
+  var doSomething, equalTo200;
   beforeEach(() => {
     doSomething = jasmine.createSpy('doSomething');
-    wasSuccessful = jasmine.createSpy('wasSuccessful')
-        .and.callFake((result) => {
-          return result === 200;
-        });
+    equalTo200 = jasmine.createSpy('equalTo200')
+        .and.callFake((result) => (result === 200));
   });
 
   it('calls doSomething synchronously', () => {
-    attempt(doSomething, wasSuccessful, () => {});
+    attempt({'do': doSomething, until: equalTo200}, () => {});
     expect(doSomething).toHaveBeenCalled();
   });
 
@@ -32,11 +30,11 @@ describe('attempt', () => {
 
     var called = false;
 
-    attempt(doSomething, wasSuccessful, (err, result) => {
+    attempt({'do': doSomething, until: equalTo200}, (err, result) => {
       called = true;
       expect(err).toMatch('uh-oh!');
       expect(result).toBe(null);
-      expect(wasSuccessful).not.toHaveBeenCalled();
+      expect(equalTo200).not.toHaveBeenCalled();
       done();
     });
 
@@ -54,7 +52,7 @@ describe('attempt', () => {
     it('asynchronously calls the callback with the successful result', (done) => {
       var called = false;
 
-      attempt(doSomething, wasSuccessful, (err, result) => {
+      attempt({'do': doSomething, until: equalTo200}, (err, result) => {
         called = true;
         expect(err).toBe(null);
         expect(result).toBe(200);
@@ -66,8 +64,8 @@ describe('attempt', () => {
 
 
     it('gives the result to the success tester', (done) => {
-      attempt(doSomething, wasSuccessful, () => {
-        expect(wasSuccessful).toHaveBeenCalledWith(200);
+      attempt({'do': doSomething, until: equalTo200}, () => {
+        expect(equalTo200).toHaveBeenCalledWith(200);
         done();
       });
     });
@@ -83,21 +81,21 @@ describe('attempt', () => {
     });
 
     it('calls doSomething twice', (done) => {
-      attempt(doSomething, wasSuccessful, (err, result) => {
+      attempt({'do': doSomething, until: equalTo200}, (err, result) => {
         expect(doSomething.calls.count()).toBe(2);
         done();
       });
     });
 
-    it('calls wasSuccessful with both results', (done) => {
-      attempt(doSomething, wasSuccessful, (err, result) => {
-        expect(wasSuccessful.calls.allArgs()).toEqual([[500], [200]]);
+    it('calls equalTo200 with both results', (done) => {
+      attempt({'do': doSomething, until: equalTo200}, (err, result) => {
+        expect(equalTo200.calls.allArgs()).toEqual([[500], [200]]);
         done();
       });
     });
 
     it('calls the callback with the successful result', (done) => {
-      attempt(doSomething, wasSuccessful, (err, result) => {
+      attempt({'do': doSomething, until: equalTo200}, (err, result) => {
         expect(err).toBe(null);
         expect(result).toBe(200);
         done();
@@ -105,7 +103,7 @@ describe('attempt', () => {
     });
 
     it('waits 500 ms', (done) => {
-      attempt(doSomething, wasSuccessful, (err, result) => {
+      attempt({'do': doSomething, until: equalTo200}, (err, result) => {
         expect(timeoutDurations).toEqual([500]);
         done();
       });
