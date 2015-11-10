@@ -26,4 +26,24 @@ describe('geocode client library', () => {
     })
     .then(done);
   });
+
+  it('reverse geocodes the coordinates for the Sydney Opera House', (done) => {
+    googleMaps.reverseGeocode({
+      latlng: [-33.8674869, 151.2069902]
+    })
+    .then((response) => response.json())
+    .then((json) => {
+      expect(json.results).toEqual(
+          jasmine.arrayContaining([
+            jasmine.objectContaining({
+              place_id: 'ChIJidzEjmauEmsRwb535u6rCA4'
+            })
+          ]));
+    })
+    .then(null, (e) => {
+      expect(e.message).toBeFalsy();
+    })
+    .then(done);
+  });
+
 });
