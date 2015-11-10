@@ -37,9 +37,9 @@ describe('attempt', () => {
         .and.callFake((result) => (result === 200));
   });
 
-  it('calls doSomething synchronously', () => {
+  it('calls doSomething asynchronously', () => {
     attempt({'do': doSomething, until: equalTo200}, () => {});
-    expect(doSomething).toHaveBeenCalled();
+    expect(doSomething).not.toHaveBeenCalled();
   });
 
   it('asynchronously calls the callback with an error', (done) => {
@@ -167,6 +167,14 @@ describe('attempt', () => {
 
         done();
       });
+    });
+
+    it('can be cancelled', (done) => {
+      attempt({'do': doSomething, until: equalTo200}, (err, result) => {
+        expect(result).toBe(null);
+        expect(err).toMatch('cancelled');
+        done();
+      }).cancel();
     });
   });
 });

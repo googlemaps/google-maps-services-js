@@ -8,10 +8,13 @@ exports.inject = (setTimeout) => ({
     var jitter = options.jitter || 0.5;
 
     var startTime = +new Date;
+    var cancelled = false;
 
     (function tryItAndSee() {
-      doSomething((err, result) => {
-        process.nextTick(() => {
+      process.nextTick(() => {
+        if (cancelled) return;
+
+        doSomething((err, result) => {
           if (err != null) {
             callback(err, null);
             return;
@@ -32,5 +35,12 @@ exports.inject = (setTimeout) => ({
         });
       });
     })();
+
+    return {cancel: () => {
+      cancelled = true;
+      process.nextTick(() => {
+        callback(new Error('cancelled'), null);
+      });
+    }};
   }
 });
