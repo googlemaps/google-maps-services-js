@@ -1,12 +1,31 @@
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 100;
+
 describe('attempt', () => {
+  beforeEach(() => {
+    jasmine.clock().install();
+    jasmine.clock().mockDate();
+  });
+  afterEach(() => {
+    jasmine.clock().uninstall();
+  });
+
+  var closeTo = (average, jitter) => ({
+    asymmetricMatch: (actual) => (
+        average * (1 - jitter) <= actual &&
+        average * (1 + jitter) >= actual
+    )
+  });
+
+  var fakeSetTimeout, timeoutDurations;
   var attempt;
-  var fakeSetTimeout;
-  var timeoutDurations;
   beforeEach(() => {
     timeoutDurations = [];
     fakeSetTimeout = (callback, duration) => {
       timeoutDurations.push(duration);
-      setImmediate(callback);
+      setImmediate(() => {
+        jasmine.clock().tick(duration);
+        callback();
+      });
     };
     attempt = require('../attempt').inject(fakeSetTimeout).attempt;
   });
@@ -102,15 +121,52 @@ describe('attempt', () => {
       });
     });
 
-    it('waits 500 ms', (done) => {
+    it('waits approximately 500 ms', (done) => {
       attempt({'do': doSomething, until: equalTo200}, (err, result) => {
-        expect(timeoutDurations).toEqual([500]);
+        var closeTo500 = {
+          asymmetricMatch: (actual) => (250 <= actual && actual <= 750)
+        };
+        expect(timeoutDurations).toEqual([closeTo(500, 0.5)]);
         done();
       });
     });
   });
 
   describe('(when multiple attempts fail)', () => {
-    it('does exponential backoff');
+    beforeEach(() => {
+      doSomething.and.callFake((callback) => { callback(null, 500); });
+    });
+
+    it('does exponential backoff', (done) => {
+      var TIMEOUT = 5000;
+      var INTERVAL = 700;
+      var INCREMENT = 1.2;
+      var JITTER = 0.2;
+
+      var startTime = +new Date;
+
+      attempt({
+        'do': doSomething,
+        until: equalTo200,
+        timeout: TIMEOUT,
+        interval: INTERVAL,
+        increment: INCREMENT,
+        jitter: JITTER
+      }, (err, result) => {
+        expect(result).toBe(null);
+        expect(err).toMatch('timeout');
+
+        var waitTime = INTERVAL;
+        timeoutDurations.forEach(function(duration, i) {
+          expect(duration).toEqual(closeTo(waitTime, JITTER));
+          waitTime *= INCREMENT;
+        });
+        expect(+new Date).toBeLessThan(startTime + TIMEOUT);
+        expect(+new Date + (1 + JITTER) * waitTime)
+            .toBeGreaterThan(startTime + TIMEOUT);
+
+        done();
+      });
+    });
   });
 });

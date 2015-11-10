@@ -1,19 +1,34 @@
 exports.inject = (setTimeout) => ({
   attempt: (options, callback) => {
+    var doSomething = options['do'];
+    var isSuccessful = options.until;
+    var timeout = options.timeout || 60 * 1000;
+    var interval = options.interval || 500;
+    var increment = options.increment || 1.5;
+    var jitter = options.jitter || 0.5;
+
+    var startTime = +new Date;
+
     (function tryItAndSee() {
-      options.do((err, result) => {
+      doSomething((err, result) => {
         process.nextTick(() => {
           if (err != null) {
             callback(err, null);
             return;
           }
-          if (options.until(result)) {
+          if (isSuccessful(result)) {
             callback(null, result);
             return;
           }
 
-          // TODO(step): Implement exponential backoff.
-          setTimeout(tryItAndSee, 500);
+          var waitTime = interval * (1 + jitter * (2 * Math.random() - 1));
+          interval *= increment;
+          if (+new Date + waitTime < startTime + timeout) {
+            setTimeout(tryItAndSee, waitTime);
+            return;
+          }
+
+          callback(new Error('timeout'), null);
         });
       });
     })();

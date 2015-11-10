@@ -25,5 +25,5 @@ describe('geocode client library', () => {
       expect(e.message).toBeFalsy();
     })
     .then(done);
-  });
+  }, 5000);
 });
