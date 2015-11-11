@@ -1,4 +1,4 @@
-var apiKey = null;  // TODO(step): Read key out of environment.
+var apiKey = process.env.GOOGLE_MAPS_API_KEY;
 var fetch = require('node-fetch');
 fetch.Promise = require('q').Promise;
 
