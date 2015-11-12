@@ -1,12 +1,4 @@
 describe('attempt', () => {
-  beforeEach(() => {
-    jasmine.clock().install();
-    jasmine.clock().mockDate();
-  });
-  afterEach(() => {
-    jasmine.clock().uninstall();
-  });
-
   var closeTo = (average, jitter) => ({
     asymmetricMatch: (actual) => (
         average * (1 - jitter) <= actual &&
@@ -14,18 +6,21 @@ describe('attempt', () => {
     )
   });
 
-  var fakeSetTimeout, timeoutDurations;
+  var timeoutDurations, theTime;
   var attempt;
   beforeEach(() => {
+    theTime = 123456;
     timeoutDurations = [];
-    fakeSetTimeout = (callback, duration) => {
+    var fakeSetTimeout = (callback, duration) => {
       timeoutDurations.push(duration);
       setImmediate(() => {
-        jasmine.clock().tick(duration);
+        theTime += duration;
         callback();
       });
     };
-    attempt = require('../lib/attempt').inject(fakeSetTimeout).attempt;
+    attempt = require('../lib/attempt')
+        .inject(fakeSetTimeout, () => theTime)
+        .attempt;
   });
 
   var doSomething, equalTo200;
@@ -141,7 +136,7 @@ describe('attempt', () => {
       var INCREMENT = 1.2;
       var JITTER = 0.2;
 
-      var startTime = +new Date;
+      var startTime = theTime;
 
       attempt({
         'do': doSomething,
@@ -159,8 +154,8 @@ describe('attempt', () => {
           expect(duration).toEqual(closeTo(waitTime, JITTER));
           waitTime *= INCREMENT;
         });
-        expect(+new Date).toBeLessThan(startTime + TIMEOUT);
-        expect(+new Date + (1 + JITTER) * waitTime)
+        expect(theTime).toBeLessThan(startTime + TIMEOUT);
+        expect(theTime + (1 + JITTER) * waitTime)
             .toBeGreaterThan(startTime + TIMEOUT);
 
         done();
