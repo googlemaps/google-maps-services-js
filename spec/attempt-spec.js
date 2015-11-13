@@ -35,7 +35,7 @@ describe('attempt', () => {
     expect(doSomething).not.toHaveBeenCalled();
   });
 
-  it('asynchronously calls the callback with an error', (done) => {
+  it('asynchronously calls the callback with an error', done => {
     doSomething.and.callFake((callback) => {
       callback(new Error('uh-oh!'));
     });
@@ -61,7 +61,7 @@ describe('attempt', () => {
       });
     });
 
-    it('asynchronously calls the callback with the successful result', (done) => {
+    it('asynchronously calls the callback with the successful result', done => {
       var called = false;
 
       attempt({'do': doSomething, until: equalTo200}, (err, result) => {
@@ -75,7 +75,7 @@ describe('attempt', () => {
     });
 
 
-    it('gives the result to the success tester', (done) => {
+    it('gives the result to the success tester', done => {
       attempt({'do': doSomething, until: equalTo200}, () => {
         expect(equalTo200).toHaveBeenCalledWith(200);
         done();
@@ -92,21 +92,21 @@ describe('attempt', () => {
       });
     });
 
-    it('calls doSomething twice', (done) => {
+    it('calls doSomething twice', done => {
       attempt({'do': doSomething, until: equalTo200}, (err, result) => {
         expect(doSomething.calls.count()).toBe(2);
         done();
       });
     });
 
-    it('calls equalTo200 with both results', (done) => {
+    it('calls equalTo200 with both results', done => {
       attempt({'do': doSomething, until: equalTo200}, (err, result) => {
         expect(equalTo200.calls.allArgs()).toEqual([[500], [200]]);
         done();
       });
     });
 
-    it('calls the callback with the successful result', (done) => {
+    it('calls the callback with the successful result', done => {
       attempt({'do': doSomething, until: equalTo200}, (err, result) => {
         expect(err).toBe(null);
         expect(result).toBe(200);
@@ -114,7 +114,7 @@ describe('attempt', () => {
       });
     });
 
-    it('waits approximately 500 ms', (done) => {
+    it('waits approximately 500 ms', done => {
       attempt({'do': doSomething, until: equalTo200}, (err, result) => {
         var closeTo500 = {
           asymmetricMatch: (actual) => (250 <= actual && actual <= 750)
@@ -130,7 +130,7 @@ describe('attempt', () => {
       doSomething.and.callFake((callback) => { callback(null, 500); });
     });
 
-    it('does exponential backoff', (done) => {
+    it('does exponential backoff', done => {
       var TIMEOUT = 5000;
       var INTERVAL = 700;
       var INCREMENT = 1.2;
@@ -162,12 +162,38 @@ describe('attempt', () => {
       });
     });
 
-    it('can be cancelled', (done) => {
+    it('can be cancelled immediately', done => {
       attempt({'do': doSomething, until: equalTo200}, (err, result) => {
         expect(result).toBe(null);
         expect(err).toMatch('cancelled');
         done();
       }).cancel();
     });
+
+    it('can be cancelled while running', done => {
+      var wasCancelled = false;
+      // A fake action, which never completes, but can be cancelled.
+      var doNothing = jasmine.createSpy('doNothing')
+          .and.callFake(callback => ({
+            cancel: () => {
+              wasCancelled = true;
+              process.nextTick(() => callback(new Error('cancelled'), null));
+            }
+          }));
+
+      var handle = attempt({
+        'do': doNothing,
+        until: equalTo200
+      }, (err, result) => {
+        expect(wasCancelled).toBe(true);
+        expect(err).toMatch(/cancelled/);
+        done();
+      });
+
+      setTimeout(() => {
+        expect(doNothing).toHaveBeenCalled();
+        handle.cancel();
+      }, 10);
+    })
   });
 });
