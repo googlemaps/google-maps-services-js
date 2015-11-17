@@ -103,19 +103,20 @@ describe('index.js:', () => {
   });
 
   describe('throttling', () => {
-    it('spaces out requests made together', done => {
+    it('spaces out requests made too close', done => {
       theTime = 0;
       var googleMaps = init(apiKey, {
         makeUrlRequest: requestAndSucceed,
-        throttleInterval: 100,
+        rate: {limit: 3, period: 1000},
         setTimeout: fakeSetTimeout,
         getTime: () => theTime
       });
 
       googleMaps.geocode({address: 'Sydney Opera House'}, () => {});
       googleMaps.geocode({address: 'Sydney Opera House'}, () => {});
+      googleMaps.geocode({address: 'Sydney Opera House'}, () => {});
       googleMaps.geocode({address: 'Sydney Opera House'}, () => {
-        expect(requestTimes).toEqual([0, 100, 200]);
+        expect(requestTimes).toEqual([0, 0, 0, 1000]);
         done();
       });
     });
@@ -124,7 +125,7 @@ describe('index.js:', () => {
       theTime = 0;
       var googleMaps = init(apiKey, {
         makeUrlRequest: requestAndSucceed,
-        throttleInterval: 100,
+        rate: {period: 1000},
         setTimeout: fakeSetTimeout,
         getTime: () => theTime
       });
@@ -154,7 +155,10 @@ describe('index.js:', () => {
     });
 
     it('cancels throttled requests', done => {
-      var googleMaps = init(apiKey, {makeUrlRequest: requestAndSucceed});
+      var googleMaps = init(apiKey, {
+        makeUrlRequest: requestAndSucceed,
+        rate: {limit: 1}
+      });
 
       googleMaps.geocode({address: 'Sydney Opera House'}, (err, response) => {
         expect(err).toBe(null);
