@@ -1,10 +1,10 @@
-var MostRecentlyUsedList = require('../lib/most-recently-used-list');
+var CircularBuffer = require('../lib/circular-buffer');
 
-describe('MostRecentlyUsedList,', function() {
+describe('CircularBuffer,', function() {
   var SIZE = 10;
   var list;
   beforeEach(function() {
-    list = MostRecentlyUsedList.create(SIZE);
+    list = CircularBuffer.create(SIZE);
   });
 
   describe('when empty,', function() {
