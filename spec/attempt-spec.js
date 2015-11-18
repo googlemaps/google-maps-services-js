@@ -1,10 +1,12 @@
 describe('attempt', function() {
-  var closeTo = function(average, jitter) {return {
-    asymmetricMatch: function(actual) {
-        return average * (1 - jitter) <= actual &&
-        average * (1 + jitter) >= actual;
+  var closeTo = function(average, jitter) {
+    return {
+      asymmetricMatch: function(actual) {
+          return average * (1 - jitter) <= actual &&
+              average * (1 + jitter) >= actual;
+      }
     }
-  }};
+  };
 
   var timeoutDurations, theTime;
   var attempt;
@@ -182,14 +184,16 @@ describe('attempt', function() {
       var wasCancelled = false;
       // A fake action, which never completes, but can be cancelled.
       var doNothing = jasmine.createSpy('doNothing')
-          .and.callFake(function(callback) {return {
-            cancel: function() {
-              wasCancelled = true;
-              process.nextTick(function() {
-                return callback(new Error('cancelled'), null);
-              });
+          .and.callFake(function(callback) {
+            return {
+              cancel: function() {
+                wasCancelled = true;
+                process.nextTick(function() {
+                  return callback(new Error('cancelled'), null);
+                });
+              }
             }
-          }});
+          });
 
       var handle = attempt({
         'do': doNothing,
