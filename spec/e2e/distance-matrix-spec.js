@@ -1,12 +1,12 @@
 var apiKey = process.env.GOOGLE_MAPS_API_KEY;
 
-describe('distance matrix client library', () => {
+describe('distance matrix client library', function() {
   var googleMaps;
-  beforeEach(() => {
+  beforeEach(function() {
     googleMaps = require('../../lib/index').init(apiKey);
   });
 
-  it('gets the distance matrix for Sydney Town Hall to Parramatta, NSW', (done) => {
+  it('gets the distance matrix for Sydney Town Hall to Parramatta, NSW', function(done) {
     googleMaps.distanceMatrix({
       origins: [
         'Perth, Australia', 'Sydney, Australia', 'Melbourne, Australia',
@@ -17,7 +17,7 @@ describe('distance matrix client library', () => {
         'Uluru, Australia', 'Kakadu, Australia', 'Blue Mountains, Australia',
         'Bungle Bungles, Australia', 'The Pinnacles, Australia'
       ]
-    }, (err, response) => {
+    }, function(err, response) {
       expect(err).toBe(null);
       expect(response.json).toEqual(
           jasmine.objectContaining({

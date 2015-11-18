@@ -1,15 +1,15 @@
 var apiKey = process.env.GOOGLE_MAPS_API_KEY;
 
-describe('geocode client library', () => {
+describe('geocode client library', function() {
   var googleMaps;
-  beforeEach(() => {
+  beforeEach(function() {
     googleMaps = require('../../lib/index').init(apiKey);
   });
 
-  it('gets the coordinates for the Sydney Opera House', (done) => {
+  it('gets the coordinates for the Sydney Opera House', function(done) {
     googleMaps.geocode({
       address: 'Sydney Opera House'
-    }, (err, response) => {
+    }, function(err, response) {
       expect(err).toBe(null);
       expect(response.json.results).toEqual(
           jasmine.arrayContaining([
@@ -21,10 +21,10 @@ describe('geocode client library', () => {
     });
   }, 5000);
 
-  it('reverse geocodes the coordinates for the Sydney Opera House', (done) => {
+  it('reverse geocodes the coordinates for the Sydney Opera House', function(done) {
     googleMaps.reverseGeocode({
       latlng: [-33.8571965, 151.2151398],
-    }, (err, response) => {
+    }, function(err, response) {
       expect(err).toBe(null);
       expect(response.json.results).toEqual(
           jasmine.arrayContaining([
