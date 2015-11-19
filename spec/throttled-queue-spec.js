@@ -1,39 +1,43 @@
-describe('throttle', () => {
+describe('throttle', function() {
   var PERIOD = 1000;
 
-  var fakeSetTimeout = (callback, duration) => {
-    setImmediate(() => {
+  var fakeSetTimeout = function(callback, duration) {
+    setImmediate(function() {
       theTime += duration;
       callback();
     });
   };
   var theTime, createQueue, queue, doSomething;
-  beforeEach(() => {
+  beforeEach(function() {
     theTime = 1000000;
     createQueue = require('../lib/throttled-queue')
-        .inject(fakeSetTimeout, () => theTime)
+        .inject(fakeSetTimeout, function() {
+          return theTime;
+        })
         .create;
     queue = createQueue(1, PERIOD);
 
     var count = 0;
     doSomething = jasmine.createSpy('doSomething')
-        .and.callFake(() => 'result ' + (++count));
+        .and.callFake(function() {
+          return 'result ' + (++count);
+        });
   });
 
-  it('doesn\'t do the operation synchronously', () => {
-    queue.add(doSomething, () => {});
+  it('doesn\'t do the operation synchronously', function() {
+    queue.add(doSomething, function() {});
     expect(doSomething).not.toHaveBeenCalled();
   });
 
-  it('calls doSomething', done => {
-    queue.add(doSomething, (err, result) => {
+  it('calls doSomething', function(done) {
+    queue.add(doSomething, function(err, result) {
       expect(doSomething).toHaveBeenCalled();
       done();
     });
   });
 
-  it('.cancel() cancels an operation', done => {
-    queue.add(doSomething, (err, result) => {
+  it('.cancel() cancels an operation', function(done) {
+    queue.add(doSomething, function(err, result) {
       expect(err).toMatch(/cancelled/);
       expect(doSomething).not.toHaveBeenCalled();
       done();
@@ -41,8 +45,8 @@ describe('throttle', () => {
     .cancel();
   });
 
-  it('.cancel() has no effect once the operation starts', done => {
-    var handle = queue.add(doSomething, (err, result) => {
+  it('.cancel() has no effect once the operation starts', function(done) {
+    var handle = queue.add(doSomething, function(err, result) {
       expect(err).toBe(null);
       expect(result).toBe('result 1');
       handle.cancel();
@@ -50,71 +54,71 @@ describe('throttle', () => {
     });
   });
 
-  it('does actions in order', done => {
-    queue.add(doSomething, (err, result) => {
+  it('does actions in order', function(done) {
+    queue.add(doSomething, function(err, result) {
       expect(result).toBe('result 1');
     });
 
-    queue.add(doSomething, (err, result) => {
+    queue.add(doSomething, function(err, result) {
       expect(result).toBe('result 2');
     });
 
-    queue.add(doSomething, (err, result) => {
+    queue.add(doSomething, function(err, result) {
       expect(result).toBe('result 3');
       done();
     });
   });
 
-  it('does it immediately the first time', done => {
+  it('does it immediately the first time', function(done) {
     var startTime = theTime;
 
-    queue.add(doSomething, (err, result) => {
+    queue.add(doSomething, function(err, result) {
       expect(theTime).toBe(startTime);
       done();
     });
   });
 
-  it('spaces out calls made at the same time', done => {
+  it('spaces out calls made at the same time', function(done) {
     var startTime = theTime;
 
-    queue.add(doSomething, (err, result) => {
+    queue.add(doSomething, function(err, result) {
       expect(theTime).toBe(startTime);
     });
 
-    queue.add(doSomething, (err, result) => {
+    queue.add(doSomething, function(err, result) {
       expect(theTime).toBe(startTime + PERIOD);
     });
 
-    queue.add(doSomething, (err, result) => {
+    queue.add(doSomething, function(err, result) {
       expect(theTime).toBe(startTime + 2 * PERIOD);
       done();
     });
   });
 
-  it('waits half a period, when appropriate', done => {
+  it('waits half a period, when appropriate', function(done) {
     var startTime = theTime;
 
-    queue.add(doSomething, (err, result) => {
+    queue.add(doSomething, function(err, result) {
       expect(theTime).toBe(startTime);
     });
 
-    fakeSetTimeout(() => {
-      queue.add(doSomething, (err, result) => {
+    fakeSetTimeout(function() {
+      queue.add(doSomething, function(err, result) {
         expect(theTime).toBe(startTime + PERIOD);
         done();
       });
     }, 0.5 * PERIOD);
   });
 
-  it('doesn\'t wait when calls are made far apart', done => {
+  it('doesn\'t wait when calls are made far apart', function(done) {
     var startTime = theTime;
 
-    queue.add(doSomething, (err, result) => {
+    queue.add(doSomething, function(err, result) {
       expect(theTime).toBe(startTime);
     });
 
-    fakeSetTimeout(() => {
-      queue.add(doSomething, (err, result) => {
+    fakeSetTimeout(function() {
+      queue.add(doSomething, function(err, result) {
         expect(theTime).toBe(startTime + 2 * PERIOD);
         done();
       });
@@ -129,19 +133,19 @@ describe('throttle', () => {
     it('waits before making the 4th call made together', function(done) {
       var startTime = theTime;
 
-      queue.add(doSomething, (err, result) => {
+      queue.add(doSomething, function(err, result) {
         expect(theTime).toBe(startTime);
       });
 
-      queue.add(doSomething, (err, result) => {
+      queue.add(doSomething, function(err, result) {
         expect(theTime).toBe(startTime);
       });
 
-      queue.add(doSomething, (err, result) => {
+      queue.add(doSomething, function(err, result) {
         expect(theTime).toBe(startTime);
       });
 
-      queue.add(doSomething, (err, result) => {
+      queue.add(doSomething, function(err, result) {
         expect(theTime).toBe(startTime + PERIOD);
         done();
       });
