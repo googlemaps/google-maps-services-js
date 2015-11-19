@@ -59,7 +59,7 @@ describe('index.js:', function() {
   });
 
   describe('retrying failing requests', function() {
-    it('retries the requests using retryOptions given to the method', function(done) {
+    it('uses retryOptions given to the method', function(done) {
       theTime = 0;
       init(apiKey, {
         makeUrlRequest: requestAndFail,
@@ -83,7 +83,7 @@ describe('index.js:', function() {
       });
     });
 
-    it('retries the requests using retryOptions given to the service', function(done) {
+    it('uses retryOptions given to the service', function(done) {
       theTime = 0;
       init(apiKey, {
         makeUrlRequest: requestAndFail,
