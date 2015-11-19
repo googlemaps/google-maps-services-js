@@ -106,14 +106,117 @@ describe('index.js:', function() {
     });
   });
 
-  it('cancels when .cancel() is called immediately', function(done) {
-    init(apiKey, {makeUrlRequest: requestAndSucceed})
-    .geocode({address: 'Sydney Opera House'}, function(err, response) {
-      expect(err).toMatch(/cancelled/);
-      expect(requestAndSucceed).not.toHaveBeenCalled();
-      done();
-    })
-    .cancel();
+  describe('throttling', function() {
+    it('spaces out requests made too close', function(done) {
+      theTime = 0;
+      var googleMaps = init(apiKey, {
+        makeUrlRequest: requestAndSucceed,
+        rate: {limit: 3, period: 1000},
+        setTimeout: fakeSetTimeout,
+        getTime: function() {
+          return theTime;
+        }
+      });
+
+      googleMaps.geocode({address: 'Sydney Opera House'}, function() {});
+      googleMaps.geocode({address: 'Sydney Opera House'}, function() {});
+      googleMaps.geocode({address: 'Sydney Opera House'}, function() {});
+      googleMaps.geocode({address: 'Sydney Opera House'}, function() {
+        expect(requestTimes).toEqual([0, 0, 0, 1000]);
+        done();
+      });
+    });
+
+    it('sends requests ASAP when not bunched up', function(done) {
+      theTime = 0;
+      var googleMaps = init(apiKey, {
+        makeUrlRequest: requestAndSucceed,
+        rate: {period: 1000},
+        setTimeout: fakeSetTimeout,
+        getTime: function() {
+          return theTime;
+        }
+      });
+
+      googleMaps.geocode({address: 'Sydney Opera House'}, function(err, response) {
+        expect(err).toBe(null);
+
+        theTime = 1000;
+        googleMaps.geocode({address: 'Sydney Opera House'}, function(err, response) {
+          expect(err).toBe(null);
+          expect(requestTimes).toEqual([0, 1000]);
+          done();
+        });
+      });
+    });
+  });
+
+  describe('.cancel()', function() {
+    it('cancels when called immediately', function(done) {
+      init(apiKey, {makeUrlRequest: requestAndSucceed})
+      .geocode({address: 'Sydney Opera House'}, function(err, response) {
+        expect(err).toMatch(/cancelled/);
+        expect(requestAndSucceed).not.toHaveBeenCalled();
+        done();
+      })
+      .cancel();
+    });
+
+    it('cancels throttled requests', function(done) {
+      var googleMaps = init(apiKey, {
+        makeUrlRequest: requestAndSucceed,
+        rate: {limit: 1}
+      });
+
+      googleMaps.geocode({address: 'Sydney Opera House'}, function(err, response) {
+        expect(err).toBe(null);
+        expect(requestAndSucceed).toHaveBeenCalled();
+        // At this point, the second request should already have been enqueued,
+        // due to throttling.
+        handle.cancel();
+      });
+
+      var handle = googleMaps.geocode(
+        {address: 'Sydney Opera House'},
+        function(err, response) {
+          expect(err).toMatch(/cancelled/);
+          expect(requestAndSucceed.calls.count()).toBe(1);
+          done();
+        }
+      );
+    });
+
+    it('cancels requests waiting to be retried', function(done) {
+      var handle = init(apiKey, {makeUrlRequest: requestAndFail})
+          .geocode({address: 'Sydney Opera House'}, function(err, response) {
+            expect(err).toMatch(/cancelled/);
+            expect(requestAndFail).toHaveBeenCalled();
+            done();
+          });
+
+      requestAndFail.and.callFake(function(url, callback) {
+        callback(null, {status: 500});
+        // After the first failure, schedule a cancel.
+        setImmediate(function() {
+          handle.cancel();
+        });
+      });
+    });
+
+    it('doesn\'t cancel in-flight requests', function(done) {
+      var handle =
+          init(apiKey, {makeUrlRequest: function(url, callback) {
+            setTimeout(function() {
+              requestAndSucceed(url, callback);
+            }, 10);
+            // By this stage, the request is in-flight, and cannot be cancelled.
+            handle.cancel();
+          }})
+          .geocode({address: 'Sydney Opera House'}, function(err, response) {
+            expect(err).toBe(null);
+            done();
+          });
+    });
   });
 
   describe('using .asPromise()', function() {
