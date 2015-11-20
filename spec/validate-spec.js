@@ -85,4 +85,28 @@ describe('Validate', function() {
     });
   });
 
+  describe('.mutuallyExclusiveProperties', function() {
+    var validate = Validate.mutuallyExclusiveProperties(['one', 'two', 'four']);
+
+    it('accepts objects with none of the properties', function() {
+      expect(validate({a: 1})).toEqual({a: 1});
+    });
+
+    it('accepts objects with exactly one of the properties', function() {
+      expect(validate({one: 1, three: 3})).toEqual({one: 1, three: 3});
+    });
+
+    it('rejects objects with two of the properties', function() {
+      expect(function() {
+        validate({one: 1, four: 4});
+      }).toThrowError(InvalidValueError, /"one" and "four"/);
+    });
+
+    it('rejects objects with more than two of the properties', function() {
+      expect(function() {
+        validate({one: 1, two: 2, four: 4});
+      }).toThrowError(InvalidValueError, /"one", "two" and "four"/);
+    });
+  });
+
 });
