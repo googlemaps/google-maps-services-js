@@ -6,7 +6,7 @@ describe('elevation client library', function() {
 
   it('gets the elevation for the Sydney Opera House', function(done) {
     googleMaps.elevation({
-      locations: [-33.8571965, 151.2151398]
+      locations: {lat: -33.8571965, lng: 151.2151398}
     }, function(err, response) {
       expect(err).toBe(null);
       expect(response.json.results).toEqual(

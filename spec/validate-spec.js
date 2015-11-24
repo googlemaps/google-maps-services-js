@@ -85,6 +85,21 @@ describe('Validate', function() {
     });
   });
 
+  describe('.either', function() {
+    var validate = Validate.either([Validate.string, Validate.number]);
+
+    it('accepts the valid values', function() {
+      expect(validate('one')).toBe('one');
+      expect(validate(2)).toBe(2);
+    });
+
+    it('rejects other values', function() {
+      expect(function() {
+        validate(true);
+      }).toThrowError(InvalidValueError);
+    });
+  });
+
   describe('.mutuallyExclusiveProperties', function() {
     var validate = Validate.mutuallyExclusiveProperties(['one', 'two', 'four']);
 
