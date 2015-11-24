@@ -1,9 +1,7 @@
-var apiKey = process.env.GOOGLE_MAPS_API_KEY;
-
 describe('timezone client library', function() {
   var googleMaps;
   beforeEach(function() {
-    googleMaps = require('../../lib/index').init(apiKey);
+    googleMaps = require('../../lib/index').init();
   });
 
   it('gets the timezone for the Sydney Opera House', function(done) {

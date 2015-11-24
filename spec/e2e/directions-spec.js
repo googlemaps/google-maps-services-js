@@ -1,9 +1,7 @@
-var apiKey = process.env.GOOGLE_MAPS_API_KEY;
-
 describe('directions client library', function() {
   var googleMaps;
   beforeEach(function() {
-    googleMaps = require('../../lib/index').init(apiKey);
+    googleMaps = require('../../lib/index').init();
   });
 
   it('gets the directions from the Sydney Town Hall to Parramatta, NSW', function(done) {

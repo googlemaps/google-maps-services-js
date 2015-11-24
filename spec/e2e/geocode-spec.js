@@ -1,9 +1,7 @@
-var apiKey = process.env.GOOGLE_MAPS_API_KEY;
-
 describe('geocode client library', function() {
   var googleMaps;
   beforeEach(function() {
-    googleMaps = require('../../lib/index').init(apiKey);
+    googleMaps = require('../../lib/index').init();
   });
 
   it('gets the coordinates for the Sydney Opera House', function(done) {
