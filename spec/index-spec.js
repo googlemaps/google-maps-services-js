@@ -21,7 +21,7 @@ describe('index.js:', function() {
           requestTimes.push(theTime);
           callback(undefined, {
             status: 200,
-            body: '{"hello": "world"}'
+            json: {'hello': 'world'}
           });
         });
 
@@ -39,22 +39,12 @@ describe('index.js:', function() {
         expect(err).toBe(null);
         expect(response).toEqual({
           status: 200,
-          body: '{"hello": "world"}',
-          json: {hello: 'world'}
+          json: {'hello': 'world'}
         });
         done();
       });
     });
 
-    it('reports parse errors', function(done) {
-      init({makeUrlRequest: function(url, callback) {
-        callback(null, {status: 200, body: 'not valid JSON'});
-      }})
-      .geocode({address: 'Sydney Opera House'}, function(err, response) {
-        expect(err).toMatch(/SyntaxError/);
-        done();
-      });
-    });
   });
 
   describe('retrying failing requests', function() {
@@ -226,8 +216,7 @@ describe('index.js:', function() {
       .then(function(response) {
         expect(response).toEqual({
           status: 200,
-          body: '{"hello": "world"}',
-          json: {hello: 'world'}
+          json: {'hello': 'world'}
         });
       })
       .then(done, fail);
