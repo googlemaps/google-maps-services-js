@@ -1,5 +1,5 @@
 {
-  "name": "google-maps-client",
+  "name": "@google/maps",
   "version": "0.0.1",
   "author": "Google Inc.",
   "description": "Node.js client library for Google Maps API Web Services",
@@ -24,8 +24,15 @@
   "keywords": [
     "google",
     "maps",
-    "service",
-    "api"
+    "googlemaps",
+    "geo",
+    "geocode",
+    "timezone",
+    "api",
+    "client",
+    "roads",
+    "directions",
+    "navigation"
   ],
   "license": "Apache 2.0",
   "bugs": {

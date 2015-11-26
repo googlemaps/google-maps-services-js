@@ -73,7 +73,7 @@ Your API key should be 40 characters long, and begin with `AIza`.
 
 ## Installation
 
-    $ npm install google-maps-client
+    $ npm install @google/maps
 
 ## Developer Documentation
 
@@ -97,7 +97,7 @@ This example uses the [Geocoding API].
 var config = {
   key: 'Add Your Key here'
 };
-var googlemaps = require('google-maps-client').init(config);
+var googlemaps = require('@google/maps').init(config);
 
 // Geocoding an address
 var query = {
