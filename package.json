@@ -1,8 +1,8 @@
 {
-  "name": "google-maps-services-js",
+  "name": "google-maps-client",
   "version": "0.0.1",
   "author": "Google Inc.",
-  "description": "NodeJS/browser client library for Google Maps API Web Services",
+  "description": "Node.js client library for Google Maps API Web Services",
   "main": "./lib",
   "contributors": [
     {
