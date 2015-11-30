@@ -47,6 +47,29 @@ describe('index.js:', function() {
 
   });
 
+  describe('using a client ID and secret', function() {
+    it('generates a signature param', function(done) {
+      var query = {
+        address: 'Sesame St.',
+        client: 'foo',
+        signature: 'Wqh6_J7zAuZHQOQgHwOehx4Wr6g='
+      };
+      var expected = require('url').format({
+        pathname: 'https://maps.googleapis.com/maps/api/geocode/json',
+        query: query
+      });
+      init({
+        clientId: query.client,
+        clientSecret: 'a2V5',
+        makeUrlRequest: function(url) {
+          expect(url).toBe(expected);
+          done();
+        }
+      })
+      .geocode({address: query.address});
+    });
+  });
+
   describe('retrying failing requests', function() {
     it('uses retryOptions given to the method', function(done) {
       theTime = 0;
