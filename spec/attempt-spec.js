@@ -20,7 +20,7 @@ describe('attempt', function() {
         callback();
       });
     };
-    attempt = require('../lib/attempt')
+    attempt = require('../lib/internal/attempt')
         .inject(fakeSetTimeout, function() {
           return theTime;
         })

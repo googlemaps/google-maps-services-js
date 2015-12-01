@@ -1,5 +1,5 @@
-var InvalidValueError = require('../lib/invalid-value-error');
-var Validate = require('../lib/validate');
+var InvalidValueError = require('../lib/internal/invalid-value-error');
+var Validate = require('../lib/internal/validate');
 
 describe('Validate', function() {
 
