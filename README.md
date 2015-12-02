@@ -95,7 +95,7 @@ This example uses the [Geocoding API].
 
 ```js
 var config = {
-  key: 'Add Your Key here'
+  key: 'Add your API key here'
 };
 var googlemaps = require('@google/maps').init(config);
 
@@ -147,6 +147,14 @@ are returned from the API.
 
 Maps API for Work customers can use their [client ID and secret][clientid] to authenticate. Free
 customers can use their [API key][apikey], too.
+
+```js
+var config = {
+  clientId: 'Add your client ID here',
+  clientSecret: 'Add your client secret here',
+};
+var googlemaps = require('@google/maps').init(config);
+```
 
 [apikey]: https://developers.google.com/maps/faq#keysystem
 [clientid]: https://developers.google.com/maps/documentation/business/webservices/auth
