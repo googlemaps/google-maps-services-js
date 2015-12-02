@@ -77,6 +77,8 @@ Your API key should be 40 characters long, and begin with `AIza`.
 
 ## Developer Documentation
 
+View the [reference documentation](https://googlemaps.github.io/google-maps-services-js/docs/)
+
 Additional documentation for the included web services is available at
 https://developers.google.com/maps/.
 
@@ -90,45 +92,37 @@ https://developers.google.com/maps/.
 
 ## Usage
 
-This example uses the [Geocoding API].
-
+This example uses the [Geocoding API] and the [Directions API].
 
 ```js
-var config = {
-  key: 'Add your API key here'
-};
+var config = {key: 'Add your API key here'};
 var googlemaps = require('@google/maps').init(config);
 
-// Geocoding an address
-var query = {
-  address: '1600 Amphitheatre Parkway, Mountain View, CA'
-};
+// Geocoding an address.
+var query = {address: '1600 Amphitheatre Parkway, Mountain View, CA'};
 googlemaps.geocode(query, function(err, response) {
-  if (err != null) {
+  if (!err) {
     console.log(response.json.results);
   }
 });
 
-// Look up an address with reverse geocoding
-var query = {
-  latlng: [40.714224, -73.961452]
-};
+// Look up an address with reverse geocoding.
+var query = {latlng: [40.714224, -73.961452]};
 googlemaps.reverseGeocode(query, function(err, response) {
-  if (err != null) {
+  if (!err) {
     console.log(response.json.results);
   }
 });
 
-// Request directions via public transit
-var now = new Date();
+// Request directions via public transit.
 var query = {
   origin: 'Sydney Town Hall',
   destination: 'Parramatta, NSW',
   mode: 'transit',
-  departure_time: now.getTime()
+  departure_time: (new Date()).getTime()
 };
 googlemaps.directions(query, function(err, response) {
-  if (err != null) {
+  if (!err) {
     console.log(response.json.routes);
   }
 });
