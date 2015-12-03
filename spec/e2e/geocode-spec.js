@@ -1,3 +1,6 @@
+var arrayContaining = jasmine.arrayContaining;
+var objectContaining = jasmine.objectContaining;
+
 describe('geocode client library', function() {
   var googleMaps;
   beforeEach(function() {
@@ -10,8 +13,8 @@ describe('geocode client library', function() {
     }, function(err, response) {
       expect(err).toBe(null);
       expect(response.json.results).toEqual(
-          jasmine.arrayContaining([
-            jasmine.objectContaining({
+          arrayContaining([
+            objectContaining({
               place_id: 'ChIJidzEjmauEmsRwb535u6rCA4'
             })
           ]));
@@ -25,8 +28,8 @@ describe('geocode client library', function() {
     }, function(err, response) {
       expect(err).toBe(null);
       expect(response.json.results).toEqual(
-          jasmine.arrayContaining([
-            jasmine.objectContaining({
+          arrayContaining([
+            objectContaining({
               formatted_address: '2A Macquarie St, Sydney NSW 2000, Australia'
             })
           ]));

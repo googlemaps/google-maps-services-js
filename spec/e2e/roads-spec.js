@@ -1,3 +1,6 @@
+var arrayContaining = jasmine.arrayContaining;
+var objectContaining = jasmine.objectContaining;
+
 describe('roads client library', function() {
   var googleMaps;
   beforeEach(function() {
@@ -14,8 +17,8 @@ describe('roads client library', function() {
     }, function(err, response) {
       expect(err).toBe(null);
       expect(response.json.snappedPoints).toEqual(
-          jasmine.arrayContaining([
-            jasmine.objectContaining({
+          arrayContaining([
+            objectContaining({
               originalIndex: 0,
               placeId: 'ChIJNX9BrM0LkkYRIM-cQg265e8'
             })
@@ -34,8 +37,8 @@ describe('roads client library', function() {
     }, function(err, response) {
       expect(err).toBe(null);
       expect(response.json.speedLimits).toEqual(
-          jasmine.arrayContaining([
-            jasmine.objectContaining({
+          arrayContaining([
+            objectContaining({
               speedLimit: 60,
               units: 'KPH'
             })
@@ -54,8 +57,8 @@ describe('roads client library', function() {
     }, function(err, response) {
       expect(err).toBe(null);
       expect(response.json.speedLimits).toEqual(
-          jasmine.arrayContaining([
-            jasmine.objectContaining({
+          arrayContaining([
+            objectContaining({
               speedLimit: 30,
               units: 'KPH'
             })

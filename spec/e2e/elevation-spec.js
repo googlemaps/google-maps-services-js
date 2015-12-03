@@ -1,3 +1,6 @@
+var arrayContaining = jasmine.arrayContaining;
+var objectContaining = jasmine.objectContaining;
+
 describe('elevation client library', function() {
   var googleMaps;
   beforeEach(function() {
@@ -10,8 +13,8 @@ describe('elevation client library', function() {
     }, function(err, response) {
       expect(err).toBe(null);
       expect(response.json.results).toEqual(
-          jasmine.arrayContaining([
-            jasmine.objectContaining({
+          arrayContaining([
+            objectContaining({
               elevation: 16.57956886291504
             })
           ]));
@@ -26,11 +29,11 @@ describe('elevation client library', function() {
     }, function(err, response) {
       expect(err).toBe(null);
       expect(response.json.results).toEqual(
-          jasmine.arrayContaining([
-            jasmine.objectContaining({
+          arrayContaining([
+            objectContaining({
               elevation: 8.883694648742676
             }),
-            jasmine.objectContaining({
+            objectContaining({
               elevation: -1550.868286132812
             })
           ]));

@@ -1,3 +1,6 @@
+var arrayContaining = jasmine.arrayContaining;
+var objectContaining = jasmine.objectContaining;
+
 describe('distance matrix client library', function() {
   var googleMaps;
   beforeEach(function() {
@@ -18,9 +21,9 @@ describe('distance matrix client library', function() {
     }, function(err, response) {
       expect(err).toBe(null);
       expect(response.json).toEqual(
-          jasmine.objectContaining({
-            destination_addresses: jasmine.arrayContaining(['Uluru NT 0872, Australia']),
-            origin_addresses: jasmine.arrayContaining(['Perth WA, Australia'])
+          objectContaining({
+            destination_addresses: arrayContaining(['Uluru NT 0872, Australia']),
+            origin_addresses: arrayContaining(['Perth WA, Australia'])
           }));
       done();
     });

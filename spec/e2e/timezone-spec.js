@@ -1,3 +1,5 @@
+var objectContaining = jasmine.objectContaining;
+
 describe('timezone client library', function() {
   var googleMaps;
   beforeEach(function() {
@@ -11,7 +13,7 @@ describe('timezone client library', function() {
     }, function(err, response) {
       expect(err).toBe(null);
       expect(response.json).toEqual(
-          jasmine.objectContaining({
+          objectContaining({
             timeZoneId : 'Australia/Sydney'
           }));
       done();

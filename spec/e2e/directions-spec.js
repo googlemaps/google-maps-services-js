@@ -1,3 +1,6 @@
+var arrayContaining = jasmine.arrayContaining;
+var objectContaining = jasmine.objectContaining;
+
 describe('directions client library', function() {
   var googleMaps;
   beforeEach(function() {
@@ -11,10 +14,10 @@ describe('directions client library', function() {
     }, function(err, response) {
       expect(err).toBe(null);
       expect(response.json.routes).toEqual(
-          jasmine.arrayContaining([
-            jasmine.objectContaining({
-              legs: jasmine.arrayContaining([
-                jasmine.objectContaining({
+          arrayContaining([
+            objectContaining({
+              legs: arrayContaining([
+                objectContaining({
                   end_address: 'Parramatta NSW, Australia'
                 })
               ])

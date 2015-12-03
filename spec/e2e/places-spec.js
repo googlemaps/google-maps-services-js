@@ -1,3 +1,6 @@
+var arrayContaining = jasmine.arrayContaining;
+var objectContaining = jasmine.objectContaining;
+
 describe('places client library', function() {
   var googleMaps;
   beforeEach(function() {
@@ -14,8 +17,8 @@ describe('places client library', function() {
     }, function(err, response) {
       expect(err).toBe(null);
       expect(response.json.results).toEqual(
-          jasmine.arrayContaining([
-            jasmine.objectContaining({
+          arrayContaining([
+            objectContaining({
               name: 'Spice Temple'
             })
           ]));
@@ -29,7 +32,7 @@ describe('places client library', function() {
     }, function(err, response) {
       expect(err).toBe(null);
       expect(response.json.result).toEqual(
-          jasmine.objectContaining({
+          objectContaining({
             name: 'Spice Temple'
           }));
       done();
@@ -53,8 +56,8 @@ describe('places client library', function() {
     }, function(err, response) {
       expect(err).toBe(null);
       expect(response.json.predictions).toEqual(
-          jasmine.arrayContaining([
-            jasmine.objectContaining({
+          arrayContaining([
+            objectContaining({
               description: 'pizza near New York, NY, United States'
             })
           ]));
