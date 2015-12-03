@@ -1,4 +1,8 @@
+var expect = require('chai').expect;
+
 describe('directions client library', function() {
+  this.timeout(5000);
+
   var googleMaps;
   beforeEach(function() {
     googleMaps = require('../../lib/index').init();
@@ -9,19 +13,11 @@ describe('directions client library', function() {
       origin: 'Sydney Town Hall',
       destination: 'Parramatta, NSW',
     }, function(err, response) {
-      expect(err).toBe(null);
-      expect(response.json.routes).toEqual(
-          jasmine.arrayContaining([
-            jasmine.objectContaining({
-              legs: jasmine.arrayContaining([
-                jasmine.objectContaining({
-                  end_address: 'Parramatta NSW, Australia'
-                })
-              ])
-            })
-          ]));
+      expect(err).to.equal(null);
+      expect(response.json.routes[0].legs[0].end_address)
+          .to.equal('Parramatta NSW, Australia');
       done();
     });
-  }, 5000);
+  });
 
 });

@@ -1,4 +1,8 @@
+var expect = require('chai').expect;
+
 describe('distance matrix client library', function() {
+  this.timeout(5000);
+
   var googleMaps;
   beforeEach(function() {
     googleMaps = require('../../lib/index').init();
@@ -16,12 +20,11 @@ describe('distance matrix client library', function() {
         'Bungle Bungles, Australia', 'The Pinnacles, Australia'
       ]
     }, function(err, response) {
-      expect(err).toBe(null);
-      expect(response.json).toEqual(
-          jasmine.objectContaining({
-            destination_addresses: jasmine.arrayContaining(['Uluru NT 0872, Australia']),
-            origin_addresses: jasmine.arrayContaining(['Perth WA, Australia'])
-          }));
+      expect(err).to.equal(null);
+      expect(response.json.destination_addresses)
+          .to.contain('Uluru NT 0872, Australia');
+      expect(response.json.origin_addresses)
+          .to.contain('Perth WA, Australia');
       done();
     });
   }, 5000);

@@ -1,3 +1,5 @@
+var expect = require('chai').expect;
+
 var Validate = require('../lib/internal/validate');
 var InvalidValueError = Validate.InvalidValueError;
 
@@ -11,40 +13,40 @@ describe('Validate', function() {
 
     it('returns a copy of a valid object', function() {
       var obj = {a: 1, b: 'hello'};
-      expect(validate(obj)).toEqual(obj);
-      expect(validate(obj)).not.toBe(obj);
+      expect(validate(obj)).to.deep.equal(obj);
+      expect(validate(obj)).not.to.equal(obj);
     });
 
     it('respects optional properties', function() {
-      expect(validate({a: 1})).toEqual({a: 1});
+      expect(validate({a: 1})).to.deep.equal({a: 1});
     });
 
     it('rejects invalid properties', function() {
       expect(function() {
         validate({a: false});
-      }).toThrowError(InvalidValueError, /in property "a": not a number/);
+      }).to.throw(InvalidValueError, /in property "a": not a number/);
 
       expect(function() {
         validate({a: 1, b: 2});
-      }).toThrowError(InvalidValueError, /in property "b": not a string/);
+      }).to.throw(InvalidValueError, /in property "b": not a string/);
     });
 
     it('rejects when properties are missing', function() {
       expect(function() {
         validate({b: 'what?'});
-      }).toThrowError(InvalidValueError, /missing property "a"/);
+      }).to.throw(InvalidValueError, /missing property "a"/);
     });
 
     it('rejects when unexpected properties are present', function() {
       expect(function() {
         validate({a: 1, b: 'hello', c: 'what?'});
-      }).toThrowError(InvalidValueError, /unexpected property "c"/);
+      }).to.throw(InvalidValueError, /unexpected property "c"/);
     });
 
     it('rejects non-objects', function() {
       expect(function() {
         validate(true);
-      }).toThrowError(InvalidValueError, /not an Object/);
+      }).to.throw(InvalidValueError, /not an Object/);
     });
   });
 
@@ -52,20 +54,20 @@ describe('Validate', function() {
     var validate = Validate.array(Validate.number);
 
     it('accepts arrays of valid elements', function() {
-      expect(validate([])).toEqual([]);
-      expect(validate([1, 2])).toEqual([1, 2]);
+      expect(validate([])).to.deep.equal([]);
+      expect(validate([1, 2])).to.deep.equal([1, 2]);
     });
 
     it('rejects non-arrays', function() {
       expect(function() {
         validate({});
-      }).toThrowError(InvalidValueError, /not an Array/);
+      }).to.throw(InvalidValueError, /not an Array/);
     });
 
     it('rejects arrays of invalid elements', function() {
       expect(function() {
         validate([1, true]);
-      }).toThrowError(InvalidValueError, /at index 1: not a number/);
+      }).to.throw(InvalidValueError, /at index 1: not a number/);
     });
   });
 
@@ -73,15 +75,15 @@ describe('Validate', function() {
     var validate = Validate.oneOf(['one', 'two', 'three']);
 
     it('accepts the valid values', function() {
-      expect(validate('one')).toBe('one');
-      expect(validate('two')).toBe('two');
-      expect(validate('three')).toBe('three');
+      expect(validate('one')).to.equal('one');
+      expect(validate('two')).to.equal('two');
+      expect(validate('three')).to.equal('three');
     });
 
     it('rejects other values', function() {
       expect(function() {
         validate('four');
-      }).toThrowError(InvalidValueError, /not one of "one", "two", "three"/);
+      }).to.throw(InvalidValueError, /not one of "one", "two", "three"/);
     });
   });
 
@@ -89,23 +91,23 @@ describe('Validate', function() {
     var validate = Validate.mutuallyExclusiveProperties(['one', 'two', 'four']);
 
     it('accepts objects with none of the properties', function() {
-      expect(validate({a: 1})).toEqual({a: 1});
+      expect(validate({a: 1})).to.deep.equal({a: 1});
     });
 
     it('accepts objects with exactly one of the properties', function() {
-      expect(validate({one: 1, three: 3})).toEqual({one: 1, three: 3});
+      expect(validate({one: 1, three: 3})).to.deep.equal({one: 1, three: 3});
     });
 
     it('rejects objects with two of the properties', function() {
       expect(function() {
         validate({one: 1, four: 4});
-      }).toThrowError(InvalidValueError, /"one" and "four"/);
+      }).to.throw(InvalidValueError, /"one" and "four"/);
     });
 
     it('rejects objects with more than two of the properties', function() {
       expect(function() {
         validate({one: 1, two: 2, four: 4});
-      }).toThrowError(InvalidValueError, /"one", "two" and "four"/);
+      }).to.throw(InvalidValueError, /"one", "two" and "four"/);
     });
   });
 

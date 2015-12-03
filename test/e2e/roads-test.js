@@ -1,4 +1,8 @@
+var expect = require('chai').expect;
+
 describe('roads client library', function() {
+  this.timeout(5000);
+
   var googleMaps;
   beforeEach(function() {
     googleMaps = require('../../lib/index').init();
@@ -12,17 +16,12 @@ describe('roads client library', function() {
         [60.170877, 24.942796]
       ]
     }, function(err, response) {
-      expect(err).toBe(null);
-      expect(response.json.snappedPoints).toEqual(
-          jasmine.arrayContaining([
-            jasmine.objectContaining({
-              originalIndex: 0,
-              placeId: 'ChIJNX9BrM0LkkYRIM-cQg265e8'
-            })
-          ]));
+      expect(err).to.equal(null);
+      expect(response.json.snappedPoints[0]).to.have.property(
+          'placeId', 'ChIJNX9BrM0LkkYRIM-cQg265e8');
       done();
     });
-  }, 5000);
+  });
 
   it('gets speed limits for place IDs', function(done) {
     googleMaps.speedLimits({
@@ -32,17 +31,15 @@ describe('roads client library', function() {
         'ChIJabjuhGlNFmsREIxAbW7qABM'
       ]
     }, function(err, response) {
-      expect(err).toBe(null);
-      expect(response.json.speedLimits).toEqual(
-          jasmine.arrayContaining([
-            jasmine.objectContaining({
-              speedLimit: 60,
-              units: 'KPH'
-            })
-          ]));
+      expect(err).to.equal(null);
+      expect(response.json.speedLimits[0]).to.deep.equal({
+        placeId: 'ChIJ58xCoGlNFmsRUEZUbW7qABM',
+        speedLimit: 60,
+        units: 'KPH'
+      });
       done();
     });
-  }, 5000);
+  });
 
   it('gets speed limits for a path', function(done) {
     googleMaps.snappedSpeedLimits({
@@ -52,16 +49,14 @@ describe('roads client library', function() {
         [60.170877, 24.942796]
       ]
     }, function(err, response) {
-      expect(err).toBe(null);
-      expect(response.json.speedLimits).toEqual(
-          jasmine.arrayContaining([
-            jasmine.objectContaining({
-              speedLimit: 30,
-              units: 'KPH'
-            })
-          ]));
+      expect(err).to.equal(null);
+      expect(response.json.speedLimits[0]).to.deep.equal({
+        placeId: 'ChIJNX9BrM0LkkYRIM-cQg265e8',
+        speedLimit: 30,
+        units: 'KPH'
+      });
       done();
     });
-  }, 5000);
+  });
 
 });
