@@ -2,10 +2,7 @@ var arrayContaining = jasmine.arrayContaining;
 var objectContaining = jasmine.objectContaining;
 
 describe('places client library', function() {
-  var googleMaps;
-  beforeEach(function() {
-    googleMaps = require('../lib/index').init();
-  });
+  var googleMaps = require('./service');
 
   it('gets places for a text search query', function(done) {
     googleMaps.places({
@@ -24,7 +21,7 @@ describe('places client library', function() {
           ]));
       done();
     });
-  }, 5000);
+  });
 
   it('gets details for a place', function(done) {
     googleMaps.place({
@@ -37,7 +34,7 @@ describe('places client library', function() {
           }));
       done();
     });
-  }, 5000);
+  });
 
   it('gets a places photo', function(done) {
     googleMaps.placesPhoto({
@@ -48,7 +45,7 @@ describe('places client library', function() {
       expect(response.headers['content-type']).toBe('image/jpeg');
       done();
     });
-  }, 5000);
+  });
 
   it('gets autocomplete predictions for a query', function(done) {
     googleMaps.placesAutoComplete({
@@ -63,6 +60,6 @@ describe('places client library', function() {
           ]));
       done();
     });
-  }, 5000);
+  });
 
 });

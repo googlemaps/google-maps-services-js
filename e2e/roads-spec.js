@@ -2,10 +2,7 @@ var arrayContaining = jasmine.arrayContaining;
 var objectContaining = jasmine.objectContaining;
 
 describe('roads client library', function() {
-  var googleMaps;
-  beforeEach(function() {
-    googleMaps = require('../lib/index').init();
-  });
+  var googleMaps = require('./service');
 
   it('gets points snapped to roads', function(done) {
     googleMaps.snapToRoads({
@@ -25,7 +22,7 @@ describe('roads client library', function() {
           ]));
       done();
     });
-  }, 5000);
+  });
 
   it('gets speed limits for place IDs', function(done) {
     googleMaps.speedLimits({
@@ -45,7 +42,7 @@ describe('roads client library', function() {
           ]));
       done();
     });
-  }, 5000);
+  });
 
   it('gets speed limits for a path', function(done) {
     googleMaps.snappedSpeedLimits({
@@ -65,6 +62,6 @@ describe('roads client library', function() {
           ]));
       done();
     });
-  }, 5000);
+  });
 
 });

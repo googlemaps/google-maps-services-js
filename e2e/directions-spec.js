@@ -2,10 +2,7 @@ var arrayContaining = jasmine.arrayContaining;
 var objectContaining = jasmine.objectContaining;
 
 describe('directions client library', function() {
-  var googleMaps;
-  beforeEach(function() {
-    googleMaps = require('../lib/index').init();
-  });
+  var googleMaps = require('./service');
 
   it('gets the directions from the Sydney Town Hall to Parramatta, NSW', function(done) {
     googleMaps.directions({
@@ -25,6 +22,6 @@ describe('directions client library', function() {
           ]));
       done();
     });
-  }, 5000);
+  });
 
 });

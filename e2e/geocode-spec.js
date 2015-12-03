@@ -2,10 +2,7 @@ var arrayContaining = jasmine.arrayContaining;
 var objectContaining = jasmine.objectContaining;
 
 describe('geocode client library', function() {
-  var googleMaps;
-  beforeEach(function() {
-    googleMaps = require('../lib/index').init();
-  });
+  var googleMaps = require('./service');
 
   it('gets the coordinates for the Sydney Opera House', function(done) {
     googleMaps.geocode({
@@ -20,7 +17,7 @@ describe('geocode client library', function() {
           ]));
       done();
     });
-  }, 5000);
+  });
 
   it('reverse geocodes the coordinates for the Sydney Opera House', function(done) {
     googleMaps.reverseGeocode({
@@ -35,5 +32,5 @@ describe('geocode client library', function() {
           ]));
       done();
     });
-  }, 5000);
+  });
 });

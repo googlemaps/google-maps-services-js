@@ -2,10 +2,7 @@ var arrayContaining = jasmine.arrayContaining;
 var objectContaining = jasmine.objectContaining;
 
 describe('distance matrix client library', function() {
-  var googleMaps;
-  beforeEach(function() {
-    googleMaps = require('../lib/index').init();
-  });
+  var googleMaps = require('./service');
 
   it('gets the distance matrix for Sydney Town Hall to Parramatta, NSW', function(done) {
     googleMaps.distanceMatrix({
@@ -27,6 +24,6 @@ describe('distance matrix client library', function() {
           }));
       done();
     });
-  }, 5000);
+  });
 
 });

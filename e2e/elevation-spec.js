@@ -2,10 +2,7 @@ var arrayContaining = jasmine.arrayContaining;
 var objectContaining = jasmine.objectContaining;
 
 describe('elevation client library', function() {
-  var googleMaps;
-  beforeEach(function() {
-    googleMaps = require('../lib/index').init();
-  });
+  var googleMaps = require('./service');
 
   it('gets the elevation for the Sydney Opera House', function(done) {
     googleMaps.elevation({
@@ -20,7 +17,7 @@ describe('elevation client library', function() {
           ]));
       done();
     });
-  }, 5000);
+  });
 
   it('gets the elevation for a path', function(done) {
     googleMaps.elevationAlongPath({
@@ -39,6 +36,6 @@ describe('elevation client library', function() {
           ]));
       done();
     });
-  }, 5000);
+  });
 
 });
