@@ -3,7 +3,7 @@ var objectContaining = jasmine.objectContaining;
 describe('timezone client library', function() {
   var googleMaps;
   beforeEach(function() {
-    googleMaps = require('../../lib/index').init();
+    googleMaps = require('../lib/index').init();
   });
 
   it('gets the timezone for the Sydney Opera House', function(done) {

@@ -1,39 +1,44 @@
 var arrayContaining = jasmine.arrayContaining;
 var objectContaining = jasmine.objectContaining;
 
-describe('geocode client library', function() {
+describe('elevation client library', function() {
   var googleMaps;
   beforeEach(function() {
-    googleMaps = require('../../lib/index').init();
+    googleMaps = require('../lib/index').init();
   });
 
-  it('gets the coordinates for the Sydney Opera House', function(done) {
-    googleMaps.geocode({
-      address: 'Sydney Opera House'
+  it('gets the elevation for the Sydney Opera House', function(done) {
+    googleMaps.elevation({
+      locations: {lat: -33.8571965, lng: 151.2151398}
     }, function(err, response) {
       expect(err).toBe(null);
       expect(response.json.results).toEqual(
           arrayContaining([
             objectContaining({
-              place_id: 'ChIJidzEjmauEmsRwb535u6rCA4'
+              elevation: 16.57956886291504
             })
           ]));
       done();
     });
   }, 5000);
 
-  it('reverse geocodes the coordinates for the Sydney Opera House', function(done) {
-    googleMaps.reverseGeocode({
-      latlng: [-33.8571965, 151.2151398],
+  it('gets the elevation for a path', function(done) {
+    googleMaps.elevationAlongPath({
+      path: [[40.714728, -73.998672], [-34.397, 150.644]],
+      samples: 5
     }, function(err, response) {
       expect(err).toBe(null);
       expect(response.json.results).toEqual(
           arrayContaining([
             objectContaining({
-              formatted_address: '2A Macquarie St, Sydney NSW 2000, Australia'
+              elevation: 8.883694648742676
+            }),
+            objectContaining({
+              elevation: -1550.868286132812
             })
           ]));
       done();
     });
   }, 5000);
+
 });

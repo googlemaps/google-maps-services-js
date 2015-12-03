@@ -15,7 +15,7 @@
     }
   ],
   "scripts": {
-    "test": "jasmine"
+    "test": "jasmine && jasmine e2e/*.js"
   },
   "repository": {
     "type": "git",

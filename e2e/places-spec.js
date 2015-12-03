@@ -4,7 +4,7 @@ var objectContaining = jasmine.objectContaining;
 describe('places client library', function() {
   var googleMaps;
   beforeEach(function() {
-    googleMaps = require('../../lib/index').init();
+    googleMaps = require('../lib/index').init();
   });
 
   it('gets places for a text search query', function(done) {
