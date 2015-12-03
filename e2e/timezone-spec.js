@@ -7,14 +7,15 @@ describe('timezone client library', function() {
     googleMaps.timezone({
       location: [-33.8571965, 151.2151398],
       timestamp: 1331766000,
-    }, function(err, response) {
-      expect(err).toBe(null);
+    })
+    .asPromise()
+    .then(function(response) {
       expect(response.json).toEqual(
           objectContaining({
             timeZoneId : 'Australia/Sydney'
           }));
-      done();
-    });
+    })
+    .then(done, fail);
   });
 
 });

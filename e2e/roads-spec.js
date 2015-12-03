@@ -11,8 +11,8 @@ describe('roads client library', function() {
         [60.170879, 24.942796],
         [60.170877, 24.942796]
       ]
-    }, function(err, response) {
-      expect(err).toBe(null);
+    })
+    .asPromise(function(response) {
       expect(response.json.snappedPoints).toEqual(
           arrayContaining([
             objectContaining({
@@ -20,8 +20,8 @@ describe('roads client library', function() {
               placeId: 'ChIJNX9BrM0LkkYRIM-cQg265e8'
             })
           ]));
-      done();
-    });
+    })
+    .then(done, fail);
   });
 
   it('gets speed limits for place IDs', function(done) {
@@ -31,8 +31,8 @@ describe('roads client library', function() {
         'ChIJ9RhaiGlNFmsR0IxAbW7qABM',
         'ChIJabjuhGlNFmsREIxAbW7qABM'
       ]
-    }, function(err, response) {
-      expect(err).toBe(null);
+    })
+    .asPromise(function(response) {
       expect(response.json.speedLimits).toEqual(
           arrayContaining([
             objectContaining({
@@ -40,8 +40,8 @@ describe('roads client library', function() {
               units: 'KPH'
             })
           ]));
-      done();
-    });
+    })
+    .then(done, fail);
   });
 
   it('gets speed limits for a path', function(done) {
@@ -51,8 +51,9 @@ describe('roads client library', function() {
         [60.170879, 24.942796],
         [60.170877, 24.942796]
       ]
-    }, function(err, response) {
-      expect(err).toBe(null);
+    })
+    .asPromise()
+    .then(function(response) {
       expect(response.json.speedLimits).toEqual(
           arrayContaining([
             objectContaining({
@@ -60,8 +61,8 @@ describe('roads client library', function() {
               units: 'KPH'
             })
           ]));
-      done();
-    });
+    })
+    .then(done, fail);
   });
 
 });

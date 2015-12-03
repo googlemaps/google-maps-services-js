@@ -7,30 +7,31 @@ describe('geocode client library', function() {
   it('gets the coordinates for the Sydney Opera House', function(done) {
     googleMaps.geocode({
       address: 'Sydney Opera House'
-    }, function(err, response) {
-      expect(err).toBe(null);
+    })
+    .asPromise()
+    .then(function(response) {
       expect(response.json.results).toEqual(
           arrayContaining([
             objectContaining({
               place_id: 'ChIJidzEjmauEmsRwb535u6rCA4'
             })
           ]));
-      done();
-    });
+    })
+    .then(done, fail);
   });
 
   it('reverse geocodes the coordinates for the Sydney Opera House', function(done) {
     googleMaps.reverseGeocode({
       latlng: [-33.8571965, 151.2151398],
-    }, function(err, response) {
-      expect(err).toBe(null);
+    })
+    .asPromise(function(response) {
       expect(response.json.results).toEqual(
           arrayContaining([
             objectContaining({
               formatted_address: '2A Macquarie St, Sydney NSW 2000, Australia'
             })
           ]));
-      done();
-    });
+    })
+    .then(done, fail);
   });
 });

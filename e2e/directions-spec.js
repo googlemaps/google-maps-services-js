@@ -8,8 +8,9 @@ describe('directions client library', function() {
     googleMaps.directions({
       origin: 'Sydney Town Hall',
       destination: 'Parramatta, NSW',
-    }, function(err, response) {
-      expect(err).toBe(null);
+    })
+    .asPromise()
+    .then(function(response) {
       expect(response.json.routes).toEqual(
           arrayContaining([
             objectContaining({
@@ -20,8 +21,8 @@ describe('directions client library', function() {
               ])
             })
           ]));
-      done();
-    });
+    })
+    .then(done, fail);
   });
 
 });

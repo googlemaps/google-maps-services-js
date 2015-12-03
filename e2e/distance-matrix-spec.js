@@ -15,15 +15,16 @@ describe('distance matrix client library', function() {
         'Uluru, Australia', 'Kakadu, Australia', 'Blue Mountains, Australia',
         'Bungle Bungles, Australia', 'The Pinnacles, Australia'
       ]
-    }, function(err, response) {
-      expect(err).toBe(null);
+    })
+    .asPromise()
+    .then(function(response) {
       expect(response.json).toEqual(
           objectContaining({
             destination_addresses: arrayContaining(['Uluru NT 0872, Australia']),
             origin_addresses: arrayContaining(['Perth WA, Australia'])
           }));
-      done();
-    });
+    })
+    .then(done, fail);
   });
 
 });

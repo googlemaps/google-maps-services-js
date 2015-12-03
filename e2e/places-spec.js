@@ -11,55 +11,59 @@ describe('places client library', function() {
       radius: 100,
       minprice: 1,
       maxprice: 4
-    }, function(err, response) {
-      expect(err).toBe(null);
+    })
+    .asPromise()
+    .then(function(response) {
       expect(response.json.results).toEqual(
           arrayContaining([
             objectContaining({
               name: 'Spice Temple'
             })
           ]));
-      done();
-    });
+    })
+    .then(done, fail);
   });
 
   it('gets details for a place', function(done) {
     googleMaps.place({
       placeid: 'ChIJc6EceWquEmsRmBVAjzjXM-g'
-    }, function(err, response) {
-      expect(err).toBe(null);
+    })
+    .asPromise()
+    .then(function(response) {
       expect(response.json.result).toEqual(
           objectContaining({
             name: 'Spice Temple'
           }));
-      done();
-    });
+    })
+    .then(done, fail);
   });
 
   it('gets a places photo', function(done) {
     googleMaps.placesPhoto({
       photoreference: 'CnRvAAAAwMpdHeWlXl-lH0vp7lez4znKPIWSWvgvZFISdKx45AwJVP1Qp37YOrH7sqHMJ8C-vBDC546decipPHchJhHZL94RcTUfPa1jWzo-rSHaTlbNtjh-N68RkcToUCuY9v2HNpo5mziqkir37WU8FJEqVBIQ4k938TI3e7bf8xq-uwDZcxoUbO_ZJzPxremiQurAYzCTwRhE_V0',
       maxwidth: 100
-    }, function(err, response) {
-      expect(err).toBe(null);
+    })
+    .asPromise()
+    .then(function(response) {
       expect(response.headers['content-type']).toBe('image/jpeg');
-      done();
-    });
+    })
+    .then(done, fail);
   });
 
   it('gets autocomplete predictions for a query', function(done) {
     googleMaps.placesAutoComplete({
       input: 'pizza near New York'
-    }, function(err, response) {
-      expect(err).toBe(null);
+    })
+    .asPromise()
+    .then(function(response) {
       expect(response.json.predictions).toEqual(
           arrayContaining([
             objectContaining({
               description: 'pizza near New York, NY, United States'
             })
           ]));
-      done();
-    });
+    })
+    .then(done, fail);
   });
 
 });
