@@ -40,7 +40,10 @@
   },
   "homepage": "https://github.com/googlemaps/google-maps-services-js",
   "devDependencies": {
-    "jasmine": "^2.3.2",
-    "q": "^1.4.1"
+    "chai": "*",
+    "mocha": "*",
+    "q": "^1.4.1",
+    "sinon": "^1.17.2",
+    "sinon-chai": "^2.8.0"
   }
 }

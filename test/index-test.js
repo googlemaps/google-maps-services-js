@@ -1,3 +1,8 @@
+var chai = require('chai');
+var sinon = require('sinon');
+var expect = chai.expect;
+chai.use(require('sinon-chai'));
+
 var Promise = require('q').Promise;
 
 describe('index.js:', function() {
@@ -16,28 +21,26 @@ describe('index.js:', function() {
 
     init = require('../lib/index').init;
 
-    requestAndSucceed = jasmine.createSpy('requestAndSucceed')
-        .and.callFake(function(url, callback) {
-          requestTimes.push(theTime);
-          callback(undefined, {
-            status: 200,
-            json: {'hello': 'world'}
-          });
-        });
+    requestAndSucceed = sinon.spy(function(url, callback) {
+      requestTimes.push(theTime);
+      callback(undefined, {
+        status: 200,
+        json: {'hello': 'world'}
+      });
+    });
 
-    requestAndFail = jasmine.createSpy('requestAndFail')
-        .and.callFake(function(url, callback) {
-          requestTimes.push(theTime);
-          callback(null, {status: 500});
-        });
+    requestAndFail = sinon.spy(function(url, callback) {
+      requestTimes.push(theTime);
+      callback(null, {status: 500});
+    });
   });
 
   describe('parsing the body as JSON', function() {
     it('populates the response.json property', function(done) {
       init({makeUrlRequest: requestAndSucceed})
       .geocode({address: 'Sydney Opera House'}, function(err, response) {
-        expect(err).toBe(null);
-        expect(response).toEqual({
+        expect(err).to.equal(null);
+        expect(response).to.deep.equal({
           status: 200,
           json: {'hello': 'world'}
         });
@@ -62,7 +65,7 @@ describe('index.js:', function() {
         clientId: query.client,
         clientSecret: 'a2V5',
         makeUrlRequest: function(url) {
-          expect(url).toBe(expected);
+          expect(url).to.equal(expected);
           done();
         }
       })
@@ -89,8 +92,8 @@ describe('index.js:', function() {
           jitter: 1e-100
         }
       }, function(err, response) {
-        expect(err).toMatch(/timeout/);
-        expect(requestTimes).toEqual([0, 1000, 2000, 3000, 4000, 5000]);
+        expect(err).to.deep.equal(new Error('timeout'));
+        expect(requestTimes).to.deep.equal([0, 1000, 2000, 3000, 4000, 5000]);
         done();
       });
     });
@@ -111,8 +114,8 @@ describe('index.js:', function() {
         }
       })
       .geocode({address: 'Sydney Opera House'}, function(err, response) {
-        expect(err).toMatch(/timeout/);
-        expect(requestTimes).toEqual([0, 1000, 2000, 3000, 4000, 5000]);
+        expect(err).to.deep.equal(new Error('timeout'));
+        expect(requestTimes).to.deep.equal([0, 1000, 2000, 3000, 4000, 5000]);
         done();
       });
     });
@@ -134,7 +137,7 @@ describe('index.js:', function() {
       googleMaps.geocode({address: 'Sydney Opera House'}, function() {});
       googleMaps.geocode({address: 'Sydney Opera House'}, function() {});
       googleMaps.geocode({address: 'Sydney Opera House'}, function() {
-        expect(requestTimes).toEqual([0, 0, 0, 1000]);
+        expect(requestTimes).to.deep.equal([0, 0, 0, 1000]);
         done();
       });
     });
@@ -151,12 +154,12 @@ describe('index.js:', function() {
       });
 
       googleMaps.geocode({address: 'Sydney Opera House'}, function(err, response) {
-        expect(err).toBe(null);
+        expect(err).to.equal(null);
 
         theTime = 1000;
         googleMaps.geocode({address: 'Sydney Opera House'}, function(err, response) {
-          expect(err).toBe(null);
-          expect(requestTimes).toEqual([0, 1000]);
+          expect(err).to.equal(null);
+          expect(requestTimes).to.deep.equal([0, 1000]);
           done();
         });
       });
@@ -167,8 +170,8 @@ describe('index.js:', function() {
     it('cancels when called immediately', function(done) {
       init({makeUrlRequest: requestAndSucceed})
       .geocode({address: 'Sydney Opera House'}, function(err, response) {
-        expect(err).toMatch(/cancelled/);
-        expect(requestAndSucceed).not.toHaveBeenCalled();
+        expect(err).to.deep.equal(new Error('cancelled'));
+        expect(requestAndSucceed).not.to.have.been.called;
         done();
       })
       .cancel();
@@ -181,8 +184,8 @@ describe('index.js:', function() {
       });
 
       googleMaps.geocode({address: 'Sydney Opera House'}, function(err, response) {
-        expect(err).toBe(null);
-        expect(requestAndSucceed).toHaveBeenCalled();
+        expect(err).to.equal(null);
+        expect(requestAndSucceed).to.have.been.called;
         // At this point, the second request should already have been enqueued,
         // due to throttling.
         handle.cancel();
@@ -191,28 +194,28 @@ describe('index.js:', function() {
       var handle = googleMaps.geocode(
         {address: 'Sydney Opera House'},
         function(err, response) {
-          expect(err).toMatch(/cancelled/);
-          expect(requestAndSucceed.calls.count()).toBe(1);
+          expect(err).to.deep.equal(new Error('cancelled'));
+          expect(requestAndSucceed.callCount).to.equal(1);
           done();
         }
       );
     });
 
     it('cancels requests waiting to be retried', function(done) {
-      var handle = init({makeUrlRequest: requestAndFail})
+      var handle = init({makeUrlRequest: requestAndFailThenCancel})
           .geocode({address: 'Sydney Opera House'}, function(err, response) {
-            expect(err).toMatch(/cancelled/);
-            expect(requestAndFail).toHaveBeenCalled();
+            expect(err).to.deep.equal(new Error('cancelled'));
+            expect(requestAndFail).to.have.been.called;
             done();
           });
 
-      requestAndFail.and.callFake(function(url, callback) {
-        callback(null, {status: 500});
+      function requestAndFailThenCancel(url, callback) {
+        requestAndFail(url, callback);
         // After the first failure, schedule a cancel.
         setImmediate(function() {
           handle.cancel();
         });
-      });
+      }
     });
 
     it('doesn\'t cancel in-flight requests', function(done) {
@@ -225,36 +228,36 @@ describe('index.js:', function() {
             handle.cancel();
           }})
           .geocode({address: 'Sydney Opera House'}, function(err, response) {
-            expect(err).toBe(null);
+            expect(err).to.equal(null);
             done();
           });
     });
   });
 
   describe('using .asPromise()', function() {
-    it('delivers responses', function(done) {
-      init({Promise: Promise, makeUrlRequest: requestAndSucceed})
-      .geocode({address: 'Sydney Opera House'})
-      .asPromise()
-      .then(function(response) {
-        expect(response).toEqual({
-          status: 200,
-          json: {'hello': 'world'}
-        });
-      })
-      .then(done, fail);
+    it('delivers responses', function() {
+      return (
+          init({Promise: Promise, makeUrlRequest: requestAndSucceed})
+          .geocode({address: 'Sydney Opera House'})
+          .asPromise()
+          .then(function(response) {
+            expect(response).to.deep.equal({
+              status: 200,
+              json: {'hello': 'world'}
+            });
+          }));
     });
 
-    it('delivers errors', function(done) {
-      init({Promise: Promise, makeUrlRequest: function(url, callback) {
-        callback('error', null);
-      }})
-      .geocode({address: 'Sydney Opera House'})
-      .asPromise()
-      .then(fail, function(error) {
-        expect(error).toEqual('error');
-        done();
-      })
+    it('delivers errors', function() {
+      return (
+          init({Promise: Promise, makeUrlRequest: function(url, callback) {
+            callback('error', null);
+          }})
+          .geocode({address: 'Sydney Opera House'})
+          .asPromise()
+          .then(expect.fail, function(error) {
+            expect(error).to.deep.equal('error');
+          }));
     });
   });
 });

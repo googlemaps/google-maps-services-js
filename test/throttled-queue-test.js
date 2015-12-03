@@ -1,3 +1,8 @@
+var chai = require('chai');
+var sinon = require('sinon');
+var expect = chai.expect;
+chai.use(require('sinon-chai'));
+
 describe('throttle', function() {
   var PERIOD = 1000;
 
@@ -18,28 +23,27 @@ describe('throttle', function() {
     queue = createQueue(1, PERIOD);
 
     var count = 0;
-    doSomething = jasmine.createSpy('doSomething')
-        .and.callFake(function() {
-          return 'result ' + (++count);
-        });
+    doSomething = sinon.spy(function() {
+      return 'result ' + (++count);
+    });
   });
 
   it('doesn\'t do the operation synchronously', function() {
     queue.add(doSomething, function() {});
-    expect(doSomething).not.toHaveBeenCalled();
+    expect(doSomething).not.to.have.been.called;
   });
 
   it('calls doSomething', function(done) {
     queue.add(doSomething, function(err, result) {
-      expect(doSomething).toHaveBeenCalled();
+      expect(doSomething).to.have.been.called;
       done();
     });
   });
 
   it('.cancel() cancels an operation', function(done) {
     queue.add(doSomething, function(err, result) {
-      expect(err).toMatch(/cancelled/);
-      expect(doSomething).not.toHaveBeenCalled();
+      expect(err).to.deep.equal(new Error('cancelled'));
+      expect(doSomething).not.to.have.been.called;
       done();
     })
     .cancel();
@@ -47,8 +51,8 @@ describe('throttle', function() {
 
   it('.cancel() has no effect once the operation starts', function(done) {
     var handle = queue.add(doSomething, function(err, result) {
-      expect(err).toBe(null);
-      expect(result).toBe('result 1');
+      expect(err).to.equal(null);
+      expect(result).to.equal('result 1');
       handle.cancel();
       done();
     });
@@ -56,15 +60,15 @@ describe('throttle', function() {
 
   it('does actions in order', function(done) {
     queue.add(doSomething, function(err, result) {
-      expect(result).toBe('result 1');
+      expect(result).to.equal('result 1');
     });
 
     queue.add(doSomething, function(err, result) {
-      expect(result).toBe('result 2');
+      expect(result).to.equal('result 2');
     });
 
     queue.add(doSomething, function(err, result) {
-      expect(result).toBe('result 3');
+      expect(result).to.equal('result 3');
       done();
     });
   });
@@ -73,7 +77,7 @@ describe('throttle', function() {
     var startTime = theTime;
 
     queue.add(doSomething, function(err, result) {
-      expect(theTime).toBe(startTime);
+      expect(theTime).to.equal(startTime);
       done();
     });
   });
@@ -82,15 +86,15 @@ describe('throttle', function() {
     var startTime = theTime;
 
     queue.add(doSomething, function(err, result) {
-      expect(theTime).toBe(startTime);
+      expect(theTime).to.equal(startTime);
     });
 
     queue.add(doSomething, function(err, result) {
-      expect(theTime).toBe(startTime + PERIOD);
+      expect(theTime).to.equal(startTime + PERIOD);
     });
 
     queue.add(doSomething, function(err, result) {
-      expect(theTime).toBe(startTime + 2 * PERIOD);
+      expect(theTime).to.equal(startTime + 2 * PERIOD);
       done();
     });
   });
@@ -99,12 +103,12 @@ describe('throttle', function() {
     var startTime = theTime;
 
     queue.add(doSomething, function(err, result) {
-      expect(theTime).toBe(startTime);
+      expect(theTime).to.equal(startTime);
     });
 
     fakeSetTimeout(function() {
       queue.add(doSomething, function(err, result) {
-        expect(theTime).toBe(startTime + PERIOD);
+        expect(theTime).to.equal(startTime + PERIOD);
         done();
       });
     }, 0.5 * PERIOD);
@@ -114,12 +118,12 @@ describe('throttle', function() {
     var startTime = theTime;
 
     queue.add(doSomething, function(err, result) {
-      expect(theTime).toBe(startTime);
+      expect(theTime).to.equal(startTime);
     });
 
     fakeSetTimeout(function() {
       queue.add(doSomething, function(err, result) {
-        expect(theTime).toBe(startTime + 2 * PERIOD);
+        expect(theTime).to.equal(startTime + 2 * PERIOD);
         done();
       });
     }, 2 * PERIOD);
@@ -134,19 +138,19 @@ describe('throttle', function() {
       var startTime = theTime;
 
       queue.add(doSomething, function(err, result) {
-        expect(theTime).toBe(startTime);
+        expect(theTime).to.equal(startTime);
       });
 
       queue.add(doSomething, function(err, result) {
-        expect(theTime).toBe(startTime);
+        expect(theTime).to.equal(startTime);
       });
 
       queue.add(doSomething, function(err, result) {
-        expect(theTime).toBe(startTime);
+        expect(theTime).to.equal(startTime);
       });
 
       queue.add(doSomething, function(err, result) {
-        expect(theTime).toBe(startTime + PERIOD);
+        expect(theTime).to.equal(startTime + PERIOD);
         done();
       });
     });
