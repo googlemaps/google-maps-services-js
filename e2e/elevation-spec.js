@@ -40,4 +40,17 @@ describe('elevation client library', function() {
     .then(done, fail);
   });
 
+  it('gets the elevation for an encoded polyline', function(done) {
+    googleMaps.elevationAlongPath({
+      path: 'v}kmEyetx[h@nAcAlBWl@Sd@Ol@Mb@OBIBEAQ?qAPiATu@NC?ABm@^GBE@m@DD]DS',
+      samples: 5
+    })
+    .asPromise()
+    .then(function(response) {
+      expect(response.status).toBe(200);
+      expect(response.json.status).toBe('OK');
+    })
+    .then(done, fail);
+  });
+
 });
