@@ -114,9 +114,8 @@ describe('reverse geocode client library', function() {
   });
 
   it('filters by result_type and location_type', function(done) {
-    pending('does not work with my API key');
     googleMaps.reverseGeocode({
-      place_id: 'ChIJidzEjmauEmsRwb535u6rCA4',
+      latlng: [-33.8571965, 151.2151398],
       result_type: ['country', 'street_address'],
       location_type: ['ROOFTOP', 'APPROXIMATE']
     })
