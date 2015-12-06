@@ -15,7 +15,8 @@
     }
   ],
   "scripts": {
-    "test": "jasmine && jasmine e2e/*.js"
+    "test": "jasmine && jasmine e2e/*.js",
+    "jsdoc": "jsdoc -c docs/conf.json"
   },
   "repository": {
     "type": "git",
@@ -41,6 +42,7 @@
   "homepage": "https://github.com/googlemaps/google-maps-services-js",
   "devDependencies": {
     "jasmine": "^2.3.2",
+    "jsdoc": "^3.4.0",
     "q": "^1.4.1"
   }
 }
