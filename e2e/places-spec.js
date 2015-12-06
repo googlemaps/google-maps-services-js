@@ -1,32 +1,75 @@
+var Promise = require('q').Promise;
+
 var arrayContaining = jasmine.arrayContaining;
 var objectContaining = jasmine.objectContaining;
+var stringMatching = jasmine.stringMatching;
 
 describe('places client library', function() {
   var googleMaps = require('./service');
 
   it('gets places for a text search query', function(done) {
     googleMaps.places({
-      query: 'restaurant',
-      location: [-33.86746, 151.207090],
-      radius: 100,
+      query: 'fast food',
+      language: 'en',
+      location: [-33.865, 151.038],
+      radius: 5000,
       minprice: 1,
-      maxprice: 4
+      maxprice: 4,
+      opennow: true,
+      types: 'restaurant'
     })
     .asPromise()
     .then(function(response) {
       expect(response.json.results).toEqual(
           arrayContaining([
             objectContaining({
-              name: 'Spice Temple'
+              name: stringMatching('McDonalds')
             })
           ]));
     })
     .then(done, fail);
   });
 
+  it('can page through results', function(done) {
+    googleMaps.places({
+      query: 'restaurant',
+      language: 'en',
+      location: [-33.86746, 151.207090],
+      radius: 5000
+    })
+    .asPromise()
+    .then(function(response) {
+      expect(response.json.next_page_token).not.toBeFalsy();
+      function getNextPage() {
+        return googleMaps.places({
+          pagetoken: response.json.next_page_token
+        }).asPromise();
+      }
+      return getNextPage()
+          .then(function repeatWhileInvalid(nextResponse) {
+            if (nextResponse.json.status !== 'INVALID_REQUEST') {
+              return nextResponse;
+            }
+
+            // Wait one second, and try again.
+            return new Promise(function(resolve) {
+              setTimeout(resolve, 1000);
+            })
+            .then(getNextPage)
+            .then(repeatWhileInvalid);
+          });
+    })
+    .then(function(nextResponse) {
+      expect(nextResponse.json.status).toBe('OK');
+      expect(nextResponse.json.results.length).not.toBeFalsy();
+    })
+    .then(done, fail);
+  }, 10000);
+
   it('gets details for a place', function(done) {
     googleMaps.place({
-      placeid: 'ChIJc6EceWquEmsRmBVAjzjXM-g'
+      placeid: 'ChIJc6EceWquEmsRmBVAjzjXM-g',
+      language: 'fr'
     })
     .asPromise()
     .then(function(response) {
@@ -41,7 +84,8 @@ describe('places client library', function() {
   it('gets a places photo', function(done) {
     googleMaps.placesPhoto({
       photoreference: 'CnRvAAAAwMpdHeWlXl-lH0vp7lez4znKPIWSWvgvZFISdKx45AwJVP1Qp37YOrH7sqHMJ8C-vBDC546decipPHchJhHZL94RcTUfPa1jWzo-rSHaTlbNtjh-N68RkcToUCuY9v2HNpo5mziqkir37WU8FJEqVBIQ4k938TI3e7bf8xq-uwDZcxoUbO_ZJzPxremiQurAYzCTwRhE_V0',
-      maxwidth: 100
+      maxwidth: 100,
+      maxheight: 100
     })
     .asPromise()
     .then(function(response) {
@@ -52,7 +96,12 @@ describe('places client library', function() {
 
   it('gets autocomplete predictions for a query', function(done) {
     googleMaps.placesAutoComplete({
-      input: 'pizza near New York'
+      input: 'pizza near New York',
+      language: 'en',
+      location: [40.724, -74.013],
+      radius: 5000,
+      types: ['restaurant'],
+      components: {country: 'us'}
     })
     .asPromise()
     .then(function(response) {
