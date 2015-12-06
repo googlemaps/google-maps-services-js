@@ -10,7 +10,8 @@ describe('roads client library', function() {
         [60.170880, 24.942795],
         [60.170879, 24.942796],
         [60.170877, 24.942796]
-      ]
+      ],
+      interpolate: true
     })
     .asPromise(function(response) {
       expect(response.json.snappedPoints).toEqual(
@@ -30,7 +31,8 @@ describe('roads client library', function() {
         'ChIJ58xCoGlNFmsRUEZUbW7qABM',
         'ChIJ9RhaiGlNFmsR0IxAbW7qABM',
         'ChIJabjuhGlNFmsREIxAbW7qABM'
-      ]
+      ],
+      units: 'KPH'
     })
     .asPromise(function(response) {
       expect(response.json.speedLimits).toEqual(
@@ -50,19 +52,26 @@ describe('roads client library', function() {
         [60.170880, 24.942795],
         [60.170879, 24.942796],
         [60.170877, 24.942796]
-      ]
+      ],
+      units: 'MPH'
     })
     .asPromise()
     .then(function(response) {
       expect(response.json.speedLimits).toEqual(
           arrayContaining([
             objectContaining({
-              speedLimit: 30,
-              units: 'KPH'
+              speedLimit: closeTo(19, 1),
+              units: 'MPH'
             })
           ]));
     })
     .then(done, fail);
   });
+
+  function closeTo(expected, delta) {
+    return {asymmetricMatch: function(actual) {
+      return Math.abs(actual - expected) < delta;
+    }};
+  }
 
 });
