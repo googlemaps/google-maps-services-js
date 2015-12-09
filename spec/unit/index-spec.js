@@ -14,7 +14,7 @@ describe('index.js:', function() {
     theTime = 1000000;
     requestTimes = [];
 
-    init = require('../lib/index').init;
+    init = require('../../lib/index').init;
 
     requestAndSucceed = jasmine.createSpy('requestAndSucceed')
         .and.callFake(function(url, callback) {

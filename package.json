@@ -15,7 +15,7 @@
     }
   ],
   "scripts": {
-    "test": "jasmine && jasmine e2e/*.js",
+    "test": "jasmine && jasmine spec/e2e/*.js",
     "jsdoc": "jsdoc -c docs/conf.json"
   },
   "repository": {

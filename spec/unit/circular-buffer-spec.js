@@ -1,4 +1,4 @@
-var CircularBuffer = require('../lib/internal/circular-buffer');
+var CircularBuffer = require('../../lib/internal/circular-buffer');
 
 describe('CircularBuffer,', function() {
   var SIZE = 10;

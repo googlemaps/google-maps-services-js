@@ -10,7 +10,7 @@ describe('throttle', function() {
   var theTime, createQueue, queue, doSomething;
   beforeEach(function() {
     theTime = 1000000;
-    createQueue = require('../lib/internal/throttled-queue')
+    createQueue = require('../../lib/internal/throttled-queue')
         .inject(fakeSetTimeout, function() {
           return theTime;
         })

@@ -1,4 +1,4 @@
-var Validate = require('../lib/internal/validate');
+var Validate = require('../../lib/internal/validate');
 var InvalidValueError = Validate.InvalidValueError;
 
 describe('Validate', function() {
