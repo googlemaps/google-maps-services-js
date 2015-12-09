@@ -31,7 +31,7 @@
  * request is not already in-flight.
  *
  * Note: Requests may be delayed due to rate-limiting. Also, requests that fail
- * with a retryable status code will be retried after an backoff delay.
+ * with a retryable status code will be retried after a backoff delay.
  *
  * If the request is successfully cancelled, the {@link ResponseCallback} will
  * be invoked with <code>new Error('cancelled')</code> as the first argument.

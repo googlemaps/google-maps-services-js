@@ -36,6 +36,9 @@
     "navigation"
   ],
   "license": "Apache 2.0",
+  "bin": {
+    "googlemaps": "bin/run.js"
+  },
   "bugs": {
     "url": "https://github.com/googlemaps/google-maps-services-js/issues"
   },
