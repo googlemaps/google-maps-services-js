@@ -128,7 +128,16 @@ googlemaps.directions(query, function(err, response) {
 });
 ```
 
-For more usage examples, check out [the tests](spec/e2e).
+For more usage examples, check out [the tests](spec/).
+
+## Command-line Interface
+
+Installing via npm also provides the `googlemaps` command-line utility,
+which can then be used to pipe JSON results to other command-line programs:
+
+```
+$ googlemaps directions --origin 'Sydney Town Hall' --destination 'Parramatta, NSW'
+```
 
 ## Features
 
