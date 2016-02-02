@@ -256,5 +256,23 @@ describe('index.js:', function() {
         done();
       })
     });
+
+    it('throws validation errors', function() {
+      expect(function() {
+        init({Promise: Promise, makeUrlRequest: requestAndSucceed})
+        .geocode({'uh-oh': 'bogus argument'})
+        .asPromise()
+        .then(fail);
+      }).toThrowError(/uh-oh/);
+    });
+  });
+
+  it('throws validation errors', function() {
+    expect(function() {
+      init({makeUrlRequest: requestAndSucceed})
+      .geocode({'uh-oh': 'bogus argument'}, function(err, response) {
+        fail();
+      });
+    }).toThrowError(/uh-oh/);
   });
 });
