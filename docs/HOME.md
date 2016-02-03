@@ -1,50 +1,67 @@
 Welcome to the reference docs for the [Node.js Client for Google Maps
 Services](https://github.com/googlemaps/google-maps-services-js).
 
-Quickstart
-----------
 
-Create a new client object by calling `init`:
+Quick Start
+-----------
+
+Create a new client object by calling
+[`init()`](module-@google_maps.html#.init):
 
 ```js
-var config = {key: 'Add your API key here'};
-var googlemaps = require('@google/maps').init(config);
+var googleMapsClient = require('@google/maps').init({key: 'your API key here'});
 ```
 
-All of the API methods are then available on the client object:
+Make requests to the Google Maps APIs by calling methods on the
+[client object](GoogleMapsClient.html):
 
 ```
-// Geocoding an address.
-var query = {address: '1600 Amphitheatre Parkway, Mountain View, CA'};
-googlemaps.geocode(query, function(err, response) {
+// Geocode an address.
+googleMapsClient.geocode({
+  address: '1600 Amphitheatre Parkway, Mountain View, CA'
+}, function(err, response) {
   if (!err) {
     console.log(response.json.results);
   }
 });
-
-// Request directions via public transit.
-var query = {
-  origin: 'Sydney Town Hall',
-  destination: 'Parramatta, NSW',
-  mode: 'transit',
-  departure_time: (new Date()).getTime()
-};
-googlemaps.directions(query, function(err, response) {
-  if (!err) {
-    console.log(response.json.routes);
-  }
-});
 ```
 
-Each API method accepts two arguments, a `query` object containing each
-of the parameters for the API, and a `callback` function which will run
-on completion of the API call, and receives an `error` (with a null value
-on success) and a `response` object.
 
-Next Steps
+Initializing the client library
+-------------------------------
+
+You can specify a number of options to the
+[`init()`](module-@google_maps.html#.init)
+function:
+* Specify an API key or a client ID (required)
+* Customize the rate limit on requests (default limit is 10 requests per second)
+* Specify a Promise constructor, so that you can receive responses via the
+  [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+  API. This leaves you free to choose your Promise implementation.
+
+
+Making API requests
+-------------------
+
+Each [API method](GoogleMapsClient.html) accepts two arguments:
+* a `query` object; and
+* a [`callback` function](ResponseCallback.html). The callback is called
+  with either the JSON response object or an error object.
+
+Each API method returns a [`RequestHandle`](RequestHandle.html). The handle can
+be used to cancel the request, or to obtain a Promise for the response.
+
+NOTE: Promises are only available if you supply a
+[Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+constructor to the [`init()`](module-@google_maps.html#.init) method.
+
+
+Learn More
 ----------
 
-* Browse each of the API methods to the right for detail on each of
-  their `query` argument's parameters.
-* Detailed documentation on JSON responses can be found on the [Google
-  Maps API Web Services site](https://developers.google.com/maps/documentation/webservices/).
+* Browse the documentation for each of the
+  [API methods](GoogleMapsClient.html)
+* Detailed documentation on the underlying web services and the JSON responses can be found on the
+  [Google Maps API Web Services site](https://developers.google.com/maps/documentation/webservices/).
+* Read the source code on
+  [github](https://github.com/googlemaps/google-maps-services-js).
