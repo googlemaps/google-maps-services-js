@@ -16,7 +16,7 @@ describe('Task:', function() {
     it('calls the next task asynchronously with the result', function(done) {
       var isSync = true;
 
-      Task.create(null, 'success')
+      Task.withValue(null, 'success')
       .thenDo(function(err, result) {
         expect(isSync).toBe(false);
       })
@@ -26,7 +26,7 @@ describe('Task:', function() {
     });
 
     it('calls chained tasks with the result of previous tasks', function(done) {
-      Task.create(null, 'success')
+      Task.withValue(null, 'success')
       .thenDo(function(err, result) {
         expect(err).toBe(null);
         expect(result).toBe('success');
@@ -34,7 +34,7 @@ describe('Task:', function() {
       .thenDo(function(err, result) {
         expect(err).toBe(null);
         expect(result).toBe(null);
-        return Task.create(null, 42);
+        return Task.withValue(null, 42);
       })
       .thenDo(function(err, result) {
         expect(err).toBe(null);
@@ -133,7 +133,7 @@ describe('Task:', function() {
     });
 
     it('ignores cancellation if the task is already finished', function(done) {
-      var task = Task.create(null, 'success');
+      var task = Task.withValue(null, 'success');
 
       task.thenDo(function(err, result) {
         expect(err).toBe(null);
@@ -163,7 +163,7 @@ describe('Task:', function() {
     });
 
     it('starts the next task with "cancelled"', function(done) {
-      Task.create(null, 'success')
+      Task.withValue(null, 'success')
       .thenDo(function(err, result) {
         expect(err).toBe('cancelled');
         done();
@@ -173,7 +173,7 @@ describe('Task:', function() {
 
     it('cancels the next task if it has started', function(done) {
       var proxyTask =
-          Task.create(null, 'success')
+          Task.withValue(null, 'success')
           .thenDo(function(err, result) {
             return Task.do(function(callback) {
               return function cancelMe() {
