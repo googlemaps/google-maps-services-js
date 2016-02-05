@@ -4,7 +4,7 @@ Node.js Client for Google Maps Services
 Use Node.js? Want to [geocode][Geocoding API] something? Looking
 for [directions][Directions API]? Maybe [matrices of directions][Distance Matrix API]?
 This library brings the [Google Maps API Web Services] to your Node.js
-application. ![Analytics](https://ga-beacon.appspot.com/UA-12846745-20/google-maps-services-js/readme?pixel)
+application. ![Analytics](https://maps-ga-beacon.appspot.com/UA-12846745-20/google-maps-services-java/readme?pixel)
 
 The Node.js Client for Google Maps Services is a Node.js Client library
 for the following Google Maps APIs:
