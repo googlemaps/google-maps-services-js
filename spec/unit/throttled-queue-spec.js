@@ -20,6 +20,8 @@ var Task = require('../../lib/internal/task');
 describe('throttle', function() {
   var PERIOD = 1000;
 
+  // This simplistic fake is suitable for injecting into the ThrottledQueue.
+  // The queue only has one pending timeout at a time.
   var fakeSetTimeout = function(callback, duration) {
     setImmediate(function() {
       theTime += duration;
@@ -123,13 +125,14 @@ describe('throttle', function() {
       expect(theTime).toBe(startTime);
     });
 
-    fakeSetTimeout(function() {
+    setTimeout(function() {
+      theTime += 0.5 * PERIOD;
       queue.add(doSomething)
       .thenDo(function(err, result) {
         expect(theTime).toBe(startTime + PERIOD);
         done();
       });
-    }, 0.5 * PERIOD);
+    }, 10);
   });
 
   it('doesn\'t wait when calls are made far apart', function(done) {
@@ -140,13 +143,14 @@ describe('throttle', function() {
       expect(theTime).toBe(startTime);
     });
 
-    fakeSetTimeout(function() {
+    setTimeout(function() {
+      theTime += 2 * PERIOD;
       queue.add(doSomething)
       .thenDo(function(err, result) {
         expect(theTime).toBe(startTime + 2 * PERIOD);
         done();
       });
-    }, 2 * PERIOD);
+    }, 10);
   });
 
   it('does not wait for calls that are cancelled', function(done) {
