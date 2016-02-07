@@ -15,16 +15,9 @@
  * limitations under the License.
  */
 
-describe('attempt', function() {
-  var closeTo = function(average, jitter) {
-    return {
-      asymmetricMatch: function(actual) {
-          return average * (1 - jitter) <= actual &&
-              average * (1 + jitter) >= actual;
-      }
-    }
-  };
+var within = require('../within');
 
+describe('attempt', function() {
   var timeoutDurations, theTime;
   var attempt;
   beforeEach(function() {
@@ -139,12 +132,7 @@ describe('attempt', function() {
 
     it('waits approximately 500 ms', function(done) {
       attempt({'do': doSomething, until: equalTo200}, function(err, result) {
-        var closeTo500 = {
-          asymmetricMatch: function(actual) {
-            return 250 <= actual && actual <= 750;
-          }
-        };
-        expect(timeoutDurations).toEqual([closeTo(500, 0.5)]);
+        expect(timeoutDurations).toEqual([within(250).of(500)]);
         done();
       });
     });
@@ -178,7 +166,7 @@ describe('attempt', function() {
 
         var waitTime = INTERVAL;
         timeoutDurations.forEach(function(duration, i) {
-          expect(duration).toEqual(closeTo(waitTime, JITTER));
+          expect(duration).toEqual(within(waitTime * JITTER).of(waitTime));
           waitTime *= INCREMENT;
         });
         expect(theTime).toBeLessThan(startTime + TIMEOUT);
