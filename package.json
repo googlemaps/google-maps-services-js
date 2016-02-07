@@ -35,7 +35,7 @@
     "directions",
     "navigation"
   ],
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "bin": {
     "googlemaps": "bin/run.js"
   },
