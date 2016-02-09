@@ -232,17 +232,17 @@ describe('index.js:', function() {
       });
     });
 
-    it('doesn\'t cancel in-flight requests', function(done) {
+    it('cancels in-flight requests', function(done) {
       var handle =
           createClient({makeUrlRequest: function(url, callback) {
             setTimeout(function() {
               requestAndSucceed(url, callback);
             }, 10);
-            // By this stage, the request is in-flight, and cannot be cancelled.
+            // By this stage, the request is in-flight.
             handle.cancel();
           }})
           .geocode({address: 'Sydney Opera House'}, function(err, response) {
-            expect(err).toBe(null);
+            expect(err).toBe('cancelled');
             done();
           });
     });

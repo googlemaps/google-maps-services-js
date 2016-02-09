@@ -15,6 +15,7 @@
  * limitations under the License.
  */
 
+var Task = require('../../lib/internal/task');
 var within = require('../within');
 
 describe('attempt', function() {
@@ -37,9 +38,8 @@ describe('attempt', function() {
         .attempt;
   });
 
-  var doSomething, equalTo200;
+  var equalTo200;
   beforeEach(function() {
-    doSomething = jasmine.createSpy('doSomething');
     equalTo200 = jasmine.createSpy('equalTo200')
         .and.callFake(function(result) {
           return result === 200;
@@ -47,52 +47,45 @@ describe('attempt', function() {
   });
 
   it('calls doSomething asynchronously', function() {
-    attempt({'do': doSomething, until: equalTo200}, function() {});
+    var doSomething = jasmine.createSpy('doSomething')
+        .and.returnValue(Task.withValue(null, 200));
+
+    attempt({'do': doSomething, until: equalTo200});
     expect(doSomething).not.toHaveBeenCalled();
   });
 
-  it('asynchronously calls the callback with an error', function(done) {
-    doSomething.and.callFake(function(callback) {
-      callback(new Error('uh-oh!'));
-    });
+  it('calls the callback with an error', function(done) {
+    function doSomething() {
+      throw new Error('uh-oh!');
+    }
 
-    var called = false;
-
-    attempt({'do': doSomething, until: equalTo200}, function(err, result) {
-      called = true;
+    attempt({'do': doSomething, until: equalTo200})
+    .thenDo(function(err, result) {
       expect(err).toMatch('uh-oh!');
       expect(result).toBe(null);
       expect(equalTo200).not.toHaveBeenCalled();
       done();
     });
-
-    expect(called).toBe(false);
   });
 
   describe('(when the first attempt succeeds)', function() {
+    function doSomething() {
+      return Task.withValue(null, 200);
+    }
 
-    beforeEach(function() {
-      doSomething.and.callFake(function(callback) {
-        callback(null, 200);
-      });
-    });
-
-    it('asynchronously calls the callback with the successful result', function(done) {
-      var called = false;
-
-      attempt({'do': doSomething, until: equalTo200}, function(err, result) {
-        called = true;
+    it('calls the callback with the successful result', function(done) {
+      attempt({'do': doSomething, until: equalTo200})
+      .thenDo(function(err, result) {
         expect(err).toBe(null);
         expect(result).toBe(200);
         done();
       });
-
-      expect(called).toBe(false);
     });
 
 
     it('gives the result to the success tester', function(done) {
-      attempt({'do': doSomething, until: equalTo200}, function() {
+      attempt({'do': doSomething, until: equalTo200})
+      .thenDo(function() {
         expect(equalTo200).toHaveBeenCalledWith(200);
         done();
       });
@@ -100,30 +93,38 @@ describe('attempt', function() {
   });
 
   describe('(when the second attempt succeeds)', function() {
+    var attemptCount;
     beforeEach(function() {
-      var attemptCount = 0
-      doSomething.and.callFake(function(callback) {
-        var result = (attemptCount++ === 0) ? 500 : 200;
-        callback(null, result);
-      });
+      attemptCount = 0;
     });
 
+    function doSomething() {
+      return Task.start(function(callback) {
+        ++attemptCount;
+        var result = (attemptCount > 1) ? 200 : 500;
+        callback(null, result);
+      });
+    }
+
     it('calls doSomething twice', function(done) {
-      attempt({'do': doSomething, until: equalTo200}, function(err, result) {
-        expect(doSomething.calls.count()).toBe(2);
+      attempt({'do': doSomething, until: equalTo200})
+      .thenDo(function(err, result) {
+        expect(attemptCount).toBe(2);
         done();
       });
     });
 
     it('calls equalTo200 with both results', function(done) {
-      attempt({'do': doSomething, until: equalTo200}, function(err, result) {
+      attempt({'do': doSomething, until: equalTo200})
+      .thenDo(function(err, result) {
         expect(equalTo200.calls.allArgs()).toEqual([[500], [200]]);
         done();
       });
     });
 
     it('calls the callback with the successful result', function(done) {
-      attempt({'do': doSomething, until: equalTo200}, function(err, result) {
+      attempt({'do': doSomething, until: equalTo200})
+      .thenDo(function(err, result) {
         expect(err).toBe(null);
         expect(result).toBe(200);
         done();
@@ -131,7 +132,8 @@ describe('attempt', function() {
     });
 
     it('waits approximately 500 ms', function(done) {
-      attempt({'do': doSomething, until: equalTo200}, function(err, result) {
+      attempt({'do': doSomething, until: equalTo200})
+      .thenDo(function(err, result) {
         expect(timeoutDurations).toEqual([within(250).of(500)]);
         done();
       });
@@ -139,11 +141,9 @@ describe('attempt', function() {
   });
 
   describe('(when multiple attempts fail)', function() {
-    beforeEach(function() {
-      doSomething.and.callFake(function(callback) {
-        callback(null, 500);
-      });
-    });
+    function doSomething() {
+      return Task.withValue(null, 500);
+    }
 
     it('does exponential backoff', function(done) {
       var TIMEOUT = 5000;
@@ -160,7 +160,8 @@ describe('attempt', function() {
         interval: INTERVAL,
         increment: INCREMENT,
         jitter: JITTER
-      }, function(err, result) {
+      })
+      .thenDo(function(err, result) {
         expect(result).toBe(null);
         expect(err).toMatch('timeout');
 
@@ -178,40 +179,34 @@ describe('attempt', function() {
     });
 
     it('can be cancelled immediately', function(done) {
-      attempt({'do': doSomething, until: equalTo200}, function(err, result) {
+      attempt({'do': doSomething, until: equalTo200})
+      .thenDo(function(err, result) {
         expect(result).toBe(null);
         expect(err).toMatch('cancelled');
         done();
-      }).cancel();
+      })
+      .cancel();
     });
 
     it('can be cancelled while running', function(done) {
-      var wasCancelled = false;
-      // A fake action, which never completes, but can be cancelled.
-      var doNothing = jasmine.createSpy('doNothing')
-          .and.callFake(function(callback) {
-            return {
-              cancel: function() {
-                wasCancelled = true;
-                process.nextTick(function() {
-                  return callback(new Error('cancelled'), null);
-                });
-              }
-            }
+      var cancelMe = jasmine.createSpy('cancelMe');
+      var task = attempt({
+        'do': function() {
+          return Task.start(function(callback) {
+            return cancelMe;
           });
-
-      var handle = attempt({
-        'do': doNothing,
+        },
         until: equalTo200
-      }, function(err, result) {
-        expect(wasCancelled).toBe(true);
-        expect(err).toMatch(/cancelled/);
+      })
+      .thenDo(function(err, result) {
+        expect(err).toMatch('cancelled');
+        expect(cancelMe).toHaveBeenCalled();
         done();
       });
 
       setTimeout(function() {
-        expect(doNothing).toHaveBeenCalled();
-        handle.cancel();
+        expect(cancelMe).not.toHaveBeenCalled();
+        task.cancel();
       }, 10);
     })
   });
