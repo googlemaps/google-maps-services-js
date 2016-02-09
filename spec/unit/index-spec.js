@@ -16,26 +16,25 @@
  */
 
 var Promise = require('q').Promise;
+var within = require('../within');
+
+function within10of(numbers) {
+  return numbers.map(function(number) {
+    return within(10).of(number);
+  });
+}
 
 describe('index.js:', function() {
-  var theTime;
-  var fakeSetTimeout = function(callback, duration) {
-    setImmediate(function() {
-      theTime += duration;
-      callback();
-    });
-  };
-
   var createClient, requestAndSucceed, requestAndFail, requestTimes;
   beforeEach(function() {
-    theTime = 1000000;
-    requestTimes = [];
-
     createClient = require('../../lib/index').createClient;
+
+    requestTimes = [];
+    var startTime = +new Date;
 
     requestAndSucceed = jasmine.createSpy('requestAndSucceed')
         .and.callFake(function(url, callback) {
-          requestTimes.push(theTime);
+          requestTimes.push(+new Date - startTime);
           callback(undefined, {
             status: 200,
             json: {'hello': 'world'}
@@ -44,7 +43,7 @@ describe('index.js:', function() {
 
     requestAndFail = jasmine.createSpy('requestAndFail')
         .and.callFake(function(url, callback) {
-          requestTimes.push(theTime);
+          requestTimes.push(+new Date - startTime);
           callback(null, {status: 500});
         });
   });
@@ -89,47 +88,37 @@ describe('index.js:', function() {
 
   describe('retrying failing requests', function() {
     it('uses retryOptions given to the method', function(done) {
-      theTime = 0;
       createClient({
-        makeUrlRequest: requestAndFail,
-        setTimeout: fakeSetTimeout,
-        getTime: function() {
-          return theTime;
-        }
+        makeUrlRequest: requestAndFail
       })
       .geocode({
         address: 'Sydney Opera House',
+        timeout: 100,
         retryOptions: {
-          timeout: 5500,
-          interval: 1000,
+          interval: 30,
           increment: 1,
           jitter: 1e-100
         }
       }, function(err, response) {
         expect(err).toMatch(/timeout/);
-        expect(requestTimes).toEqual([0, 1000, 2000, 3000, 4000, 5000]);
+        expect(requestTimes).toEqual(within10of([0, 30, 60, 90]));
         done();
       });
     });
 
     it('uses retryOptions given to the service', function(done) {
-      theTime = 0;
       createClient({
         makeUrlRequest: requestAndFail,
+        timeout: 100,
         retryOptions: {
-          timeout: 5500,
-          interval: 1000,
+          interval: 30,
           increment: 1,
           jitter: 1e-100
-        },
-        setTimeout: fakeSetTimeout,
-        getTime: function() {
-          return theTime;
         }
       })
       .geocode({address: 'Sydney Opera House'}, function(err, response) {
         expect(err).toMatch(/timeout/);
-        expect(requestTimes).toEqual([0, 1000, 2000, 3000, 4000, 5000]);
+        expect(requestTimes).toEqual(within10of([0, 30, 60, 90]));
         done();
       });
     });
@@ -137,46 +126,37 @@ describe('index.js:', function() {
 
   describe('throttling', function() {
     it('spaces out requests made too close', function(done) {
-      theTime = 0;
       var googleMaps = createClient({
         makeUrlRequest: requestAndSucceed,
-        rate: {limit: 3, period: 1000},
-        setTimeout: fakeSetTimeout,
-        getTime: function() {
-          return theTime;
-        }
+        rate: {limit: 3, period: 30}
       });
 
       googleMaps.geocode({address: 'Sydney Opera House'}, function() {});
       googleMaps.geocode({address: 'Sydney Opera House'}, function() {});
       googleMaps.geocode({address: 'Sydney Opera House'}, function() {});
       googleMaps.geocode({address: 'Sydney Opera House'}, function() {
-        expect(requestTimes).toEqual([0, 0, 0, 1000]);
+        expect(requestTimes).toEqual(within10of([0, 0, 0, 30]));
         done();
       });
     });
 
     it('sends requests ASAP when not bunched up', function(done) {
-      theTime = 0;
       var googleMaps = createClient({
         makeUrlRequest: requestAndSucceed,
-        rate: {period: 1000},
-        setTimeout: fakeSetTimeout,
-        getTime: function() {
-          return theTime;
-        }
+        rate: {period: 20}
       });
 
       googleMaps.geocode({address: 'Sydney Opera House'}, function(err, response) {
         expect(err).toBe(null);
+      });
 
-        theTime = 1000;
+      setTimeout(function() {
         googleMaps.geocode({address: 'Sydney Opera House'}, function(err, response) {
           expect(err).toBe(null);
-          expect(requestTimes).toEqual([0, 1000]);
+          expect(requestTimes).toEqual(within10of([0, 30]));
           done();
         });
-      });
+      }, 30);
     });
   });
 
