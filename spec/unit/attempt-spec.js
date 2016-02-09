@@ -107,7 +107,7 @@ describe('attempt', function() {
     });
 
     function doSomething() {
-      return Task.do(function(callback) {
+      return Task.start(function(callback) {
         ++attemptCount;
         var result = (attemptCount > 1) ? 200 : 500;
         callback(null, result);
@@ -205,7 +205,7 @@ describe('attempt', function() {
       var cancelMe = jasmine.createSpy('cancelMe');
       var task = attempt({
         'do': function() {
-          return Task.do(function(callback) {
+          return Task.start(function(callback) {
             return cancelMe;
           });
         },

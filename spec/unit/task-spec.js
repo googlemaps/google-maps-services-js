@@ -24,7 +24,7 @@ describe('Task:', function() {
   });
 
   it('calls doSomething immediately', function() {
-    Task.do(doSomethingSpy);
+    Task.start(doSomethingSpy);
 
     expect(doSomethingSpy).toHaveBeenCalled();
   });
@@ -65,7 +65,7 @@ describe('Task:', function() {
     it('gives the next task the error', function(done) {
       var isSync = true;
 
-      Task.do(function() {
+      Task.start(function() {
         throw new Error ('uh oh');
       })
       .thenDo(function(err, result) {
@@ -83,7 +83,7 @@ describe('Task:', function() {
     it('calls the next task asynchronously', function(done) {
       var isSync = true;
 
-      Task.do(function(callback) {
+      Task.start(function(callback) {
         setImmediate(function() {
           callback(null, 'success');
         });
@@ -97,7 +97,7 @@ describe('Task:', function() {
     });
 
     it('calls chained tasks with the result of previous tasks', function(done) {
-      Task.do(function(callback) {
+      Task.start(function(callback) {
         setImmediate(function() {
           callback(null, 'success');
         });
@@ -109,7 +109,7 @@ describe('Task:', function() {
       .thenDo(function(err, result) {
         expect(err).toBe(null);
         expect(result).toBe(null);
-        return Task.do(function(callback) {
+        return Task.start(function(callback) {
           setImmediate(function() {
             callback(null, 42);
           });
@@ -125,7 +125,7 @@ describe('Task:', function() {
 
   describe('when the first task is cancelled,', function() {
     it('cancels the work if possible', function(done) {
-      Task.do(function(callback) {
+      Task.start(function(callback) {
         return function cancelMe() {
           done();
         };
@@ -134,7 +134,7 @@ describe('Task:', function() {
     });
 
     it('calls the next task with a "cancelled" error', function(done) {
-      var task = Task.do(function(callback) {
+      var task = Task.start(function(callback) {
         setImmediate(function() {
           callback(null, 'success');
         });
@@ -165,7 +165,7 @@ describe('Task:', function() {
   describe('when a proxy task is cancelled,', function() {
     it('cancels the first task if it is not finished', function(done) {
       var cancelled = false;
-      Task.do(function(callback) {
+      Task.start(function(callback) {
         return function cancelMe() {
           cancelled = true;
         };
@@ -192,7 +192,7 @@ describe('Task:', function() {
       var proxyTask =
           Task.withValue(null, 'success')
           .thenDo(function(err, result) {
-            return Task.do(function(callback) {
+            return Task.start(function(callback) {
               return function cancelMe() {
                 done();
               };
