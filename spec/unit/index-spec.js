@@ -26,12 +26,12 @@ describe('index.js:', function() {
     });
   };
 
-  var init, requestAndSucceed, requestAndFail, requestTimes;
+  var createClient, requestAndSucceed, requestAndFail, requestTimes;
   beforeEach(function() {
     theTime = 1000000;
     requestTimes = [];
 
-    init = require('../../lib/index').init;
+    createClient = require('../../lib/index').createClient;
 
     requestAndSucceed = jasmine.createSpy('requestAndSucceed')
         .and.callFake(function(url, callback) {
@@ -51,7 +51,7 @@ describe('index.js:', function() {
 
   describe('parsing the body as JSON', function() {
     it('populates the response.json property', function(done) {
-      init({makeUrlRequest: requestAndSucceed})
+      createClient({makeUrlRequest: requestAndSucceed})
       .geocode({address: 'Sydney Opera House'}, function(err, response) {
         expect(err).toBe(null);
         expect(response).toEqual({
@@ -75,7 +75,7 @@ describe('index.js:', function() {
         pathname: 'https://maps.googleapis.com/maps/api/geocode/json',
         query: query
       });
-      init({
+      createClient({
         clientId: query.client,
         clientSecret: 'a2V5',
         makeUrlRequest: function(url) {
@@ -90,7 +90,7 @@ describe('index.js:', function() {
   describe('retrying failing requests', function() {
     it('uses retryOptions given to the method', function(done) {
       theTime = 0;
-      init({
+      createClient({
         makeUrlRequest: requestAndFail,
         setTimeout: fakeSetTimeout,
         getTime: function() {
@@ -114,7 +114,7 @@ describe('index.js:', function() {
 
     it('uses retryOptions given to the service', function(done) {
       theTime = 0;
-      init({
+      createClient({
         makeUrlRequest: requestAndFail,
         retryOptions: {
           timeout: 5500,
@@ -138,7 +138,7 @@ describe('index.js:', function() {
   describe('throttling', function() {
     it('spaces out requests made too close', function(done) {
       theTime = 0;
-      var googleMaps = init({
+      var googleMaps = createClient({
         makeUrlRequest: requestAndSucceed,
         rate: {limit: 3, period: 1000},
         setTimeout: fakeSetTimeout,
@@ -158,7 +158,7 @@ describe('index.js:', function() {
 
     it('sends requests ASAP when not bunched up', function(done) {
       theTime = 0;
-      var googleMaps = init({
+      var googleMaps = createClient({
         makeUrlRequest: requestAndSucceed,
         rate: {period: 1000},
         setTimeout: fakeSetTimeout,
@@ -182,7 +182,7 @@ describe('index.js:', function() {
 
   describe('.cancel()', function() {
     it('cancels when called immediately', function(done) {
-      init({makeUrlRequest: requestAndSucceed})
+      createClient({makeUrlRequest: requestAndSucceed})
       .geocode({address: 'Sydney Opera House'}, function(err, response) {
         expect(err).toMatch(/cancelled/);
         expect(requestAndSucceed).not.toHaveBeenCalled();
@@ -192,7 +192,7 @@ describe('index.js:', function() {
     });
 
     it('cancels throttled requests', function(done) {
-      var googleMaps = init({
+      var googleMaps = createClient({
         makeUrlRequest: requestAndSucceed,
         rate: {limit: 1}
       });
@@ -216,7 +216,7 @@ describe('index.js:', function() {
     });
 
     it('cancels requests waiting to be retried', function(done) {
-      var handle = init({makeUrlRequest: requestAndFail})
+      var handle = createClient({makeUrlRequest: requestAndFail})
           .geocode({address: 'Sydney Opera House'}, function(err, response) {
             expect(err).toMatch(/cancelled/);
             expect(requestAndFail).toHaveBeenCalled();
@@ -234,7 +234,7 @@ describe('index.js:', function() {
 
     it('cancels in-flight requests', function(done) {
       var handle =
-          init({makeUrlRequest: function(url, callback) {
+          createClient({makeUrlRequest: function(url, callback) {
             setTimeout(function() {
               requestAndSucceed(url, callback);
             }, 10);
@@ -250,7 +250,7 @@ describe('index.js:', function() {
 
   describe('using .asPromise()', function() {
     it('delivers responses', function(done) {
-      init({Promise: Promise, makeUrlRequest: requestAndSucceed})
+      createClient({Promise: Promise, makeUrlRequest: requestAndSucceed})
       .geocode({address: 'Sydney Opera House'})
       .asPromise()
       .then(function(response) {
@@ -263,7 +263,7 @@ describe('index.js:', function() {
     });
 
     it('delivers errors', function(done) {
-      init({Promise: Promise, makeUrlRequest: function(url, callback) {
+      createClient({Promise: Promise, makeUrlRequest: function(url, callback) {
         callback('error', null);
       }})
       .geocode({address: 'Sydney Opera House'})
@@ -276,7 +276,7 @@ describe('index.js:', function() {
 
     it('throws validation errors', function() {
       expect(function() {
-        init({Promise: Promise, makeUrlRequest: requestAndSucceed})
+        createClient({Promise: Promise, makeUrlRequest: requestAndSucceed})
         .geocode({'uh-oh': 'bogus argument'})
         .asPromise()
         .then(fail);
@@ -286,7 +286,7 @@ describe('index.js:', function() {
 
   it('throws validation errors', function() {
     expect(function() {
-      init({makeUrlRequest: requestAndSucceed})
+      createClient({makeUrlRequest: requestAndSucceed})
       .geocode({'uh-oh': 'bogus argument'}, function(err, response) {
         fail();
       });

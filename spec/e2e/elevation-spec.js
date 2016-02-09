@@ -17,6 +17,7 @@
 
 var arrayContaining = jasmine.arrayContaining;
 var objectContaining = jasmine.objectContaining;
+var within = require('../within')
 
 describe('elevation client library', function() {
   var googleMaps = require('./service');
@@ -30,7 +31,7 @@ describe('elevation client library', function() {
       expect(response.json.results).toEqual(
           arrayContaining([
             objectContaining({
-              elevation: 16.57956886291504
+              elevation: within(5).of(16)
             })
           ]));
     })
@@ -39,7 +40,7 @@ describe('elevation client library', function() {
 
   it('gets the elevation for a path', function(done) {
     googleMaps.elevationAlongPath({
-      path: [[40.714728, -73.998672], [-34.397, 150.644]],
+      path: [[-33.7287972,150.300299], [-33.7311794,150.301794]],
       samples: 5
     })
     .asPromise()
@@ -47,10 +48,10 @@ describe('elevation client library', function() {
       expect(response.json.results).toEqual(
           arrayContaining([
             objectContaining({
-              elevation: 8.883694648742676
+              elevation: within(5).of(959)
             }),
             objectContaining({
-              elevation: -1550.868286132812
+              elevation: within(5).of(771)
             })
           ]));
     })

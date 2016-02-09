@@ -2,7 +2,7 @@ Node.js Client for Google Maps Services
 =======================================
 
 Use Node.js? Want to [geocode][Geocoding API] something? Looking
-for [directions][Directions API]? Maybe [matrices of directions][Distance Matrix API]?
+for [directions][Directions API]?
 This library brings the [Google Maps API Web Services] to your Node.js
 application. ![Analytics](https://maps-ga-beacon.appspot.com/UA-12846745-20/google-maps-services-js/readme?pixel)
 
@@ -13,9 +13,9 @@ for the following Google Maps APIs:
  - [Distance Matrix API]
  - [Elevation API]
  - [Geocoding API]
- - [Time Zone API]
- - [Roads API]
  - [Places API]
+ - [Roads API]
+ - [Time Zone API]
 
 Keep in mind that the same [terms and conditions](https://developers.google.com/maps/terms)
 apply to usage of the APIs when they're accessed through this library.
@@ -25,7 +25,7 @@ apply to usage of the APIs when they're accessed through this library.
 This library is community supported. We're comfortable enough with the
 stability and features of the library that we want you to build real
 production applications on it. We will try to support, through Stack
-Overflow, the public and protected surface of the library and maintain
+Overflow, the public surface of the library and maintain
 backwards compatibility in the future; however, while the library is in
 version 0.x, we reserve the right to make backwards-incompatible
 changes. If we do remove some functionality (typically because better
@@ -86,9 +86,9 @@ https://developers.google.com/maps/.
  - [Distance Matrix API]
  - [Elevation API]
  - [Geocoding API]
- - [Time Zone API]
- - [Roads API]
  - [Places API]
+ - [Roads API]
+ - [Time Zone API]
 
 ## Usage
 
@@ -96,7 +96,7 @@ This example uses the [Geocoding API] and the [Directions API].
 
 ```js
 var config = {key: 'Add your API key here'};
-var googlemaps = require('@google/maps').init(config);
+var googlemaps = require('@google/maps').createClient(config);
 
 // Geocoding an address.
 var query = {address: '1600 Amphitheatre Parkway, Mountain View, CA'};
@@ -156,7 +156,7 @@ var config = {
   clientId: 'Add your client ID here',
   clientSecret: 'Add your client secret here',
 };
-var googlemaps = require('@google/maps').init(config);
+var googlemaps = require('@google/maps').createClient(config);
 ```
 
 [apikey]: https://developers.google.com/maps/faq#keysystem

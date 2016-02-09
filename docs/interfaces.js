@@ -1,5 +1,5 @@
 /**
- * The client object returned by the {@link init}() method.
+ * The client object returned by the {@link createClient}() method.
  *
  * @interface GoogleMapsClient
  */
@@ -86,11 +86,11 @@
  * Returns the response as a
  * <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank"><code>Promise</code></a>.
  * This method is only available if you
- * supplied the Promise constructor to the <code>init()</code> method when you
- * constructed the client object.
+ * supplied the Promise constructor to the <code>createClient()</code> method
+ * when you constructed the client object.
  *
  * <pre>
- *   var googleMapsClient = require('@google/maps').init({Promise: Promise, ...});
+ *   var googleMapsClient = require('@google/maps').createClient({Promise: Promise, ...});
  *   googleMapsClient.geocode({...}).asPromise()
  *       .then(function(response) {
  *         console.dir(response.json.results);

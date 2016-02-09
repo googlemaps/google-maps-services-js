@@ -6,10 +6,10 @@ Quick Start
 -----------
 
 Create a new client object by calling
-[`init()`](module-@google_maps.html#.init):
+[`createClient()`](module-@google_maps.html#.createClient):
 
 ```js
-var googleMapsClient = require('@google/maps').init({key: 'your API key here'});
+var googleMapsClient = require('@google/maps').createClient({key: 'your API key here'});
 ```
 
 Make requests to the Google Maps APIs by calling methods on the
@@ -31,7 +31,7 @@ Initializing the client library
 -------------------------------
 
 You can specify a number of options to the
-[`init()`](module-@google_maps.html#.init)
+[`createClient()`](module-@google_maps.html#.createClient)
 function:
 * Specify an API key or a client ID (required)
 * Customize the rate limit on requests (default limit is 10 requests per second)
@@ -53,7 +53,7 @@ be used to cancel the request, or to obtain a Promise for the response.
 
 NOTE: Promises are only available if you supply a
 [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
-constructor to the [`init()`](module-@google_maps.html#.init) method.
+constructor to the [`createClient()`](module-@google_maps.html#.createClient) method.
 
 
 Learn More
