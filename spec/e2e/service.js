@@ -19,6 +19,6 @@
 // Using the same service will enforce rate-limiting for the tests.
 
 // NOTE: Set the GOOGLE_MAPS_API_KEY variable to run these tests.
-module.exports = require('../../lib/index').init({
+module.exports = require('../../lib/index').createClient({
   Promise: require('q').Promise
 });

@@ -96,7 +96,7 @@ This example uses the [Geocoding API] and the [Directions API].
 
 ```js
 var config = {key: 'Add your API key here'};
-var googlemaps = require('@google/maps').init(config);
+var googlemaps = require('@google/maps').createClient(config);
 
 // Geocoding an address.
 var query = {address: '1600 Amphitheatre Parkway, Mountain View, CA'};
@@ -156,7 +156,7 @@ var config = {
   clientId: 'Add your client ID here',
   clientSecret: 'Add your client secret here',
 };
-var googlemaps = require('@google/maps').init(config);
+var googlemaps = require('@google/maps').createClient(config);
 ```
 
 [apikey]: https://developers.google.com/maps/faq#keysystem
