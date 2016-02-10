@@ -46,7 +46,7 @@ describe('attempt', function() {
 
   it('calls doSomething asynchronously', function() {
     var doSomething = jasmine.createSpy('doSomething')
-        .and.returnValue(Task.withValue(null, 200));
+        .and.returnValue(Task.withValue(200));
 
     attempt({'do': doSomething, until: equalTo200});
     expect(doSomething).not.toHaveBeenCalled();
@@ -58,9 +58,8 @@ describe('attempt', function() {
     }
 
     attempt({'do': throwError, until: equalTo200})
-    .thenDo(function(err, result) {
+    .thenDo(fail, function(err) {
       expect(err).toMatch('uh-oh!');
-      expect(result).toBe(null);
       expect(equalTo200).not.toHaveBeenCalled();
       done();
     });
@@ -68,16 +67,15 @@ describe('attempt', function() {
 
   describe('(when the first attempt succeeds)', function() {
     function return200() {
-      return Task.withValue(null, 200);
+      return Task.withValue(200);
     }
 
     it('calls the callback with the successful result', function(done) {
       attempt({'do': return200, until: equalTo200})
-      .thenDo(function(err, result) {
-        expect(err).toBe(null);
+      .thenDo(function(result) {
         expect(result).toBe(200);
-        done();
-      });
+      })
+      .thenDo(done, fail);
     });
 
 
@@ -85,8 +83,8 @@ describe('attempt', function() {
       attempt({'do': return200, until: equalTo200})
       .thenDo(function() {
         expect(equalTo200).toHaveBeenCalledWith(200);
-        done();
-      });
+      })
+      .thenDo(done, fail);
     });
   });
 
@@ -98,40 +96,39 @@ describe('attempt', function() {
 
     function return500Then200() {
       ++attemptCount;
-      return Task.withValue(null, (attemptCount > 1) ? 200 : 500);
+      return Task.withValue((attemptCount > 1) ? 200 : 500);
     }
 
     it('calls doSomething twice', function(done) {
       attempt({'do': return500Then200, until: equalTo200})
-      .thenDo(function(err, result) {
+      .thenDo(function(result) {
         expect(attemptCount).toBe(2);
-        done();
-      });
+      })
+      .thenDo(done, fail);
     });
 
     it('calls equalTo200 with both results', function(done) {
       attempt({'do': return500Then200, until: equalTo200})
-      .thenDo(function(err, result) {
+      .thenDo(function(result) {
         expect(equalTo200.calls.allArgs()).toEqual([[500], [200]]);
-        done();
-      });
+      })
+      .thenDo(done, fail);
     });
 
     it('calls the callback with the successful result', function(done) {
       attempt({'do': return500Then200, until: equalTo200})
-      .thenDo(function(err, result) {
-        expect(err).toBe(null);
+      .thenDo(function(result) {
         expect(result).toBe(200);
-        done();
-      });
+      })
+      .thenDo(done, fail);
     });
 
     it('waits approximately 500 ms', function(done) {
       attempt({'do': return500Then200, until: equalTo200})
-      .thenDo(function(err, result) {
+      .thenDo(function() {
         expect(timeoutDurations).toEqual([within(250).of(500)]);
-        done();
-      });
+      })
+      .thenDo(done, fail);
     });
   });
 
@@ -143,7 +140,7 @@ describe('attempt', function() {
 
     function return500TenTimesThen200() {
       ++attemptCount;
-      return Task.withValue(null, (attemptCount > 10) ? 200 : 500);
+      return Task.withValue((attemptCount > 10) ? 200 : 500);
     }
 
     it('does exponential backoff', function(done) {
@@ -160,51 +157,46 @@ describe('attempt', function() {
         increment: INCREMENT,
         jitter: JITTER
       })
-      .thenDo(function(err, result) {
+      .thenDo(function(result) {
         expect(result).toBe(200);
-        expect(err).toBe(null);
 
         var waitTime = INTERVAL;
         timeoutDurations.forEach(function(duration, i) {
           expect(duration).toEqual(within(waitTime * JITTER).of(waitTime));
           waitTime *= INCREMENT;
         });
-
-        done();
-      });
+      })
+      .thenDo(done, fail);
     });
 
     it('can be cancelled immediately', function(done) {
-      attempt({'do': return500TenTimesThen200, until: equalTo200})
-      .thenDo(function(err, result) {
-        expect(result).toBe(null);
-        expect(err).toMatch('cancelled');
-        done();
-      })
-      .cancel();
+      var task = attempt({'do': return500TenTimesThen200, until: equalTo200});
+      task.thenDo(fail, fail).finally(done);
+      task.cancel();
     });
 
     it('can be cancelled while running', function(done) {
-      var cancelMe = jasmine.createSpy('cancelMe');
+      var abortMe = jasmine.createSpy('abortMe');
       var task = attempt({
         'do': function() {
           // This task never completes, but can be cancelled.
-          return Task.start(function(callback) {
-            return cancelMe;
+          return Task.start(function() {
+            return abortMe;
           });
         },
         until: equalTo200
       })
-      .thenDo(function(err, result) {
-        expect(err).toMatch('cancelled');
-        expect(cancelMe).toHaveBeenCalled();
-        done();
-      });
+      .thenDo(fail, fail);
 
       setTimeout(function() {
-        expect(cancelMe).not.toHaveBeenCalled();
+        expect(abortMe).not.toHaveBeenCalled();
         task.cancel();
       }, 10);
-    })
+
+      task.finally(function() {
+        expect(abortMe).toHaveBeenCalled();
+        done();
+      });
+    });
   });
 });

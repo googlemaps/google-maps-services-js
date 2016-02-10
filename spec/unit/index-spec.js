@@ -33,18 +33,18 @@ describe('index.js:', function() {
     var startTime = +new Date;
 
     requestAndSucceed = jasmine.createSpy('requestAndSucceed')
-        .and.callFake(function(url, callback) {
+        .and.callFake(function(url, onSuccess) {
           requestTimes.push(+new Date - startTime);
-          callback(undefined, {
+          onSuccess({
             status: 200,
             json: {'hello': 'world'}
           });
         });
 
     requestAndFail = jasmine.createSpy('requestAndFail')
-        .and.callFake(function(url, callback) {
+        .and.callFake(function(url, onSuccess) {
           requestTimes.push(+new Date - startTime);
-          callback(null, {status: 500});
+          onSuccess({status: 500});
         });
   });
 
@@ -162,13 +162,13 @@ describe('index.js:', function() {
 
   describe('.cancel()', function() {
     it('cancels when called immediately', function(done) {
-      createClient({makeUrlRequest: requestAndSucceed})
-      .geocode({address: 'Sydney Opera House'}, function(err, response) {
-        expect(err).toMatch(/cancelled/);
+      var handle = createClient({makeUrlRequest: requestAndSucceed})
+          .geocode({address: 'Sydney Opera House'}, fail);
+      handle.finally(function() {
         expect(requestAndSucceed).not.toHaveBeenCalled();
         done();
-      })
-      .cancel();
+      });
+      handle.cancel();
     });
 
     it('cancels throttled requests', function(done) {
@@ -214,17 +214,15 @@ describe('index.js:', function() {
 
     it('cancels in-flight requests', function(done) {
       var handle =
-          createClient({makeUrlRequest: function(url, callback) {
+          createClient({makeUrlRequest: function(url, onSuccess) {
             setTimeout(function() {
-              requestAndSucceed(url, callback);
+              requestAndSucceed(url, onSuccess);
             }, 10);
             // By this stage, the request is in-flight.
             handle.cancel();
           }})
-          .geocode({address: 'Sydney Opera House'}, function(err, response) {
-            expect(err).toBe('cancelled');
-            done();
-          });
+          .geocode({address: 'Sydney Opera House'}, fail)
+          .finally(done)
     });
   });
 
@@ -243,9 +241,12 @@ describe('index.js:', function() {
     });
 
     it('delivers errors', function(done) {
-      createClient({Promise: Promise, makeUrlRequest: function(url, callback) {
-        callback('error', null);
-      }})
+      createClient({
+        Promise: Promise,
+        makeUrlRequest: function(url, onSuccess, onError) {
+          onError('error');
+        }
+      })
       .geocode({address: 'Sydney Opera House'})
       .asPromise()
       .then(fail, function(error) {
