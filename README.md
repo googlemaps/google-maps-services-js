@@ -42,7 +42,7 @@ var googleMapsClient = require('@google/maps').createClient({
 
 Make requests to the Google Maps APIs by calling methods on the client object.
 
-```
+```js
 // Geocode an address.
 googleMapsClient.geocode({
   address: '1600 Amphitheatre Parkway, Mountain View, CA'
