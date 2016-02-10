@@ -86,19 +86,24 @@ your project:
  1. If you'd like to restrict requests to a specific IP address, do so now.
  1. Click **Create**.
 
-Your API key should be 40 characters long, and begin with `AIza`.
+Your API key should be 40 characters long, and begin with `AIza`. You can now
+create a client object:
+
+```js
+var googleMapsClient = require('@google/maps').createClient({
+  key: 'your API key here'
+});
+```
 
 ### Client IDs
 
-Maps API for Work customers can use their [client ID and secret][clientid] to authenticate. Free
-customers can use their [API key][apikey], too.
+Maps API for Work customers can use their [client ID and secret][clientid] to authenticate.
 
 ```js
-var config = {
+var googleMapsClient = require('@google/maps').createClient({
   clientId: 'Add your client ID here',
   clientSecret: 'Add your client secret here',
-};
-var googlemaps = require('@google/maps').createClient(config);
+});
 ```
 
 **Important:** This key should be kept secret on your server.
