@@ -163,12 +163,12 @@ describe('index.js:', function() {
   describe('.cancel()', function() {
     it('cancels when called immediately', function(done) {
       var handle = createClient({makeUrlRequest: requestAndSucceed})
-          .geocode({address: 'Sydney Opera House'}, fail);
-      handle.finally(function() {
-        expect(requestAndSucceed).not.toHaveBeenCalled();
-        done();
-      });
-      handle.cancel();
+          .geocode({address: 'Sydney Opera House'}, fail)
+          .finally(function() {
+            expect(requestAndSucceed).not.toHaveBeenCalled();
+            done();
+          })
+          .cancel();
     });
 
     it('cancels throttled requests', function(done) {
@@ -185,20 +185,18 @@ describe('index.js:', function() {
         handle.cancel();
       });
 
-      var handle = googleMaps.geocode(
-        {address: 'Sydney Opera House'},
-        function(err, response) {
-          expect(err).toMatch(/cancelled/);
-          expect(requestAndSucceed.calls.count()).toBe(1);
-          done();
-        }
-      );
+      var handle =
+          googleMaps.geocode({address: 'Sydney Opera House'}, fail)
+          .finally(function() {
+            expect(requestAndSucceed.calls.count()).toBe(1);
+            done();
+          });
     });
 
     it('cancels requests waiting to be retried', function(done) {
       var handle = createClient({makeUrlRequest: requestAndFail})
-          .geocode({address: 'Sydney Opera House'}, function(err, response) {
-            expect(err).toMatch(/cancelled/);
+          .geocode({address: 'Sydney Opera House'}, fail)
+          .finally(function() {
             expect(requestAndFail).toHaveBeenCalled();
             done();
           });

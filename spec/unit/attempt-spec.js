@@ -170,15 +170,16 @@ describe('attempt', function() {
     });
 
     it('can be cancelled immediately', function(done) {
-      var task = attempt({'do': return500TenTimesThen200, until: equalTo200});
-      task.thenDo(fail, fail).finally(done);
-      task.cancel();
+      attempt({do: return500TenTimesThen200, until: equalTo200})
+      .thenDo(fail, fail)
+      .finally(done)
+      .cancel();
     });
 
     it('can be cancelled while running', function(done) {
       var abortMe = jasmine.createSpy('abortMe');
       var task = attempt({
-        'do': function() {
+        do: function() {
           // This task never completes, but can be cancelled.
           return Task.start(function() {
             return abortMe;
@@ -186,17 +187,16 @@ describe('attempt', function() {
         },
         until: equalTo200
       })
-      .thenDo(fail, fail);
+      .thenDo(fail, fail)
+      .finally(function() {
+        expect(abortMe).toHaveBeenCalled();
+        done();
+      });
 
       setTimeout(function() {
         expect(abortMe).not.toHaveBeenCalled();
         task.cancel();
       }, 10);
-
-      task.finally(function() {
-        expect(abortMe).toHaveBeenCalled();
-        done();
-      });
     });
   });
 });

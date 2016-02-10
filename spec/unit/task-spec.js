@@ -127,46 +127,43 @@ describe('Task:', function() {
     });
 
     it('does not call the next task with a "cancelled" error', function(done) {
-      var task = Task.start(function(resolve) {
+      var firstTask = Task.start(function(resolve) {
         setImmediate(function() {
           resolve('success');
         });
       });
-
-      task.thenDo(fail, fail)
-          .finally(done);
-
-      task.cancel();
+      firstTask.thenDo(fail, fail).finally(done);
+      firstTask.cancel();
     });
 
     it('ignores cancellation if the task is already finished', function(done) {
-      var task = Task.withValue('success');
-      task.thenDo(done, fail);
-      task.cancel();
+      var firstTask = Task.withValue('success');
+      firstTask.thenDo(done, fail);
+      firstTask.cancel();
     });
   });
 
   describe('when a composite task is cancelled,', function() {
     it('aborts the first task if it is not finished', function(done) {
       var aborted = false;
-      var compositeTask = Task.start(function() {
+      Task.start(function() {
         return function abortMe() {
           aborted = true;
         };
       })
-      .thenDo(fail, fail);
-
-      compositeTask.finally(function() {
+      .thenDo(fail, fail)
+      .finally(function() {
         expect(aborted).toBe(true);
         done();
-      });
-      compositeTask.cancel();
+      })
+      .cancel();
     });
 
     it('does not start the next task', function(done) {
-      var compositeTask = Task.withValue('success').thenDo(fail, fail);
-      compositeTask.finally(done);
-      compositeTask.cancel();
+      Task.withValue('success')
+      .thenDo(fail, fail)
+      .finally(done)
+      .cancel();
     });
 
     it('cancels the next task if it has started', function(done) {

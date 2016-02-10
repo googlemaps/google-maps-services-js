@@ -60,12 +60,13 @@ describe('throttle', function() {
   });
 
   it('.cancel() cancels an operation', function(done) {
-    var task = queue.add(doSomething);
-    task.thenDo(fail, fail).finally(function() {
+    queue.add(doSomething)
+    .thenDo(fail, fail)
+    .finally(function() {
       expect(doSomething).not.toHaveBeenCalled();
       done();
-    });
-    task.cancel();
+    })
+    .cancel();
   });
 
   it('does actions in order', function(done) {
@@ -161,11 +162,12 @@ describe('throttle', function() {
       expect(result).toBe('result 1');
     }, fail);
 
-    var task = queue.add(doSomething).thenDo(fail, fail);
-    task.finally(function() {
+    queue.add(doSomething)
+    .thenDo(fail, fail)
+    .finally(function() {
       expect(theTime).toBe(startTime);
     })
-    task.cancel();
+    .cancel();
 
     queue.add(doSomething)
     .thenDo(function(result) {
