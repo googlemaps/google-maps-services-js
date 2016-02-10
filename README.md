@@ -20,28 +20,47 @@ for the following Google Maps APIs:
 Keep in mind that the same [terms and conditions](https://developers.google.com/maps/terms)
 apply to usage of the APIs when they're accessed through this library.
 
-## Support
+## Features
 
-This library is community supported. We're comfortable enough with the
-stability and features of the library that we want you to build real
-production applications on it. We will try to support, through Stack
-Overflow, the public surface of the library and maintain
-backwards compatibility in the future; however, while the library is in
-version 0.x, we reserve the right to make backwards-incompatible
-changes. If we do remove some functionality (typically because better
-functionality exists or if the feature proved infeasible), our intention
-is to deprecate and give developers a year to update their code.
+ - **Retry on Failure** Automatically retry when intermittent failures occur.
+   That is, when any of the retryable 5xx errors are returned from the API.
 
-If you find a bug, or have a feature suggestion, please
-[log an issue][issues]. If you'd like to contribute, please read
-[How to Contribute][contrib].
+ - **Rate-limiting** Requests are rate-limited by the client, which helps
+   prevent reaching the server-enforced rate limit.
 
-## Requirements
+## Quick Start
 
- - Node.js v0.12 or later.
- - A Google Maps API key.
+    $ npm install @google/maps
 
-### API keys
+Create a new client object by calling `createClient()`
+
+```js
+var googleMapsClient = require('@google/maps').createClient({
+  key: 'your API key here'
+});
+```
+
+Make requests to the Google Maps APIs by calling methods on the client object.
+
+```
+// Geocode an address.
+googleMapsClient.geocode({
+  address: '1600 Amphitheatre Parkway, Mountain View, CA'
+}, function(err, response) {
+  if (!err) {
+    console.log(response.json.results);
+  }
+});
+```
+
+For more usage examples, check out [the tests](spec/e2e/).
+
+View the [reference documentation](https://googlemaps.github.io/google-maps-services-js/docs/)
+
+Additional documentation for the included web services is available at
+https://developers.google.com/maps/.
+
+## API keys
 
 Each Google Maps Web Service requires an API key or Client ID. API keys
 are freely available with a Google Account at
@@ -69,84 +88,7 @@ your project:
 
 Your API key should be 40 characters long, and begin with `AIza`.
 
-**Important:** This key should be kept secret on your server.
-
-## Installation
-
-    $ npm install @google/maps
-
-## Developer Documentation
-
-View the [reference documentation](https://googlemaps.github.io/google-maps-services-js/docs/)
-
-Additional documentation for the included web services is available at
-https://developers.google.com/maps/.
-
- - [Directions API]
- - [Distance Matrix API]
- - [Elevation API]
- - [Geocoding API]
- - [Places API]
- - [Roads API]
- - [Time Zone API]
-
-## Usage
-
-This example uses the [Geocoding API] and the [Directions API].
-
-```js
-var config = {key: 'Add your API key here'};
-var googlemaps = require('@google/maps').createClient(config);
-
-// Geocoding an address.
-var query = {address: '1600 Amphitheatre Parkway, Mountain View, CA'};
-googlemaps.geocode(query, function(err, response) {
-  if (!err) {
-    console.log(response.json.results);
-  }
-});
-
-// Look up an address with reverse geocoding.
-var query = {latlng: [40.714224, -73.961452]};
-googlemaps.reverseGeocode(query, function(err, response) {
-  if (!err) {
-    console.log(response.json.results);
-  }
-});
-
-// Request directions via public transit.
-var query = {
-  origin: 'Sydney Town Hall',
-  destination: 'Parramatta, NSW',
-  mode: 'transit',
-  departure_time: (new Date()).getTime()
-};
-googlemaps.directions(query, function(err, response) {
-  if (!err) {
-    console.log(response.json.routes);
-  }
-});
-```
-
-For more usage examples, check out [the tests](spec/).
-
-## Command-line Interface
-
-Installing via npm also provides the `googlemaps` command-line utility,
-which can then be used to pipe JSON results to other command-line programs:
-
-```
-$ googlemaps directions --origin 'Sydney Town Hall' --destination 'Parramatta, NSW'
-```
-
-## Features
-
-### Retry on Failure
-
-Automatically retry when intermittent failures occur. That is, when any of the retriable 5xx errors
-are returned from the API.
-
-### Keys *and* Client IDs
+### Client IDs
 
 Maps API for Work customers can use their [client ID and secret][clientid] to authenticate. Free
 customers can use their [API key][apikey], too.
@@ -157,6 +99,41 @@ var config = {
   clientSecret: 'Add your client secret here',
 };
 var googlemaps = require('@google/maps').createClient(config);
+```
+
+**Important:** This key should be kept secret on your server.
+
+## Developing
+
+In order to run the end-to-end tests, you'll need to supply your API key via an
+environment variable.
+
+    $ export GOOGLE_MAPS_API_KEY=AIza-your-api-key
+    $ npm test
+
+## Support
+
+This library is community supported. We're comfortable enough with the
+stability and features of the library that we want you to build real
+production applications on it. We will try to support, through Stack
+Overflow, the public surface of the library and maintain
+backwards compatibility in the future; however, while the library is in
+version 0.x, we reserve the right to make backwards-incompatible
+changes. If we do remove some functionality (typically because better
+functionality exists or if the feature proved infeasible), our intention
+is to deprecate and give developers a year to update their code.
+
+If you find a bug, or have a feature suggestion, please
+[log an issue][issues]. If you'd like to contribute, please read
+[How to Contribute][contrib].
+
+## Command-line Interface
+
+Installing via npm also provides the `googlemaps` command-line utility,
+which can then be used to pipe JSON results to other command-line programs:
+
+```
+$ googlemaps directions --origin 'Sydney Town Hall' --destination 'Parramatta, NSW'
 ```
 
 [apikey]: https://developers.google.com/maps/faq#keysystem

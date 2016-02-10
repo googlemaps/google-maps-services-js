@@ -9,7 +9,9 @@ Create a new client object by calling
 [`createClient()`](module-@google_maps.html#.createClient):
 
 ```js
-var googleMapsClient = require('@google/maps').createClient({key: 'your API key here'});
+var googleMapsClient = require('@google/maps').createClient({
+  key: 'your API key here'
+});
 ```
 
 Make requests to the Google Maps APIs by calling methods on the
