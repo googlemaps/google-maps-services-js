@@ -33,30 +33,27 @@ describe('Task:', function() {
     it('calls the next task asynchronously with the result', function(done) {
       var isSync = true;
 
-      Task.withValue(null, 'success')
-      .thenDo(function(err, result) {
+      Task.withValue('success')
+      .thenDo(function() {
         expect(isSync).toBe(false);
-      })
+      }, fail)
       .thenDo(done);
 
       isSync = false;
     });
 
     it('calls chained tasks with the result of previous tasks', function(done) {
-      Task.withValue(null, 'success')
-      .thenDo(function(err, result) {
-        expect(err).toBe(null);
+      Task.withValue('success')
+      .thenDo(function(result) {
         expect(result).toBe('success');
-      })
-      .thenDo(function(err, result) {
-        expect(err).toBe(null);
-        expect(result).toBe(null);
-        return Task.withValue(null, 42);
-      })
-      .thenDo(function(err, result) {
-        expect(err).toBe(null);
+      }, fail)
+      .thenDo(function(result) {
+        expect(result).toBe(undefined);
+        return Task.withValue(42);
+      }, fail)
+      .thenDo(function(result) {
         expect(result).toBe(42);
-      })
+      }, fail)
       .thenDo(done);
     });
   });
@@ -68,10 +65,9 @@ describe('Task:', function() {
       Task.start(function() {
         throw new Error ('uh oh');
       })
-      .thenDo(function(err, result) {
+      .thenDo(fail, function(err) {
         expect(isSync).toBe(false);
         expect(err).toMatch('uh oh');
-        expect(result).toBe(null);
       })
       .thenDo(done);
 
@@ -79,16 +75,16 @@ describe('Task:', function() {
     });
   });
 
-  describe('when the task complete asynchronously', function() {
+  describe('when the task completes asynchronously', function() {
     it('calls the next task asynchronously', function(done) {
       var isSync = true;
 
-      Task.start(function(callback) {
+      Task.start(function(resolve) {
         setImmediate(function() {
-          callback(null, 'success');
+          resolve('success');
         });
       })
-      .thenDo(function(err, result) {
+      .thenDo(function(result) {
         expect(isSync).toBe(false);
       })
       .thenDo(done);
@@ -97,35 +93,32 @@ describe('Task:', function() {
     });
 
     it('calls chained tasks with the result of previous tasks', function(done) {
-      Task.start(function(callback) {
+      Task.start(function(resolve) {
         setImmediate(function() {
-          callback(null, 'success');
+          resolve('success');
         });
       })
-      .thenDo(function(err, result) {
-        expect(err).toBe(null);
+      .thenDo(function(result) {
         expect(result).toBe('success');
-      })
-      .thenDo(function(err, result) {
-        expect(err).toBe(null);
-        expect(result).toBe(null);
-        return Task.start(function(callback) {
+      }, fail)
+      .thenDo(function(result) {
+        expect(result).toBe(undefined);
+        return Task.start(function(resolve) {
           setImmediate(function() {
-            callback(null, 42);
+            resolve(42);
           });
         });
-      })
-      .thenDo(function(err, result) {
-        expect(err).toBe(null);
+      }, fail)
+      .thenDo(function(result) {
         expect(result).toBe(42);
-      })
+      }, fail)
       .thenDo(done);
     });
   });
 
   describe('when the first task is cancelled,', function() {
     it('cancels the work if possible', function(done) {
-      Task.start(function(callback) {
+      Task.start(function() {
         return function cancelMe() {
           done();
         };
@@ -133,74 +126,59 @@ describe('Task:', function() {
       .cancel();
     });
 
-    it('calls the next task with a "cancelled" error', function(done) {
-      var task = Task.start(function(callback) {
+    it('does not call the next task with a "cancelled" error', function(done) {
+      var firstTask = Task.start(function(resolve) {
         setImmediate(function() {
-          callback(null, 'success');
+          resolve('success');
         });
       });
-
-      task.thenDo(function(err, result) {
-        expect(err).toBe('cancelled');
-        expect(result).toBe(null);
-      })
-      .thenDo(done);
-
-      task.cancel();
+      firstTask.thenDo(fail, fail).finally(done);
+      firstTask.cancel();
     });
 
     it('ignores cancellation if the task is already finished', function(done) {
-      var task = Task.withValue(null, 'success');
-
-      task.thenDo(function(err, result) {
-        expect(err).toBe(null);
-        expect(result).toBe('success');
-      })
-      .thenDo(done);
-
-      task.cancel();
+      var firstTask = Task.withValue('success');
+      firstTask.thenDo(done, fail);
+      firstTask.cancel();
     });
   });
 
-  describe('when a proxy task is cancelled,', function() {
-    it('cancels the first task if it is not finished', function(done) {
-      var cancelled = false;
-      Task.start(function(callback) {
-        return function cancelMe() {
-          cancelled = true;
+  describe('when a composite task is cancelled,', function() {
+    it('aborts the first task if it is not finished', function(done) {
+      var aborted = false;
+      Task.start(function() {
+        return function abortMe() {
+          aborted = true;
         };
       })
-      .thenDo(function(err, result) {
-        expect(cancelled).toBe(true);
-        expect(err).toBe('cancelled');
-        expect(result).toBe(null);
+      .thenDo(fail, fail)
+      .finally(function() {
+        expect(aborted).toBe(true);
         done();
       })
       .cancel();
     });
 
-    it('starts the next task with "cancelled"', function(done) {
-      Task.withValue(null, 'success')
-      .thenDo(function(err, result) {
-        expect(err).toBe('cancelled');
-        done();
-      })
+    it('does not start the next task', function(done) {
+      Task.withValue('success')
+      .thenDo(fail, fail)
+      .finally(done)
       .cancel();
     });
 
     it('cancels the next task if it has started', function(done) {
-      var proxyTask =
-          Task.withValue(null, 'success')
-          .thenDo(function(err, result) {
-            return Task.start(function(callback) {
-              return function cancelMe() {
+      var compositeTask =
+          Task.withValue('success')
+          .thenDo(function() {
+            return Task.start(function() {
+              return function abortMe() {
                 done();
               };
             });
           });
 
       setImmediate(function() {
-        proxyTask.cancel();
+        compositeTask.cancel();
       });
     });
   });

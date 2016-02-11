@@ -63,18 +63,14 @@
  */
 
 /**
- * Cancels the request. This is best-effort, and only has an effect if the
- * request is not already in-flight.
+ * Cancels the request.
  *
- * <p>Note: Requests may be delayed due to rate-limiting. Also, requests that
- * fail with a retryable status code will be retried after a backoff delay.
- *
- * <p>If the request is successfully cancelled, the {@link ResponseCallback}
- * will be invoked with <code>new Error('cancelled')</code> as the first
- * argument. The promises will be rejected.
+ * <p>The {@link ResponseCallback} will not be invoked, and promises will not be
+ * settled. Use the {@link RequestHandle#finally} handler will still be called.
  *
  * <pre>
  *   var requestHandle = googleMapsClient.geocode({...}, callback);
+ *   // later...
  *   requestHandle.cancel();
  * </pre>
  *
@@ -100,6 +96,19 @@
  * @name  RequestHandle#asPromise
  * @function
  * @return {Promise<Response>}
+ */
+
+/**
+ * Registers a callback that will be called when the response is finished,
+ * either successfully, or with an error, or having been cancelled. Use this to
+ * clean up resources.
+ *
+ * <p>Returns this handle, for chaining.
+ *
+ * @name  RequestHandle#finally
+ * @function
+ * @param {function()} callback
+ * @return {RequestHandle} this
  */
 
 

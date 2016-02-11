@@ -42,7 +42,7 @@ describe('throttle', function() {
     doSomething = jasmine.createSpy('doSomething')
         .and.callFake(function() {
           ++count;
-          return Task.withValue(null, 'result ' + count);
+          return Task.withValue('result ' + count);
         });
   });
 
@@ -53,7 +53,7 @@ describe('throttle', function() {
 
   it('calls doSomething', function(done) {
     queue.add(doSomething)
-    .thenDo(function(err, result) {
+    .finally(function() {
       expect(doSomething).toHaveBeenCalled();
       done();
     });
@@ -61,8 +61,8 @@ describe('throttle', function() {
 
   it('.cancel() cancels an operation', function(done) {
     queue.add(doSomething)
-    .thenDo(function(err, result) {
-      expect(err).toMatch(/cancelled/);
+    .thenDo(fail, fail)
+    .finally(function() {
       expect(doSomething).not.toHaveBeenCalled();
       done();
     })
@@ -71,27 +71,27 @@ describe('throttle', function() {
 
   it('does actions in order', function(done) {
     queue.add(doSomething)
-    .thenDo(function(err, result) {
+    .thenDo(function(result) {
       expect(result).toBe('result 1');
-    });
+    }, fail);
 
     queue.add(doSomething)
-    .thenDo(function(err, result) {
+    .thenDo(function(result) {
       expect(result).toBe('result 2');
-    });
+    }, fail);
 
     queue.add(doSomething)
-    .thenDo(function(err, result) {
+    .thenDo(function(result) {
       expect(result).toBe('result 3');
-      done();
-    });
+    })
+    .thenDo(done, fail);
   });
 
   it('does it immediately the first time', function(done) {
     var startTime = theTime;
 
     queue.add(doSomething)
-    .thenDo(function(err, result) {
+    .thenDo(function() {
       expect(theTime).toBe(startTime);
       done();
     });
@@ -101,37 +101,37 @@ describe('throttle', function() {
     var startTime = theTime;
 
     queue.add(doSomething)
-    .thenDo(function(err, result) {
+    .thenDo(function() {
       expect(theTime).toBe(startTime);
-    });
+    }, fail);
 
     queue.add(doSomething)
-    .thenDo(function(err, result) {
+    .thenDo(function() {
       expect(theTime).toBe(startTime + PERIOD);
-    });
+    }, fail);
 
     queue.add(doSomething)
-    .thenDo(function(err, result) {
+    .thenDo(function() {
       expect(theTime).toBe(startTime + 2 * PERIOD);
-      done();
-    });
+    })
+    .thenDo(done, fail);
   });
 
   it('spaces out calls made half a PERIOD apart', function(done) {
     var startTime = theTime;
 
     queue.add(doSomething)
-    .thenDo(function(err, result) {
+    .thenDo(function() {
       expect(theTime).toBe(startTime);
-    });
+    }, fail);
 
     setTimeout(function() {
       theTime += 0.5 * PERIOD;
       queue.add(doSomething)
-      .thenDo(function(err, result) {
+      .thenDo(function() {
         expect(theTime).toBe(startTime + PERIOD);
-        done();
-      });
+      })
+      .thenDo(done, fail);
     }, 10);
   });
 
@@ -139,17 +139,17 @@ describe('throttle', function() {
     var startTime = theTime;
 
     queue.add(doSomething)
-    .thenDo(function(err, result) {
+    .thenDo(function() {
       expect(theTime).toBe(startTime);
-    });
+    }, fail);
 
     setTimeout(function() {
       theTime += 2 * PERIOD;
       queue.add(doSomething)
-      .thenDo(function(err, result) {
+      .thenDo(function() {
         expect(theTime).toBe(startTime + 2 * PERIOD);
-        done();
-      });
+      })
+      .thenDo(done, fail);
     }, 10);
   });
 
@@ -157,24 +157,24 @@ describe('throttle', function() {
     var startTime = theTime;
 
     queue.add(doSomething)
-    .thenDo(function(err, result) {
+    .thenDo(function(result) {
       expect(theTime).toBe(startTime);
       expect(result).toBe('result 1');
-    });
+    }, fail);
 
     queue.add(doSomething)
-    .thenDo(function(err, result) {
+    .thenDo(fail, fail)
+    .finally(function() {
       expect(theTime).toBe(startTime);
-      expect(err).toBe('cancelled');
     })
     .cancel();
 
     queue.add(doSomething)
-    .thenDo(function(err, result) {
+    .thenDo(function(result) {
       expect(theTime).toBe(startTime + PERIOD);
       expect(result).toBe('result 2');
-      done();
-    });
+    })
+    .thenDo(done, fail);
   });
 
   describe('when limit is 3', function() {
@@ -186,25 +186,25 @@ describe('throttle', function() {
       var startTime = theTime;
 
       queue.add(doSomething)
-      .thenDo(function(err, result) {
+      .thenDo(function() {
         expect(theTime).toBe(startTime);
-      });
+      }, fail);
 
       queue.add(doSomething)
-      .thenDo(function(err, result) {
+      .thenDo(function() {
         expect(theTime).toBe(startTime);
-      });
+      }, fail);
 
       queue.add(doSomething)
-      .thenDo(function(err, result) {
+      .thenDo(function() {
         expect(theTime).toBe(startTime);
-      });
+      }, fail);
 
       queue.add(doSomething)
-      .thenDo(function(err, result) {
+      .thenDo(function() {
         expect(theTime).toBe(startTime + PERIOD);
-        done();
-      });
+      })
+      .thenDo(done, fail);
     });
   });
 });
