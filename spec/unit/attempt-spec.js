@@ -16,23 +16,16 @@
  */
 
 var Task = require('../../lib/internal/task');
-var within = require('../within');
+var MockClock = require('../mock-clock');
+var numberCloseTo = require('../number-close-to');
 
 describe('attempt', function() {
-  var timeoutDurations, theTime;
+  var clock;
   var attempt;
   beforeEach(function() {
-    theTime = 123456;
-    timeoutDurations = [];
-    var fakeSetTimeout = function(callback, duration) {
-      timeoutDurations.push(duration);
-      setImmediate(function() {
-        theTime += duration;
-        callback();
-      });
-    };
+    clock = MockClock.create();
     attempt = require('../../lib/internal/attempt')
-        .inject(fakeSetTimeout)
+        .inject(clock.setTimeout)
         .attempt;
   });
 
@@ -89,13 +82,15 @@ describe('attempt', function() {
   });
 
   describe('(when the second attempt succeeds)', function() {
-    var attemptCount;
+    var attemptCount, requestTimes;
     beforeEach(function() {
       attemptCount = 0;
+      requestTimes = [];
     });
 
     function return500Then200() {
       ++attemptCount;
+      requestTimes.push(clock.getTime());
       return Task.withValue((attemptCount > 1) ? 200 : 500);
     }
 
@@ -105,6 +100,8 @@ describe('attempt', function() {
         expect(attemptCount).toBe(2);
       })
       .thenDo(done, fail);
+
+      clock.run();
     });
 
     it('calls equalTo200 with both results', function(done) {
@@ -113,6 +110,8 @@ describe('attempt', function() {
         expect(equalTo200.calls.allArgs()).toEqual([[500], [200]]);
       })
       .thenDo(done, fail);
+
+      clock.run();
     });
 
     it('calls the callback with the successful result', function(done) {
@@ -121,25 +120,39 @@ describe('attempt', function() {
         expect(result).toBe(200);
       })
       .thenDo(done, fail);
+
+      clock.run();
     });
 
-    it('waits approximately 500 ms', function(done) {
-      attempt({'do': return500Then200, until: equalTo200})
+    it('waits approximately INTERVAL ms', function(done) {
+      var INTERVAL = 700;
+      var JITTER = 0.5
+      attempt({
+        'do': return500Then200,
+        until: equalTo200,
+        interval: INTERVAL,
+        jitter: JITTER
+      })
       .thenDo(function() {
-        expect(timeoutDurations).toEqual([within(250).of(500)]);
+        expect(requestTimes).toEqual(
+          [0, numberCloseTo(INTERVAL).within(JITTER * 100).percent()]);
       })
       .thenDo(done, fail);
+
+      clock.run();
     });
   });
 
   describe('(when multiple attempts fail)', function() {
-    var attemptCount;
+    var attemptCount, requestTimes;
     beforeEach(function() {
       attemptCount = 0;
+      requestTimes = [];
     });
 
     function return500TenTimesThen200() {
       ++attemptCount;
+      requestTimes.push(clock.getTime());
       return Task.withValue((attemptCount > 10) ? 200 : 500);
     }
 
@@ -148,7 +161,7 @@ describe('attempt', function() {
       var INCREMENT = 1.2;
       var JITTER = 0.2;
 
-      var startTime = theTime;
+      var startTime = clock.getTime();
 
       attempt({
         'do': return500TenTimesThen200,
@@ -161,12 +174,17 @@ describe('attempt', function() {
         expect(result).toBe(200);
 
         var waitTime = INTERVAL;
-        timeoutDurations.forEach(function(duration, i) {
-          expect(duration).toEqual(within(waitTime * JITTER).of(waitTime));
+        requestTimes.reduce(function(prevTime, time) {
+          var duration = time - prevTime;
+          expect(duration).toEqual(
+              numberCloseTo(waitTime).within(100 * JITTER).percent());
           waitTime *= INCREMENT;
+          return time;
         });
       })
       .thenDo(done, fail);
+
+      clock.run();
     });
 
     it('can be cancelled immediately', function(done) {
@@ -193,10 +211,11 @@ describe('attempt', function() {
         done();
       });
 
-      setTimeout(function() {
+      clock.run(10)
+      .thenDo(function() {
         expect(abortMe).not.toHaveBeenCalled();
         task.cancel();
-      }, 10);
+      });
     });
   });
 });

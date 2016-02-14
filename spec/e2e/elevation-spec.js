@@ -17,7 +17,7 @@
 
 var arrayContaining = jasmine.arrayContaining;
 var objectContaining = jasmine.objectContaining;
-var within = require('../within')
+var numberCloseTo = require('../number-close-to');
 
 describe('elevation client library', function() {
   var googleMaps = require('./service');
@@ -31,7 +31,7 @@ describe('elevation client library', function() {
       expect(response.json.results).toEqual(
           arrayContaining([
             objectContaining({
-              elevation: within(5).of(16)
+              elevation: numberCloseTo(16).within(5)
             })
           ]));
     })
@@ -48,10 +48,10 @@ describe('elevation client library', function() {
       expect(response.json.results).toEqual(
           arrayContaining([
             objectContaining({
-              elevation: within(5).of(959)
+              elevation: numberCloseTo(959)
             }),
             objectContaining({
-              elevation: within(5).of(771)
+              elevation: numberCloseTo(771)
             })
           ]));
     })

@@ -16,25 +16,19 @@
  */
 
 var Promise = require('q').Promise;
-var within = require('../within');
-
-function within10of(numbers) {
-  return numbers.map(function(number) {
-    return within(10).of(number);
-  });
-}
+var MockClock = require('../mock-clock');
 
 describe('index.js:', function() {
-  var createClient, requestAndSucceed, requestAndFail, requestTimes;
+  var createClient, requestAndSucceed, requestAndFail, requestTimes, clock;
   beforeEach(function() {
+    clock = MockClock.create();
     createClient = require('../../lib/index').createClient;
 
     requestTimes = [];
-    var startTime = +new Date;
 
     requestAndSucceed = jasmine.createSpy('requestAndSucceed')
         .and.callFake(function(url, onSuccess) {
-          requestTimes.push(+new Date - startTime);
+          requestTimes.push(clock.getTime());
           onSuccess({
             status: 200,
             json: {'hello': 'world'}
@@ -43,7 +37,7 @@ describe('index.js:', function() {
 
     requestAndFail = jasmine.createSpy('requestAndFail')
         .and.callFake(function(url, onSuccess) {
-          requestTimes.push(+new Date - startTime);
+          requestTimes.push(clock.getTime());
           onSuccess({status: 500});
         });
   });
@@ -89,7 +83,9 @@ describe('index.js:', function() {
   describe('retrying failing requests', function() {
     it('uses retryOptions given to the method', function(done) {
       createClient({
-        makeUrlRequest: requestAndFail
+        makeUrlRequest: requestAndFail,
+        getTime: clock.getTime,
+        setTimeout: clock.setTimeout
       })
       .geocode({
         address: 'Sydney Opera House',
@@ -101,14 +97,18 @@ describe('index.js:', function() {
         }
       }, function(err, response) {
         expect(err).toMatch(/timeout/);
-        expect(requestTimes).toEqual(within10of([0, 30, 60, 90]));
+        expect(requestTimes).toEqual([0, 30, 60, 90]);
         done();
       });
+
+      clock.run();
     });
 
     it('uses retryOptions given to the service', function(done) {
       createClient({
         makeUrlRequest: requestAndFail,
+        getTime: clock.getTime,
+        setTimeout: clock.setTimeout,
         timeout: 100,
         retryOptions: {
           interval: 30,
@@ -118,9 +118,11 @@ describe('index.js:', function() {
       })
       .geocode({address: 'Sydney Opera House'}, function(err, response) {
         expect(err).toMatch(/timeout/);
-        expect(requestTimes).toEqual(within10of([0, 30, 60, 90]));
+        expect(requestTimes).toEqual([0, 30, 60, 90]);
         done();
       });
+
+      clock.run();
     });
   });
 
@@ -128,6 +130,8 @@ describe('index.js:', function() {
     it('spaces out requests made too close', function(done) {
       var googleMaps = createClient({
         makeUrlRequest: requestAndSucceed,
+        getTime: clock.getTime,
+        setTimeout: clock.setTimeout,
         rate: {limit: 3, period: 30}
       });
 
@@ -135,14 +139,18 @@ describe('index.js:', function() {
       googleMaps.geocode({address: 'Sydney Opera House'}, function() {});
       googleMaps.geocode({address: 'Sydney Opera House'}, function() {});
       googleMaps.geocode({address: 'Sydney Opera House'}, function() {
-        expect(requestTimes).toEqual(within10of([0, 0, 0, 30]));
+        expect(requestTimes).toEqual([0, 0, 0, 30]);
         done();
       });
+
+      clock.run();
     });
 
     it('sends requests ASAP when not bunched up', function(done) {
       var googleMaps = createClient({
         makeUrlRequest: requestAndSucceed,
+        getTime: clock.getTime,
+        setTimeout: clock.setTimeout,
         rate: {period: 20}
       });
 
@@ -150,13 +158,17 @@ describe('index.js:', function() {
         expect(err).toBe(null);
       });
 
-      setTimeout(function() {
+      clock.run(30)
+      .thenDo(function() {
         googleMaps.geocode({address: 'Sydney Opera House'}, function(err, response) {
           expect(err).toBe(null);
-          expect(requestTimes).toEqual(within10of([0, 30]));
+          expect(requestTimes).toEqual([0, 30]);
           done();
         });
-      }, 30);
+      })
+      .thenDo(function() {
+        return clock.run();
+      });
     });
   });
 
