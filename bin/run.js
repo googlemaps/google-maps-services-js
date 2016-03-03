@@ -21,4 +21,8 @@ var lib = require('@google/maps');
 var args = process.argv.slice(3);
 var apiCall = lib.createClient()[process.argv[2]];
 
-apiCall(lib.cli.parseArgs(args), lib.cli.callback);
+try {
+    apiCall(lib.cli.parseArgs(args), lib.cli.callback);
+} catch (error) {
+    console.log("Error:", error.message);
+}
