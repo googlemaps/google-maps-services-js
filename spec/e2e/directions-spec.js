@@ -17,6 +17,7 @@
 
 var arrayContaining = jasmine.arrayContaining;
 var objectContaining = jasmine.objectContaining;
+var stringMatching = jasmine.stringMatching;
 
 describe('directions client library', function() {
   var googleMaps = require('./service');
@@ -45,7 +46,7 @@ describe('directions client library', function() {
             objectContaining({
               legs: arrayContaining([
                 objectContaining({
-                  end_address: 'Parramatta NSW, Australia'
+                  end_address: stringMatching(/Parramatta NSW/)
                 })
               ])
             })
