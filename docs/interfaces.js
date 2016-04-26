@@ -28,15 +28,14 @@
 
 /**
  * A callback function, which is called asynchronously when an API method
- * completes. The callback is given two arguments:
+ * completes. The callback is given either:
  *
  * <ul>
- *   <li> an error object, which is <code>null</code> unless there was an error.
- *   <li> a {@link Response} object, unless there was an error.
+ *   <li> a {@link Response} object; OR
+ *   <li> an error object from the underlying <code>http</code> library.
  * </ul>
  *
- * Note that API methods may also throw errors synchronously, if the query was
- * malformed.
+ * For example:
  *
  * <pre>
  *   googleMapsClient.geocode({...}, function(err, response) {
@@ -50,6 +49,9 @@
  *
  * <p>API methods don't require a callback function, if you use the Promise API.
  * See {@link RequestHandle#asPromise}().
+ *
+ * <p>Note that API methods may also throw errors synchronously, if the query was
+ * malformed. This usually indicates a programming mistake.
  *
  * @interface ResponseCallback
  */
