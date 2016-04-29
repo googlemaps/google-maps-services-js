@@ -17,6 +17,7 @@
 
 var Promise = require('q').Promise;
 var MockClock = require('../mock-clock');
+var parse = require('url').parse;
 
 describe('index.js:', function() {
   var createClient, requestAndSucceed, requestAndFail, requestTimes, clock;
@@ -59,24 +60,30 @@ describe('index.js:', function() {
 
   describe('using a client ID and secret', function() {
     it('generates a signature param', function(done) {
-      var query = {
-        address: 'Sesame St.',
-        client: 'foo',
-        signature: 'Wqh6_J7zAuZHQOQgHwOehx4Wr6g='
-      };
-      var expected = require('url').format({
-        pathname: 'https://maps.googleapis.com/maps/api/geocode/json',
-        query: query
-      });
       createClient({
-        clientId: query.client,
+        clientId: 'foo',
         clientSecret: 'a2V5',
         makeUrlRequest: function(url) {
-          expect(url).toBe(expected);
+          expect(parse(url, true).query.signature)
+          .toBe('Wqh6_J7zAuZHQOQgHwOehx4Wr6g=');
           done();
         }
       })
-      .geocode({address: query.address});
+      .geocode({address: 'Sesame St.'});
+    });
+
+    it('includes the channel if specified', function(done) {
+      createClient({
+        clientId: 'foo',
+        clientSecret: 'a2V5',
+        channel: 'bar',
+        makeUrlRequest: function(url) {
+          expect(parse(url, true).query.channel)
+          .toBe('bar');
+          done();
+        }
+      })
+      .geocode({address: 'Sesame St.'});
     });
   });
 
