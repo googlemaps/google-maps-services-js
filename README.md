@@ -78,8 +78,9 @@ To get an API key:
     * Distance Matrix API
     * Elevation API
     * Geocoding API
-    * Time Zone API
+    * Places API
     * Roads API
+    * Time Zone API
  1. Create a new **Server key**.
  1. If you'd like to restrict requests to a specific IP address, do so now.
  
