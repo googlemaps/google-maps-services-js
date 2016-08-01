@@ -67,6 +67,8 @@ are freely available with a Google Account at
 https://developers.google.com/console. The type of API key you need is a 
 **Server key**. 
 
+To get an API key:
+
  1. Visit https://developers.google.com/console and log in with
     a Google Account.
  1. Select one of your existing projects, or create a new project.
@@ -81,7 +83,9 @@ https://developers.google.com/console. The type of API key you need is a
  1. Create a new **Server key**.
  1. If you'd like to restrict requests to a specific IP address, do so now.
  
-For more information, see the guide to [API keys][apikey].
+For guided help, follow the instructions for the [Directions API][directions-key]. You only need one API key, but
+remember to enable all the APIs you need.
+For even more information, see the guide to [API keys][apikey]. 
 
 When you have an API key, you can create a client object:
 
@@ -143,6 +147,7 @@ $ googlemaps directions --origin 'Sydney Town Hall' --destination 'Parramatta, N
 
 [Google Maps API Web Services]: https://developers.google.com/maps/documentation/webservices/
 [Directions API]: https://developers.google.com/maps/documentation/directions/
+[directions-key]: https://developers.google.com/maps/documentation/directions/get-api-key#key
 [Distance Matrix API]: https://developers.google.com/maps/documentation/distancematrix/
 [Elevation API]: https://developers.google.com/maps/documentation/elevation/
 [Geocoding API]: https://developers.google.com/maps/documentation/geocoding/
