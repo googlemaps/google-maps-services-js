@@ -97,7 +97,7 @@ var googleMapsClient = require('@google/maps').createClient({
 
 ### Client IDs
 
-Maps API for Work customers can use their [client ID and secret][clientid] to authenticate.
+Google Maps APIs Premium Plan customers can use their [client ID and secret][clientid] to authenticate.
 
 ```js
 var googleMapsClient = require('@google/maps').createClient({
