@@ -62,16 +62,15 @@ https://developers.google.com/maps/.
 
 ## API keys
 
-Each Google Maps Web Service requires an API key or Client ID. API keys
+Each Google Maps Web Service request requires an API key or client ID. API keys
 are freely available with a Google Account at
-https://developers.google.com/console. To generate a server key for
-your project:
+https://developers.google.com/console. The type of API key you need is a 
+**Server key**. 
 
  1. Visit https://developers.google.com/console and log in with
     a Google Account.
- 1. Select an existing project, or create a new project.
- 1. Click **Enable an API**.
- 1. Browse for the API, and set its status to "On". The Node.js Client for Google Maps Services
+ 1. Select one of your existing projects, or create a new project.
+ 1. Enable the API(s) you want to use. The Node.js Client for Google Maps Services
     accesses the following APIs:
     * Directions API
     * Distance Matrix API
@@ -79,15 +78,12 @@ your project:
     * Geocoding API
     * Time Zone API
     * Roads API
- 1. Once you've enabled the APIs, click **Credentials** from the left navigation of the Developer
-    Console.
- 1. In the "Public API access", click **Create new Key**.
- 1. Choose **Server Key**.
+ 1. Create a new **Server key**.
  1. If you'd like to restrict requests to a specific IP address, do so now.
- 1. Click **Create**.
+ 
+For more information, see the guide to [API keys][apikey].
 
-Your API key should be 40 characters long, and begin with `AIza`. You can now
-create a client object:
+When you have an API key, you can create a client object:
 
 ```js
 var googleMapsClient = require('@google/maps').createClient({
@@ -97,7 +93,8 @@ var googleMapsClient = require('@google/maps').createClient({
 
 ### Client IDs
 
-Google Maps APIs Premium Plan customers can use their [client ID and secret][clientid] to authenticate.
+Google Maps APIs Premium Plan customers can use their [client ID and secret][clientid] to authenticate,
+instead of an API key.
 
 ```js
 var googleMapsClient = require('@google/maps').createClient({
