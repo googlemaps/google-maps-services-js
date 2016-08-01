@@ -151,7 +151,7 @@ $ googlemaps directions --origin 'Sydney Town Hall' --destination 'Parramatta, N
 [Geocoding API]: https://developers.google.com/maps/documentation/geocoding/
 [Time Zone API]: https://developers.google.com/maps/documentation/timezone/
 [Roads API]: https://developers.google.com/maps/documentation/roads/
-[Places API]: https://developers.google.com/places/
+[Places API]: https://developers.google.com/places/web-service/
 
 [issues]: https://github.com/googlemaps/google-maps-services-js/issues
 [contrib]: https://github.com/googlemaps/google-maps-services-js/blob/master/CONTRIB.md
