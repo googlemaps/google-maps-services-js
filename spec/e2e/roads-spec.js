@@ -30,7 +30,8 @@ describe('roads client library', function() {
       ],
       interpolate: true
     })
-    .asPromise(function(response) {
+    .asPromise()
+    .then(function(response) {
       expect(response.json.snappedPoints).toEqual(
           arrayContaining([
             objectContaining({
@@ -51,11 +52,12 @@ describe('roads client library', function() {
       ],
       units: 'KPH'
     })
-    .asPromise(function(response) {
+    .asPromise()
+    .then(function(response) {
       expect(response.json.speedLimits).toEqual(
           arrayContaining([
             objectContaining({
-              speedLimit: 60,
+              speedLimit: 40,
               units: 'KPH'
             })
           ]));
