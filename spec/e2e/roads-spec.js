@@ -43,6 +43,28 @@ describe('roads client library', function() {
     .then(done, fail);
   });
 
+  it('gets nearest roads for points', function(done) {
+    googleMaps.nearestRoads({
+      points: [
+        [60.170880, 24.942795],
+        [60.170879, 24.942796],
+        [60.170877, 24.942796]
+      ]
+    })
+    .asPromise()
+    .then(function(response) {
+      console.log(response.json);
+      expect(response.json.snappedPoints).toEqual(
+          arrayContaining([
+            objectContaining({
+              originalIndex: 0,
+              placeId: 'ChIJNX9BrM0LkkYRIM-cQg265e8'
+            })
+          ]));
+    })
+    .then(done, fail);
+  });
+
   it('gets speed limits for place IDs', function(done) {
     googleMaps.speedLimits({
       placeId: [
