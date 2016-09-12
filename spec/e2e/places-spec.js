@@ -33,7 +33,7 @@ describe('places client library', function() {
       minprice: 1,
       maxprice: 4,
       opennow: true,
-      types: 'restaurant'
+      type: 'restaurant'
     })
     .asPromise()
     .then(function(response) {
@@ -117,7 +117,7 @@ describe('places client library', function() {
       language: 'en',
       location: [40.724, -74.013],
       radius: 5000,
-      types: ['restaurant'],
+      type: 'restaurant',
       components: {country: 'us'}
     })
     .asPromise()
