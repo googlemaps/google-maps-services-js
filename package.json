@@ -44,7 +44,7 @@
   },
   "homepage": "https://github.com/googlemaps/google-maps-services-js",
   "devDependencies": {
-    "jasmine": "^2.3.2",
+    "jasmine": ">=2.3.2 <2.5.0",
     "jsdoc": "^3.4.0",
     "priorityqueuejs": "^1.0.0",
     "q": "^1.4.1"
