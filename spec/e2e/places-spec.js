@@ -47,6 +47,47 @@ describe('places client library', function() {
     .then(done, fail);
   });
 
+  it('gets places for a nearby search query', function(done) {
+    googleMaps.placesNearby({
+      language: 'en',
+      location: [-33.865, 151.038],
+      radius: 5000,
+      minprice: 1,
+      maxprice: 4,
+      opennow: true,
+      type: 'restaurant'
+    })
+    .asPromise()
+    .then(function(response) {
+      expect(response.json.results).toEqual(
+          arrayContaining([
+            objectContaining({
+              name: stringMatching('McDonalds')
+            })
+          ]));
+    })
+    .then(done, fail);
+  });
+
+  it('gets places for a radar search query', function(done) {
+    googleMaps.placesRadar({
+      language: 'en',
+      location: [-33.865, 151.038],
+      radius: 5000,
+      type: 'restaurant'
+    })
+    .asPromise()
+    .then(function(response) {
+      expect(response.json.results).toEqual(
+          arrayContaining([
+            objectContaining({
+              place_id: stringMatching('ChIJCYxmm6G8EmsRKx_g00QBeBk')
+            })
+          ]));
+    })
+    .then(done, fail);
+  });
+
   it('can page through results', function(done) {
     googleMaps.places({
       query: 'restaurant',
