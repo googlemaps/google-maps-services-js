@@ -157,4 +157,4 @@ $ googlemaps directions --origin 'Sydney Town Hall' --destination 'Parramatta, N
 [Places API]: https://developers.google.com/places/web-service/
 
 [issues]: https://github.com/googlemaps/google-maps-services-js/issues
-[contrib]: https://github.com/googlemaps/google-maps-services-js/blob/master/CONTRIB.md
+[contrib]: https://github.com/googlemaps/google-maps-services-js/blob/master/CONTRIBUTING.md
