@@ -33,7 +33,7 @@ describe('places client library', function() {
       minprice: 1,
       maxprice: 4,
       opennow: true,
-      types: 'restaurant'
+      type: 'restaurant'
     })
     .asPromise()
     .then(function(response) {
@@ -41,6 +41,47 @@ describe('places client library', function() {
           arrayContaining([
             objectContaining({
               name: stringMatching('McDonalds')
+            })
+          ]));
+    })
+    .then(done, fail);
+  });
+
+  it('gets places for a nearby search query', function(done) {
+    googleMaps.placesNearby({
+      language: 'en',
+      location: [-33.865, 151.038],
+      radius: 5000,
+      minprice: 1,
+      maxprice: 4,
+      opennow: true,
+      type: 'restaurant'
+    })
+    .asPromise()
+    .then(function(response) {
+      expect(response.json.results).toEqual(
+          arrayContaining([
+            objectContaining({
+              name: stringMatching('McDonalds')
+            })
+          ]));
+    })
+    .then(done, fail);
+  });
+
+  it('gets places for a radar search query', function(done) {
+    googleMaps.placesRadar({
+      language: 'en',
+      location: [-33.865, 151.038],
+      radius: 5000,
+      type: 'restaurant'
+    })
+    .asPromise()
+    .then(function(response) {
+      expect(response.json.results).toEqual(
+          arrayContaining([
+            objectContaining({
+              place_id: stringMatching('ChIJCYxmm6G8EmsRKx_g00QBeBk')
             })
           ]));
     })
@@ -117,7 +158,7 @@ describe('places client library', function() {
       language: 'en',
       location: [40.724, -74.013],
       radius: 5000,
-      types: ['restaurant'],
+      type: 'restaurant',
       components: {country: 'us'}
     })
     .asPromise()

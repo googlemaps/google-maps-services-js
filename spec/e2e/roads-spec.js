@@ -30,7 +30,30 @@ describe('roads client library', function() {
       ],
       interpolate: true
     })
-    .asPromise(function(response) {
+    .asPromise()
+    .then(function(response) {
+      expect(response.json.snappedPoints).toEqual(
+          arrayContaining([
+            objectContaining({
+              originalIndex: 0,
+              placeId: 'ChIJNX9BrM0LkkYRIM-cQg265e8'
+            })
+          ]));
+    })
+    .then(done, fail);
+  });
+
+  it('gets nearest roads for points', function(done) {
+    googleMaps.nearestRoads({
+      points: [
+        [60.170880, 24.942795],
+        [60.170879, 24.942796],
+        [60.170877, 24.942796]
+      ]
+    })
+    .asPromise()
+    .then(function(response) {
+      console.log(response.json);
       expect(response.json.snappedPoints).toEqual(
           arrayContaining([
             objectContaining({
@@ -51,11 +74,12 @@ describe('roads client library', function() {
       ],
       units: 'KPH'
     })
-    .asPromise(function(response) {
+    .asPromise()
+    .then(function(response) {
       expect(response.json.speedLimits).toEqual(
           arrayContaining([
             objectContaining({
-              speedLimit: 60,
+              speedLimit: 40,
               units: 'KPH'
             })
           ]));
