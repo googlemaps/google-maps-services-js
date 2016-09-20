@@ -24,9 +24,9 @@ describe('attempt', function() {
   var attempt;
   beforeEach(function() {
     clock = MockClock.create();
-    attempt = require('../../lib/internal/attempt')
-        .inject(clock.setTimeout)
-        .attempt;
+    var wait = require('../../lib/internal/wait')
+        .inject(clock.setTimeout, clock.clearTimeout);
+    attempt = require('../../lib/internal/attempt').inject(wait).attempt;
   });
 
   var equalTo200;

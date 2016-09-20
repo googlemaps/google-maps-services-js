@@ -92,7 +92,8 @@ describe('index.js:', function() {
       createClient({
         makeUrlRequest: requestAndFail,
         getTime: clock.getTime,
-        setTimeout: clock.setTimeout
+        setTimeout: clock.setTimeout,
+        clearTimeout: clock.clearTimeout
       })
       .geocode({
         address: 'Sydney Opera House',
@@ -116,6 +117,7 @@ describe('index.js:', function() {
         makeUrlRequest: requestAndFail,
         getTime: clock.getTime,
         setTimeout: clock.setTimeout,
+        clearTimeout: clock.clearTimeout,
         timeout: 100,
         retryOptions: {
           interval: 30,
@@ -139,6 +141,7 @@ describe('index.js:', function() {
         makeUrlRequest: requestAndSucceed,
         getTime: clock.getTime,
         setTimeout: clock.setTimeout,
+        clearTimeout: clock.clearTimeout,
         rate: {limit: 3, period: 30}
       });
 
@@ -158,6 +161,7 @@ describe('index.js:', function() {
         makeUrlRequest: requestAndSucceed,
         getTime: clock.getTime,
         setTimeout: clock.setTimeout,
+        clearTimeout: clock.clearTimeout,
         rate: {period: 20}
       });
 
