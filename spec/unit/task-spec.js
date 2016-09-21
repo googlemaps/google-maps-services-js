@@ -183,3 +183,41 @@ describe('Task:', function() {
     });
   });
 });
+
+describe('Task.race', function() {
+  var task1, resolve1, cancelled1;
+  var task2, resolve2, cancelled2;
+  beforeEach(function() {
+    task1 = Task.start(function(resolve) {
+      resolve1 = resolve;
+      cancelled1 = jasmine.createSpy('cancelled1');
+      return cancelled1;
+    });
+    task2 = Task.start(function(resolve) {
+      resolve2 = resolve;
+      cancelled2 = jasmine.createSpy('cancelled2');
+      return cancelled2;
+    });
+  });
+
+  it('cancels the second task if the first task finishes', function(done) {
+    Task.race([task1, task2]).thenDo(function(result) {
+      expect(result).toBe(42);
+      expect(cancelled2).toHaveBeenCalled();
+      done();
+    });
+
+    resolve1(42);
+  });
+
+  it('cancels both tasks if the race is cancelled', function(done) {
+    Task.race([task1, task2])
+    .thenDo(fail)
+    .finally(function() {
+      expect(cancelled1).toHaveBeenCalled();
+      expect(cancelled2).toHaveBeenCalled();
+      done();
+    })
+    .cancel();
+  });
+});
