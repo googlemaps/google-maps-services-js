@@ -26,6 +26,7 @@ MockClock.create = function(opt_startTime) {
     return b.time - a.time;
   });
   var nextId = 100;
+  var cancelledCallbacks = {};
 
   var me = {};
 
@@ -43,6 +44,10 @@ MockClock.create = function(opt_startTime) {
     return id;
   };
 
+  me.clearTimeout = function(id) {
+    cancelledCallbacks[id] = true;
+  };
+
   me.run = function(opt_duration) {
     var endTime = opt_duration + theTime;
 
@@ -58,7 +63,9 @@ MockClock.create = function(opt_startTime) {
       var item = queue.deq();
 
       theTime = item.time;
-      item.callback();
+      if (!cancelledCallbacks[item.id]) {
+        item.callback();
+      }
 
       // Wait a bit to allow process.nextTick() and setImmediate to happen.
       return wait1ms().thenDo(loop);

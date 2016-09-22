@@ -16,25 +16,18 @@
  */
 
 var Task = require('../../lib/internal/task');
+var MockClock = require('../mock-clock');
 
 describe('throttle', function() {
   var PERIOD = 1000;
 
-  // This simplistic fake is suitable for injecting into the ThrottledQueue.
-  // The queue only has one pending timeout at a time.
-  var fakeSetTimeout = function(callback, duration) {
-    setImmediate(function() {
-      theTime += duration;
-      callback();
-    });
-  };
-  var theTime, createQueue, queue, doSomething;
+  var clock, createQueue, queue, doSomething;
   beforeEach(function() {
-    theTime = 1000000;
+    clock = MockClock.create();
+    var wait = require('../../lib/internal/wait')
+        .inject(clock.setTimeout, clock.clearTimeout);
     createQueue = require('../../lib/internal/throttled-queue')
-        .inject(fakeSetTimeout, function() {
-          return theTime;
-        })
+        .inject(wait, clock.getTime)
         .create;
     queue = createQueue(1, PERIOD);
 
@@ -57,6 +50,7 @@ describe('throttle', function() {
       expect(doSomething).toHaveBeenCalled();
       done();
     });
+    clock.run(1000000);
   });
 
   it('.cancel() cancels an operation', function(done) {
@@ -85,96 +79,108 @@ describe('throttle', function() {
       expect(result).toBe('result 3');
     })
     .thenDo(done, fail);
+
+    clock.run(1000000);
   });
 
   it('does it immediately the first time', function(done) {
-    var startTime = theTime;
+    var startTime = clock.getTime();
 
     queue.add(doSomething)
     .thenDo(function() {
-      expect(theTime).toBe(startTime);
+      expect(clock.getTime()).toBe(startTime);
       done();
     });
+
+    clock.run(1000000);
   });
 
   it('spaces out calls made at the same time', function(done) {
-    var startTime = theTime;
+    var startTime = clock.getTime();
 
     queue.add(doSomething)
     .thenDo(function() {
-      expect(theTime).toBe(startTime);
+      expect(clock.getTime()).toBe(startTime);
     }, fail);
 
     queue.add(doSomething)
     .thenDo(function() {
-      expect(theTime).toBe(startTime + PERIOD);
+      expect(clock.getTime()).toBe(startTime + PERIOD);
     }, fail);
 
     queue.add(doSomething)
     .thenDo(function() {
-      expect(theTime).toBe(startTime + 2 * PERIOD);
+      expect(clock.getTime()).toBe(startTime + 2 * PERIOD);
     })
     .thenDo(done, fail);
+
+    clock.run(1000000);
   });
 
   it('spaces out calls made half a PERIOD apart', function(done) {
-    var startTime = theTime;
+    var startTime = clock.getTime();
 
     queue.add(doSomething)
     .thenDo(function() {
-      expect(theTime).toBe(startTime);
+      expect(clock.getTime()).toBe(startTime);
     }, fail);
 
-    setTimeout(function() {
-      theTime += 0.5 * PERIOD;
+    clock.run(0.5 * PERIOD)
+    .thenDo(function() {
       queue.add(doSomething)
       .thenDo(function() {
-        expect(theTime).toBe(startTime + PERIOD);
+        expect(clock.getTime()).toBe(startTime + PERIOD);
       })
       .thenDo(done, fail);
-    }, 10);
+
+      clock.run(1000000);
+    });
   });
 
   it('doesn\'t wait when calls are made far apart', function(done) {
-    var startTime = theTime;
+    var startTime = clock.getTime();
 
     queue.add(doSomething)
     .thenDo(function() {
-      expect(theTime).toBe(startTime);
+      expect(clock.getTime()).toBe(startTime);
     }, fail);
 
-    setTimeout(function() {
-      theTime += 2 * PERIOD;
+    clock.run(2 * PERIOD)
+    .thenDo(function() {;
       queue.add(doSomething)
       .thenDo(function() {
-        expect(theTime).toBe(startTime + 2 * PERIOD);
+        expect(clock.getTime()).toBe(startTime + 2 * PERIOD);
       })
       .thenDo(done, fail);
-    }, 10);
+
+      clock.run(1000000);
+    });
   });
 
   it('does not wait for calls that are cancelled', function(done) {
-    var startTime = theTime;
+    var startTime = clock.getTime();
 
     queue.add(doSomething)
     .thenDo(function(result) {
-      expect(theTime).toBe(startTime);
+      expect(clock.getTime()).toBe(startTime);
       expect(result).toBe('result 1');
     }, fail);
 
     queue.add(doSomething)
     .thenDo(fail, fail)
     .finally(function() {
-      expect(theTime).toBe(startTime);
+      expect(clock.getTime()).toBe(startTime);
     })
     .cancel();
 
     queue.add(doSomething)
     .thenDo(function(result) {
-      expect(theTime).toBe(startTime + PERIOD);
+      expect(clock.getTime()).toBe(startTime + PERIOD);
       expect(result).toBe('result 2');
     })
     .thenDo(done, fail);
+
+    clock.run(1000000);
   });
 
   describe('when limit is 3', function() {
@@ -183,28 +189,30 @@ describe('throttle', function() {
     });
 
     it('waits before making the 4th call made together', function(done) {
-      var startTime = theTime;
+      var startTime = clock.getTime();
 
       queue.add(doSomething)
       .thenDo(function() {
-        expect(theTime).toBe(startTime);
+        expect(clock.getTime()).toBe(startTime);
       }, fail);
 
       queue.add(doSomething)
       .thenDo(function() {
-        expect(theTime).toBe(startTime);
+        expect(clock.getTime()).toBe(startTime);
       }, fail);
 
       queue.add(doSomething)
       .thenDo(function() {
-        expect(theTime).toBe(startTime);
+        expect(clock.getTime()).toBe(startTime);
       }, fail);
 
       queue.add(doSomething)
       .thenDo(function() {
-        expect(theTime).toBe(startTime + PERIOD);
+        expect(clock.getTime()).toBe(startTime + PERIOD);
       })
       .thenDo(done, fail);
+
+      clock.run(1000000);
     });
   });
 });
