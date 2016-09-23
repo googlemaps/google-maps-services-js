@@ -32,6 +32,9 @@ apply to usage of the APIs when they're accessed through this library.
 
     $ npm install @google/maps
 
+**Note:** You'll need to have NPM 2.7.0 or greater installed, since this library is hosted as a 
+[scoped package](https://docs.npmjs.com/getting-started/scoped-packages).
+
 Create a new client object by calling `createClient()`
 
 ```js
