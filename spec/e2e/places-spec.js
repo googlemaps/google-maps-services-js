@@ -69,6 +69,28 @@ describe('places client library', function() {
     .then(done, fail);
   });
 
+  it('gets places for a nearby search query ranked by distance', function(done) {
+    googleMaps.placesNearby({
+      language: 'en',
+      location: [-33.865, 151.038],
+      rankby: 'distance',
+      minprice: 1,
+      maxprice: 4,
+      opennow: true,
+      type: 'restaurant'
+    })
+    .asPromise()
+    .then(function(response) {
+      expect(response.json.results).toEqual(
+          arrayContaining([
+            objectContaining({
+              name: stringMatching('McDonalds')
+            })
+          ]));
+    })
+    .then(done, fail);
+  });
+
   it('gets places for a radar search query', function(done) {
     googleMaps.placesRadar({
       language: 'en',
