@@ -174,14 +174,36 @@ describe('places client library', function() {
     .then(done, fail);
   });
 
-  it('gets autocomplete predictions for a query', function(done) {
+  it('gets autocomplete predictions for places', function(done) {
     googleMaps.placesAutoComplete({
-      input: 'pizza near New York',
+      input: 'pizza',
       language: 'en',
       location: [40.724, -74.013],
       radius: 5000,
-      type: 'restaurant',
       components: {country: 'us'}
+    })
+    .asPromise()
+    .then(function(response) {
+      expect(response.json.predictions).toEqual(
+          arrayContaining([
+            objectContaining({
+              terms: arrayContaining([
+                objectContaining({
+                  value: 'NY'
+                })
+              ])
+            })
+          ]));
+    })
+    .then(done, fail);
+  });
+
+  it('gets autocomplete predictions for a query', function(done) {
+    googleMaps.placesQueryAutoComplete({
+      input: 'pizza near New York',
+      language: 'en',
+      location: [40.724, -74.013],
+      radius: 5000
     })
     .asPromise()
     .then(function(response) {
