@@ -8,21 +8,21 @@
  * The object given to the {@link ResponseCallback}, containing the HTTP status
  * and headers, as well as the response JSON.
  *
- * @interface Response
+ * @interface ClientResponse
  */
 /**
  * The HTTP status.
- * @name  Response#status
+ * @name  ClientResponse#status
  * @type {number}
  */
 /**
  * The HTTP headers.
- * @name  Response#headers
+ * @name  ClientResponse#headers
  * @type {Object}
  */
 /**
  * Deserialized JSON object for the API response.
- * @name  Response#json
+ * @name  ClientResponse#json
  * @type {Object}
  */
 
@@ -31,12 +31,12 @@
  * completes. The callback is given either:
  *
  * <ul>
- *   <li> a successful {@link Response} object; or
+ *   <li> a successful {@link ClientResponse} object; or
  *   <li> an error, one of:
  *     <ul>
  *       <li> the string <code>"timeout"</code>; or
  *       <li> an error from the underlying <code>http</code> library; or
- *       <li> a {@link Response} whose status is not <code>OK</code>.
+ *       <li> a {@link ClientResponse} whose status is not <code>OK</code>.
  *     </ul>
  * </ul>
  *
@@ -106,7 +106,7 @@
  *
  * @name  RequestHandle#asPromise
  * @function
- * @return {Promise<Response>}
+ * @return {Promise<ClientResponse>}
  */
 
 /**
