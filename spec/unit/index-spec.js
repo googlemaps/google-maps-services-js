@@ -32,7 +32,7 @@ describe('index.js:', function() {
           requestTimes.push(clock.getTime());
           onSuccess({
             status: 200,
-            json: {'hello': 'world'}
+            json: {status: 'OK'}
           });
         });
 
@@ -50,7 +50,7 @@ describe('index.js:', function() {
         expect(err).toBe(null);
         expect(response).toEqual({
           status: 200,
-          json: {'hello': 'world'}
+          json: {status: 'OK'}
         });
         done();
       });
@@ -255,7 +255,7 @@ describe('index.js:', function() {
       .then(function(response) {
         expect(response).toEqual({
           status: 200,
-          json: {'hello': 'world'}
+          json: {status: 'OK'}
         });
       })
       .then(done, fail);
