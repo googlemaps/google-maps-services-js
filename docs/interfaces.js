@@ -31,18 +31,27 @@
  * completes. The callback is given either:
  *
  * <ul>
- *   <li> a {@link Response} object; OR
- *   <li> an error object from the underlying <code>http</code> library.
+ *   <li> a successful {@link Response} object; or
+ *   <li> an error, one of:
+ *     <ul>
+ *       <li> the string <code>"timeout"</code>; or
+ *       <li> an error from the underlying <code>http</code> library; or
+ *       <li> a {@link Response} whose status is not <code>OK</code>.
+ *     </ul>
  * </ul>
  *
  * For example:
  *
  * <pre>
  *   googleMapsClient.geocode({...}, function(err, response) {
- *     if (err) {
- *       // Handle error.
- *     } else {
+ *     if (!err) {
  *       // Handle response.
+ *     } else if (err === 'timeout') {
+ *       // Handle timeout.
+ *     } else if (err.json) {
+ *       // Inspect err.status for more info.
+ *     } else {
+ *       // Handle network error.
  *     }
  *   });
  * </pre>
