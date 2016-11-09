@@ -261,6 +261,24 @@ describe('index.js:', function() {
       .then(done, fail);
     });
 
+    it('delivers ZERO_RESULTS as success', function(done) {
+      createClient({
+        Promise: Promise,
+        makeUrlRequest: function(url, onSuccess) {
+          onSuccess({status: 200, json: {status: 'ZERO_RESULTS'}});
+        }
+      })
+      .geocode({address: 'Sydney Opera House'})
+      .asPromise()
+      .then(function(response) {
+        expect(response).toEqual({
+          status: 200,
+          json: {status: 'ZERO_RESULTS'}
+        });
+      })
+      .then(done, fail);
+    });
+
     it('delivers errors', function(done) {
       createClient({
         Promise: Promise,
@@ -272,6 +290,21 @@ describe('index.js:', function() {
       .asPromise()
       .then(fail, function(error) {
         expect(error).toEqual('error');
+        done();
+      })
+    });
+
+    it('delivers REQUEST_DENIED as an error', function(done) {
+      createClient({
+        Promise: Promise,
+        makeUrlRequest: function(url, onSuccess) {
+          onSuccess({status: 200, json: {status: 'REQUEST_DENIED'}});
+        }
+      })
+      .geocode({address: 'Sydney Opera House'})
+      .asPromise()
+      .then(fail, function(error) {
+        expect(error.json).toEqual({status: 'REQUEST_DENIED'});
         done();
       })
     });
