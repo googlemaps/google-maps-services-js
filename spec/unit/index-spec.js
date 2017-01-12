@@ -87,6 +87,32 @@ describe('index.js:', function() {
     });
   });
 
+  describe('using a language param', function() {
+    it('can set the language per client', function(done) {
+      createClient({
+        language: 'en-AU',
+        makeUrlRequest: function(url) {
+          expect(parse(url, true).query.language)
+          .toBe('en-AU');
+          done();
+        }
+      })
+      .geocode({address: 'Sesame St.'});
+    });
+
+    it('can override the language per method', function(done) {
+      createClient({
+        language: 'en-AU',
+        makeUrlRequest: function(url) {
+          expect(parse(url, true).query.language)
+          .toBe('en-GB');
+          done();
+        }
+      })
+      .geocode({address: 'Sesame St.', language: 'en-GB'});
+    });
+  });
+
   describe('retrying failing requests', function() {
     it('uses retryOptions given to the method', function(done) {
       createClient({
