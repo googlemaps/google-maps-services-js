@@ -8,21 +8,21 @@
  * The object given to the {@link ResponseCallback}, containing the HTTP status
  * and headers, as well as the response JSON.
  *
- * @interface Response
+ * @interface ClientResponse
  */
 /**
  * The HTTP status.
- * @name  Response#status
+ * @name  ClientResponse#status
  * @type {number}
  */
 /**
  * The HTTP headers.
- * @name  Response#headers
+ * @name  ClientResponse#headers
  * @type {Object}
  */
 /**
  * Deserialized JSON object for the API response.
- * @name  Response#json
+ * @name  ClientResponse#json
  * @type {Object}
  */
 
@@ -31,18 +31,27 @@
  * completes. The callback is given either:
  *
  * <ul>
- *   <li> a {@link Response} object; OR
- *   <li> an error object from the underlying <code>http</code> library.
+ *   <li> a successful {@link ClientResponse} object; or
+ *   <li> an error, one of:
+ *     <ul>
+ *       <li> the string <code>"timeout"</code>; or
+ *       <li> an error from the underlying <code>http</code> library; or
+ *       <li> a {@link ClientResponse} whose status is not <code>OK</code>.
+ *     </ul>
  * </ul>
  *
  * For example:
  *
  * <pre>
  *   googleMapsClient.geocode({...}, function(err, response) {
- *     if (err) {
- *       // Handle error.
- *     } else {
+ *     if (!err) {
  *       // Handle response.
+ *     } else if (err === 'timeout') {
+ *       // Handle timeout.
+ *     } else if (err.json) {
+ *       // Inspect err.status for more info.
+ *     } else {
+ *       // Handle network error.
  *     }
  *   });
  * </pre>
@@ -97,7 +106,7 @@
  *
  * @name  RequestHandle#asPromise
  * @function
- * @return {Promise<Response>}
+ * @return {Promise<ClientResponse>}
  */
 
 /**
