@@ -113,6 +113,38 @@ describe('index.js:', function() {
     });
   });
 
+  describe('posting JSON', function() {
+    var geolocateQuery = {
+      homeMobileCountryCode: 310,
+      homeMobileNetworkCode: 410,
+      radioType: 'gsm',
+      carrier: 'Vodafone',
+      considerIp: true
+    };
+
+    it('posts data', function(done) {
+      createClient({
+        makeUrlRequest: function(url, onSuccess, onError, postData) {
+          expect(postData)
+          .toEqual(geolocateQuery);
+          done();
+        }
+      })
+      .geolocate(geolocateQuery);
+    });
+
+    it('does not include the API key in the post data', function(done) {
+      createClient({
+        makeUrlRequest: function(url, onSuccess, onError, postData) {
+          expect(postData.key)
+          .toBe(undefined);
+          done();
+        }
+      })
+      .geolocate(geolocateQuery);
+    });
+  });
+
   describe('retrying failing requests', function() {
     it('uses retryOptions given to the method', function(done) {
       createClient({
