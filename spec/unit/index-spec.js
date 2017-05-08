@@ -124,8 +124,8 @@ describe('index.js:', function() {
 
     it('posts data', function(done) {
       createClient({
-        makeUrlRequest: function(url, onSuccess, onError, postData) {
-          expect(postData)
+        makeUrlRequest: function(url, onSuccess, onError, options) {
+          expect(options['body'])
           .toEqual(geolocateQuery);
           done();
         }
@@ -135,8 +135,8 @@ describe('index.js:', function() {
 
     it('does not include the API key in the post data', function(done) {
       createClient({
-        makeUrlRequest: function(url, onSuccess, onError, postData) {
-          expect(postData.key)
+        makeUrlRequest: function(url, onSuccess, onError, options) {
+          expect(options['body'].key)
           .toBe(undefined);
           done();
         }
