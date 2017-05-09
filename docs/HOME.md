@@ -55,7 +55,17 @@ be used to cancel the request, or to obtain a Promise for the response.
 
 NOTE: Promises are only available if you supply a
 [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
-constructor to the [`createClient()`](module-@google_maps.html#.createClient) method.
+constructor to the [`createClient()`](module-@google_maps.html#.createClient) method. You must also chain `.asPromise()` to a method before any `.then()` or `.catch()` methods.
+For example: 
+```js
+googleMapsClient.geocode({address: '1600 Amphitheatre Parkway, Mountain View, CA'}).asPromise()
+  .then((response) => {
+    console.log(response.json.results);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+ ```
 
 
 Learn More
