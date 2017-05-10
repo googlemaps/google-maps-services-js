@@ -17,7 +17,7 @@ var googleMapsClient = require('@google/maps').createClient({
 Make requests to the Google Maps APIs by calling methods on the
 [client object](GoogleMapsClient.html):
 
-```
+```js
 // Geocode an address.
 googleMapsClient.geocode({
   address: '1600 Amphitheatre Parkway, Mountain View, CA'
@@ -58,6 +58,7 @@ NOTE: Promises are only available if you supply a
 constructor to the [`createClient()`](module-@google_maps.html#.createClient) method. You must also chain `.asPromise()` to a method before any `.then()` or `.catch()` methods.
 For example: 
 ```js
+// Geocode an address with a promise
 googleMapsClient.geocode({address: '1600 Amphitheatre Parkway, Mountain View, CA'}).asPromise()
   .then((response) => {
     console.log(response.json.results);
