@@ -48,10 +48,10 @@ describe('index.js:', function() {
       createClient({makeUrlRequest: requestAndSucceed})
       .geocode({address: 'Sydney Opera House'}, function(err, response) {
         expect(err).toBe(null);
-        expect(response).toEqual({
+        expect(response).toEqual(jasmine.objectContaining({
           status: 200,
           json: {status: 'OK'}
-        });
+        }));
         done();
       });
     });
@@ -279,10 +279,10 @@ describe('index.js:', function() {
       .geocode({address: 'Sydney Opera House'})
       .asPromise()
       .then(function(response) {
-        expect(response).toEqual({
+        expect(response).toEqual(jasmine.objectContaining({
           status: 200,
           json: {status: 'OK'}
-        });
+        }));
       })
       .then(done, fail);
     });
@@ -297,10 +297,10 @@ describe('index.js:', function() {
       .geocode({address: 'Sydney Opera House'})
       .asPromise()
       .then(function(response) {
-        expect(response).toEqual({
+        expect(response).toEqual(jasmine.objectContaining({
           status: 200,
           json: {status: 'ZERO_RESULTS'}
-        });
+        }));
       })
       .then(done, fail);
     });
