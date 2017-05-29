@@ -48,5 +48,6 @@
     "jsdoc": "^3.4.0",
     "priorityqueuejs": "^1.0.0",
     "q": "^1.4.1"
-  }
+  },
+  "files": ["lib", "bin"]
 }
