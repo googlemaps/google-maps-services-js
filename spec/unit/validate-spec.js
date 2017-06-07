@@ -63,6 +63,12 @@ describe('Validate', function() {
         validate(true);
       }).toThrowError(InvalidValueError, /not an Object/);
     });
+
+    it('omits valid yet undefined values', function() {
+      var valid = function(value) {return value;};
+      var validateValid = Validate.object({a: valid, b: valid});
+      expect(validateValid({a: 1, b: undefined})).toEqual({a: 1});
+    });
   });
 
   describe('.array', function() {
@@ -123,6 +129,13 @@ describe('Validate', function() {
       expect(function() {
         validate({one: 1, two: 2, four: 4});
       }).toThrowError(InvalidValueError, /"one", "two" and "four"/);
+    });
+  });
+
+  describe('.boolean', function() {
+    it('only returns true values', function() {
+      expect(Validate.boolean(true)).toEqual(true);
+      expect(Validate.boolean(false)).toEqual(undefined);
     });
   });
 
