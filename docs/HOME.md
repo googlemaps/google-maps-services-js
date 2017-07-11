@@ -58,6 +58,12 @@ NOTE: Promises are only available if you supply a
 constructor to the [`createClient()`](module-@google_maps.html#.createClient) method. You must also chain `.asPromise()` to a method before any `.then()` or `.catch()` methods.
 For example: 
 ```js
+// Create client with a Promise constructor
+const googleMapsClient = require('@google/maps').createClient({
+  key: 'your API key here',
+  Promise: Promise // 'Promise' is the native constructor.
+});
+
 // Geocode an address with a promise
 googleMapsClient.geocode({address: '1600 Amphitheatre Parkway, Mountain View, CA'}).asPromise()
   .then((response) => {
