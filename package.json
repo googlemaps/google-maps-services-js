@@ -1,6 +1,6 @@
 {
   "name": "@google/maps",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "author": "Google Inc.",
   "description": "Node.js client library for Google Maps API Web Services",
   "main": "./lib",
