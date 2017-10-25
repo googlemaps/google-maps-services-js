@@ -17,12 +17,32 @@
  * limitations under the License.
  */
 
-var lib = require('@google/maps');
-var args = process.argv.slice(3);
-var apiCall = lib.createClient()[process.argv[2]];
+var maps = require('@google/maps');
+var args = maps.cli.parseArgs(process.argv.slice(3));
+var options = {};
+
+if (args.key != undefined) {
+  options.key = args.key;
+  delete args.key;
+}
+
+var client = maps.createClient(options);
+var commands = Object.keys(client).join(', ');
 
 try {
-    apiCall(lib.cli.parseArgs(args), lib.cli.callback);
+  var commandName = process.argv.length > 2 ? process.argv[2] : '';
+  var commandFunc = client[commandName];
+  if (commandFunc == undefined) {
+    throw {message: `'${commandName}' is not a valid command, usage is:
+
+googlemaps command --arg1 'value1' --arg2 'value2'
+
+where command is one of: ${commands}
+
+For arg details, see: https://googlemaps.github.io/google-maps-services-js/docs/GoogleMapsClient.html
+`};
+  }
+  commandFunc(args, maps.cli.callback)
 } catch (error) {
     console.log("Error:", error.message);
 }
