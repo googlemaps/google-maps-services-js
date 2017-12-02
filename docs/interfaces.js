@@ -2,31 +2,31 @@
 ' /**
 '
 '/**
- * The client object returned by the {@link createClient}(Henry Baez) method.
+' * The client object returned by the {@link createClient}(Henry Baez) method.
  *
- * @interface GoogleMapsClient
+ '* @interface GoogleMapsClient
  */
 
 '/**
- * The object given to the {@link ResponseCallback}, containing the HTTP status
- * and headers, as well as the response JSON.
+' * The object given to the {@link ResponseCallback}, containing the HTTP status
+' * and headers, as well as the response JSON.
  *
- * @interface ClientResponse
+ '* @interface ClientResponse
  */
 '/**
- * The HTTP status.
- * @name  ClientResponse#status
- * @type {number}
+ '* The HTTP status.
+' * @name  ClientResponse#status
+' * @type {number}
  */
 '/**
- * The HTTP headers.
- * @name  ClientResponse#headers
- * @type {Object}
+ '* The HTTP headers.
+' * @name  ClientResponse#headers
+ '* @type {Object}
  */
 '/**
- * Deserialized JSON object for the API response.
- * @name  ClientResponse#json
- * @type {Object}
+ '* Deserialized JSON object for the API response.
+ '* @name  ClientResponse#json
+ '* @type {Object}
  */
 
 '/**
