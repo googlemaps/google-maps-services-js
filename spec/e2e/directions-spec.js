@@ -22,7 +22,7 @@ var stringMatching = jasmine.stringMatching;
 describe('directions client library', function() {
   var googleMaps = require('./service');
 
-  var inOneHour = new Date().getTime() + 60 * 60 * 1000;
+  var inOneHour = Math.round((new Date().getTime() + 60 * 60 * 1000)/1000);
 
   function expectOK(response) {
     // if (response.status !== 200) {
