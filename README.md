@@ -32,7 +32,7 @@ apply to usage of the APIs when they're accessed through this library.
 
     $ npm install @google/maps
 
-**Note:** You'll need to have npm 2.7.0 or greater installed, since this library is hosted as a 
+**Note:** You'll need to have npm 2.7.0 or greater installed, since this library is hosted as a
 [scoped package](https://docs.npmjs.com/getting-started/scoped-packages).
 
 Create a new client object by calling `createClient()`
@@ -56,6 +56,24 @@ googleMapsClient.geocode({
 });
 ```
 
+You may use promise-based solution also.
+
+```js
+const googleMapsClient = require('@google/maps').createClient({
+  key: 'your API key here',
+  Promise: Promise
+});
+
+googleMapsClient.geocode({address: '1600 Amphitheatre Parkway, Mountain View, CA'})
+  .asPromise()
+  .then((response) => {
+    console.log(response.json.results);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+```
+
 For more usage examples, check out [the tests](spec/e2e/).
 
 View the [reference documentation](https://googlemaps.github.io/google-maps-services-js/docs/)
@@ -67,8 +85,8 @@ https://developers.google.com/maps/.
 
 Each Google Maps Web Service request requires an API key or client ID. API keys
 are freely available with a Google Account at
-https://developers.google.com/console. The type of API key you need is a 
-**Server key**. 
+https://developers.google.com/console. The type of API key you need is a
+**Server key**.
 
 To get an API key:
 
@@ -86,10 +104,10 @@ To get an API key:
     * Time Zone API
  1. Create a new **Server key**.
  1. If you'd like to restrict requests to a specific IP address, do so now.
- 
+
 For guided help, follow the instructions for the [Directions API][directions-key]. You only need one API key, but
 remember to enable all the APIs you need.
-For even more information, see the guide to [API keys][apikey]. 
+For even more information, see the guide to [API keys][apikey].
 
 When you have an API key, you can create a client object:
 
