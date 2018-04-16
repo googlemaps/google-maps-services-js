@@ -17,7 +17,7 @@
 
 describe('Polyline util', function() {
 
-  var util = require('../../util');
+  var util = require('../../lib/index').util;
   var encoded = 'gcneIpgxzRcDnBoBlEHzKjBbHlG`@`IkDxIiKhKoMaLwTwHeIqHuAyGXeB~Ew@fFjAtIzExF';
   var decoded = util.decodePath(encoded);
 
