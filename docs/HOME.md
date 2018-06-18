@@ -6,7 +6,7 @@ Quick Start
 -----------
 
 Create a new client object by calling
-[`createClient()`](module-@google_maps.html#.createClient):
+[`createClient()`](https://googlemaps.github.io/google-maps-services-js/docs/module-@google_maps.html#.createClient):
 
 ```js
 var googleMapsClient = require('@google/maps').createClient({
@@ -15,7 +15,7 @@ var googleMapsClient = require('@google/maps').createClient({
 ```
 
 Make requests to the Google Maps APIs by calling methods on the
-[client object](GoogleMapsClient.html):
+[client object](https://googlemaps.github.io/google-maps-services-js/docs/GoogleMapsClient.html):
 
 ```js
 // Geocode an address.
@@ -33,7 +33,7 @@ Initializing the client library
 -------------------------------
 
 You can specify a number of options to the
-[`createClient()`](module-@google_maps.html#.createClient)
+[`createClient()`](https://googlemaps.github.io/google-maps-services-js/docs/module-@google_maps.html#.createClient)
 function:
 * Specify an API key or a client ID (required)
 * Customize the rate limit on requests (default limit is 10 requests per second)
@@ -45,17 +45,17 @@ function:
 Making API requests
 -------------------
 
-Each [API method](GoogleMapsClient.html) accepts two arguments:
+Each [API method](https://googlemaps.github.io/google-maps-services-js/docs/GoogleMapsClient.html) accepts two arguments:
 * a `query` object; and
-* a [`callback` function](ResponseCallback.html). The callback is called
+* a [`callback` function](https://googlemaps.github.io/google-maps-services-js/docs/ResponseCallback.html). The callback is called
   with either the JSON response object or an error object.
 
-Each API method returns a [`RequestHandle`](RequestHandle.html). The handle can
+Each API method returns a [`RequestHandle`](https://googlemaps.github.io/google-maps-services-js/docs/RequestHandle.html). The handle can
 be used to cancel the request, or to obtain a Promise for the response.
 
 NOTE: Promises are only available if you supply a
 [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
-constructor to the [`createClient()`](module-@google_maps.html#.createClient) method. You must also chain `.asPromise()` to a method before any `.then()` or `.catch()` methods.
+constructor to the [`createClient()`](https://googlemaps.github.io/google-maps-services-js/docs/module-@google_maps.html#.createClient) method. You must also chain `.asPromise()` to a method before any `.then()` or `.catch()` methods.
 For example: 
 ```js
 // Create client with a Promise constructor
@@ -79,8 +79,8 @@ Learn More
 ----------
 
 * Browse the documentation for each of the
-  [API methods](GoogleMapsClient.html)
+  [API methods](https://googlemaps.github.io/google-maps-services-js/docs/GoogleMapsClient.html)
 * Detailed documentation on the underlying web services and the JSON responses can be found on the
-  [Google Maps API Web Services site](https://developers.google.com/maps/documentation/webservices/).
+  [Google Maps API Web Services site](https://developers.google.com/maps/apis-by-platform#web_service_apis).
 * Read the source code on
   [github](https://github.com/googlemaps/google-maps-services-js).
