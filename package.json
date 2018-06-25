@@ -43,6 +43,9 @@
     "url": "https://github.com/googlemaps/google-maps-services-js/issues"
   },
   "homepage": "https://github.com/googlemaps/google-maps-services-js",
+  "dependencies": {
+    "uuid": ">=2.2.1"
+  },
   "devDependencies": {
     "jasmine": ">=2.3.2 <2.5.0",
     "jsdoc": "^3.4.0",
