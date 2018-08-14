@@ -20,6 +20,10 @@ for the following Google Maps APIs:
 Keep in mind that the same [terms and conditions](https://developers.google.com/maps/terms)
 apply to usage of the APIs when they're accessed through this library.
 
+## Attention!
+
+As mentioned above, this library is designed for server-side Node.js applications. Attempting to use it client-side in the browser will in some cases work, and in others will not. Please refrain from reporting issues when attempting to do so, since **client-side browsers are not a supported environment for this library**. In this case, you're certainly looking for the [Maps JavaScript API], which contains a comparable feauture set, and is explicitly intended for use with client-side JavaScript.
+
 ## Features
 
  - **Retry on Failure** Automatically retry when intermittent failures occur.
@@ -179,3 +183,4 @@ $ googlemaps directions --origin 'Sydney Town Hall' --destination 'Parramatta, N
 
 [issues]: https://github.com/googlemaps/google-maps-services-js/issues
 [contrib]: https://github.com/googlemaps/google-maps-services-js/blob/master/CONTRIBUTING.md
+[Maps JavaScript API]: https://developers.google.com/maps/documentation/javascript/
