@@ -171,7 +171,7 @@ $ googlemaps directions --origin 'Sydney Town Hall' --destination 'Parramatta, N
 [apikey]: https://developers.google.com/maps/faq#keysystem
 [clientid]: https://developers.google.com/maps/documentation/business/webservices/auth
 
-[Google Maps API Web Services]: https://developers.google.com/maps/documentation/webservices/
+[Google Maps API Web Services]: https://developers.google.com/maps/apis-by-platform#web_service_apis
 [Directions API]: https://developers.google.com/maps/documentation/directions/
 [directions-key]: https://developers.google.com/maps/documentation/directions/get-api-key#key
 [Distance Matrix API]: https://developers.google.com/maps/documentation/distancematrix/
