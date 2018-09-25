@@ -42,7 +42,7 @@ As mentioned above, this library is designed for server-side Node.js application
 Create a new client object by calling `createClient()`
 
 ```js
-var googleMapsClient = require('@google/maps').createClient({
+const googleMapsClient = require('@google/maps').createClient({
   key: 'your API key here'
 });
 ```
