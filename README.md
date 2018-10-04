@@ -22,7 +22,7 @@ apply to usage of the APIs when they're accessed through this library.
 
 ## Attention!
 
-As mentioned above, this library is designed for server-side Node.js applications. Attempting to use it client-side in the browser will in some cases work, and in others will not. Please refrain from reporting issues when attempting to do so, since **client-side browsers are not a supported environment for this library**. In this case, you're certainly looking for the [Maps JavaScript API], which contains a comparable feauture set, and is explicitly intended for use with client-side JavaScript.
+This library is designed for server-side Node.js applications. Attempting to use it client-side, in either the browser or any other environment like React Native, may in some cases work, but mostly will not. Please refrain from reporting issues with these environments when attempting to use them, since **server-side Node.js applications is the only supported environment for this library**. For other environments, try the [Maps JavaScript API], which contains a comparable feauture set, and is explicitly intended for use with client-side JavaScript.
 
 ## Features
 
