@@ -20,6 +20,10 @@ for the following Google Maps APIs:
 Keep in mind that the same [terms and conditions](https://developers.google.com/maps/terms)
 apply to usage of the APIs when they're accessed through this library.
 
+## Attention!
+
+This library is designed for server-side Node.js applications. Attempting to use it client-side, in either the browser or any other environment like React Native, may in some cases work, but mostly will not. Please refrain from reporting issues with these environments when attempting to use them, since **server-side Node.js applications is the only supported environment for this library**. For other environments, try the [Maps JavaScript API], which contains a comparable feauture set, and is explicitly intended for use with client-side JavaScript.
+
 ## Features
 
  - **Retry on Failure** Automatically retry when intermittent failures occur.
@@ -38,7 +42,7 @@ apply to usage of the APIs when they're accessed through this library.
 Create a new client object by calling `createClient()`
 
 ```js
-var googleMapsClient = require('@google/maps').createClient({
+const googleMapsClient = require('@google/maps').createClient({
   key: 'your API key here'
 });
 ```
@@ -167,7 +171,7 @@ $ googlemaps directions --origin 'Sydney Town Hall' --destination 'Parramatta, N
 [apikey]: https://developers.google.com/maps/faq#keysystem
 [clientid]: https://developers.google.com/maps/documentation/business/webservices/auth
 
-[Google Maps API Web Services]: https://developers.google.com/maps/documentation/webservices/
+[Google Maps API Web Services]: https://developers.google.com/maps/apis-by-platform#web_service_apis
 [Directions API]: https://developers.google.com/maps/documentation/directions/
 [directions-key]: https://developers.google.com/maps/documentation/directions/get-api-key#key
 [Distance Matrix API]: https://developers.google.com/maps/documentation/distancematrix/
@@ -179,3 +183,4 @@ $ googlemaps directions --origin 'Sydney Town Hall' --destination 'Parramatta, N
 
 [issues]: https://github.com/googlemaps/google-maps-services-js/issues
 [contrib]: https://github.com/googlemaps/google-maps-services-js/blob/master/CONTRIBUTING.md
+[Maps JavaScript API]: https://developers.google.com/maps/documentation/javascript/
