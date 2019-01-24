@@ -32,7 +32,7 @@ describe('geocode client library', function() {
     expect(response.json.results)
     .toEqual(arrayContaining([
       objectContaining({
-        place_id: 'ChIJidzEjmauEmsRwb535u6rCA4'
+        place_id: 'ChIJ3S-JXmauEmsRUcIaWtf4MzE'
       })
     ]));
     return response;
@@ -94,14 +94,14 @@ describe('reverse geocode client library', function() {
     expect(response.json.results)
     .toEqual(arrayContaining([
       objectContaining({
-        formatted_address: stringMatching(/2A Macquarie St, Sydney NSW 2000/)
+        formatted_address: stringMatching(/2A Macquarie St, Sydney NSW 2000, Australia/)
       })
     ]));
   }
 
   it('reverse geocodes the coordinates for the Sydney Opera House', function(done) {
     googleMaps.reverseGeocode({
-      latlng: [-33.8571965, 151.2151398],
+      latlng: [-33.8590896, 151.2134169],
     })
     .asPromise()
     .then(expectOK)
@@ -111,7 +111,7 @@ describe('reverse geocode client library', function() {
 
   it('reverse geocodes the place ID for the Sydney Opera House', function(done) {
     googleMaps.reverseGeocode({
-      place_id: 'ChIJidzEjmauEmsRwb535u6rCA4'
+      place_id: 'ChIJl9cdkGauEmsRy2bN6qaOPsQ'
     })
     .asPromise()
     .then(expectOK)
@@ -121,7 +121,7 @@ describe('reverse geocode client library', function() {
 
   it('accepts localization options', function(done) {
     googleMaps.reverseGeocode({
-      place_id: 'ChIJidzEjmauEmsRwb535u6rCA4',
+      place_id: 'ChIJl9cdkGauEmsRy2bN6qaOPsQ',
       language: 'en'
     })
     .asPromise()
@@ -132,7 +132,7 @@ describe('reverse geocode client library', function() {
 
   it('filters by result_type and location_type', function(done) {
     googleMaps.reverseGeocode({
-      latlng: [-33.8571965, 151.2151398],
+      latlng: [-33.8590896, 151.2134169],
       result_type: ['country', 'street_address'],
       location_type: ['ROOFTOP', 'APPROXIMATE']
     })
