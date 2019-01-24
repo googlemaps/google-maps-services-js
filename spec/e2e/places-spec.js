@@ -40,7 +40,7 @@ describe('places client library', function() {
       expect(response.json.results).toEqual(
           arrayContaining([
             objectContaining({
-              name: stringMatching('McDonalds')
+              name: stringMatching('McDonald\'s')
             })
           ]));
     })
@@ -62,7 +62,7 @@ describe('places client library', function() {
       expect(response.json.results).toEqual(
           arrayContaining([
             objectContaining({
-              name: stringMatching('McDonalds')
+              name: stringMatching('McDonald\'s')
             })
           ]));
     })
@@ -84,7 +84,7 @@ describe('places client library', function() {
       expect(response.json.results).toEqual(
           arrayContaining([
             objectContaining({
-              name: stringMatching('McDonalds')
+              name: stringMatching('McDonald\'s')
             })
           ]));
     })
@@ -210,7 +210,7 @@ describe('places client library', function() {
       expect(response.json.predictions).toEqual(
           arrayContaining([
             objectContaining({
-              description: 'pizza near New York, NY, United States'
+              description: 'pizza near New York, NY, USA'
             })
           ]));
     })
