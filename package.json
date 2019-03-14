@@ -44,6 +44,7 @@
   },
   "homepage": "https://github.com/googlemaps/google-maps-services-js",
   "dependencies": {
+    "https-proxy-agent": "^2.2.1",
     "uuid": ">=2.2.1"
   },
   "devDependencies": {
