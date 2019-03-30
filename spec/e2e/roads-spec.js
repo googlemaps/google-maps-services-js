@@ -53,7 +53,6 @@ describe('roads client library', function() {
     })
     .asPromise()
     .then(function(response) {
-      console.log(response.json);
       expect(response.json.snappedPoints).toEqual(
           arrayContaining([
             objectContaining({
