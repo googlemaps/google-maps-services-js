@@ -40,7 +40,7 @@ describe('places client library', function() {
       expect(response.json.results).toEqual(
           arrayContaining([
             objectContaining({
-              name: stringMatching('McDonalds')
+              name: stringMatching('McDonald\'s')
             })
           ]));
     })
@@ -62,7 +62,7 @@ describe('places client library', function() {
       expect(response.json.results).toEqual(
           arrayContaining([
             objectContaining({
-              name: stringMatching('McDonalds')
+              name: stringMatching('McDonald\'s')
             })
           ]));
     })
@@ -84,7 +84,7 @@ describe('places client library', function() {
       expect(response.json.results).toEqual(
           arrayContaining([
             objectContaining({
-              name: stringMatching('McDonalds')
+              name: stringMatching('McDonald\'s')
             })
           ]));
     })
