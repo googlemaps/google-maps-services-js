@@ -1,6 +1,8 @@
 Node.js Client for Google Maps Services
 =======================================
 
+[![Build Status](https://travis-ci.org/googlemaps/google-maps-services-js.svg?branch=master)](https://travis-ci.org/googlemaps/google-maps-services-js)
+
 Use Node.js? Want to [geocode][Geocoding API] something? Looking
 for [directions][Directions API]?
 This library brings the [Google Maps API Web Services] to your Node.js
