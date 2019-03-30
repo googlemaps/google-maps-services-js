@@ -48,10 +48,13 @@
     "uuid": ">=2.2.1"
   },
   "devDependencies": {
-    "jasmine": ">=2.3.2 <2.5.0",
+    "jasmine": "^3.3.1",
     "jsdoc": "^3.4.0",
     "priorityqueuejs": "^1.0.0",
     "q": "^1.4.1"
   },
-  "files": ["lib", "bin"]
+  "files": [
+    "lib",
+    "bin"
+  ]
 }
