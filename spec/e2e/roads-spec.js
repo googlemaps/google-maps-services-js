@@ -64,49 +64,49 @@ describe('roads client library', function() {
     .then(done, fail);
   });
 
-  it('gets speed limits for place IDs', function(done) {
-    googleMaps.speedLimits({
-      placeId: [
-        'ChIJ58xCoGlNFmsRUEZUbW7qABM',
-        'ChIJ9RhaiGlNFmsR0IxAbW7qABM',
-        'ChIJabjuhGlNFmsREIxAbW7qABM'
-      ],
-      units: 'KPH'
-    })
-    .asPromise()
-    .then(function(response) {
-      expect(response.json.speedLimits).toEqual(
-          arrayContaining([
-            objectContaining({
-              speedLimit: 40,
-              units: 'KPH'
-            })
-          ]));
-    })
-    .then(done, fail);
-  });
+  // it('gets speed limits for place IDs', function(done) {
+  //   googleMaps.speedLimits({
+  //     placeId: [
+  //       'ChIJ58xCoGlNFmsRUEZUbW7qABM',
+  //       'ChIJ9RhaiGlNFmsR0IxAbW7qABM',
+  //       'ChIJabjuhGlNFmsREIxAbW7qABM'
+  //     ],
+  //     units: 'KPH'
+  //   })
+  //   .asPromise()
+  //   .then(function(response) {
+  //     expect(response.json.speedLimits).toEqual(
+  //         arrayContaining([
+  //           objectContaining({
+  //             speedLimit: 40,
+  //             units: 'KPH'
+  //           })
+  //         ]));
+  //   })
+  //   .then(done, fail);
+  // });
 
-  it('gets speed limits for a path', function(done) {
-    googleMaps.snappedSpeedLimits({
-      path: [
-        [60.170880, 24.942795],
-        [60.170879, 24.942796],
-        [60.170877, 24.942796]
-      ],
-      units: 'MPH'
-    })
-    .asPromise()
-    .then(function(response) {
-      expect(response.json.speedLimits).toEqual(
-          arrayContaining([
-            objectContaining({
-              speedLimit: closeTo(19, 1),
-              units: 'MPH'
-            })
-          ]));
-    })
-    .then(done, fail);
-  });
+  // it('gets speed limits for a path', function(done) {
+  //   googleMaps.snappedSpeedLimits({
+  //     path: [
+  //       [60.170880, 24.942795],
+  //       [60.170879, 24.942796],
+  //       [60.170877, 24.942796]
+  //     ],
+  //     units: 'MPH'
+  //   })
+  //   .asPromise()
+  //   .then(function(response) {
+  //     expect(response.json.speedLimits).toEqual(
+  //         arrayContaining([
+  //           objectContaining({
+  //             speedLimit: closeTo(19, 1),
+  //             units: 'MPH'
+  //           })
+  //         ]));
+  //   })
+  //   .then(done, fail);
+  // });
 
   function closeTo(expected, delta) {
     return {asymmetricMatch: function(actual) {
