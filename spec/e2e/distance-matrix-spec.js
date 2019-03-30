@@ -46,7 +46,7 @@ describe('distance matrix client library', function() {
     .then(function(response) {
       expect(response.json)
       .toEqual(objectContaining({
-        destination_addresses: arrayContaining(['Uluru NT 0872, Australia']),
+        destination_addresses: arrayContaining(['Uluru, Petermann NT 0872, Australia']),
         origin_addresses: arrayContaining(['Perth WA, Australia'])
       }));
     })
