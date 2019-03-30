@@ -32,8 +32,8 @@ describe('timezone client library', function() {
           objectContaining({
             status: 'OK',
             rawOffset: 36000,
-            dstOffset: 0,
-            timeZoneId: 'Australia/Sydney'
+            timeZoneId: 'Australia/Sydney',
+            timeZoneName: 'Australian Eastern Daylight Time'
           }));
     })
     .then(done, fail);
