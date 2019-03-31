@@ -113,14 +113,14 @@ describe('places client library', function() {
             }
 
             // Wait one second, and try again.
-            return new Promise(function(resolve) {
+            return new Promise(function(resolve) {              
               setTimeout(resolve, 2000);
             })
             .then(getNextPage)
-            .then(repeatWhileInvalid);
+            // .then(repeatWhileInvalid);
           });
     })
-    .then(function(nextResponse) {
+    .then(function(nextResponse) {      
       expect(nextResponse.json.status).toBe('OK');
       expect(nextResponse.json.results.length).not.toBeFalsy();
     })
