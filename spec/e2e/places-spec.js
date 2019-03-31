@@ -114,7 +114,7 @@ describe('places client library', function() {
 
             // Wait one second, and try again.
             return new Promise(function(resolve) {
-              setTimeout(resolve, 1000);
+              setTimeout(resolve, 2000);
             })
             .then(getNextPage)
             .then(repeatWhileInvalid);
@@ -191,7 +191,7 @@ describe('places client library', function() {
       expect(response.json.predictions).toEqual(
           arrayContaining([
             objectContaining({
-              description: 'pizza near New York, NY, United States'
+              description: 'pizza near New York, NY, USA'
             })
           ]));
     })

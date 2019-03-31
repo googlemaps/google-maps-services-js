@@ -32,7 +32,7 @@ describe('geocode client library', function() {
     expect(response.json.results)
     .toEqual(arrayContaining([
       objectContaining({
-        place_id: 'ChIJidzEjmauEmsRwb535u6rCA4'
+        place_id: 'ChIJ3S-JXmauEmsRUcIaWtf4MzE'
       })
     ]));
     return response;
@@ -90,55 +90,55 @@ describe('geocode client library', function() {
 });
 
 describe('reverse geocode client library', function() {
-  function expect2aMacquarieStreet(response) {
+  function expectBennelongPoint(response) {
     expect(response.json.results)
     .toEqual(arrayContaining([
       objectContaining({
-        formatted_address: stringMatching(/2A Macquarie St, Sydney NSW 2000/)
+        formatted_address: stringMatching('Bennelong Point, Sydney NSW 2000, Australia')
       })
     ]));
   }
 
   it('reverse geocodes the coordinates for the Sydney Opera House', function(done) {
     googleMaps.reverseGeocode({
-      latlng: [-33.8571965, 151.2151398],
+      latlng: [-33.8567844,151.2152967],
     })
     .asPromise()
     .then(expectOK)
-    .then(expect2aMacquarieStreet)
+    .then(expectBennelongPoint)
     .then(done, fail);
   });
 
   it('reverse geocodes the place ID for the Sydney Opera House', function(done) {
     googleMaps.reverseGeocode({
-      place_id: 'ChIJidzEjmauEmsRwb535u6rCA4'
+      place_id: 'ChIJ3S-JXmauEmsRUcIaWtf4MzE'
     })
     .asPromise()
     .then(expectOK)
-    .then(expect2aMacquarieStreet)
+    .then(expectBennelongPoint)
     .then(done, fail);
   });
 
   it('accepts localization options', function(done) {
     googleMaps.reverseGeocode({
-      place_id: 'ChIJidzEjmauEmsRwb535u6rCA4',
+      place_id: 'ChIJ3S-JXmauEmsRUcIaWtf4MzE',
       language: 'en'
     })
     .asPromise()
     .then(expectOK)
-    .then(expect2aMacquarieStreet)
+    .then(expectBennelongPoint)
     .then(done, fail);
   });
 
   it('filters by result_type and location_type', function(done) {
     googleMaps.reverseGeocode({
-      latlng: [-33.8571965, 151.2151398],
+      latlng: [-33.8567844,151.2152967],
       result_type: ['country', 'street_address'],
       location_type: ['ROOFTOP', 'APPROXIMATE']
     })
     .asPromise()
     .then(expectOK)
-    .then(expect2aMacquarieStreet)
+    .then(expectBennelongPoint)
     .then(done, fail);
   });
 
