@@ -99,13 +99,31 @@ describe('reverse geocode client library', function() {
     ]));
   }
 
+  function expectOperaHouse(response) {
+    expect(response.json.results)
+    .toEqual(arrayContaining([
+      objectContaining({
+        formatted_address: stringMatching('Opera House Bennelong point, NSW, Australia')
+      })
+    ]));
+  }
+
+  function expectCircularQuay(response) {
+    expect(response.json.results)
+    .toEqual(arrayContaining([
+      objectContaining({
+        formatted_address: stringMatching('Unit 14/2 Circular Quay E, Sydney NSW 2000, Australia')
+      })
+    ]));
+  }
+
   it('reverse geocodes the coordinates for the Sydney Opera House', function(done) {
     googleMaps.reverseGeocode({
       latlng: [-33.8567844,151.2152967],
     })
     .asPromise()
     .then(expectOK)
-    .then(expectBennelongPoint)
+    .then(expectOperaHouse)
     .then(done, fail);
   });
 
@@ -138,7 +156,7 @@ describe('reverse geocode client library', function() {
     })
     .asPromise()
     .then(expectOK)
-    .then(expectBennelongPoint)
+    .then(expectCircularQuay)
     .then(done, fail);
   });
 
