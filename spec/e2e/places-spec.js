@@ -117,7 +117,7 @@ describe('places client library', function() {
               setTimeout(resolve, 2000);
             })
             .then(getNextPage)
-            // .then(repeatWhileInvalid);
+            .then(repeatWhileInvalid);
           });
     })
     .then(function(nextResponse) {      
