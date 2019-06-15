@@ -21,7 +21,8 @@ var objectContaining = jasmine.objectContaining;
 describe('distance matrix client library', function() {
   var googleMaps = require('./service');
 
-  var inOneHour = new Date().getTime() + 60 * 60 * 1000;
+  var now = new Date().getTime() + 60 * 60 * 1000;
+  var inOneHour = Math.round(now/1000);
 
   function expectOK(response) {
     expect(response.status).toBe(200);
