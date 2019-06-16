@@ -113,6 +113,12 @@ var googleMapsClient = require('@google/maps').createClient({
 
 **Important:** This key should be kept secret on your server.
 
+## Typescript
+
+Community-built typings for this library are available in `@types/google__maps` (note the double underscore).
+
+`npm install @types/google__maps`
+
 ## Developing
 
 In order to run the end-to-end tests, you'll need to supply your API key via an
