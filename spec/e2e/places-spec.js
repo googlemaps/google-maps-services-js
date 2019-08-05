@@ -59,7 +59,6 @@ describe('places client library', function() {
     })
     .asPromise()
     .then(function(response) {
-      console.log(response.json.results)
       expect(response.json.results).toEqual(
           arrayContaining([
             objectContaining({
