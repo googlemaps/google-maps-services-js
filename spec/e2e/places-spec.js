@@ -24,20 +24,20 @@ var stringMatching = jasmine.stringMatching;
 describe('places client library', function() {
   var googleMaps = require('./service');
 
-  it('gets places for a text search query', function(done) {
-    googleMaps.places({
-      query: 'fast food',
+  it('gets places for a text query', function(done) {
+    googleMaps.findPlace({
+      input: 'McDonald\'s',
+      inputtype: 'textquery',
       language: 'en',
-      location: [-33.865, 151.038],
-      radius: 5000,
-      minprice: 1,
-      maxprice: 4,
-      opennow: true,
-      type: 'restaurant'
+      fields: [
+        'formatted_address', 'geometry', 'icon', 'id', 'name',
+        'permanently_closed', 'photos', 'place_id', 'types', 
+        'opening_hours', 'price_level', 'rating', 'plus_code'
+      ]
     })
     .asPromise()
-    .then(function(response) {
-      expect(response.json.results).toEqual(
+    .then(function(response) {      
+      expect(response.json.candidates).toEqual(
           arrayContaining([
             objectContaining({
               name: stringMatching('McDonald\'s')
