@@ -1,8 +1,13 @@
 language: node_js
 
+install:
+  - npm install -g nyc codecov
+
 node_js:
   - node
   - 6
 
 script:
-  - jasmine
+  - nyc npm run test
+  - nyc report --reporter=text-lcov > coverage.lcov 
+  - codecov
