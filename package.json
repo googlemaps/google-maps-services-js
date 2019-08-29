@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "jasmine": "^3.3.1",
-    "jsdoc": "^3.4.0",
+    "jsdoc": "^3.6.3",
     "priorityqueuejs": "^1.0.0",
     "q": "^1.4.1"
   },
