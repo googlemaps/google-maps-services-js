@@ -48,8 +48,10 @@
     "uuid": ">=2.2.1"
   },
   "devDependencies": {
+    "codecov": "^3.5.0",
     "jasmine": "^3.3.1",
     "jsdoc": "^3.6.3",
+    "nyc": "^14.1.1",
     "priorityqueuejs": "^1.0.0",
     "q": "^1.4.1"
   },
