@@ -1,7 +1,7 @@
 language: node_js
 
 install:
-  - npm install -g nyc codecov
+  - npm install -g nyc codecov jasmine
 
 node_js:
   - node
