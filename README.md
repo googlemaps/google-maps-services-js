@@ -1,7 +1,11 @@
 Node.js Client for Google Maps Services
 =======================================
 
-[![Build Status](https://travis-ci.org/googlemaps/google-maps-services-js.svg?branch=master)](https://travis-ci.org/googlemaps/google-maps-services-js)  [![npm](https://img.shields.io/npm/v/@google/maps.svg)](https://www.npmjs.com/package/@google/maps)  [![codecov](https://codecov.io/gh/googlemaps/google-maps-services-js/branch/master/graph/badge.svg)](https://codecov.io/gh/googlemaps/google-maps-services-js)
+[![Build Status](https://travis-ci.org/googlemaps/google-maps-services-js.svg?branch=master)](https://travis-ci.org/googlemaps/google-maps-services-js)
+[![npm](https://img.shields.io/npm/v/@google/maps.svg)](https://www.npmjs.com/package/@google/maps)
+[![codecov](https://codecov.io/gh/googlemaps/google-maps-services-js/branch/master/graph/badge.svg)](https://codecov.io/gh/googlemaps/google-maps-services-js)
+![GitHub contributors](https://img.shields.io/github/contributors/googlemaps/google-maps-services-js?color=green)
+[![Stack Exchange questions](https://img.shields.io/stackexchange/stackoverflow/t/google-maps?color=orange&label=google-maps&logo=stackoverflow)](https://stackoverflow.com/questions/tagged/google-maps)
 
 Use Node.js? Want to [geocode][Geocoding API] something? Looking
 for [directions][Directions API]?
