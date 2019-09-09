@@ -28,3 +28,6 @@ node_modules
 
 # JSDoc
 out
+
+# nyc
+.nyc_output
