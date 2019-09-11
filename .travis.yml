@@ -6,5 +6,13 @@ node_js:
 
 script:
   - nyc npm run test
-  - nyc report --reporter=text-lcov > coverage.lcov 
+  - nyc report --reporter=text-lcov > coverage.lcov
   - codecov
+
+deploy:
+  provider: npm
+  on:
+    tags: true
+  email: geo-dpes@google.com
+  api_key:
+    secure: KF5FsXJP0D121LkDISMV0xnNrknRitIBrYZgTiPx/RrN7Y3MqnCQVVUuuPCyJO7aT8+NwfgkBoaeYEjh5jHktJ3TZHBTEce1+MFP77299VO7tdLW9ht6+fEeptb4W/XjMK78oncsM+90sCxiWyk1TGbZ3+uQIxSla6tIk0/2cxhNovsCidm74csqWlS8qMHUCyWddg7md30FPZHK5WtZwA1dtVpIwwrvY60eW4QGdv45KFw74X4WhHGbQ7ug/brcStwW3PPyWlk8oqCYxyh2x+uNtv4KkQgDabfRLXrLhX1oxRvJ9uAl/kd5kiIEoe07dnSjHYMEwyIuqoO6jKoZZTCTlxKONoNrxW4BskuKqU5aqsWpJNaQI4CC8vU/tvLwOhkSY5oFN9U9+D+BcSnhI5KiU4QSoFImW0PXSK4xFDaExej2xVGiO6eW0lNusUzKH7DmnG1T03F4zMdQZ2lgUxWtz4EeaMNBXORU3NQBwm5ttO8MGaT+KuYPCOYnrb8mhNhmkj4a3Fs+LoV3bMd6g6oJJQaOBFprBYSBfYYJcX9zW8R+IOth5L4w7snu0fBOgVT2exFXz8JRl5yeXQxiWuMSwkeEwIRn3AZwh52RRySxcADKn5n724lb4npLgbGuIQQ+KaoKcJY6R9/u1RVw2Dg2A3dVrUVVnAI2kKs2PHY=
