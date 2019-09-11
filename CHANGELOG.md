@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased](https://github.com/googlemaps/google-maps-services-js/compare/0.5.5...HEAD)
 
+## [1.0.0](https://github.com/googlemaps/google-maps-services-js/compare/0.5.5...1.0.0) - 2019-09-11
+
 ### Merged
 
 - add support for subfields in mask [`#269`](https://github.com/googlemaps/google-maps-services-js/pull/269)
