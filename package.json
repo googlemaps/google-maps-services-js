@@ -12,6 +12,10 @@
     {
       "name": "Stephen McDonald",
       "email": "stephenmcd@google.com"
+    },
+    {
+      "name": "Justin Poehnelt",
+      "email": "jpoehnelt@google.com"
     }
   ],
   "scripts": {
@@ -59,5 +63,9 @@
   "files": [
     "lib",
     "bin"
-  ]
+  ],
+  "publishConfig": {
+    "registry": "https://wombat-dressing-room.appspot.com",
+    "access": "public"
+  }
 }
