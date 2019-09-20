@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased](https://github.com/googlemaps/google-maps-services-js/compare/0.5.5...HEAD)
 
+### Changed
+
+- deprecation warning for place fields: `alt_id`, `id`, `reference`, and `scope`. Read more about this at https://developers.google.com/maps/deprecations.
+
 ## [1.0.0](https://github.com/googlemaps/google-maps-services-js/compare/0.5.5...1.0.0) - 2019-09-11
 
 ### Merged
