@@ -19,6 +19,7 @@
     }
   ],
   "scripts": {
+    "test:all": "jasmine && jasmine spec/e2e/*.js",
     "test": "jasmine",
     "e2e": "jasmine spec/e2e/*.js",
     "jsdoc": "jsdoc -c docs/conf.json"
@@ -67,5 +68,10 @@
   "publishConfig": {
     "registry": "https://wombat-dressing-room.appspot.com",
     "access": "public"
+  },
+  "nyc": {
+    "exclude": [
+      "**/spec/**"
+    ]
   }
 }
