@@ -139,4 +139,13 @@ describe('Validate', function() {
     });
   });
 
+  describe('.deprecate', function() {
+    var validate = Validate.deprecate(['one']);
+
+    it('always returns value', function() {
+      expect(validate('one')).toBe('one');
+      expect(validate('two')).toBe('two');
+    });
+  });
+
 });
