@@ -68,5 +68,10 @@
   "publishConfig": {
     "registry": "https://wombat-dressing-room.appspot.com",
     "access": "public"
+  },
+  "nyc": {
+    "exclude": [
+      "**/spec/**"
+    ]
   }
 }
