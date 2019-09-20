@@ -2,7 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/googlemaps/google-maps-services-js/compare/0.5.5...HEAD)
+## [Unreleased](https://github.com/googlemaps/google-maps-services-js/compare/1.0.1...HEAD)
+
+## [1.0.1](https://github.com/googlemaps/google-maps-services-js/compare/1.0.0...1.01) - 2019-09-20
 
 ### Changed
 
