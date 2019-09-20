@@ -5,7 +5,7 @@ node_js:
   - 6
 
 script:
-  - nyc npm run test
+  - nyc npm run test:all
   - nyc report --reporter=text-lcov > coverage.lcov
   - codecov
 
