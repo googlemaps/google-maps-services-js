@@ -1,7 +1,7 @@
 import { LatLng, LatLngLiteral, ResponseData } from "./common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "./client";
-import { latLngToString, serializer } from "./serialize";
+import { serializer, latLngToString } from "./serialize";
 
 export interface ElevationRequest extends AxiosRequestConfig {
   params?: {
@@ -40,7 +40,7 @@ export interface ElevationResponse extends AxiosResponse {
 export const defaultUrl = "https://maps.googleapis.com/maps/api/elevation/json";
 
 export const defaultParamsSerializer = serializer({
-  locations: o => o.map(latLng => latLngToString(latLng))
+  locations: o => o.map(latLngToString)
 });
 
 export function elevation(

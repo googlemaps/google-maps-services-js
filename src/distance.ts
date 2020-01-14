@@ -153,8 +153,8 @@ export const defaultUrl =
   "https://maps.googleapis.com/maps/api/distancematrix/json";
 
 export const defaultParamsSerializer = serializer({
-  origins: o => o.map(latLng => latLngToString(latLng)),
-  destinations: o => o.map(latLng => latLngToString(latLng)),
+  origins: (o) => o.map(latLngToString),
+  destinations: (o) => o.map(latLngToString),
   arrival_time: Number,
   departure_time: Number
 });

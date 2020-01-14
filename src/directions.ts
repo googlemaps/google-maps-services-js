@@ -175,7 +175,7 @@ export const defaultUrl =
 export const defaultParamsSerializer = serializer({
   origin: latLngToString,
   destination: latLngToString,
-  waypoints: o => o.map(latLng => latLngToString(latLng)),
+  waypoints: (o) => o.map(latLngToString),
   arrival_time: Number,
   departure_time: Number
 });
