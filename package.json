@@ -11,7 +11,8 @@
     }
   ],
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "docs": "rm -rf docs/ && typedoc ."
   },
   "repository": {
     "type": "git",
@@ -49,6 +50,7 @@
     "codecov": "^3.6.1",
     "jest": "^24.9.0",
     "ts-jest": "^24.3.0",
+    "typedoc": "^0.16.2",
     "typescript": "^3.7.4"
   },
   "files": [
