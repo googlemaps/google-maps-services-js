@@ -1,5 +1,9 @@
 import axios from "axios";
-import { distancematrix, defaultParamsSerializer, defaultUrl } from "./distance";
+import {
+  distancematrix,
+  defaultParamsSerializer,
+  defaultUrl
+} from "./distance";
 
 jest.mock("axios");
 
@@ -10,7 +14,11 @@ afterEach(() => {
 });
 
 test("elevation should call axios correctly", () => {
-  const params = { origins: ["Seattle, WA"], destinations: ["San Francisco, CA", "New York, NY"]};
+  const params = {
+    origins: ["Seattle, WA"],
+    destinations: ["San Francisco, CA", "New York, NY"],
+    key: "foo"
+  };
 
   distancematrix({ params: params }, mockedAxios);
 

@@ -10,7 +10,11 @@ afterEach(() => {
 });
 
 test("elevation should call axios correctly", () => {
-  const params = { origin: "Seattle, WA", destination: "San Francisco, CA"};
+  const params = {
+    origin: "Seattle, WA",
+    destination: "San Francisco, CA",
+    key: "foo"
+  };
 
   directions({ params: params }, mockedAxios);
 

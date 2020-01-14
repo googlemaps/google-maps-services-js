@@ -130,6 +130,7 @@ export interface DistanceMatrixRequest extends AxiosRequestConfig {
      * This parameter may only be specified for requests where the `mode` is `transit`.
      */
     transit_routing_preference?: TransitRoutingPreference;
+    key: string;
   };
 }
 
@@ -152,10 +153,10 @@ export const defaultUrl =
   "https://maps.googleapis.com/maps/api/distancematrix/json";
 
 export const defaultParamsSerializer = serializer({
-  origins: (latLng) => latLngToString(latLng),
-  destinations: (latLng) => latLngToString(latLng),
+  origins: o => o.map(latLng => latLngToString(latLng)),
+  destinations: o => o.map(latLng => latLngToString(latLng)),
   arrival_time: Number,
-  departure_time: Number,
+  departure_time: Number
 });
 
 export function distancematrix(

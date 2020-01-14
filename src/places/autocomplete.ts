@@ -49,7 +49,7 @@ export interface PlaceAutocompleteRequest extends AxiosRequestConfig {
      * [session](https://developers.google.com/places/web-service/autocomplete#session_tokens) for billing purposes.
      * If this parameter is omitted from an autocomplete request, the request is billed independently
      */
-    sessionToken: string;
+    sessiontoken: string;
     /**
      * The position, in the input term, of the last character that the service uses to match predictions.
      * For example, if the input is 'Google' and the `offset` is 3, the service will match on 'Goo'.
@@ -93,7 +93,8 @@ export interface PlaceAutocompleteRequest extends AxiosRequestConfig {
      * will not be returned even if they match the user input.
      */
     strictbounds?: boolean;
-  }
+    key: string;
+  };
 }
 
 export interface PlaceAutocompleteResult {
@@ -140,11 +141,11 @@ export interface PlaceAutocompleteResponse extends AxiosResponse {
 }
 
 export const defaultParamsSerializer = serializer({
-  location: latLngToString,
+  location: latLngToString
 });
 
 export const defaultUrl =
-  "https://maps.googleapis.com/maps/api/place/placesautocomplete/json";
+  "https://maps.googleapis.com/maps/api/place/autocomplete/json";
 
 export function placeAutocomplete(
   {

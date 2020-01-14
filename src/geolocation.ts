@@ -31,7 +31,7 @@ export interface GelocateRequest extends AxiosRequestConfig {
   };
   params?: {
     key: string;
-  }
+  };
 }
 
 export interface GeolocateResponseData extends ResponseData {
@@ -103,17 +103,14 @@ export type GeolocateErrorReason =
    */
   | "parseError";
 
-export type GeolocateResponse = GeolocateResponseSuccess | GeolocateResponseError;
+export type GeolocateResponse =
+  | GeolocateResponseSuccess
+  | GeolocateResponseError;
 
 export const defaultUrl = "https://www.googleapis.com/geolocation/v1/geolocate";
 
 export function geolocate(
-  {
-    params,
-    method = "post",
-    url = defaultUrl,
-    ...config
-  }: GelocateRequest,
+  { params, method = "post", url = defaultUrl, ...config }: GelocateRequest,
   axiosInstance: AxiosInstance = defaultAxiosInstance
 ): Promise<GeolocateResponse> {
   return axiosInstance({

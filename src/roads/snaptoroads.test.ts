@@ -14,7 +14,7 @@ afterEach(() => {
 });
 
 test("snapToRoads should call axios correctly", () => {
-  const params = { path: ["0,0"] };
+  const params = { path: ["0,0"], key: "foo" };
 
   snapToRoads({ params: params }, mockedAxios);
 

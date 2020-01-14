@@ -1,3 +1,7 @@
+export interface RequestParams {
+  key: string;
+}
+
 export interface ResponseData {
   /** contains metadata on the request. See Status Codes below. */
   status: Status;
@@ -52,7 +56,7 @@ export type Status =
 
 export interface PlacePhoto {
   /** a string used to identify the photo when you perform a Photo request. */
-  photo_reference: string;
+  photoreference: string;
   /** the maximum height of the image. */
   height: number;
   /** the maximum width of the image. */
@@ -84,8 +88,8 @@ export interface AlternativePlaceId {
 }
 
 export enum PlaceInputType {
-  textQuery = "textQuery",
-  phoneNumber = "phoneNumber"
+  textQuery = "textquery",
+  phoneNumber = "phonenumber"
 }
 
 /**
@@ -1440,7 +1444,6 @@ export interface WifiAccessPoint {
   /** The current signal to noise ratio measured in dB. */
   signalToNoiseRatio?: number;
 }
-
 
 export interface PredictionTerm {
   /** containing the text of the term. */

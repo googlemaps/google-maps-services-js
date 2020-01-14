@@ -9,8 +9,8 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-test("autocomplete should call axios correctly", () => {
-  const params = { photoreference: "notaphotoreference" };
+test("photo should call axios correctly", () => {
+  const params = { photoreference: "notaphotoreference", key: "foo" };
 
   placePhoto({ params: params }, mockedAxios);
 

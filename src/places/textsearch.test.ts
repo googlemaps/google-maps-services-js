@@ -1,9 +1,5 @@
 import axios from "axios";
-import {
-  textSearch,
-  defaultParamsSerializer,
-  defaultUrl
-} from "./textsearch";
+import { textSearch, defaultParamsSerializer, defaultUrl } from "./textsearch";
 
 jest.mock("axios");
 
@@ -14,7 +10,7 @@ afterEach(() => {
 });
 
 test("textsearch should call axios correctly", () => {
-  const params = { query: "Seattle" };
+  const params = { query: "Seattle", key: "foo" };
 
   textSearch({ params: params }, mockedAxios);
 

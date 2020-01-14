@@ -11,7 +11,7 @@ afterEach(() => {
 });
 
 test("autocomplete should call axios correctly", () => {
-  const params = { input: "google", inputtype: PlaceInputType.textQuery};
+  const params = { input: "google", inputtype: PlaceInputType.textQuery, key: "foo"};
 
   findPlaceFromText({ params: params }, mockedAxios);
 

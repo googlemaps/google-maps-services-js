@@ -60,28 +60,27 @@ export interface GeocodeRequest extends AxiosRequestConfig {
      * Each element in the components filter consists of a `component:value` pair, and fully restricts the results from the geocoder.
      */
     components?: string | GeocodeComponents;
+    key: string;
   };
 }
 
-
 export interface GeocodeResponseData extends ResponseData {
   /**
-      * contains an array of geocoded address information and geometry information.
-      *
-      * Generally, only one entry in the `"results"` array is returned for address lookups,though the geocoder may return several results
-      * when address queries are ambiguous.
-      */
-     results: GeocodeResult[];
-
- }
+   * contains an array of geocoded address information and geometry information.
+   *
+   * Generally, only one entry in the `"results"` array is returned for address lookups,though the geocoder may return several results
+   * when address queries are ambiguous.
+   */
+  results: GeocodeResult[];
+}
 
 export interface GeocodeResponse extends AxiosResponse {
-  data: GeocodeResponseData
+  data: GeocodeResponseData;
 }
 
 export const defaultParamsSerializer = serializer({
   bounds: latLngBoundsToString,
-  components: objectToString("|")
+  components: objectToString
 });
 
 export function geocode(

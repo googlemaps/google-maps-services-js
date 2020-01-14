@@ -14,7 +14,7 @@ afterEach(() => {
 });
 
 test("autocomplete should call axios correctly", () => {
-  const params = { input: "Seattle", sessionToken: "asdf" };
+  const params = { input: "Seattle", sessiontoken: "asdf", key: "foo" };
 
   placeQueryAutocomplete({ params: params }, mockedAxios);
 

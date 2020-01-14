@@ -1,6 +1,4 @@
-import {
-  LatLng, Language, Place, ResponseData
-} from "../common";
+import { LatLng, Language, Place, ResponseData } from "../common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "../client";
 import { serializer, latLngToString } from "../serialize";
@@ -32,6 +30,7 @@ export interface PlaceQueryAutocompleteRequest extends AxiosRequestConfig {
      * If language is not supplied, the Places service will attempt to use the native language of the domain from which the request is sent.
      */
     language?: Language;
+    key: string;
   };
 }
 

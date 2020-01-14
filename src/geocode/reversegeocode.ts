@@ -24,7 +24,7 @@ export type ReverseGeocodingLocationType =
 export interface ReverseGeocodeRequest extends AxiosRequestConfig {
   params?: {
     /** The latitude and longitude values specifying the location for which you wish to obtain the closest, human-readable address. */
-    latLng?: LatLng;
+    latlng?: LatLng;
     /**
      * The place ID of the place for which you wish to obtain the human-readable address.
      * The place ID is a unique identifier that can be used with other Google APIs.
@@ -62,28 +62,28 @@ export interface ReverseGeocodeRequest extends AxiosRequestConfig {
      * Note: This parameter is available only for requests that include an API key or a client ID.
      */
     location_type?: ReverseGeocodingLocationType[];
+    key: string;
   };
 }
 
 export interface ReverseGeocodeResponseData extends ResponseData {
   /**
-      * contains an array of geocoded address information and geometry information.
-      *
-      * Generally, only one entry in the `"results"` array is returned for address lookups,though the geocoder may return several results
-      * when address queries are ambiguous.
-      */
+   * contains an array of geocoded address information and geometry information.
+   *
+   * Generally, only one entry in the `"results"` array is returned for address lookups,though the geocoder may return several results
+   * when address queries are ambiguous.
+   */
   results: GeocodeResult[];
-
 }
 
 export interface ReverseGeocodeResponse extends AxiosResponse {
-  data: ReverseGeocodeResponseData
-};
+  data: ReverseGeocodeResponseData;
+}
 
 export const defaultUrl = "https://maps.googleapis.com/maps/api/geocode/json";
 
 export const defaultParamsSerializer = serializer({
-  latlng: latLngToString,
+  latlng: latLngToString
 });
 
 export function reverseGeocode(

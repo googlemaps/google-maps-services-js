@@ -26,7 +26,7 @@ export interface PlacesNearbyRequest extends AxiosRequestConfig {
      * The maximum allowed radius is 50 000 meters.
      * Note that `radius` must not be included if `rankby=distance` is specified.
      */
-    radius?: number;
+    radius: number;
     /**
      * A term to be matched against all content that Google has indexed for this place, including but not limited to
      * name, type, and address, as well as customer reviews and other third-party content.
@@ -79,6 +79,7 @@ export interface PlacesNearbyRequest extends AxiosRequestConfig {
      * all parameters other than pagetoken will be ignored.
      */
     pagetoken?: string;
+    key: string
   };
 }
 
@@ -92,7 +93,7 @@ export interface PlacesNearbyResponse extends AxiosResponse {
 }
 
 export const defaultUrl =
-  "https://maps.googleapis.com/maps/api/place/nearbysearch";
+  "https://maps.googleapis.com/maps/api/place/nearbysearch/json";
 
 export const defaultParamsSerializer = serializer({ location: latLngToString });
 

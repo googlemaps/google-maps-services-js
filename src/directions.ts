@@ -13,10 +13,7 @@ import {
 } from "./common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "./client";
-import {
-  serializer,
-  latLngToString,
-} from "./serialize";
+import { serializer, latLngToString } from "./serialize";
 
 export interface DirectionsRequest extends AxiosRequestConfig {
   params?: {
@@ -135,6 +132,7 @@ export interface DirectionsRequest extends AxiosRequestConfig {
     transit_routing_preference?: TransitRoutingPreference;
     /** Wherever to optimize the provided route by rearranging the waypoints in a more efficient order. */
     optimize?: boolean;
+    key: string;
   };
 }
 export interface DirectionsResponseData extends ResponseData {
@@ -171,14 +169,15 @@ export interface DirectionsResponse extends AxiosResponse {
   data: DirectionsResponseData;
 }
 
-export const defaultUrl = "https://maps.googleapis.com/maps/api/directions/json";
+export const defaultUrl =
+  "https://maps.googleapis.com/maps/api/directions/json";
 
 export const defaultParamsSerializer = serializer({
   origin: latLngToString,
   destination: latLngToString,
-  waypoints: (latLng) => latLngToString(latLng),
+  waypoints: o => o.map(latLng => latLngToString(latLng)),
   arrival_time: Number,
-  departure_time: Number,
+  departure_time: Number
 });
 
 export function directions(

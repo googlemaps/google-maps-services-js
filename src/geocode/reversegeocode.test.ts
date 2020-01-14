@@ -15,10 +15,11 @@ afterEach(() => {
 
 test("reverseGeocode should call axios correctly", () => {
   const params = {
-    latLng: {
+    latlng: {
       lat: 60.168997,
       lng: 24.9433353
-    }
+    },
+    key: "foo"
   };
 
   reverseGeocode({ params: params }, mockedAxios);

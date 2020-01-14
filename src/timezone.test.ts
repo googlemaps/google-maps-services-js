@@ -10,7 +10,11 @@ afterEach(() => {
 });
 
 test("elevation should call axios correctly", () => {
-  const params = { location: { lat: 35, lng: -110 } };
+  const params = {
+    location: { lat: 35, lng: -110 },
+    timestamp: 999999999,
+    key: "foo"
+  };
   timezone({ params: params }, mockedAxios);
 
   expect(mockedAxios).toHaveBeenCalledTimes(1);

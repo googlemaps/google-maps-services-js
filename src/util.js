@@ -92,5 +92,3 @@ exports.decodePath = function(encodedPath) {
 
   return path;
 };
-
-exports.placesAutoCompleteSessionToken = require("uuid/v4");

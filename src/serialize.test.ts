@@ -27,27 +27,25 @@ test("latLngBoundsToString is correct", () => {
   ).toBe("1,2|3,4");
 });
 
-
 test("serializer", () => {
-  expect(serializer({ quz: (o) => o })({ foo: ["bar"] })).toBe("foo=bar");
+  expect(serializer({ quz: o => o })({ foo: ["bar"] })).toBe("foo=bar");
   expect(
-    serializer({ foo: (o) => o.map((latLng: LatLng) => latLngToString(latLng)) })({
-      foo: [
-        [0, 1],
-        [2, 3]
-      ]
-    })
+    serializer({ foo: o => o.map((latLng: LatLng) => latLngToString(latLng)) })(
+      {
+        foo: [
+          [0, 1],
+          [2, 3]
+        ]
+      }
+    )
   ).toBe("foo=0%2C1|2%2C3");
 });
 
 test("serializer should return pipe joined arrays by default", () => {
-  expect(
-    serializer({})({ foo: ["b", "a", "r"] })
-  ).toBe("foo=b|a|r");
+  expect(serializer({})({ foo: ["b", "a", "r"] })).toBe("foo=b|a|r");
 });
 
 test("objectToString", () => {
-  expect(objectToString("|")("foo")).toBe("foo");
-  expect(objectToString("|")({ c: "c", a: "a", b: "b" })).toBe("a:a|b:b|c:c");
-  expect(objectToString(",")({ c: "c", a: "a", b: "b" })).toBe("a:a,b:b,c:c");
+  expect(objectToString("foo")).toBe("foo");
+  expect(objectToString({ c: "c", a: "a", b: "b" })).toBe("a:a|b:b|c:c");
 });

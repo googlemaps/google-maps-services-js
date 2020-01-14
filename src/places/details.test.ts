@@ -10,7 +10,7 @@ afterEach(() => {
 });
 
 test("autocomplete should call axios correctly", () => {
-  const params = { place_id: "notarealid"};
+  const params = { place_id: "notarealid", key: "foo" };
 
   placeDetails({ params: params }, mockedAxios);
 

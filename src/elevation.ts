@@ -11,6 +11,7 @@ export interface ElevationRequest extends AxiosRequestConfig {
      * or multiple latitude/longitude pairs passed as an array or as an encoded polyline.
      */
     locations: LatLng[];
+    key: string;
   };
 }
 export interface ElevationResponseData extends ResponseData {
@@ -39,7 +40,7 @@ export interface ElevationResponse extends AxiosResponse {
 export const defaultUrl = "https://maps.googleapis.com/maps/api/elevation/json";
 
 export const defaultParamsSerializer = serializer({
-  locations: (latLng) => latLngToString(latLng)
+  locations: o => o.map(latLng => latLngToString(latLng))
 });
 
 export function elevation(

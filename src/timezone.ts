@@ -1,7 +1,4 @@
-import {
-  LatLng, Language,
-  ResponseData
-} from "./common";
+import { LatLng, Language, ResponseData } from "./common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "./client";
 import { serializer, latLngToString } from "./serialize";
@@ -17,7 +14,7 @@ export interface TimeZoneRequest extends AxiosRequestConfig {
      * That is, if you specify a past timestamp, the API does not take into account the possibility that
      * the location was previously in a different time zone.
      */
-    timestamp?: Date | number;
+    timestamp: Date | number;
     /**
      * The language in which to return results.
      * Note that we often update supported languages so this list may not be exhaustive.
@@ -25,6 +22,7 @@ export interface TimeZoneRequest extends AxiosRequestConfig {
      * @default Language.English
      */
     language?: Language;
+    key: string;
   };
 }
 
@@ -57,7 +55,10 @@ export interface TimeZoneResponse extends AxiosResponse {
 }
 
 export const defaultUrl = "https://maps.googleapis.com/maps/api/timezone/json";
-export const defaultParamsSerializer = serializer({ timestamp: Number, location: latLngToString });
+export const defaultParamsSerializer = serializer({
+  timestamp: Number,
+  location: latLngToString
+});
 export function timezone(
   {
     params,

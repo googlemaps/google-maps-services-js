@@ -10,7 +10,7 @@ afterEach(() => {
 });
 
 test("elevation should call axios correctly", () => {
-  const params = { locations: ["10,20"] };
+  const params = { locations: ["10,20"], key: "foo" };
 
   elevation({ params: params }, mockedAxios);
 

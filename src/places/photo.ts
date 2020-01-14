@@ -22,9 +22,9 @@ export interface PlacePhotoRequest extends AxiosRequestConfig {
      * restricted to its original aspect ratio. Both the `maxheight` and `maxwidth` properties accept an integer between 1 and 1600.
      */
     maxheight?: number;
+    key: string;
   };
 }
-
 
 /**
  * The response of a successful Place Photo request will be an image.
@@ -38,18 +38,12 @@ export interface PlacePhotoRequest extends AxiosRequestConfig {
  *  - The submitted photo reference was incorrectly specified.
  *  - Your request did not include either a `maxwidth` or `maxheight` parameter.
  */
-export interface PlacePhotoResponse extends AxiosResponse { }
+export interface PlacePhotoResponse extends AxiosResponse {}
 
-export const defaultUrl =
-  "https://maps.googleapis.com/maps/api/place/photo/json";
+export const defaultUrl = "https://maps.googleapis.com/maps/api/place/photo";
 
 export function placePhoto(
-  {
-    params,
-    method = "get",
-    url = defaultUrl,
-    ...config
-  }: PlacePhotoRequest,
+  { params, method = "get", url = defaultUrl, ...config }: PlacePhotoRequest,
   axiosInstance: AxiosInstance = defaultAxiosInstance
 ): Promise<PlacePhotoResponse> {
   return axiosInstance({

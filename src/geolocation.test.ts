@@ -11,7 +11,7 @@ afterEach(() => {
 
 test("elevation should call axios correctly", () => {
   const params = { key: "foo" };
-  const data = { considerIp: false }
+  const data = { considerIp: false };
   geolocate({ params: params, data: data }, mockedAxios);
 
   expect(mockedAxios).toHaveBeenCalledTimes(1);

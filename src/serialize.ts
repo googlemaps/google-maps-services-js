@@ -21,16 +21,14 @@ export function latLngToString(o: LatLng) {
     .join(",");
 }
 
-export function objectToString(sep: string = "|") {
-  return (o: string | object): string => {
-    if (typeof o === "string") {
-      return o;
-    } else {
-      let keys = Object.keys(o);
-      keys.sort();
-      return keys.map(k => k + ":" + o[k]).join(sep);
-    }
-  };
+export function objectToString(o: string | object): string {
+  if (typeof o === "string") {
+    return o;
+  } else {
+    let keys = Object.keys(o);
+    keys.sort();
+    return keys.map(k => k + ":" + o[k]).join("|");
+  }
 }
 
 export function latLngBoundsToString(latLngBounds: string | LatLngBounds) {
@@ -45,21 +43,22 @@ export function latLngBoundsToString(latLngBounds: string | LatLngBounds) {
   }
 }
 
-export type serializerFunction = (any) => string | number | boolean
-export type serializerFormat = { [key: string]: serializerFunction }
+export type serializerFunction = (any) => string | number | boolean;
+export type serializerFormat = { [key: string]: serializerFunction };
 
 export function serializer(
   format: serializerFormat,
-  queryStringOptions: object = { arrayFormat: "separator", arrayFormatSeparator: "|" }
+  queryStringOptions: object = {
+    arrayFormat: "separator",
+    arrayFormatSeparator: "|"
+  }
 ) {
-  return (params: {[key: string]: any}) => {
+  return (params: { [key: string]: any }) => {
     Object.keys(format).forEach((key: string) => {
       if (key in params) {
         params[key] = format[key](params[key]);
       }
     });
-
-    console.log(params, queryStringOptions);
     return qs(params, queryStringOptions);
   };
 }

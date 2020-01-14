@@ -31,7 +31,7 @@ export interface PlaceDetailsRequest extends AxiosRequestConfig {
      * A random string which identifies an autocomplete session for billing purposes.
      * Use this for Place Details requests that are called following an autocomplete request in the same user session
      */
-    sessionToken?: string;
+    sessiontoken?: string;
     /**
      * One or more fields, specifying the types of place data to return, separated by a comma.
      *
@@ -40,6 +40,7 @@ export interface PlaceDetailsRequest extends AxiosRequestConfig {
      * This applies only to Place Details requests.
      */
     fields?: string[];
+    key: string;
   };
 }
 export interface PlaceDetailsResponseData extends ResponseData {

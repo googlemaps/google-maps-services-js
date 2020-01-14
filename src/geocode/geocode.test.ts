@@ -10,7 +10,7 @@ afterEach(() => {
 });
 
 test("geocode should call axios correctly", () => {
-  const params = { address: "Seattle" };
+  const params = { address: "Seattle", key: "foo", components: "country:us" };
 
   geocode({ params: params }, mockedAxios);
 

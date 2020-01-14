@@ -14,7 +14,7 @@ afterEach(() => {
 });
 
 test("nearestRoads should call axios correctly", () => {
-  const params = { points: ["0,0"] };
+  const params = { points: ["0,0"], key: "foo" };
 
   nearestRoads({ params: params }, mockedAxios);
 
