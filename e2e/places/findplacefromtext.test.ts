@@ -11,8 +11,5 @@ test("autocomplete should return correct result", async () => {
 
   const r = await findPlaceFromText({ params: params });
 
-  expect(r.data).toEqual({
-    candidates: [{ place_id: "ChIJKxDbe_lYwokRVf__s8CPn-o" }],
-    status: "OK"
-  });
+  expect(r.data.status).toEqual("OK");
 });
