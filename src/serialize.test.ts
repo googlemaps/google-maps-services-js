@@ -2,7 +2,9 @@ import {
   latLngToString,
   serializer,
   objectToString,
-  latLngBoundsToString
+  latLngBoundsToString,
+  latLngArrayToStringMaybeEncoded,
+  toLatLngLiteral
 } from "./serialize";
 import { LatLngLiteral, LatLng } from "./common";
 
@@ -48,4 +50,31 @@ test("serializer should return pipe joined arrays by default", () => {
 test("objectToString", () => {
   expect(objectToString("foo")).toBe("foo");
   expect(objectToString({ c: "c", a: "a", b: "b" })).toBe("a:a|b:b|c:c");
+});
+
+test("latLngArrayToStringMaybeEncoded", () => {
+  expect(latLngArrayToStringMaybeEncoded("0,0")).toEqual("0,0");
+  expect(latLngArrayToStringMaybeEncoded([[0, 0]])).toEqual("0,0");
+  expect(
+    latLngArrayToStringMaybeEncoded([
+      [40.714728, -73.998672],
+      [-34.397, 150.644]
+    ])
+  ).toEqual("enc:abowFtzsbMhgmiMuobzi@");
+});
+
+test("toLatLngLiteral", () => {
+  expect(toLatLngLiteral("0,1")).toEqual({ lat: 0, lng: 1 });
+  expect(toLatLngLiteral([0, 1])).toEqual({ lat: 0, lng: 1 });
+  expect(toLatLngLiteral({ lat: 0, lng: 1 })).toEqual({
+    lat: 0,
+    lng: 1
+  });
+  expect(toLatLngLiteral({ latitude: 0, longitude: 1 })).toEqual({
+    lat: 0,
+    lng: 1
+  });
+  expect(() => {
+    toLatLngLiteral({} as LatLngLiteral);
+  }).toThrow(TypeError);
 });
