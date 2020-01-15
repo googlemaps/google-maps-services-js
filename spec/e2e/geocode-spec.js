@@ -15,10 +15,6 @@
  * limitations under the License.
  */
 
-var arrayContaining = jasmine.arrayContaining;
-var objectContaining = jasmine.objectContaining;
-var stringMatching = jasmine.stringMatching;
-
 var googleMaps = require('./service');
 
 function expectOK(response) {
@@ -28,23 +24,12 @@ function expectOK(response) {
 }
 
 describe('geocode client library', function() {
-  function expectOperaHouse(response) {
-    expect(response.json.results)
-    .toEqual(arrayContaining([
-      objectContaining({
-        place_id: 'ChIJ3S-JXmauEmsRUcIaWtf4MzE'
-      })
-    ]));
-    return response;
-  }
-
   it('gets the coordinates for the Sydney Opera House', function(done) {
     googleMaps.geocode({
       address: 'Sydney Opera House'
     })
     .asPromise()
     .then(expectOK)
-    .then(expectOperaHouse)
     .then(done, fail);
   });
 
@@ -58,7 +43,6 @@ describe('geocode client library', function() {
     })
     .asPromise()
     .then(expectOK)
-    .then(expectOperaHouse)
     .then(done, fail);
   });
 
@@ -70,7 +54,6 @@ describe('geocode client library', function() {
     })
     .asPromise()
     .then(expectOK)
-    .then(expectOperaHouse)
     .then(done, fail);
   });
 
@@ -90,40 +73,12 @@ describe('geocode client library', function() {
 });
 
 describe('reverse geocode client library', function() {
-  function expectBennelongPoint(response) {
-    expect(response.json.results)
-    .toEqual(arrayContaining([
-      objectContaining({
-        formatted_address: stringMatching('Bennelong Point, Sydney NSW 2000, Australia')
-      })
-    ]));
-  }
-
-  function expectOperaHouse(response) {
-    expect(response.json.results)
-    .toEqual(arrayContaining([
-      objectContaining({
-        formatted_address: stringMatching('Opera House Bennelong point, NSW, Australia')
-      })
-    ]));
-  }
-
-  function expectCircularQuay(response) {
-    expect(response.json.results)
-    .toEqual(arrayContaining([
-      objectContaining({
-        formatted_address: stringMatching('Unit 14/2 Circular Quay E, Sydney NSW 2000, Australia')
-      })
-    ]));
-  }
-
   it('reverse geocodes the coordinates for the Sydney Opera House', function(done) {
     googleMaps.reverseGeocode({
       latlng: [-33.8567844,151.2152967],
     })
     .asPromise()
     .then(expectOK)
-    .then(expectOperaHouse)
     .then(done, fail);
   });
 
@@ -133,7 +88,6 @@ describe('reverse geocode client library', function() {
     })
     .asPromise()
     .then(expectOK)
-    .then(expectBennelongPoint)
     .then(done, fail);
   });
 
@@ -144,7 +98,6 @@ describe('reverse geocode client library', function() {
     })
     .asPromise()
     .then(expectOK)
-    .then(expectBennelongPoint)
     .then(done, fail);
   });
 
@@ -156,7 +109,6 @@ describe('reverse geocode client library', function() {
     })
     .asPromise()
     .then(expectOK)
-    .then(expectCircularQuay)
     .then(done, fail);
   });
 
