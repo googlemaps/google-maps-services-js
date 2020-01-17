@@ -1,5 +1,5 @@
 import axios from "axios";
-import { geolocate, defaultUrl } from "./geolocation";
+import { geolocate, defaultUrl } from "./geolocate";
 
 jest.mock("axios");
 
