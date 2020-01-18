@@ -1,10 +1,6 @@
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
-import {
-  Language,
-  ResponseData,
-  Place
-} from "../common";
+import { Language, ResponseData, Place } from "../common";
 import { defaultAxiosInstance } from "../client";
 import { serializer } from "../serialize";
 

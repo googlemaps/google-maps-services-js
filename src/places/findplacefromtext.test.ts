@@ -1,5 +1,9 @@
 import axios from "axios";
-import { findPlaceFromText, defaultParamsSerializer, defaultUrl } from "./findplacefromtext";
+import {
+  findPlaceFromText,
+  defaultParamsSerializer,
+  defaultUrl
+} from "./findplacefromtext";
 import { PlaceInputType } from "../common";
 
 jest.mock("axios");
@@ -11,7 +15,11 @@ afterEach(() => {
 });
 
 test("autocomplete should call axios correctly", () => {
-  const params = { input: "google", inputtype: PlaceInputType.textQuery, key: "foo"};
+  const params = {
+    input: "google",
+    inputtype: PlaceInputType.textQuery,
+    key: "foo"
+  };
 
   findPlaceFromText({ params: params }, mockedAxios);
 

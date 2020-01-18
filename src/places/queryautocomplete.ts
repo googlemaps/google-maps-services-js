@@ -3,7 +3,8 @@ import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "../client";
 import { serializer, latLngToString } from "../serialize";
 
-export interface PlaceQueryAutocompleteRequest extends Partial<AxiosRequestConfig> {
+export interface PlaceQueryAutocompleteRequest
+  extends Partial<AxiosRequestConfig> {
   params: {
     /**
      * The text string on which to search.

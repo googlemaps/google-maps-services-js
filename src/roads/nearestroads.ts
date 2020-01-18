@@ -1,7 +1,4 @@
-import {
-  LatLng,
-  SnappedPoint
-} from "../common";
+import { LatLng, SnappedPoint } from "../common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "../client";
 import { serializer, latLngToString } from "../serialize";
@@ -18,17 +15,17 @@ export interface NearestRoadsRequest extends Partial<AxiosRequestConfig> {
   };
 }
 
-
-
 export interface NearestRoadsResponse extends AxiosResponse {
   data: {
     /** An array of snapped points. */
     snappedPoints: SnappedPoint[];
-  }
+  };
 }
 
 export const defaultUrl = "https://roads.googleapis.com/v1/nearestRoads";
-export const defaultParamsSerializer = serializer({ points: (o) => o.map((latLng) => latLngToString(latLng)) })
+export const defaultParamsSerializer = serializer({
+  points: o => o.map(latLng => latLngToString(latLng))
+});
 
 export function nearestRoads(
   {
