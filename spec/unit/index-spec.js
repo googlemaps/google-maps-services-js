@@ -18,6 +18,7 @@
 var Promise = require('q').Promise;
 var MockClock = require('../mock-clock');
 var parse = require('url').parse;
+const uuid4 = require('uuid/v4');
 
 describe('index.js:', function() {
   var createClient, requestAndSucceed, requestAndFail, requestTimes, clock;
@@ -385,4 +386,69 @@ describe('index.js:', function() {
       });
     }).toThrowError(/uh-oh/);
   });
+
+  describe('using an experience id', function() {
+
+    it('setExperienceId and getExperienceId should be correct', function() {
+      const experienceId = "foo";
+      const otherExperienceId = "bar";
+
+      const client = createClient();
+
+      client.setExperienceId(experienceId);
+      expect(client.getExperienceId()).toEqual([experienceId]);
+
+      client.setExperienceId(experienceId, otherExperienceId);
+      expect(client.getExperienceId()).toEqual([experienceId, otherExperienceId]);
+    });
+
+    it('clearExperienceId and client options', function() {
+      const experienceId = "foo";
+
+      const client = createClient({experienceId: experienceId});
+
+      client.clearExperienceId();
+      expect(client.getExperienceId()).toEqual(null);
+
+    });
+
+    it('experience id sample', function() {
+      // [START maps_experience_id]
+      const experienceId = uuid4().toString();
+
+      // instantiate client with experience id
+      const client = createClient({experienceId: experienceId})
+
+      // clear the current experience id
+      client.clearExperienceId()
+
+      // set a new experience id
+      otherExperienceId = uuid4().toString();
+      client.setExperienceId(experienceId, otherExperienceId)
+
+      // make API request, the client will set the header
+      // X-GOOG-MAPS-EXPERIENCE-ID: experienceId,otherExperienceId
+
+      // get current experience id
+      const ids = client.getExperienceId()
+      // [END maps_experience_id]
+
+      expect(ids).toEqual([experienceId, otherExperienceId])
+    });
+
+    it('includes the experience id in header', function() {
+      const EXPERIENCE_ID_HEADER_NAME = require('../../lib/internal/make-api-call').EXPERIENCE_ID_HEADER_NAME;
+      const id = "foo";
+
+      createClient({
+        makeUrlRequest: function(_, _, _, options) {
+          expect(options['headers'][EXPERIENCE_ID_HEADER_NAME]).toEqual(id);
+        },
+        experienceId: id
+      })
+      .geocode({address: 'Sesame St.'});
+    });
+
+  });
 });
+
