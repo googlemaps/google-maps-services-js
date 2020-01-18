@@ -1,2 +1,2 @@
-export const version = "1.0.0";
+export {version} from '../package.json';
 export * from "./client";

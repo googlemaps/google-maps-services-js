@@ -1,9 +1,9 @@
 {
   "name": "@googlemaps/google-maps-services-node",
-  "version": "1.0.2",
+  "version": "2.0.0.rc.1",
   "author": "Google Inc.",
   "description": "Node.js client library for Google Maps API Web Services",
-  "main": "./lib",
+  "main": "./dist/index.js",
   "contributors": [
     {
       "name": "Justin Poehnelt",
@@ -11,6 +11,7 @@
     }
   ],
   "scripts": {
+    "prepare": "tsc",
     "test": "jest",
     "docs": "rm -rf docs/ && typedoc ."
   },
@@ -55,6 +56,7 @@
   ],
   "publishConfig": {
     "registry": "https://wombat-dressing-room.appspot.com",
-    "access": "public"
+    "access": "public",
+    "tag": "next"
   }
 }
