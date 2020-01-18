@@ -7,7 +7,8 @@ import {
   UnitSystem,
   TransitMode,
   TravelMode,
-  ResponseData
+  ResponseData,
+  RequestParams
 } from "./common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "./client";
@@ -130,8 +131,7 @@ export interface DistanceMatrixRequest extends Partial<AxiosRequestConfig> {
      * This parameter may only be specified for requests where the `mode` is `transit`.
      */
     transit_routing_preference?: TransitRoutingPreference;
-    key: string;
-  };
+  } & RequestParams;
 }
 
 export interface DistanceMatrixResponseData extends ResponseData {
@@ -153,8 +153,8 @@ export const defaultUrl =
   "https://maps.googleapis.com/maps/api/distancematrix/json";
 
 export const defaultParamsSerializer = serializer({
-  origins: (o) => o.map(latLngToString),
-  destinations: (o) => o.map(latLngToString),
+  origins: o => o.map(latLngToString),
+  destinations: o => o.map(latLngToString),
   arrival_time: Number,
   departure_time: Number
 });

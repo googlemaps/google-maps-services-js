@@ -1,4 +1,4 @@
-import { Language, LatLng, ResponseData, Place } from "../common";
+import { Language, LatLng, ResponseData, Place, RequestParams } from "../common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "../client";
 import { serializer, latLngToString } from "../serialize";
@@ -77,8 +77,7 @@ export interface PlacesNearbyRequest extends Partial<AxiosRequestConfig> {
      * all parameters other than pagetoken will be ignored.
      */
     pagetoken?: string;
-    key: string;
-  };
+    } & RequestParams;
 }
 
 export interface PlacesNearbyResponseData extends ResponseData {

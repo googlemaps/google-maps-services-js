@@ -9,7 +9,8 @@ import {
   UnitSystem,
   TransitMode,
   TravelMode,
-  ResponseData
+  ResponseData,
+  RequestParams
 } from "./common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "./client";
@@ -132,8 +133,7 @@ export interface DirectionsRequest extends Partial<AxiosRequestConfig> {
     transit_routing_preference?: TransitRoutingPreference;
     /** Wherever to optimize the provided route by rearranging the waypoints in a more efficient order. */
     optimize?: boolean;
-    key: string;
-  };
+  } & RequestParams;
 }
 export interface DirectionsResponseData extends ResponseData {
   /**
@@ -175,7 +175,7 @@ export const defaultUrl =
 export const defaultParamsSerializer = serializer({
   origin: latLngToString,
   destination: latLngToString,
-  waypoints: (o) => o.map(latLngToString),
+  waypoints: o => o.map(latLngToString),
   arrival_time: Number,
   departure_time: Number
 });

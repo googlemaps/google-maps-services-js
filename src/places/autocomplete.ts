@@ -6,7 +6,7 @@ import {
   PredictionSubstring,
   PredictionTerm,
   ResponseData,
-  StructuredFormatting
+  StructuredFormatting, RequestParams
 } from "../common";
 import { defaultAxiosInstance } from "../client";
 import { latLngToString, serializer } from "../serialize";
@@ -93,8 +93,7 @@ export interface PlaceAutocompleteRequest extends Partial<AxiosRequestConfig> {
      * will not be returned even if they match the user input.
      */
     strictbounds?: boolean;
-    key: string;
-  };
+    } & RequestParams;
 }
 
 export interface PlaceAutocompleteResult {

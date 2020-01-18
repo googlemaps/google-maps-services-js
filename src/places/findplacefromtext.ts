@@ -1,4 +1,4 @@
-import { Language, ResponseData, Place, PlaceInputType } from "../common";
+import { Language, ResponseData, Place, PlaceInputType, RequestParams } from "../common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "../client";
 import { serializer } from "../serialize";
@@ -25,8 +25,7 @@ export interface FindPlaceFromTextRequest extends Partial<AxiosRequestConfig> {
      * the points of a rectangle. If this parameter is not specified, the API uses IP address biasing by default.
      */
     locationbias?: string;
-    key: string;
-  };
+    } & RequestParams;
 }
 
 export interface FindPlaceFromTextResponseData extends ResponseData {

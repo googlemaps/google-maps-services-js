@@ -1,6 +1,6 @@
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
-import { Language, ResponseData, Place } from "../common";
+import { Language, ResponseData, Place, RequestParams } from "../common";
 import { defaultAxiosInstance } from "../client";
 import { serializer } from "../serialize";
 
@@ -36,8 +36,7 @@ export interface PlaceDetailsRequest extends Partial<AxiosRequestConfig> {
      * This applies only to Place Details requests.
      */
     fields?: string[];
-    key: string;
-  };
+    } & RequestParams;
 }
 export interface PlaceDetailsResponseData extends ResponseData {
   result: Place;

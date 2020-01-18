@@ -1,4 +1,4 @@
-import { ResponseData, LatLng, Language, PlaceType1, Place } from "../common";
+import { ResponseData, LatLng, Language, PlaceType1, Place, RequestParams } from "../common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "../client";
 import { serializer, latLngToString } from "../serialize";
@@ -68,8 +68,7 @@ export interface TextSearchRequest extends Partial<AxiosRequestConfig> {
      * Only one type may be specified (if more than one type is provided, all types following the first entry are ignored).
      */
     type?: PlaceType1;
-    key: string;
-  };
+    } & RequestParams;
 }
 
 export interface TextSearchResponseData extends ResponseData {

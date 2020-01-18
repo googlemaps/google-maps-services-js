@@ -3,7 +3,8 @@ import {
   WifiAccessPoint,
   CellTower,
   LatLngLiteral,
-  ResponseData
+  ResponseData,
+  RequestParams
 } from "./common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "./client";
@@ -28,9 +29,7 @@ export interface GeolocateRequest extends Partial<AxiosRequestConfig> {
     /** An array of WiFi access point objects. */
     wifiAccessPoints?: WifiAccessPoint[];
   };
-  params: {
-    key: string;
-  };
+  params: {} & RequestParams;
 }
 
 export interface GeolocateResponseData extends ResponseData {

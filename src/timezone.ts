@@ -1,4 +1,4 @@
-import { LatLng, Language, ResponseData } from "./common";
+import { LatLng, Language, ResponseData, RequestParams } from "./common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "./client";
 import { serializer, latLngToString } from "./serialize";
@@ -22,8 +22,7 @@ export interface TimeZoneRequest extends Partial<AxiosRequestConfig> {
      * @default Language.English
      */
     language?: Language;
-    key: string;
-  };
+  } & RequestParams;
 }
 
 export interface TimeZoneResponseData extends ResponseData {

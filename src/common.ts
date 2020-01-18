@@ -1,4 +1,18 @@
 export interface RequestParams {
+  /**
+   * You must include an API key with every API request. We strongly recommend that you restrict your API key.
+   * Restrictions provide added security and help ensure only authorized requests are made with your API key.
+   *
+   * There are two restrictions. You should set both:
+   *
+   * Application restriction:  Limits usage of the API key to either websites (HTTP referrers),
+   * web servers (IP addresses), or mobile apps (Android apps or iOS apps). You can select only one
+   * restriction from this category, based on the platform of the API or SDK (see GMP APIs by Platform).
+   *
+   * API restriction: Limits usage of the API key to one or more APIs or SDKs. Requests to an API or SDK
+   * associated with the API key will be processed. Requests to an API or SDK not associated with the API
+   * key will fail.
+   */
   key: string;
 }
 

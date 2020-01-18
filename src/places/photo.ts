@@ -1,4 +1,5 @@
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { RequestParams } from "../common";
 import { defaultAxiosInstance } from "../client";
 
 export interface PlacePhotoRequest extends Partial<AxiosRequestConfig> {
@@ -22,8 +23,7 @@ export interface PlacePhotoRequest extends Partial<AxiosRequestConfig> {
      * restricted to its original aspect ratio. Both the `maxheight` and `maxwidth` properties accept an integer between 1 and 1600.
      */
     maxheight?: number;
-    key: string;
-  };
+    } & RequestParams;
 }
 
 /**

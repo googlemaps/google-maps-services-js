@@ -1,4 +1,4 @@
-import { LatLng, LatLngLiteral, ResponseData } from "./common";
+import { LatLng, LatLngLiteral, ResponseData, RequestParams } from "./common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "./client";
 import { serializer, latLngToString } from "./serialize";
@@ -11,8 +11,7 @@ export interface ElevationRequest extends Partial<AxiosRequestConfig> {
      * or multiple latitude/longitude pairs passed as an array or as an encoded polyline.
      */
     locations: LatLng[];
-    key: string;
-  };
+  } & RequestParams;
 }
 export interface ElevationResponseData extends ResponseData {
   results: {

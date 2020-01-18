@@ -1,4 +1,4 @@
-import { LatLng, SnappedPoint } from "../common";
+import { LatLng, SnappedPoint, RequestParams } from "../common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "../client";
 import { serializer, latLngToString } from "../serialize";
@@ -11,8 +11,7 @@ export interface NearestRoadsRequest extends Partial<AxiosRequestConfig> {
      * For example: `points=60.170880,24.942795|60.170879,24.942796|60.170877,24.942796`.
      */
     points: LatLng[];
-    key: string;
-  };
+    } & RequestParams;
 }
 
 export interface NearestRoadsResponse extends AxiosResponse {

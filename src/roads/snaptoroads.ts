@@ -1,4 +1,4 @@
-import { LatLng, SnappedPoint } from "../common";
+import { LatLng, SnappedPoint, RequestParams } from "../common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "../client";
 import { serializer, latLngToString } from "../serialize";
@@ -26,8 +26,7 @@ export interface SnapToRoadsRequest extends Partial<AxiosRequestConfig> {
      * @default false
      */
     interpolate?: boolean;
-    key: string;
-  };
+    } & RequestParams;
 }
 
 export interface SnapToRoadsResponse extends AxiosResponse {

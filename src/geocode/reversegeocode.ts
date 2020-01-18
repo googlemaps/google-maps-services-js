@@ -1,4 +1,4 @@
-import { LatLng, AddressType, Language } from "../common";
+import { LatLng, AddressType, Language, RequestParams } from "../common";
 import { GeocodeResult, ResponseData } from "../common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "../client";
@@ -62,8 +62,7 @@ export interface ReverseGeocodeRequest extends Partial<AxiosRequestConfig> {
      * Note: This parameter is available only for requests that include an API key or a client ID.
      */
     location_type?: ReverseGeocodingLocationType[];
-    key: string;
-  };
+    } & RequestParams;
 }
 
 export interface ReverseGeocodeResponseData extends ResponseData {

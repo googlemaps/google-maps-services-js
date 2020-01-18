@@ -1,4 +1,4 @@
-import { LatLngBounds, GeocodeResult, ResponseData } from "../common";
+import { LatLngBounds, GeocodeResult, ResponseData, RequestParams } from "../common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "../client";
 import { serializer, latLngBoundsToString, objectToString } from "../serialize";
@@ -60,8 +60,7 @@ export interface GeocodeRequest extends Partial<AxiosRequestConfig> {
      * Each element in the components filter consists of a `component:value` pair, and fully restricts the results from the geocoder.
      */
     components?: string | GeocodeComponents;
-    key: string;
-  };
+    } & RequestParams;
 }
 
 export interface GeocodeResponseData extends ResponseData {
