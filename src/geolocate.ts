@@ -8,7 +8,7 @@ import {
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "./client";
 
-export interface GelocateRequest extends Partial<AxiosRequestConfig> {
+export interface GeolocateRequest extends Partial<AxiosRequestConfig> {
   data: {
     /** The mobile country code (MCC) for the device's home network. */
     homeMobileCountryCode?: number;
@@ -109,7 +109,7 @@ export type GeolocateResponse =
 export const defaultUrl = "https://www.googleapis.com/geolocation/v1/geolocate";
 
 export function geolocate(
-  { params, method = "post", url = defaultUrl, ...config }: GelocateRequest,
+  { params, method = "post", url = defaultUrl, ...config }: GeolocateRequest,
   axiosInstance: AxiosInstance = defaultAxiosInstance
 ): Promise<GeolocateResponse> {
   return axiosInstance({

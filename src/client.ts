@@ -12,7 +12,7 @@ import {
   DistanceMatrixResponse
 } from "./distance";
 import { elevation, ElevationRequest, ElevationResponse } from "./elevation";
-import { geolocate, GelocateRequest, GeolocateResponse } from "./geolocate";
+import { geolocate, GeolocateRequest, GeolocateResponse } from "./geolocate";
 import { timezone, TimeZoneRequest, TimeZoneResponse } from "./timezone";
 import { geocode, GeocodeRequest, GeocodeResponse } from "./geocode/geocode";
 import {
@@ -113,7 +113,7 @@ export class Client {
   timezone(request: TimeZoneRequest): Promise<TimeZoneResponse> {
     return timezone(request, this.axiosInstance);
   }
-  geolocate(request: GelocateRequest): Promise<GeolocateResponse> {
+  geolocate(request: GeolocateRequest): Promise<GeolocateResponse> {
     return geolocate(request, this.axiosInstance);
   }
   geocode(request: GeocodeRequest): Promise<GeocodeResponse> {
@@ -176,7 +176,7 @@ export {
   ElevationResponse,
   FindPlaceFromTextRequest,
   FindPlaceFromTextResponse,
-  GelocateRequest,
+  GeolocateRequest,
   GeocodeRequest,
   GeocodeResponse,
   GeolocateResponse,
