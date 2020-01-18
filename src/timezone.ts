@@ -3,8 +3,8 @@ import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "./client";
 import { serializer, latLngToString } from "./serialize";
 
-export interface TimeZoneRequest extends AxiosRequestConfig {
-  params?: {
+export interface TimeZoneRequest extends Partial<AxiosRequestConfig> {
+  params: {
     /** a comma-separated `lat,lng` tuple (eg. `location=-33.86,151.20`), representing the location to look up. */
     location: LatLng;
     /**

@@ -6,8 +6,8 @@ import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "../client";
 import { serializer, latLngToString } from "../serialize";
 
-export interface NearestRoadsRequest extends AxiosRequestConfig {
-  params?: {
+export interface NearestRoadsRequest extends Partial<AxiosRequestConfig> {
+  params: {
     /**
      * A list of latitude/longitude pairs. Latitude and longitude values should be separated by commas.
      * Coordinates should be separated by the pipe character: "|".

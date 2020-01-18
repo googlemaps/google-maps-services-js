@@ -22,8 +22,8 @@ export interface GeocodeComponents {
   administrative_area?: string;
 }
 
-export interface GeocodeRequest extends AxiosRequestConfig {
-  params?: {
+export interface GeocodeRequest extends Partial<AxiosRequestConfig> {
+  params: {
     /**
      * The street address that you want to geocode, in the format used by the national postal service of the country concerned.
      * Additional address elements such as business names and unit, suite or floor numbers should be avoided.

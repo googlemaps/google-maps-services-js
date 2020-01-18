@@ -3,8 +3,8 @@ import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "../client";
 import { serializer } from "../serialize";
 
-export interface FindPlaceFromTextRequest extends AxiosRequestConfig {
-  params?: {
+export interface FindPlaceFromTextRequest extends Partial<AxiosRequestConfig> {
+  params: {
     /** The text input specifying which place to search for (for example, a name, address, or phone number). */
     input: string;
     /** The type of input. This can be one of either `textQuery` or `phoneNumber`. */

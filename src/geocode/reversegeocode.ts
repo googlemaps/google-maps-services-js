@@ -21,8 +21,8 @@ export type ReverseGeocodingLocationType =
   /** returns only the addresses that are characterized as approximate. */
   | "APPROXIMATE";
 
-export interface ReverseGeocodeRequest extends AxiosRequestConfig {
-  params?: {
+export interface ReverseGeocodeRequest extends Partial<AxiosRequestConfig> {
+  params: {
     /** The latitude and longitude values specifying the location for which you wish to obtain the closest, human-readable address. */
     latlng?: LatLng;
     /**

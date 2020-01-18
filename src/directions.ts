@@ -15,8 +15,8 @@ import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "./client";
 import { serializer, latLngToString } from "./serialize";
 
-export interface DirectionsRequest extends AxiosRequestConfig {
-  params?: {
+export interface DirectionsRequest extends Partial<AxiosRequestConfig> {
+  params: {
     /**
      * The address, textual latitude/longitude value, or place ID from which you wish to calculate directions.
      *  - If you pass an address, the Directions service geocodes the string and converts it to a latitude/longitude coordinate

@@ -1,8 +1,8 @@
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "../client";
 
-export interface PlacePhotoRequest extends AxiosRequestConfig {
-  params?: {
+export interface PlacePhotoRequest extends Partial<AxiosRequestConfig> {
+  params: {
     /**
      * string identifier that uniquely identifies a photo.
      * Photo references are returned from either a Place Search or Place Details request.

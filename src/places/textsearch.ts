@@ -3,8 +3,8 @@ import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "../client";
 import { serializer, latLngToString } from "../serialize";
 
-export interface TextSearchRequest extends AxiosRequestConfig {
-  params?: {
+export interface TextSearchRequest extends Partial<AxiosRequestConfig> {
+  params: {
     /**
      * The text string on which to search, for example: "restaurant" or "123 Main Street".
      * The Google Places service will return candidate matches based on this string and order the results

@@ -3,8 +3,8 @@ import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "./client";
 import { serializer, latLngToString } from "./serialize";
 
-export interface ElevationRequest extends AxiosRequestConfig {
-  params?: {
+export interface ElevationRequest extends Partial<AxiosRequestConfig> {
+  params: {
     /**
      * defines the location(s) on the earth from which to return elevation data.
      * This parameter takes either a single location as a comma-separated {latitude,longitude} pair (e.g. "40.714728,-73.998672")

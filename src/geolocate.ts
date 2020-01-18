@@ -7,10 +7,9 @@ import {
 } from "./common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "./client";
-import { serializer } from "./serialize";
 
-export interface GelocateRequest extends AxiosRequestConfig {
-  data?: {
+export interface GelocateRequest extends Partial<AxiosRequestConfig> {
+  data: {
     /** The mobile country code (MCC) for the device's home network. */
     homeMobileCountryCode?: number;
     /** The mobile network code (MNC) for the device's home network. */
@@ -29,7 +28,7 @@ export interface GelocateRequest extends AxiosRequestConfig {
     /** An array of WiFi access point objects. */
     wifiAccessPoints?: WifiAccessPoint[];
   };
-  params?: {
+  params: {
     key: string;
   };
 }

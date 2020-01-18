@@ -37,8 +37,8 @@ export type PlaceAutocompleteType =
   /** the (cities) type collection instructs the Places service to return results that match `locality` or `administrative_area_level_3`. */
   | "(cities)";
 
-export interface PlaceAutocompleteRequest extends AxiosRequestConfig {
-  params?: {
+export interface PlaceAutocompleteRequest extends Partial<AxiosRequestConfig> {
+  params: {
     /**
      * The text string on which to search. The Place Autocomplete service will return candidate matches
      * based on this string and order results based on their perceived relevance.

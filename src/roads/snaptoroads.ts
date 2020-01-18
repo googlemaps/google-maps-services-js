@@ -3,8 +3,8 @@ import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "../client";
 import { serializer, latLngToString } from "../serialize";
 
-export interface SnapToRoadsRequest extends AxiosRequestConfig {
-  params?: {
+export interface SnapToRoadsRequest extends Partial<AxiosRequestConfig> {
+  params: {
     /**
      * The path to be snapped. The `path` parameter accepts a list of latitude/longitude pairs.
      * Latitude and longitude values should be separated by commas. Coordinates should be separated by the pipe character: `"|"`.

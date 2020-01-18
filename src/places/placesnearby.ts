@@ -17,8 +17,8 @@ export type PlacesNearbyRanking =
    */
   | "distance";
 
-export interface PlacesNearbyRequest extends AxiosRequestConfig {
-  params?: {
+export interface PlacesNearbyRequest extends Partial<AxiosRequestConfig> {
+  params: {
     /** The latitude/longitude around which to retrieve place information. This must be specified as latitude,longitude. */
     location: LatLng;
     /**

@@ -8,8 +8,8 @@ import {
 import { defaultAxiosInstance } from "../client";
 import { serializer } from "../serialize";
 
-export interface PlaceDetailsRequest extends AxiosRequestConfig {
-  params?: {
+export interface PlaceDetailsRequest extends Partial<AxiosRequestConfig> {
+  params: {
     /** A textual identifier that uniquely identifies a place, returned from a Place Search. */
     place_id: string;
     /**

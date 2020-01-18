@@ -3,8 +3,8 @@ import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "../client";
 import { serializer, latLngToString } from "../serialize";
 
-export interface PlaceQueryAutocompleteRequest extends AxiosRequestConfig {
-  params?: {
+export interface PlaceQueryAutocompleteRequest extends Partial<AxiosRequestConfig> {
+  params: {
     /**
      * The text string on which to search.
      * The Places service will return candidate matches based on this string and order results based on their perceived relevance.
