@@ -69,6 +69,7 @@ import {
 export const defaultHttpsAgent = new HttpsAgent({ keepAlive: true });
 export const defaultTimeout = 10000;
 export const userAgent = `google-maps-services-node-${version}`;
+export const X_GOOG_MAPS_EXPERIENCE_ID = "X-GOOG-MAPS-EXPERIENCE-ID";
 
 const defaultConfig = {
   timeout: defaultTimeout,
@@ -78,22 +79,53 @@ const defaultConfig = {
 
 export const defaultAxiosInstance = axios.create(defaultConfig);
 
+export interface ClientOptions {
+  config?: AxiosRequestConfig;
+  experienceId?: string[];
+}
+
 export class Client {
   private axiosInstance: AxiosInstance;
+  private experienceId: string[];
 
-  constructor(config: AxiosRequestConfig) {
-    if (Object.keys(config).length) {
-      // TODO: use deep merge
+  constructor({ config, experienceId }: ClientOptions) {
+    if (config && Object.keys(config).length) {
+      // TODO: use deep merge so that we maintain the existing
+      // default config settings not specificed by the user
       config.headers = Object.assign(
         defaultConfig.headers,
         config.headers || {}
       );
       config = Object.assign(defaultConfig, config);
-
       this.axiosInstance = axios.create(config);
     } else {
+      // if no config is passed, just reuse the default instance
       this.axiosInstance = defaultAxiosInstance;
     }
+
+    if (experienceId) {
+      this.setExperienceId(...experienceId);
+    }
+  }
+
+  setExperienceId(...ids: string[]) {
+    this.experienceId = ids;
+    this.axiosInstance.defaults.headers[X_GOOG_MAPS_EXPERIENCE_ID] = ids.join(
+      ","
+    );
+  }
+
+  clearExperienceId() {
+    this.experienceId = null;
+    this.clearExperienceIdHeader();
+  }
+
+  private clearExperienceIdHeader() {
+    delete this.axiosInstance.defaults.headers[X_GOOG_MAPS_EXPERIENCE_ID];
+  }
+
+  getExperienceId(): string[] {
+    return this.experienceId;
   }
 
   directions(request: DirectionsRequest): Promise<DirectionsResponse> {
