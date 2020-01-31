@@ -9,4 +9,5 @@ test("directions should get correct result", async () => {
     key: process.env.GOOGLE_MAPS_API_KEY
   };
   const r = await directions({ params: params });
+  expect(r.data.status).toEqual("OK")
 });

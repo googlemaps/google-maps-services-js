@@ -9,5 +9,5 @@ test("reverseGeocode should return correct response", async () => {
     key: process.env.GOOGLE_MAPS_API_KEY
   };
   const r = await reverseGeocode({ params: params });
-  expect(r.data.results.length).toBeGreaterThan(1);
+  expect(r.data.results.length).toBeTruthy();
 });

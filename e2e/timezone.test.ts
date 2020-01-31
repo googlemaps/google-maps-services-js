@@ -9,11 +9,5 @@ test("elevation should call axios correctly", async () => {
   };
   const r = await timezone({ params: params });
 
-  expect(r.data).toEqual({
-    dstOffset: 0,
-    rawOffset: -25200,
-    status: "OK",
-    timeZoneId: "America/Phoenix",
-    timeZoneName: "Mountain Standard Time"
-  });
+  expect(r.data.status).toEqual("OK");
 });

@@ -9,5 +9,5 @@ test("autocomplete should return correct result", async () => {
 
   const r = await placeQueryAutocomplete({ params: params });
 
-  expect(r.data.predictions.length).toBeGreaterThan(3);
+  expect(r.data.predictions.length).toBeTruthy();
 });

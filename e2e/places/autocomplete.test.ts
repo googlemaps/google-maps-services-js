@@ -7,5 +7,5 @@ test("autocomplete should return correct result", async () => {
     key: process.env.GOOGLE_MAPS_API_KEY
   };
   const r = await placeAutocomplete({ params: params });
-  expect(r.data.predictions.length).toBeGreaterThan(3);
+  expect(r.data.predictions.length).toBeTruthy();
 });
