@@ -1,23 +1,7 @@
 {
   "name": "@googlemaps/google-maps-services-js",
   "version": "2.0.0",
-  "author": "Google Inc.",
   "description": "Node.js client library for Google Maps API Web Services",
-  "main": "./dist/index.js",
-  "contributors": [
-    {
-      "name": "Justin Poehnelt",
-      "email": "jpoehnelt@google.com"
-    }
-  ],
-  "scripts": {
-    "prepare": "tsc",
-    "test": "jest"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/googlemaps/google-maps-services-js.git"
-  },
   "keywords": [
     "google",
     "maps",
@@ -31,17 +15,37 @@
     "directions",
     "navigation"
   ],
-  "license": "Apache-2.0",
+  "homepage": "https://github.com/googlemaps/google-maps-services-js",
   "bugs": {
     "url": "https://github.com/googlemaps/google-maps-services-js/issues"
   },
-  "homepage": "https://github.com/googlemaps/google-maps-services-js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/googlemaps/google-maps-services-js.git"
+  },
+  "license": "Apache-2.0",
+  "author": "Google Inc.",
+  "contributors": [
+    {
+      "name": "Justin Poehnelt",
+      "email": "jpoehnelt@google.com"
+    }
+  ],
+  "main": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepare": "tsc",
+    "test": "jest"
+  },
   "dependencies": {
     "agentkeepalive": "^4.1.0",
     "axios": "^0.19.0",
     "query-string": "github:jpoehnelt/query-string#e22cdb49ef848efaed4fe60d63d2504b496027c1"
   },
   "devDependencies": {
+    "@semantic-release/changelog": "^5.0.0",
     "@types/jest": "^24.0.25",
     "@types/node": "^12.12.15",
     "codecov": "^3.6.1",
@@ -50,10 +54,16 @@
     "ts-jest": "^24.3.0",
     "typescript": "^3.7.4"
   },
-  "files": [
-    "dist"
-  ],
   "publishConfig": {
     "access": "public"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/git"
+    ]
   }
 }
