@@ -2,9 +2,11 @@ Node.js Client for Google Maps Services
 =======================================
 
 [![Build Status](https://travis-ci.org/googlemaps/google-maps-services-js.svg?branch=master)](https://travis-ci.org/googlemaps/google-maps-services-js)
-[![npm](https://img.shields.io/npm/v/@google/maps.svg)](https://www.npmjs.com/package/@google/maps)
+[![npm](https://img.shields.io/npm/v/@googlemaps/google-maps-services-js.svg)](https://www.npmjs.com/package/@googlemapsgoogle-maps-services-js)
 [![codecov](https://codecov.io/gh/googlemaps/google-maps-services-js/branch/master/graph/badge.svg)](https://codecov.io/gh/googlemaps/google-maps-services-js)
 ![GitHub contributors](https://img.shields.io/github/contributors/googlemaps/google-maps-services-js?color=green)
+
+> This library is a refactor of a previous version published to [@google/maps](https://www.npmjs.com/package/@google/maps). It is now being published to [@googlemaps/google-maps-services-js](https://www.npmjs.com/package/@googlemaps/google-maps-services-js).
 
 Use Node.js? Want to [geocode][Geocoding API] something? Looking
 for [directions][Directions API]?
@@ -36,7 +38,7 @@ This library is designed for server-side Node.js applications. Attempting to use
 Below is a simple example calling the elevation method on the client class.
 
 ```js
-const maps = new require("@googlemaps/google-maps-services-node");
+const maps = new require("@googlemaps/google-maps-services-js");
 
 const client = new maps.Client({});
 
