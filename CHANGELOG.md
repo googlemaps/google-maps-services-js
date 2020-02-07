@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/googlemaps/google-maps-services-js/compare/v1.1.0...v2.0.0) (2020-02-07)
+
+
+### Features
+
+* add link to old version branch ([31a824e](https://github.com/googlemaps/google-maps-services-js/commit/31a824e761dd6a860c07cc1f0d4aedfb51959fb5))
+
+
+### BREAKING CHANGES
+
+* avoid collision in tags
+
 # [1.1.0](https://github.com/googlemaps/google-maps-services-js/compare/v1.0.1...v1.1.0) (2020-02-07)
 
 
