@@ -6,7 +6,7 @@ Node.js Client for Google Maps Services
 [![codecov](https://codecov.io/gh/googlemaps/google-maps-services-js/branch/master/graph/badge.svg)](https://codecov.io/gh/googlemaps/google-maps-services-js)
 ![GitHub contributors](https://img.shields.io/github/contributors/googlemaps/google-maps-services-js?color=green)
 
-> This library is a refactor of a previous version published to [@google/maps](https://www.npmjs.com/package/@google/maps). It is now being published to [@googlemaps/google-maps-services-js](https://www.npmjs.com/package/@googlemaps/google-maps-services-js).
+> This library is a refactor of a previous version published to [@google/maps](https://www.npmjs.com/package/@google/maps). It is now being published to [@googlemaps/google-maps-services-js](https://www.npmjs.com/package/@googlemaps/google-maps-services-js). Source for the old version is at the [@google/maps branch](https://github.com/googlemaps/google-maps-services-js/tree/%40google/maps).
 
 Use Node.js? Want to [geocode][Geocoding API] something? Looking
 for [directions][Directions API]?
