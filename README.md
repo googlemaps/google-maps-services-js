@@ -82,15 +82,6 @@ If you find a bug, or have a feature suggestion, please
 [log an issue][issues]. If you'd like to contribute, please read
 [How to Contribute][contrib].
 
-## Command-line Interface
-
-Installing via npm also provides the `googlemaps` command-line utility,
-which can then be used to pipe JSON results to other command-line programs:
-
-```
-$ googlemaps directions --origin 'Sydney Town Hall' --destination 'Parramatta, NSW'
-```
-
 [apikey]: https://developers.google.com/maps/faq#keysystem
 [clientid]: https://developers.google.com/maps/documentation/business/webservices/auth
 
