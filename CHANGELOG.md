@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/googlemaps/google-maps-services-js/compare/v1.0.1...v1.1.0) (2020-02-07)
+
+
+### Features
+
+* add changelogs ([c2d90c0](https://github.com/googlemaps/google-maps-services-js/commit/c2d90c080d83974684e7eede387b434b262645fa))
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
