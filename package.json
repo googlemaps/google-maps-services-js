@@ -1,28 +1,18 @@
 {
-  "name": "@google/maps",
-  "version": "1.1.0",
+  "name": "@googlemaps/google-maps-services-js",
+  "version": "2.0.0-rc.1",
   "author": "Google Inc.",
   "description": "Node.js client library for Google Maps API Web Services",
-  "main": "./lib",
+  "main": "./dist/index.js",
   "contributors": [
-    {
-      "name": "Stephen Farrar",
-      "email": "step@google.com"
-    },
-    {
-      "name": "Stephen McDonald",
-      "email": "stephenmcd@google.com"
-    },
     {
       "name": "Justin Poehnelt",
       "email": "jpoehnelt@google.com"
     }
   ],
   "scripts": {
-    "test:all": "jasmine && jasmine spec/e2e/*.js",
-    "test": "jasmine",
-    "e2e": "jasmine spec/e2e/*.js",
-    "jsdoc": "jsdoc -c docs/conf.json"
+    "prepare": "tsc",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -42,36 +32,28 @@
     "navigation"
   ],
   "license": "Apache-2.0",
-  "bin": {
-    "googlemaps": "bin/run.js"
-  },
   "bugs": {
     "url": "https://github.com/googlemaps/google-maps-services-js/issues"
   },
   "homepage": "https://github.com/googlemaps/google-maps-services-js",
   "dependencies": {
-    "https-proxy-agent": "^3.0.0",
-    "uuid": ">=2.2.1"
+    "agentkeepalive": "^4.1.0",
+    "axios": "^0.19.0",
+    "query-string": "github:jpoehnelt/query-string#e22cdb49ef848efaed4fe60d63d2504b496027c1"
   },
   "devDependencies": {
-    "codecov": "^3.5.0",
-    "jasmine": "^3.3.1",
-    "jsdoc": "^3.6.3",
-    "nyc": "^14.1.1",
-    "priorityqueuejs": "^1.0.0",
-    "q": "^1.4.1"
+    "@types/jest": "^24.0.25",
+    "@types/node": "^12.12.15",
+    "codecov": "^3.6.1",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.3.0",
+    "typescript": "^3.7.4"
   },
   "files": [
-    "lib",
-    "bin"
+    "dist"
   ],
   "publishConfig": {
     "registry": "https://wombat-dressing-room.appspot.com",
     "access": "public"
-  },
-  "nyc": {
-    "exclude": [
-      "**/spec/**"
-    ]
   }
 }

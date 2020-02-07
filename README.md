@@ -2,9 +2,11 @@ Node.js Client for Google Maps Services
 =======================================
 
 [![Build Status](https://travis-ci.org/googlemaps/google-maps-services-js.svg?branch=master)](https://travis-ci.org/googlemaps/google-maps-services-js)
-[![npm](https://img.shields.io/npm/v/@google/maps.svg)](https://www.npmjs.com/package/@google/maps)
+[![npm](https://img.shields.io/npm/v/@googlemaps/google-maps-services-js.svg)](https://www.npmjs.com/package/@googlemapsgoogle-maps-services-js)
 [![codecov](https://codecov.io/gh/googlemaps/google-maps-services-js/branch/master/graph/badge.svg)](https://codecov.io/gh/googlemaps/google-maps-services-js)
 ![GitHub contributors](https://img.shields.io/github/contributors/googlemaps/google-maps-services-js?color=green)
+
+> This library is a refactor of a previous version published to [@google/maps](https://www.npmjs.com/package/@google/maps). It is now being published to [@googlemaps/google-maps-services-js](https://www.npmjs.com/package/@googlemaps/google-maps-services-js).
 
 Use Node.js? Want to [geocode][Geocoding API] something? Looking
 for [directions][Directions API]?
@@ -29,98 +31,32 @@ apply to usage of the APIs when they're accessed through this library.
 
 This library is designed for server-side Node.js applications. Attempting to use it client-side, in either the browser or any other environment like React Native, may in some cases work, but mostly will not. Please refrain from reporting issues with these environments when attempting to use them, since **server-side Node.js applications is the only supported environment for this library**. For other environments, try the [Maps JavaScript API], which contains a comparable feature set, and is explicitly intended for use with client-side JavaScript.
 
-## Features
-
- - **Retry on Failure** Automatically retry when intermittent failures occur.
-   That is, when any of the retryable 5xx errors are returned from the API.
-
- - **Rate-limiting** Requests are rate-limited by the client, which helps
-   prevent reaching the server-enforced rate limit.
-
 ## Quick Start
 
-    $ npm install @google/maps
+    $ npm install @googlemaps/google-maps-services-node
 
-**Note:** You'll need to have npm 2.7.0 or greater installed, since this library is hosted as a
-[scoped package](https://docs.npmjs.com/getting-started/scoped-packages).
-
-Create a new client object by calling `createClient()`
+Below is a simple example calling the elevation method on the client class.
 
 ```js
-const googleMapsClient = require('@google/maps').createClient({
-  key: 'your API key here'
-});
-```
+const maps = new require("@googlemaps/google-maps-services-js");
 
-Make requests to the Google Maps APIs by calling methods on the client object.
+const client = new maps.Client({});
 
-```js
-// Geocode an address.
-googleMapsClient.geocode({
-  address: '1600 Amphitheatre Parkway, Mountain View, CA'
-}, function(err, response) {
-  if (!err) {
-    console.log(response.json.results);
-  }
-});
-```
-
-You may use promise-based solution also.
-
-```js
-const googleMapsClient = require('@google/maps').createClient({
-  key: 'your API key here',
-  Promise: Promise
-});
-
-googleMapsClient.geocode({address: '1600 Amphitheatre Parkway, Mountain View, CA'})
-  .asPromise()
-  .then((response) => {
-    console.log(response.json.results);
+client
+  .elevation({
+    params: {
+      locations: [{ lat: 45, lng: -110 }],
+      key: process.env.GOOGLE_MAPS_API_KEY
+    },
+    timeout: 1000 // milliseconds
   })
-  .catch((err) => {
-    console.log(err);
+  .then(r => {
+    console.log(r.data.results[0].elevation);
+  })
+  .catch(e => {
+    console.log(e);
   });
 ```
-
-For more usage examples, check out [the tests](spec/e2e/).
-
-View the [reference documentation](https://googlemaps.github.io/google-maps-services-js/docs/)
-
-Additional documentation for the included web services is available at
-https://developers.google.com/maps/.
-
-## API keys
-
-Each Google Maps Web Service request requires an API key. To get an API key, follow the [Get API Key](https://developers.google.com/maps/documentation/javascript/get-api-key#get-the-api-key) instructions in our Maps JS API docs.
-
-When you have an API key, you can create a client object:
-
-```js
-var googleMapsClient = require('@google/maps').createClient({
-  key: 'your API key here'
-});
-```
-
-### Client IDs
-
-Google Maps APIs Premium Plan customers can use their [client ID and secret][clientid] to authenticate,
-instead of an API key.
-
-```js
-var googleMapsClient = require('@google/maps').createClient({
-  clientId: 'Add your client ID here',
-  clientSecret: 'Add your client secret here',
-});
-```
-
-**Important:** This key should be kept secret on your server.
-
-## Typescript
-
-Community-built typings for this library are available in `@types/google__maps` (note the double underscore).
-
-`npm install @types/google__maps`
 
 ## Developing
 
