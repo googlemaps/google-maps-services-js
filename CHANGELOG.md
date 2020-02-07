@@ -2,9 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/googlemaps/google-maps-services-js/compare/1.0.2...HEAD)
+## [Unreleased](https://github.com/googlemaps/google-maps-services-js/compare/1.1.0...HEAD)
 
-## [1.0.2](https://github.com/googlemaps/google-maps-services-js/compare/1.0.1...1.02) - 2019-10-21
+## [1.1.0](https://github.com/googlemaps/google-maps-services-js/compare/1.1.0...1.0.2) - 2020-01-21
+
+### Changed
+- added support for experience id header in [`#304`](https://github.com/googlemaps/google-maps-services-js/pull/304)
+- simplified e2e tests in [`#305`](https://github.com/googlemaps/google-maps-services-js/pull/305)
+
+## [1.0.2](https://github.com/googlemaps/google-maps-services-js/compare/1.0.1...1.0.2) - 2019-10-21
 
 ### Changed
 - updated dependencies in [`#294`](https://github.com/googlemaps/google-maps-services-js/pull/294)
