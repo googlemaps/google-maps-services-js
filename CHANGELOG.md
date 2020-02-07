@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/googlemaps/google-maps-services-js/compare/v2.0.0...v2.0.1) (2020-02-07)
+
+
+### Bug Fixes
+
+* remove image from readme ([6d52cf6](https://github.com/googlemaps/google-maps-services-js/commit/6d52cf6593cc5595776b7ad336c2ae3a86890ea8))
+
 # [2.0.0](https://github.com/googlemaps/google-maps-services-js/compare/v1.1.0...v2.0.0) (2020-02-07)
 
 
