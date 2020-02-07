@@ -46,6 +46,7 @@
   },
   "devDependencies": {
     "@semantic-release/changelog": "^5.0.0",
+    "@semantic-release/git": "^9.0.0",
     "@types/jest": "^24.0.25",
     "@types/node": "^12.12.15",
     "codecov": "^3.6.1",
