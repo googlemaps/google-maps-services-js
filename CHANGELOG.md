@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/googlemaps/google-maps-services-js/compare/v2.0.1...v2.0.2) (2020-02-08)
+
+
+### Bug Fixes
+
+* use comma arrayFormat for fields param ([#316](https://github.com/googlemaps/google-maps-services-js/issues/316)) ([f061eb7](https://github.com/googlemaps/google-maps-services-js/commit/f061eb75b70f1d5d567ae58397c2bb9b09c6fecb))
+
 ## [2.0.1](https://github.com/googlemaps/google-maps-services-js/compare/v2.0.0...v2.0.1) (2020-02-07)
 
 
