@@ -83,7 +83,7 @@ export type PlaceDetailsResponseStatus =
 export const defaultUrl =
   "https://maps.googleapis.com/maps/api/place/details/json";
 
-export const defaultParamsSerializer = serializer({});
+export const defaultParamsSerializer = serializer({}, {arrayFormat: "comma"});
 
 export function placeDetails(
   {
