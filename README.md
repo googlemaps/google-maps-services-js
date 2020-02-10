@@ -81,13 +81,13 @@ environment variable.
 
 ## Migration
 
-This section discusses the migration from `@google/maps` to `@googlemaps/google-maps-services-js` and the differences between the two.
+This section discusses the migration from [@google/maps](https://www.npmjs.com/package/@google/maps) to [@googlemaps/google-maps-services-js](https://www.npmjs.com/package/@googlemaps/google-maps-services-js) and the differences between the two.
 
 > **Note**: The two libraries do not share any methods or interfaces.
 
-The primary difference is `@google/maps` exposes a public method that takes individual paramaters as arguments while `@googlemaps/google-maps-services-js` exposes methods that take `params`, `headers`, `body`, `instance`(Axios). This allows direct access to the transport layer without the complexity that was inherent in the old library. Below are two examples.
+The primary difference is `@google/maps` exposes a public method that takes individual paramaters as arguments while `@googlemaps/google-maps-services-js` exposes methods that take `params`, `headers`, `body`, `instance`(see [Axios](https://github.com/axios/axios)). This allows direct access to the transport layer without the complexity that was inherent in the old library. Below are two examples.
 
-Old (`@google/maps`)
+### Old (`@google/maps`):
 ```js
 const googleMapsClient = require('@google/maps').createClient({
   key: 'your API key here'
@@ -106,7 +106,7 @@ googleMapsClient
   });
 ```
 
-New (`@googlemaps/google-maps-services-js`)
+### New (`@googlemaps/google-maps-services-js`):
 ```js
 const client = new Client({});
 
@@ -132,9 +132,9 @@ The primary differences are in the following table.
 | ------------- |:-------------:|
 | Can provide params     | Can provide params, headers, instance, timeout (see [Axios Request Config](https://github.com/axios/axios#request-config)) |
 | API key configured at Client | API key configured per method in params object|
-| Retry is supported      | Retry is configurable via axios-retry or retry-axios      |
+| Retry is supported      | Retry is configurable via [axios-retry](https://www.npmjs.com/package/axios-retry) or [retry-axios](https://www.npmjs.com/package/retry-axios)      |
 | Does not use promises by default | Promises are default     |
-| Typings are in @types/googlemaps | Typings are included |
+| Typings are in [@types/googlemaps](https://www.npmjs.com/package/@types/googlemaps) | Typings are included |
 | Does not support keep alive | Supports keep alive |
 | Does not support interceptors | Supports [interceptors](https://github.com/axios/axios#interceptors)|
 | Does not support cancelalation | Supports [cancellation](https://github.com/axios/axios#cancellation) |
