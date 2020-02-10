@@ -85,7 +85,7 @@ This section discusses the migration from [@google/maps](https://www.npmjs.com/p
 
 > **Note**: The two libraries do not share any methods or interfaces.
 
-The primary difference is `@google/maps` exposes a public method that takes individual paramaters as arguments while `@googlemaps/google-maps-services-js` exposes methods that take `params`, `headers`, `body`, `instance`(see [Axios](https://github.com/axios/axios)). This allows direct access to the transport layer without the complexity that was inherent in the old library. Below are two examples.
+The primary difference is `@google/maps` exposes a public method that takes individual parameters as arguments while `@googlemaps/google-maps-services-js` exposes methods that take `params`, `headers`, `body`, `instance`(see [Axios](https://github.com/axios/axios)). This allows direct access to the transport layer without the complexity that was inherent in the old library. Below are two examples.
 
 ### Old (`@google/maps`):
 ```js
