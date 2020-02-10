@@ -39,10 +39,21 @@ This library is designed for server-side Node.js applications. Attempting to use
 
 Below is a simple example calling the elevation method on the client class.
 
-```js
-const maps = new require("@googlemaps/google-maps-services-js");
+Import the Google Maps Client using Typescript and ES6 module:
 
-const client = new maps.Client({});
+```js
+import {Client} from "@googlemaps/google-maps-services-js";
+```
+
+Alternatively using JavaScript without ES6 module support:
+```js
+const Client = require("@googlemaps/google-maps-services-js").Client;
+```
+
+Now instantiate the client to make a call to one of the APIs.
+
+```js
+const client = new Client({});
 
 client
   .elevation({
@@ -67,6 +78,67 @@ environment variable.
 
     $ export GOOGLE_MAPS_API_KEY=AIza-your-api-key
     $ npm test
+
+## Migration
+
+This section discusses the migration from [@google/maps](https://www.npmjs.com/package/@google/maps) to [@googlemaps/google-maps-services-js](https://www.npmjs.com/package/@googlemaps/google-maps-services-js) and the differences between the two.
+
+> **Note**: The two libraries do not share any methods or interfaces.
+
+The primary difference is `@google/maps` exposes a public method that takes individual paramaters as arguments while `@googlemaps/google-maps-services-js` exposes methods that take `params`, `headers`, `body`, `instance`(see [Axios](https://github.com/axios/axios)). This allows direct access to the transport layer without the complexity that was inherent in the old library. Below are two examples.
+
+### Old (`@google/maps`):
+```js
+const googleMapsClient = require('@google/maps').createClient({
+  key: 'your API key here'
+});
+
+googleMapsClient
+  .elevation({
+    locations: {lat: 45, lng: -110}
+  })
+  .asPromise()
+  .then(function(r) {
+    console.log(r.json.results[0].elevation);
+  })
+  .catch(e => {
+  console.log(e);
+  });
+```
+
+### New (`@googlemaps/google-maps-services-js`):
+```js
+const client = new Client({});
+
+client
+  .elevation({
+    params: {
+      locations: [{ lat: 45, lng: -110 }],
+      key: process.env.GOOGLE_MAPS_API_KEY
+    },
+    timeout: 1000 // milliseconds
+  }, axiosInstance)
+  .then(r => {
+    console.log(r.data.results[0].elevation);
+  })
+  .catch(e => {
+    console.log(e);
+  });
+```
+
+The primary differences are in the following table.
+
+| Old        | New           |
+| ------------- |:-------------:|
+| Can provide params     | Can provide params, headers, instance, timeout (see [Axios Request Config](https://github.com/axios/axios#request-config)) |
+| API key configured at Client | API key configured per method in params object|
+| Retry is supported      | Retry is configurable via [axios-retry](https://www.npmjs.com/package/axios-retry) or [retry-axios](https://www.npmjs.com/package/retry-axios)      |
+| Does not use promises by default | Promises are default     |
+| Typings are in [@types/googlemaps](https://www.npmjs.com/package/@types/googlemaps) | Typings are included |
+| Does not support keep alive | Supports keep alive |
+| Does not support interceptors | Supports [interceptors](https://github.com/axios/axios#interceptors)|
+| Does not support cancelalation | Supports [cancellation](https://github.com/axios/axios#cancellation) |
+
 
 ## Support
 
