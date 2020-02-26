@@ -51,7 +51,7 @@
     "@semantic-release/release-notes-generator": "^9.0.0",
     "@types/jest": "^24.0.25",
     "@types/node": "^12.12.15",
-    "codecov": "^3.6.1",
+    "codecov": ">=3.6.5",
     "jest": "^24.9.0",
     "semantic-release": "^17.0.2",
     "ts-jest": "^24.3.0",
