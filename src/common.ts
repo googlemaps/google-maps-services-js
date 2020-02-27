@@ -66,7 +66,9 @@ export type Status =
   /** indicates that the service denied use of the Distance Matrix service by your application. */
   | "REQUEST_DENIED"
   /** indicates a Distance Matrix request could not be processed due to a server error. The request may succeed if you try again. */
-  | "UNKNOWN_ERROR";
+  | "UNKNOWN_ERROR"
+  /** indicates that the request was successful but returned no results. */
+  | "ZERO_RESULTS";
 
 export interface PlacePhoto {
   /** a string used to identify the photo when you perform a Photo request. */
