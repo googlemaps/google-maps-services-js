@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosInstance } from "axios";
+import * as merge from "deepmerge";
 import { version } from "./index";
 import { HttpsAgent } from "agentkeepalive";
 import {
@@ -89,17 +90,9 @@ export class Client {
   private experienceId: string[];
 
   constructor({ config, experienceId }: ClientOptions) {
-    if (config && Object.keys(config).length) {
-      // TODO: use deep merge so that we maintain the existing
-      // default config settings not specificed by the user
-      config.headers = Object.assign(
-        defaultConfig.headers,
-        config.headers || {}
-      );
-      config = Object.assign(defaultConfig, config);
-      this.axiosInstance = axios.create(config);
+    if (config) {
+      this.axiosInstance = axios.create(merge(defaultConfig, config));
     } else {
-      // if no config is passed, just reuse the default instance
       this.axiosInstance = defaultAxiosInstance;
     }
 
