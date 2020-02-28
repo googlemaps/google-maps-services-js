@@ -81,6 +81,9 @@ const defaultConfig = {
 export const defaultAxiosInstance = axios.create(defaultConfig);
 
 export interface ClientOptions {
+  /** AxiosInstance to be used by client. Provide one of axiosInstance or config. */
+  axiosInstance?: AxiosInstance;
+  /** Config used to create AxiosInstance. Provide one of axiosInstance or config. */
   config?: AxiosRequestConfig;
   experienceId?: string[];
 }
@@ -89,8 +92,16 @@ export class Client {
   private axiosInstance: AxiosInstance;
   private experienceId: string[];
 
-  constructor({ config, experienceId }: ClientOptions) {
-    if (config) {
+  constructor({ axiosInstance, config, experienceId }: ClientOptions) {
+    if (axiosInstance && config) {
+      throw new Error("Provide one of axiosInstance or config.");
+    }
+
+    if (axiosInstance) {
+      this.axiosInstance = axiosInstance;
+      // Avoid changing this instance in any way that affects its behavior
+      this.axiosInstance.defaults.headers["User-Agent"] = userAgent;
+    } else if (config) {
       this.axiosInstance = axios.create(merge(defaultConfig, config));
     } else {
       this.axiosInstance = defaultAxiosInstance;
