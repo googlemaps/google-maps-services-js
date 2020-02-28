@@ -8,6 +8,6 @@ test("autocomplete should return correct result", async () => {
   };
 
   const r = await placeQueryAutocomplete({ params: params });
-
   expect(r.data.predictions.length).toBeTruthy();
+  expect(r.data.predictions[0].terms.length).toBeTruthy();
 });

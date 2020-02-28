@@ -1,4 +1,13 @@
-import { LatLng, Language, Place, ResponseData, RequestParams } from "../common";
+import {
+  LatLng,
+  Language,
+  Place,
+  ResponseData,
+  RequestParams,
+  PredictionTerm,
+  PredictionSubstring,
+  StructuredFormatting
+} from "../common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "../client";
 import { serializer, latLngToString } from "../serialize";
@@ -31,7 +40,25 @@ export interface PlaceQueryAutocompleteRequest
      * If language is not supplied, the Places service will attempt to use the native language of the domain from which the request is sent.
      */
     language?: Language;
-    } & RequestParams;
+  } & RequestParams;
+}
+
+export interface PlaceQueryAutocompletePrediction {
+  /** contains the human-readable name for the returned result. For establishment results, this is usually the business name. */
+  description: string;
+  /**
+   * contains an array of terms identifying each section of the returned description
+   * (a section of the description is generally terminated with a comma).
+   */
+  terms: PredictionTerm[];
+  /**
+   * contains an `offset` value and a `length`.
+   * These describe the location of the entered term in the prediction result text, so that the term can be highlighted if desired.
+   */
+  matched_substrings: PredictionSubstring[];
+  structured_formatting?: StructuredFormatting[];
+  place_id?: string;
+  types?: string[];
 }
 
 export interface PlaceQueryAutocompleteResponseData extends ResponseData {
@@ -40,7 +67,7 @@ export interface PlaceQueryAutocompleteResponseData extends ResponseData {
    * See [Place Autocomplete Results](https://developers.google.com/places/web-service/autocomplete#place_autocomplete_results)
    * for information about these results. The Places API returns up to 5 results.
    */
-  predictions: Place[];
+  predictions: PlaceQueryAutocompletePrediction[];
 }
 
 export interface PlaceQueryAutocompleteResponse extends AxiosResponse {
