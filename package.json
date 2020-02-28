@@ -42,7 +42,7 @@
   "dependencies": {
     "agentkeepalive": "^4.1.0",
     "axios": "^0.19.0",
-    "query-string": "github:jpoehnelt/query-string#e22cdb49ef848efaed4fe60d63d2504b496027c1"
+    "query-string": "^6.11.0"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^5.0.0",
