@@ -17,12 +17,39 @@ import {
   TextSearchRequest,
   NearestRoadsRequest,
   SnapToRoadsRequest,
-  X_GOOG_MAPS_EXPERIENCE_ID
+  X_GOOG_MAPS_EXPERIENCE_ID,
+  defaultAxiosInstance
 } from "./client";
+
+import axios from "axios";
 
 test("client can be instantiated", () => {
   const client = new Client({});
   expect(client["axiosInstance"]).toBeDefined();
+});
+
+test("client can be instantiated with axiosInstance", () => {
+  const client = new Client({ axiosInstance: axios.create({}) });
+  expect(client["axiosInstance"]).toBeDefined();
+});
+
+test("client can be instantiated with axiosInstance has correct defaults", () => {
+  const client = new Client({ axiosInstance: axios.create({}) });
+  expect(client["axiosInstance"].defaults.headers["User-Agent"]).toEqual(
+    userAgent
+  );
+  expect(client["axiosInstance"].defaults.timeout).toEqual(
+    axios.defaults.timeout
+  );
+});
+
+test("client instantiated with custom instance and config throws error", () => {
+  expect(() => {
+    new Client({
+      axiosInstance: defaultAxiosInstance,
+      config: { timeout: 10000 }
+    });
+  }).toThrowError();
 });
 
 test("client can be instantiated with header options", () => {
