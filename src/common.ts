@@ -72,7 +72,7 @@ export type Status =
 
 export interface PlacePhoto {
   /** a string used to identify the photo when you perform a Photo request. */
-  photoreference: string;
+  photo_reference: string;
   /** the maximum height of the image. */
   height: number;
   /** the maximum width of the image. */
