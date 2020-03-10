@@ -70,12 +70,16 @@ import {
 export const defaultHttpsAgent = new HttpsAgent({ keepAlive: true });
 export const defaultTimeout = 10000;
 export const userAgent = `google-maps-services-node-${version}`;
+export const acceptEncoding = "gzip";
 export const X_GOOG_MAPS_EXPERIENCE_ID = "X-GOOG-MAPS-EXPERIENCE-ID";
 
 const defaultConfig = {
   timeout: defaultTimeout,
   httpsAgent: defaultHttpsAgent,
-  headers: { "User-Agent": userAgent }
+  headers: {
+    "User-Agent": userAgent,
+    "Accept-Encoding": acceptEncoding
+  }
 };
 
 export const defaultAxiosInstance = axios.create(defaultConfig);
