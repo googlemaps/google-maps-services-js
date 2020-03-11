@@ -1,6 +1,7 @@
 import {
   Client,
   userAgent,
+  acceptEncoding,
   DirectionsRequest,
   DistanceMatrixRequest,
   ElevationRequest,
@@ -38,6 +39,7 @@ test("client can be instantiated with axiosInstance has correct defaults", () =>
   expect(client["axiosInstance"].defaults.headers["User-Agent"]).toEqual(
     userAgent
   );
+  expect(client["axiosInstance"].defaults.headers["Accept-Encoding"]).toBeUndefined();
   expect(client["axiosInstance"].defaults.timeout).toEqual(
     axios.defaults.timeout
   );
@@ -59,6 +61,21 @@ test("client can be instantiated with header options", () => {
   expect(client["axiosInstance"].defaults.headers["User-Agent"]).toEqual(
     userAgent
   );
+  expect(client["axiosInstance"].defaults.headers["Accept-Encoding"]).toBe(
+      acceptEncoding
+  );
+});
+
+test("client can be override Accept-Encoding with header options", () => {
+  const client = new Client({ config: { headers: { "x-foo": "bar", "Accept-Encoding": "identity" } } });
+  expect(client["axiosInstance"]).toBeDefined();
+  expect(client["axiosInstance"].defaults.headers["x-foo"]).toEqual("bar");
+  expect(client["axiosInstance"].defaults.headers["User-Agent"]).toEqual(
+      userAgent
+  );
+  expect(client["axiosInstance"].defaults.headers["Accept-Encoding"]).toBe(
+      "identity"
+  );
 });
 
 test("client can be instantiated without header options", () => {
@@ -67,6 +84,9 @@ test("client can be instantiated without header options", () => {
   expect(client["axiosInstance"].defaults.timeout).toEqual(1234);
   expect(client["axiosInstance"].defaults.headers["User-Agent"]).toEqual(
     userAgent
+  );
+  expect(client["axiosInstance"].defaults.headers["Accept-Encoding"]).toBe(
+      acceptEncoding
   );
 });
 
