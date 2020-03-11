@@ -22,6 +22,7 @@ jobs:
     - npm run test:e2e
   - stage: release
     node_js: lts/*
+    if: branch = master AND type = push AND fork = false
     deploy:
       provider: script
       skip_cleanup: true
