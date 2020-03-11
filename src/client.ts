@@ -96,7 +96,7 @@ export class Client {
   private axiosInstance: AxiosInstance;
   private experienceId: string[];
 
-  constructor({ axiosInstance, config, experienceId }: ClientOptions) {
+  constructor({ axiosInstance, config, experienceId }: ClientOptions = {}) {
     if (axiosInstance && config) {
       throw new Error("Provide one of axiosInstance or config.");
     }
