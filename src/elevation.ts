@@ -3,15 +3,32 @@ import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "./client";
 import { serializer, latLngToString } from "./serialize";
 
+export interface PositionalElevationParams extends RequestParams {
+  /**
+   * defines the location(s) on the earth from which to return elevation data.
+   * This parameter takes either a single location as a comma-separated {latitude,longitude} pair (e.g. "40.714728,-73.998672")
+   * or multiple latitude/longitude pairs passed as an array or as an encoded polyline.
+   */
+  locations: LatLng[];
+}
+
+export interface SampledPathElevationParams extends RequestParams {
+  /**
+   * defines a path on the earth for which to return elevation data. This parameter defines a
+   * set of two or more ordered pairs defining a path along the surface of the earth. This
+   * parameter must be used in conjunction with the samples parameter described below.
+   */
+  path: LatLng[];
+  /**
+   * specifies the number of sample points along a path for which to return elevation data.
+   * The samples parameter divides the given path into an ordered set of equidistant points
+   * along the path.
+   */
+  samples: number;
+}
+
 export interface ElevationRequest extends Partial<AxiosRequestConfig> {
-  params: {
-    /**
-     * defines the location(s) on the earth from which to return elevation data.
-     * This parameter takes either a single location as a comma-separated {latitude,longitude} pair (e.g. "40.714728,-73.998672")
-     * or multiple latitude/longitude pairs passed as an array or as an encoded polyline.
-     */
-    locations: LatLng[];
-  } & RequestParams;
+  params: PositionalElevationParams | SampledPathElevationParams;
 }
 export interface ElevationResponseData extends ResponseData {
   results: {
@@ -39,7 +56,8 @@ export interface ElevationResponse extends AxiosResponse {
 export const defaultUrl = "https://maps.googleapis.com/maps/api/elevation/json";
 
 export const defaultParamsSerializer = serializer({
-  locations: o => o.map(latLngToString)
+  locations: o => o.map(latLngToString),
+  path: o => o.map(latLngToString)
 });
 
 export function elevation(
