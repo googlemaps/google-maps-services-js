@@ -15,8 +15,14 @@ env:
   - secure: hZOQNMDjqX5N4ngV36uKiKjnCR2Cyc6yffkWcME+K+M/hbIBMoQJmTqV7aL+FG5tUI6KABYedBaMWb0zmvDnA45HX/zPDdRp5ZmXPW67t8gwmYKDHd+nCOL4sIkGCVsWHSD+ajiDDexGyDh2Y39W11k1O324yCMWbtEUllimIzA9CU4IBuor4QuSf7OEntolftI0DEDA40pI2L1pf0Ptoz8x8pV7UzDk3I4de3Y8zgO77GsiQCuJM0DdNL6yVnSJVqn+EbjP8fZI6nB1DmFifCUv10WCtfjD55w2Lz4LsW6LGITY3A1MjPZBFriaAhTyfZBrCMRZaU8UV+1WJfX7erlqmhXce5EQDE/HhH1Sbz8B/uLtupj+TdEqhafka4gbJuEBIY4GT6Xvb4pDnyrmsbKpZUR7vcCV5pEEWwLMH6FUBnEzI1VDpnrtu89C0TrO3UC++0gwgoI8ACNgxmTPY+SLgkaAXxuurajji+k/5V7gL+2+ycpf/q1cywoop4tWlgGdaCCtA1gz2+bFMVkhMQWlGXq2TZQnEeUybX6eaetto9kwNodMAV/Oqkz1P1nY8X7L2OE5UNxVQONrOTFFfO+V2bItKseQ7ouoPyIJd67Vg8HDvazh4fEn3SeJI50Okl+8mHjdOOkQEzzVwu6TrEEFtWJG8W+T+EZkGGOlIdE=
 jobs:
   include:
+  - stage: test
+    node_js: lts/*
+    if: branch = master AND type = push AND fork = false
+    script:
+    - npm run test:e2e
   - stage: release
     node_js: lts/*
+    if: branch = master AND type = push AND fork = false
     deploy:
       provider: script
       skip_cleanup: true

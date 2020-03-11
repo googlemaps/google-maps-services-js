@@ -37,7 +37,8 @@
   ],
   "scripts": {
     "prepare": "tsc",
-    "test": "jest"
+    "test": "jest src",
+    "test:e2e": "jest e2e"
   },
   "dependencies": {
     "agentkeepalive": "^4.1.0",
