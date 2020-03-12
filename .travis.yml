@@ -17,7 +17,7 @@ jobs:
   include:
   - stage: test
     node_js: lts/*
-    if: branch = master AND type = push AND fork = false
+    if: fork = false
     script:
     - npm run test:e2e
   - stage: release
