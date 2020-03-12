@@ -39,7 +39,9 @@ test("client can be instantiated with axiosInstance has correct defaults", () =>
   expect(client["axiosInstance"].defaults.headers["User-Agent"]).toEqual(
     userAgent
   );
-  expect(client["axiosInstance"].defaults.headers["Accept-Encoding"]).toBeUndefined();
+  expect(client["axiosInstance"].defaults.headers["Accept-Encoding"]).toBe(
+    acceptEncoding
+  );
   expect(client["axiosInstance"].defaults.timeout).toEqual(
     axios.defaults.timeout
   );

@@ -1,5 +1,4 @@
 import axios, { AxiosRequestConfig, AxiosInstance } from "axios";
-import * as merge from "deepmerge";
 import { version } from "./index";
 import { HttpsAgent } from "agentkeepalive";
 import {
@@ -103,10 +102,14 @@ export class Client {
 
     if (axiosInstance) {
       this.axiosInstance = axiosInstance;
-      // Avoid changing this instance in any way that affects its behavior
-      this.axiosInstance.defaults.headers["User-Agent"] = userAgent;
+      this.axiosInstance.defaults.headers = {
+        ...defaultConfig.headers,
+        ...this.axiosInstance.defaults.headers
+      };
     } else if (config) {
-      this.axiosInstance = axios.create(merge(defaultConfig, config));
+      config = { ...defaultConfig, ...config };
+      config.headers = { ...defaultConfig.headers, ...(config.headers || {}) };
+      this.axiosInstance = axios.create(config);
     } else {
       this.axiosInstance = defaultAxiosInstance;
     }
