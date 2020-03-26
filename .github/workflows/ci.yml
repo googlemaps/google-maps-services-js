@@ -1,11 +1,10 @@
 name: CI
 
 on:
-  - push 
+  - push
   - pull_request
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -13,10 +12,17 @@ jobs:
         node-version: [10.x, 12.x]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: npm test
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm test
+      - uses: codecov/codecov-action@v1
+        with:
+          fail_ci_if_error: true
+      - run: npm run test:e2e
+        if: github.event_name == 'push'
+        env:
+          GOOGLE_MAPS_API_KEY: ${{ secrets.SYNCED_GOOGLE_MAPS_API_KEY_SERVICES }}
