@@ -1,9 +1,9 @@
 import { timezone } from "../src/timezone";
 
-test("elevation should call axios correctly", async () => {
+test("elevation should get an ok response", async () => {
   const params = {
-    location: { lat: 35, lng: -110 },
-    timestamp: 0,
+    location: "30, 50",
+    timestamp: new Date(),
     language: "en" as const,
     key: process.env.GOOGLE_MAPS_API_KEY
   };

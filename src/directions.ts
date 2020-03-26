@@ -1,20 +1,21 @@
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import {
   DirectionsRoute,
   GeocodedWaypoint,
-  TrafficModel,
-  TransitRoutingPreference,
-  TravelRestriction,
-  LatLng,
   Language,
-  UnitSystem,
-  TransitMode,
-  TravelMode,
+  LatLng,
+  RequestParams,
   ResponseData,
-  RequestParams
+  TrafficModel,
+  TransitMode,
+  TransitRoutingPreference,
+  TravelMode,
+  TravelRestriction,
+  UnitSystem
 } from "./common";
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { latLngToString, serializer, toTimestamp } from "./serialize";
+
 import { defaultAxiosInstance } from "./client";
-import { serializer, latLngToString } from "./serialize";
 
 export interface DirectionsRequest extends Partial<AxiosRequestConfig> {
   params: {
@@ -176,8 +177,8 @@ export const defaultParamsSerializer = serializer({
   origin: latLngToString,
   destination: latLngToString,
   waypoints: o => o.map(latLngToString),
-  arrival_time: Number,
-  departure_time: Number
+  arrival_time: toTimestamp,
+  departure_time: toTimestamp
 });
 
 export function directions(

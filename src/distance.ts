@@ -1,18 +1,19 @@
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import {
   DistanceMatrixRow,
-  TrafficModel,
-  TransitRoutingPreference,
-  TravelRestriction,
   LatLng,
-  UnitSystem,
-  TransitMode,
-  TravelMode,
+  RequestParams,
   ResponseData,
-  RequestParams
+  TrafficModel,
+  TransitMode,
+  TransitRoutingPreference,
+  TravelMode,
+  TravelRestriction,
+  UnitSystem
 } from "./common";
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { latLngToString, serializer, toTimestamp } from "./serialize";
+
 import { defaultAxiosInstance } from "./client";
-import { serializer, latLngToString } from "./serialize";
 
 export interface DistanceMatrixRequest extends Partial<AxiosRequestConfig> {
   params: {
@@ -155,8 +156,8 @@ export const defaultUrl =
 export const defaultParamsSerializer = serializer({
   origins: o => o.map(latLngToString),
   destinations: o => o.map(latLngToString),
-  arrival_time: Number,
-  departure_time: Number
+  arrival_time: toTimestamp,
+  departure_time: toTimestamp
 });
 
 export function distancematrix(

@@ -1,12 +1,13 @@
+import { LatLng, LatLngLiteral } from "./common";
 import {
-  latLngToString,
-  serializer,
-  objectToString,
-  latLngBoundsToString,
   latLngArrayToStringMaybeEncoded,
-  toLatLngLiteral
+  latLngBoundsToString,
+  latLngToString,
+  objectToString,
+  serializer,
+  toLatLngLiteral,
+  toTimestamp
 } from "./serialize";
-import { LatLngLiteral, LatLng } from "./common";
 
 test("latLngToString is correct", () => {
   expect(latLngToString("")).toBe("");
@@ -78,3 +79,13 @@ test("toLatLngLiteral", () => {
     toLatLngLiteral({} as LatLngLiteral);
   }).toThrow(TypeError);
 });
+
+test("toTimestamp", () => {
+  expect(toTimestamp(100)).toEqual(100);
+  
+  const dt = new Date();
+  const seconds = Number(dt) / 1000
+  expect(toTimestamp(dt)).toEqual(seconds);
+
+});
+
