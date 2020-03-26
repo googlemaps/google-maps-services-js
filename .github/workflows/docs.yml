@@ -8,6 +8,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
     - run: npm ci
+    - run: touch .nojekyll
     - run: npm run docs
     - name: GitHub Pages
       if: success()
