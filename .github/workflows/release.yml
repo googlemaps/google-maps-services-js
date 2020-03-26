@@ -27,4 +27,4 @@ jobs:
           "@semantic-release/npm
       env:
         GH_TOKEN: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
-        NPM_TOKEN: ${{ secrets.SYNCED_NPM_TOKEN }}
+        NPM_TOKEN: ${{ secrets.NPM_WOMBAT_TOKEN }}

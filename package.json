@@ -60,6 +60,7 @@
     "typescript": "^3.7.4"
   },
   "publishConfig": {
+    "registry":"https://wombat-dressing-room.appspot.com",
     "access": "public"
   },
   "release": {
