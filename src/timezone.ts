@@ -1,7 +1,8 @@
-import { LatLng, Language, ResponseData, RequestParams } from "./common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { Language, LatLng, RequestParams, ResponseData } from "./common";
+import { latLngToString, serializer, toTimestamp } from "./serialize";
+
 import { defaultAxiosInstance } from "./client";
-import { serializer, latLngToString } from "./serialize";
 
 export interface TimeZoneRequest extends Partial<AxiosRequestConfig> {
   params: {
@@ -55,7 +56,7 @@ export interface TimeZoneResponse extends AxiosResponse {
 
 export const defaultUrl = "https://maps.googleapis.com/maps/api/timezone/json";
 export const defaultParamsSerializer = serializer({
-  timestamp: Number,
+  timestamp: toTimestamp,
   location: latLngToString
 });
 export function timezone(

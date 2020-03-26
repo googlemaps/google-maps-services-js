@@ -1,5 +1,6 @@
+import { defaultParamsSerializer, defaultUrl, timezone } from "./timezone";
+
 import axios from "axios";
-import { timezone, defaultParamsSerializer, defaultUrl } from "./timezone";
 
 jest.mock("axios");
 
@@ -24,4 +25,9 @@ test("elevation should call axios correctly", () => {
     paramsSerializer: defaultParamsSerializer,
     url: defaultUrl
   });
+});
+
+test("serializer should handle date object", () => {
+  const dt = new Date();
+  expect(defaultParamsSerializer({timestamp: dt})).toEqual(`timestamp=${Number(dt)/1000}`)
 });

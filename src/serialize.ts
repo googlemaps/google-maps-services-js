@@ -1,6 +1,7 @@
 import { LatLng, LatLngBounds, LatLngLiteral } from "./common";
-import { stringify as qs } from "query-string";
+
 import { encodePath } from "./util";
+import { stringify as qs } from "query-string";
 
 const separator = "|";
 
@@ -95,4 +96,11 @@ export function serializer(
     });
     return qs(params, queryStringOptions);
   };
+}
+
+export function toTimestamp(o: number | Date) {
+  if (o instanceof Date) {
+    return Number(o) / 1000;
+  }
+  return o
 }
