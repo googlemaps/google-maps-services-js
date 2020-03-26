@@ -1,8 +1,9 @@
 Node.js Client for Google Maps Services
 =======================================
 
-[![Build Status](https://travis-ci.org/googlemaps/google-maps-services-js.svg?branch=master)](https://travis-ci.org/googlemaps/google-maps-services-js)
 [![npm](https://img.shields.io/npm/v/@googlemaps/google-maps-services-js.svg)](https://www.npmjs.com/package/@googlemaps/google-maps-services-js)
+![CI](https://github.com/googlemaps/google-maps-services-js/workflows/CI/badge.svg)
+![Release](https://github.com/googlemaps/google-maps-services-js/workflows/Release/badge.svg)
 [![codecov](https://codecov.io/gh/googlemaps/google-maps-services-js/branch/master/graph/badge.svg)](https://codecov.io/gh/googlemaps/google-maps-services-js)
 ![GitHub contributors](https://img.shields.io/github/contributors/googlemaps/google-maps-services-js?color=green)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
