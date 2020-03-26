@@ -1,70 +1,73 @@
-import axios, { AxiosRequestConfig, AxiosInstance } from "axios";
-import { version } from "./index";
-import { HttpsAgent } from "agentkeepalive";
+import * as rax from "retry-axios";
+
 import {
-  directions,
   DirectionsRequest,
-  DirectionsResponse
+  DirectionsResponse,
+  directions
 } from "./directions";
 import {
-  distancematrix,
   DistanceMatrixRequest,
-  DistanceMatrixResponse
+  DistanceMatrixResponse,
+  distancematrix
 } from "./distance";
-import { elevation, ElevationRequest, ElevationResponse } from "./elevation";
-import { geolocate, GeolocateRequest, GeolocateResponse } from "./geolocate";
-import { timezone, TimeZoneRequest, TimeZoneResponse } from "./timezone";
-import { geocode, GeocodeRequest, GeocodeResponse } from "./geocode/geocode";
+import { ElevationRequest, ElevationResponse, elevation } from "./elevation";
 import {
-  reverseGeocode,
-  ReverseGeocodeRequest,
-  ReverseGeocodeResponse
-} from "./geocode/reversegeocode";
-import {
-  placeAutocomplete,
-  PlaceAutocompleteRequest,
-  PlaceAutocompleteResponse
-} from "./places/autocomplete";
-import {
-  placeDetails,
-  PlaceDetailsRequest,
-  PlaceDetailsResponse
-} from "./places/details";
-import {
-  findPlaceFromText,
   FindPlaceFromTextRequest,
-  FindPlaceFromTextResponse
+  FindPlaceFromTextResponse,
+  findPlaceFromText
 } from "./places/findplacefromtext";
+import { GeocodeRequest, GeocodeResponse, geocode } from "./geocode/geocode";
+import { GeolocateRequest, GeolocateResponse, geolocate } from "./geolocate";
 import {
-  placePhoto,
-  PlacePhotoRequest,
-  PlacePhotoResponse
-} from "./places/photo";
-import {
-  placesNearby,
-  PlacesNearbyRequest,
-  PlacesNearbyResponse
-} from "./places/placesnearby";
-import {
-  placeQueryAutocomplete,
-  PlaceQueryAutocompleteRequest,
-  PlaceQueryAutocompleteResponse
-} from "./places/queryautocomplete";
-import {
-  textSearch,
-  TextSearchRequest,
-  TextSearchResponse
-} from "./places/textsearch";
-import {
-  nearestRoads,
   NearestRoadsRequest,
-  NearestRoadsResponse
+  NearestRoadsResponse,
+  nearestRoads
 } from "./roads/nearestroads";
 import {
-  snapToRoads,
+  PlaceAutocompleteRequest,
+  PlaceAutocompleteResponse,
+  placeAutocomplete
+} from "./places/autocomplete";
+import {
+  PlaceDetailsRequest,
+  PlaceDetailsResponse,
+  placeDetails
+} from "./places/details";
+import {
+  PlacePhotoRequest,
+  PlacePhotoResponse,
+  placePhoto
+} from "./places/photo";
+import {
+  PlaceQueryAutocompleteRequest,
+  PlaceQueryAutocompleteResponse,
+  placeQueryAutocomplete
+} from "./places/queryautocomplete";
+import {
+  PlacesNearbyRequest,
+  PlacesNearbyResponse,
+  placesNearby
+} from "./places/placesnearby";
+import {
+  ReverseGeocodeRequest,
+  ReverseGeocodeResponse,
+  reverseGeocode
+} from "./geocode/reversegeocode";
+import {
   SnapToRoadsRequest,
-  SnapToRoadsResponse
+  SnapToRoadsResponse,
+  snapToRoads
 } from "./roads/snaptoroads";
+import {
+  TextSearchRequest,
+  TextSearchResponse,
+  textSearch
+} from "./places/textsearch";
+import { TimeZoneRequest, TimeZoneResponse, timezone } from "./timezone";
+import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
+
+import { HttpsAgent } from "agentkeepalive";
+import { version } from "./index";
 
 export const defaultHttpsAgent = new HttpsAgent({ keepAlive: true });
 export const defaultTimeout = 10000;
@@ -82,15 +85,39 @@ const defaultConfig = {
 };
 
 export const defaultAxiosInstance = axios.create(defaultConfig);
+rax.attach(defaultAxiosInstance);
+
+type Config = {
+  raxConfig?: rax.RetryConfig;
+} & AxiosRequestConfig;
 
 export interface ClientOptions {
   /** AxiosInstance to be used by client. Provide one of axiosInstance or config. */
   axiosInstance?: AxiosInstance;
   /** Config used to create AxiosInstance. Provide one of axiosInstance or config. */
-  config?: AxiosRequestConfig;
+  config?: Config;
   experienceId?: string[];
 }
-
+/**
+ * Client is a light wrapper around API methods providing shared configuration for Axios 
+ * settings such as retry logic using the default retry-axios settings and gzip encoding.
+ * 
+ * ### Instantiate with defaults
+ * ```
+ * const client = Client()
+ * ```
+ * 
+ * ### Instantiate with config
+ * ```
+ * const client = Client({config})
+ * ```
+ * 
+ * ### Instantiate with axiosInstance **Advanced**
+ * ```
+ * const axiosInstance = axios.create(config)
+ * const client = Client({axiosInstance})
+ * ```
+ */
 export class Client {
   private axiosInstance: AxiosInstance;
   private experienceId: string[];
@@ -110,6 +137,7 @@ export class Client {
       config = { ...defaultConfig, ...config };
       config.headers = { ...defaultConfig.headers, ...(config.headers || {}) };
       this.axiosInstance = axios.create(config);
+      rax.attach(this.axiosInstance);
     } else {
       this.axiosInstance = defaultAxiosInstance;
     }
