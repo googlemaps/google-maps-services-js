@@ -1,0 +1,442 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>DirectionsStep | Google Maps Services Node Client</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">Google Maps Services Node Client</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="../modules/_common_.html">&quot;common&quot;</a>
+				</li>
+				<li>
+					<a href="_common_.directionsstep.html">DirectionsStep</a>
+				</li>
+			</ul>
+			<h1>Interface DirectionsStep</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A step is the most atomic unit of a direction&#39;s route, containing a single step describing a specific, single instruction on the journey.
+							E.g. &quot;Turn left at W. 4th St.&quot; The step not only describes the instruction but also contains distance and duration information relating to
+							how this step relates to the following step. For example, a step denoted as &quot;Merge onto I-80 West&quot; may contain a duration of
+						&quot;37 miles&quot; and &quot;40 minutes,&quot; indicating that the next step is 37 miles/40 minutes from this step.</p>
+					</div>
+					<p>When using the Directions API to search for transit directions, the steps array will include additional transit details in the form of
+						a <code>transit_details</code> array. If the directions include multiple modes of transportation, detailed directions will be provided for walking or
+						driving steps in an inner <code>steps</code> array. For example, a walking step will include directions from the start and end locations:
+						&quot;Walk to Innes Ave &amp; Fitch St&quot;. That step will include detailed walking directions for that route in the inner <code>steps</code> array, such as:
+					&quot;Head north-west&quot;, &quot;Turn left onto Arelious Walker&quot;, and &quot;Turn left onto Innes Ave&quot;.</p>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">DirectionsStep</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_common_.directionsstep.html#distance" class="tsd-kind-icon">distance</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_common_.directionsstep.html#duration" class="tsd-kind-icon">duration</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_common_.directionsstep.html#end_location" class="tsd-kind-icon">end_<wbr>location</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_common_.directionsstep.html#html_instructions" class="tsd-kind-icon">html_<wbr>instructions</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_common_.directionsstep.html#maneuver" class="tsd-kind-icon">maneuver</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_common_.directionsstep.html#polyline" class="tsd-kind-icon">polyline</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_common_.directionsstep.html#start_location" class="tsd-kind-icon">start_<wbr>location</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_common_.directionsstep.html#steps" class="tsd-kind-icon">steps</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_common_.directionsstep.html#transit_details" class="tsd-kind-icon">transit_<wbr>details</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="distance" class="tsd-anchor"></a>
+					<h3>distance</h3>
+					<div class="tsd-signature tsd-kind-icon">distance<span class="tsd-signature-symbol">:</span> <a href="_common_.distance.html" class="tsd-signature-type">Distance</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/cde9689/src/common.ts#L980">src/common.ts:980</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>contains the distance covered by this step until the next step. (See the discussion of this field in Directions Legs)</p>
+						</div>
+						<p>This field may be undefined if the distance is unknown.</p>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="duration" class="tsd-anchor"></a>
+					<h3>duration</h3>
+					<div class="tsd-signature tsd-kind-icon">duration<span class="tsd-signature-symbol">:</span> <a href="_common_.duration.html" class="tsd-signature-type">Duration</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/cde9689/src/common.ts#L986">src/common.ts:986</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>contains the typical time required to perform the step, until the next step. (See the description in Directions Legs)</p>
+						</div>
+						<p>This field may be undefined if the duration is unknown</p>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="end_location" class="tsd-anchor"></a>
+					<h3>end_<wbr>location</h3>
+					<div class="tsd-signature tsd-kind-icon">end_<wbr>location<span class="tsd-signature-symbol">:</span> <a href="_common_.latlngliteral.html" class="tsd-signature-type">LatLngLiteral</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/cde9689/src/common.ts#L990">src/common.ts:990</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>contains the location of the last point of this step, as a single set of <code>lat</code> and <code>lng</code> fields.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="html_instructions" class="tsd-anchor"></a>
+					<h3>html_<wbr>instructions</h3>
+					<div class="tsd-signature tsd-kind-icon">html_<wbr>instructions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/cde9689/src/common.ts#L974">src/common.ts:974</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>contains formatted instructions for this step, presented as an HTML text string.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="maneuver" class="tsd-anchor"></a>
+					<h3>maneuver</h3>
+					<div class="tsd-signature tsd-kind-icon">maneuver<span class="tsd-signature-symbol">:</span> <a href="../modules/_common_.html#maneuver" class="tsd-signature-type">Maneuver</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/cde9689/src/common.ts#L995">src/common.ts:995</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>contains the action to take for the current step (turn left, merge, straight, etc.).
+							This field is used to determine which icon to display.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="polyline" class="tsd-anchor"></a>
+					<h3>polyline</h3>
+					<div class="tsd-signature tsd-kind-icon">polyline<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/cde9689/src/common.ts#L1000">src/common.ts:1000</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>contains a single points object that holds an encoded polyline representation of the step.
+							This polyline is an approximate (smoothed) path of the step.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="start_location" class="tsd-anchor"></a>
+					<h3>start_<wbr>location</h3>
+					<div class="tsd-signature tsd-kind-icon">start_<wbr>location<span class="tsd-signature-symbol">:</span> <a href="_common_.latlngliteral.html" class="tsd-signature-type">LatLngLiteral</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/cde9689/src/common.ts#L988">src/common.ts:988</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>contains the location of the starting point of this step, as a single set of <code>lat</code> and <code>lng</code> fields.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="steps" class="tsd-anchor"></a>
+					<h3>steps</h3>
+					<div class="tsd-signature tsd-kind-icon">steps<span class="tsd-signature-symbol">:</span> <a href="_common_.directionsstep.html" class="tsd-signature-type">DirectionsStep</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/cde9689/src/common.ts#L1006">src/common.ts:1006</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>contains detailed directions for walking or driving steps in transit directions.
+								Substeps are only available when <code>travel_mode</code> is set to &quot;transit&quot;.
+							The inner <code>steps</code> array is of the same type as <code>steps</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="transit_details" class="tsd-anchor"></a>
+					<h3>transit_<wbr>details</h3>
+					<div class="tsd-signature tsd-kind-icon">transit_<wbr>details<span class="tsd-signature-symbol">:</span> <a href="_common_.transitdetails.html" class="tsd-signature-type">TransitDetails</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/cde9689/src/common.ts#L1008">src/common.ts:1008</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>contains transit specific information. This field is only returned with travel_mode is set to &quot;transit&quot;.</p>
+						</div>
+					</div>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_client_.html">&quot;client&quot;</a>
+					</li>
+					<li class="current tsd-kind-external-module">
+						<a href="../modules/_common_.html">&quot;common&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_directions_.html">&quot;directions&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_distance_.html">&quot;distance&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_elevation_.html">&quot;elevation&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_geocode_geocode_.html">&quot;geocode/geocode&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_geocode_reversegeocode_.html">&quot;geocode/reversegeocode&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_geolocate_.html">&quot;geolocate&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_index_.html">&quot;index&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_places_autocomplete_.html">&quot;places/autocomplete&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_places_details_.html">&quot;places/details&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_places_findplacefromtext_.html">&quot;places/findplacefromtext&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_places_photo_.html">&quot;places/photo&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_places_placesnearby_.html">&quot;places/placesnearby&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_places_queryautocomplete_.html">&quot;places/queryautocomplete&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_places_textsearch_.html">&quot;places/textsearch&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_roads_nearestroads_.html">&quot;roads/nearestroads&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_roads_snaptoroads_.html">&quot;roads/snaptoroads&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_serialize_.html">&quot;serialize&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_timezone_.html">&quot;timezone&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_util_.html">&quot;util&quot;</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_common_.directionsstep.html" class="tsd-kind-icon">Directions<wbr>Step</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_common_.directionsstep.html#distance" class="tsd-kind-icon">distance</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_common_.directionsstep.html#duration" class="tsd-kind-icon">duration</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_common_.directionsstep.html#end_location" class="tsd-kind-icon">end_<wbr>location</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_common_.directionsstep.html#html_instructions" class="tsd-kind-icon">html_<wbr>instructions</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_common_.directionsstep.html#maneuver" class="tsd-kind-icon">maneuver</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_common_.directionsstep.html#polyline" class="tsd-kind-icon">polyline</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_common_.directionsstep.html#start_location" class="tsd-kind-icon">start_<wbr>location</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_common_.directionsstep.html#steps" class="tsd-kind-icon">steps</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_common_.directionsstep.html#transit_details" class="tsd-kind-icon">transit_<wbr>details</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
