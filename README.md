@@ -73,6 +73,10 @@ client
   });
 ```
 
+## Reference Documentation
+
+The generated reference documentationcan be found [here](https://googlemaps.github.io/google-maps-services-js/). The TypeScript types are the authoritative documenation for this library and may differ slightly from the descriptions.
+
 ## Developing
 
 In order to run the end-to-end tests, you'll need to supply your API key via an
