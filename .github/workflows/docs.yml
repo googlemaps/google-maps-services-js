@@ -1,0 +1,27 @@
+name: Docs
+on:
+  push:
+    branches:
+      - master
+jobs:
+  release:
+    runs-on: ubuntu-latest    
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+    - run: npm ci
+    - run: npm run docs
+    - run: touch docs/.nojekyll
+    - name: GitHub Pages
+      if: success()
+      uses: crazy-max/ghaction-github-pages@v1.3.0
+      with:
+          target_branch: gh-pages
+          build_dir: docs
+          committer_name: googlemaps-bot
+          committer_email: googlemaps-bot@google.com
+          commit_message: "chore: publish docs"
+          keep_history: true
+      env:
+        GITHUB_PAT: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
+

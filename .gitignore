@@ -2,6 +2,7 @@
 logs
 *.log
 dist/
+docs/
 # Runtime data
 pids
 *.pid

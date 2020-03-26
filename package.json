@@ -36,6 +36,7 @@
     "dist"
   ],
   "scripts": {
+    "docs": "rm -rf docs/ && typedoc .",
     "prepare": "tsc",
     "test": "jest src",
     "test:e2e": "jest e2e",
@@ -57,10 +58,11 @@
     "jest": "^25.2.2",
     "semantic-release": "^17.0.2",
     "ts-jest": "^25.2.1",
+    "typedoc": "^0.16.11",
     "typescript": "^3.7.4"
   },
   "publishConfig": {
-    "registry":"https://wombat-dressing-room.appspot.com",
+    "registry": "https://wombat-dressing-room.appspot.com",
     "access": "public"
   },
   "release": {
