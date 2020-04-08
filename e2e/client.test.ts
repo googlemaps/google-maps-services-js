@@ -57,9 +57,11 @@ test("readme example using client", async () => {
       timeout: 1000, // milliseconds
     })
     .then((r) => {
-      console.log(r.data.results[0].elevation);
+      expect(r.data.results[0].elevation).toBeGreaterThan(2000);
+      expect(r.data.results[0].elevation).toBeLessThan(3000);
     })
     .catch((e) => {
-      console.log(e);
+      console.log(e)
+      throw "Should not error"
     });
 });
