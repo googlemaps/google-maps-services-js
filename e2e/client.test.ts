@@ -1,13 +1,14 @@
+import { Client, defaultAxiosInstance, defaultHttpsAgent } from "../src";
+
 import axios from "axios";
 import { elevation } from "../src/elevation";
-import { Client, defaultHttpsAgent, defaultAxiosInstance } from "../src";
 
 test("client should work with defaults", async () => {
   const location = { lat: 10, lng: 20 };
 
   const params = {
     locations: [location, location],
-    key: process.env.GOOGLE_MAPS_API_KEY
+    key: process.env.GOOGLE_MAPS_API_KEY,
   };
   const client = new Client();
   const r = await client.elevation({ params: params });
@@ -20,9 +21,11 @@ test("client should work with modified config", async () => {
 
   const params = {
     locations: [location, location],
-    key: process.env.GOOGLE_MAPS_API_KEY
+    key: process.env.GOOGLE_MAPS_API_KEY,
   };
-  const client = new Client({ config: { timeout: 30000, httpsAgent: defaultHttpsAgent } });
+  const client = new Client({
+    config: { timeout: 30000, httpsAgent: defaultHttpsAgent },
+  });
   const r = await client.elevation({ params: params });
 
   expect(r.data.results.length).toEqual(2);
@@ -33,10 +36,30 @@ test("client should work with instance", async () => {
 
   const params = {
     locations: [location, location],
-    key: process.env.GOOGLE_MAPS_API_KEY
+    key: process.env.GOOGLE_MAPS_API_KEY,
   };
   const client = new Client({ axiosInstance: defaultAxiosInstance });
   const r = await client.elevation({ params: params });
 
   expect(r.data.results.length).toEqual(2);
+});
+
+test("readme example using client", async () => {
+  const Client = require("../src").Client;
+  const client = new Client({});
+  
+  client
+    .elevation({
+      params: {
+        locations: [{ lat: 45, lng: -110 }],
+        key: process.env.GOOGLE_MAPS_API_KEY,
+      },
+      timeout: 1000, // milliseconds
+    })
+    .then((r) => {
+      console.log(r.data.results[0].elevation);
+    })
+    .catch((e) => {
+      console.log(e);
+    });
 });
