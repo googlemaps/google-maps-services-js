@@ -1011,7 +1011,9 @@ export interface DirectionsStep {
    * contains a single points object that holds an encoded polyline representation of the step.
    * This polyline is an approximate (smoothed) path of the step.
    */
-  polyline: string;
+  polyline: {
+    points: string;
+  };
   /**
    * contains detailed directions for walking or driving steps in transit directions.
    * Substeps are only available when `travel_mode` is set to "transit".
