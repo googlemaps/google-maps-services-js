@@ -1,9 +1,11 @@
-import axios from "axios";
 import {
-  placesNearby,
+  PlacesNearbyRanking,
+  defaultParamsSerializer,
   defaultUrl,
-  defaultParamsSerializer
+  placesNearby
 } from "./placesnearby";
+
+import axios from "axios";
 
 jest.mock("axios");
 
@@ -16,8 +18,8 @@ afterEach(() => {
 test("autocomplete should call axios correctly", () => {
   const params = {
     location: { lat: 35, lng: -110 },
-    radius: 500000,
-    key: "foo"
+    key: "foo",
+    ranking: PlacesNearbyRanking.distance
   };
 
   placesNearby({ params: params }, mockedAxios);

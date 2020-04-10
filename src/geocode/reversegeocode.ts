@@ -1,25 +1,27 @@
-import { LatLng, AddressType, Language, RequestParams } from "../common";
-import { GeocodeResult, ResponseData } from "../common";
+import { AddressType, Language, LatLng, RequestParams } from "../common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { GeocodeResult, ResponseData } from "../common";
+import { latLngToString, serializer } from "../serialize";
+
 import { defaultAxiosInstance } from "../client";
-import { serializer, latLngToString } from "../serialize";
 
 /**
  * If both `result_type` and `location_type` filters are present then the API returns only those results that match both the
  * `result_type` and the `location_type` values. If none of the filter values are acceptable, the API returns `ZERO_RESULTS`.
  */
-export type ReverseGeocodingLocationType =
+export enum ReverseGeocodingLocationType {
   /** returns only the addresses for which Google has location information accurate down to street address precision. */
-  | "ROOFTOP"
+  ROOFTOP = "ROOFTOP",
   /**
    * returns only the addresses that reflect an approximation (usually on a road) interpolated between two precise points
    * (such as intersections). An interpolated range generally indicates that rooftop geocodes are unavailable for a street address.
    */
-  | "RANGE_INTERPOLATED"
+  RANGE_INTERPOLATED = "RANGE_INTERPOLATED",
   /** returns only geometric centers of a location such as a polyline (for example, a street) or polygon (region). */
-  | "GEOMETRIC_CENTER"
+  GEOMETRIC_CENTER = "GEOMETRIC_CENTER",
   /** returns only the addresses that are characterized as approximate. */
-  | "APPROXIMATE";
+  APPROXIMATE = "APPROXIMATE",
+}
 
 export interface ReverseGeocodeRequest extends Partial<AxiosRequestConfig> {
   params: {

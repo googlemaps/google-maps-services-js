@@ -1,4 +1,4 @@
-import { geolocate, GeolocateResponseData } from "../src/geolocate";
+import { geolocate } from "../src/geolocate";
 
 test("geolocate should call axios correctly", async () => {
   const params = { key: process.env.GOOGLE_MAPS_API_KEY };

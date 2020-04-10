@@ -1,12 +1,13 @@
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import {
-  RadioType,
-  WifiAccessPoint,
   CellTower,
   LatLngLiteral,
+  RadioType,
+  RequestParams,
   ResponseData,
-  RequestParams
+  WifiAccessPoint
 } from "./common";
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+
 import { defaultAxiosInstance } from "./client";
 
 export interface GeolocateRequest extends Partial<AxiosRequestConfig> {
@@ -66,20 +67,20 @@ export interface GeolocateResponseError extends AxiosResponse {
   };
 }
 
-export type GeolocateErrorReason =
+export enum GeolocateErrorReason {
   /**
    * You have exceeded your daily limit.
    * Domain: usageLimits
    * Code: 403
    */
-  | "dailyLimitExceeded"
+  dailyLimitExceeded = "dailyLimitExceeded",
   /**
    * Your API key is not valid for the Geolocate API. Please ensure that you've included the entire key,
    * and that you've either purchased the API or have enabled billing and activated the API to obtain the free quota.
    * Domain: usageLimits
    * Code: 400
    */
-  | "keyInvalid"
+  keyInvalid = "keyInvalid",
   /**
    * You have exceeded the requests per second per user limit that you configured in the Google Cloud Platform Console.
    * This limit should be configured to prevent a single or small group of users from exhausting your daily quota,
@@ -87,19 +88,20 @@ export type GeolocateErrorReason =
    * Domain: usageLimits
    * Code: 403
    */
-  | "userRateLimitExceeded"
+  userRateLimitExceeded = "userRateLimitExceeded",
   /**
    * The request was valid, but no results were returned.
    * Domain: geolocation
    * Code: 404
    */
-  | "notFound"
+  notFound = "notFound",
   /**
    * The request body is not valid JSON. Refer to the Request Body section for details on each field.
    * Domain: global
    * Code: 400
    */
-  | "parseError";
+  parseError = "parseError",
+}
 
 export type GeolocateResponse =
   | GeolocateResponseSuccess

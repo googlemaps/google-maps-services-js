@@ -1,29 +1,30 @@
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
-
 import {
   AddressType,
   LatLng,
   PredictionSubstring,
   PredictionTerm,
+  RequestParams,
   ResponseData,
-  StructuredFormatting, RequestParams
+  StructuredFormatting
 } from "../common";
-import { defaultAxiosInstance } from "../client";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { latLngToString, serializer } from "../serialize";
 
-export type PlaceAutocompleteType =
+import { defaultAxiosInstance } from "../client";
+
+export enum PlaceAutocompleteType {
   /**
    * instructs the Place Autocomplete service to return only geocoding results, rather than business results.
    * Generally, you use this request to disambiguate results where the location specified may be indeterminate.
    */
-  | "geocode"
+  geocode = "geocode",
   /**
    * instructs the Place Autocomplete service to return only geocoding results with a precise address.
    * Generally, you use this request when you know the user will be looking for a fully specified address.
    */
-  | "address"
+  address = "address",
   /** instructs the Place Autocomplete service to return only business results. */
-  | "establishment"
+  establishment = "establishment",
   /**
    * the `(regions)` type collection instructs the Places service to return any result matching the following types:
    *  - `locality`
@@ -33,9 +34,10 @@ export type PlaceAutocompleteType =
    *  - `administrative_area_level_1`
    *  - `administrative_area_level_2`
    */
-  | "(regions)"
+  regions = "(regions)",
   /** the (cities) type collection instructs the Places service to return results that match `locality` or `administrative_area_level_3`. */
-  | "(cities)";
+  cities = "(cities)",
+}
 
 export interface PlaceAutocompleteRequest extends Partial<AxiosRequestConfig> {
   params: {

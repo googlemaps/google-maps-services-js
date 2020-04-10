@@ -1,4 +1,4 @@
-import axios from "axios";
+import { Status } from "../src/common"
 import { directions } from "../src/directions";
 
 test("directions should get correct result", async () => {
@@ -9,5 +9,5 @@ test("directions should get correct result", async () => {
     key: process.env.GOOGLE_MAPS_API_KEY
   };
   const r = await directions({ params: params });
-  expect(r.data.status).toEqual("OK")
+  expect(r.data.status).toEqual(Status.OK)
 });
