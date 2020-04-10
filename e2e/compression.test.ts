@@ -1,3 +1,4 @@
+import { Status } from "../src/common";
 import { directions } from "../src/directions";
 
 test("server responds with compressed content", async () => {
@@ -12,7 +13,7 @@ test("server responds with compressed content", async () => {
   // result compression could be substituted.
 
   const r = await directions({ params: params });
-  expect(r.data.status).toEqual("OK");
+  expect(r.data.status).toEqual(Status.OK);
 
   // Axios removes conent-encoding from the response header set once it takes
   // care of piping the stream through a zlib unzip instance.  So verifying

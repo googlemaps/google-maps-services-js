@@ -1,6 +1,6 @@
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { Language, Place, RequestParams, ResponseData } from "../common";
 
-import { Language, ResponseData, Place, RequestParams } from "../common";
 import { defaultAxiosInstance } from "../client";
 import { serializer } from "../serialize";
 
@@ -47,38 +47,6 @@ export interface PlaceDetailsResponseData extends ResponseData {
 export interface PlaceDetailsResponse extends AxiosResponse {
   data: PlaceDetailsResponseData;
 }
-
-/**
- * The `"status"` field within the place response object contains the status of the request,
- * and may contain debugging information to help you track down why the place request failed
- */
-export type PlaceDetailsResponseStatus =
-  /** indicates that no errors occurred; the place was successfully detected and at least one result was returned. */
-  | "OK"
-  /** indicates a server-side error; trying again may be successful. */
-  | "UNKNOWN_ERROR"
-  /**
-   * indicates that the referenced location (place_id) was valid but no longer refers to a valid result.
-   * This may occur if the establishment is no longer in business.
-   */
-  | "ZERO_RESULTS"
-  /**
-   * indicates any of the following:
-   *  - You have exceeded the QPS limits.
-   *  - The request is missing an API key.
-   *  - Billing has not been enabled on your account.
-   *  - The monthly $200 credit, or a self-imposed usage cap, has been exceeded.
-   *  - The provided method of payment is no longer valid (for example, a credit card has expired).
-   * See the [Maps FAQ](https://developers.google.com/maps/faq#over-limit-key-error) for more information
-   * about how to resolve this error.
-   */
-  | "OVER_QUERY_LIMIT"
-  /** indicates that your request was denied, generally because an invalid key parameter. */
-  | "REQUEST_DENIED"
-  /** generally indicates that the query (place_id) is missing. */
-  | "INVALID_REQUEST"
-  /** indicates that the referenced location (place_id) was not found in the Places database. */
-  | "NOT_FOUND";
 
 export const defaultUrl =
   "https://maps.googleapis.com/maps/api/place/details/json";

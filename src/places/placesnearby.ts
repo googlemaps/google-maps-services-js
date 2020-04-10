@@ -1,19 +1,27 @@
-import { Language, LatLng, ResponseData, Place, RequestParams } from "../common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
-import { defaultAxiosInstance } from "../client";
-import { serializer, latLngToString } from "../serialize";
+import {
+  Language,
+  LatLng,
+  Place,
+  RequestParams,
+  ResponseData,
+} from "../common";
+import { latLngToString, serializer } from "../serialize";
 
-export type PlacesNearbyRanking =
+import { defaultAxiosInstance } from "../client";
+
+export enum PlacesNearbyRanking {
   /**
    * This option sorts results based on their importance. Ranking will favor prominent places within the specified area.
    * Prominence can be affected by a place's ranking in Google's index, global popularity, and other factors.
    */
-  | "prominence"
+  prominence = "prominence",
   /**
    * This option biases search results in ascending order by their distance from the specified `location`.
    * When distance is specified, one or more of `keyword`, `name`, or `type` is required.
    */
-  | "distance";
+  distance = "distance",
+}
 
 export interface PlacesNearbyRequest extends Partial<AxiosRequestConfig> {
   params: {
@@ -77,7 +85,7 @@ export interface PlacesNearbyRequest extends Partial<AxiosRequestConfig> {
      * all parameters other than pagetoken will be ignored.
      */
     pagetoken?: string;
-    } & RequestParams;
+  } & RequestParams;
 }
 
 export interface PlacesNearbyResponseData extends ResponseData {
@@ -108,6 +116,6 @@ export function placesNearby(
     method,
     url,
     paramsSerializer,
-    ...config
+    ...config,
   }) as Promise<PlacesNearbyResponse>;
 }
