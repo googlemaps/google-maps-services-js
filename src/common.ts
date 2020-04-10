@@ -1053,12 +1053,12 @@ export interface Time {
 }
 
 export enum Maneuver {
-  "turn-slight-left" = "turn-slight-left",
-  "turn-sharp-left" = "turn-sharp-left",
+  turn_slight_left = "turn-slight-left",
+  turn_sharp_left = "turn-sharp-left",
   uturn_left = "uturn-left",
   turn_left = "turn-left",
-  "turn-slight-right" = "turn-slight-right",
-  "turn-sharp-right" = "turn-sharp-right",
+  turn_slight_right = "turn-slight-right",
+  turn_sharp_right = "turn-sharp-right",
   uturn_right = "uturn-right",
   turn_right = "turn-right",
   straight = "straight",
