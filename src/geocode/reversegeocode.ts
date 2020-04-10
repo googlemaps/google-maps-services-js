@@ -1,8 +1,9 @@
-import { LatLng, AddressType, Language, RequestParams } from "../common";
-import { GeocodeResult, ResponseData } from "../common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { GeocodeResult, ResponseData } from "../common";
+import { Language, LatLng, RequestParams } from "../common";
+import { latLngToString, serializer } from "../serialize";
+
 import { defaultAxiosInstance } from "../client";
-import { serializer, latLngToString } from "../serialize";
 
 /**
  * If both `result_type` and `location_type` filters are present then the API returns only those results that match both the
@@ -50,9 +51,10 @@ export interface ReverseGeocodeRequest extends Partial<AxiosRequestConfig> {
      * A note about processing: The `result_type` parameter does not restrict the search to the specified address type(s).
      * Rather, the `result_type` acts as a post-search filter: the API fetches all results for the specified `latlng`,
      * then discards those results that do not match the specified address type(s).
-     * Note: This parameter is available only for requests that include an API key or a client ID.
+     * 
+     * @see https://developers.google.com/places/web-service/supported_types
      */
-    result_type?: AddressType[];
+    result_type?: string[];
     /**
      * A filter of one or more location types, separated by a pipe (`|`).
      * If the parameter contains multiple location types, the API returns all addresses that match any of the types.

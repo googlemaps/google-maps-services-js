@@ -108,153 +108,6 @@ export enum PlaceInputType {
   phoneNumber = "phonenumber"
 }
 
-/**
- * Table 1: Types supported in place search and addition
- *
- * You can use the following values in the types filter for place searches and when adding a place.
- *
- * @see https://developers.google.com/places/web-service/supported_types#table1
- */
-export type PlaceType1 =
-  | "accounting"
-  | "airport"
-  | "amusement_park"
-  | "aquarium"
-  | "art_gallery"
-  | "atm"
-  | "bakery"
-  | "bank"
-  | "bar"
-  | "beauty_salon"
-  | "bicycle_store"
-  | "book_store"
-  | "bowling_alley"
-  | "bus_station"
-  | "cafe"
-  | "campground"
-  | "car_dealer"
-  | "car_rental"
-  | "car_repair"
-  | "car_wash"
-  | "casino"
-  | "cemetery"
-  | "church"
-  | "city_hall"
-  | "clothing_store"
-  | "convenience_store"
-  | "courthouse"
-  | "dentist"
-  | "department_store"
-  | "doctor"
-  | "electrician"
-  | "electronics_store"
-  | "embassy"
-  | "fire_station"
-  | "florist"
-  | "funeral_home"
-  | "furniture_store"
-  | "gas_station"
-  | "gym"
-  | "hair_care"
-  | "hardware_store"
-  | "hindu_temple"
-  | "home_goods_store"
-  | "hospital"
-  | "insurance_agency"
-  | "jewelry_store"
-  | "laundry"
-  | "lawyer"
-  | "library"
-  | "liquor_store"
-  | "local_government_office"
-  | "locksmith"
-  | "lodging"
-  | "meal_delivery"
-  | "meal_takeaway"
-  | "mosque"
-  | "movie_rental"
-  | "movie_theater"
-  | "moving_company"
-  | "museum"
-  | "night_club"
-  | "painter"
-  | "park"
-  | "parking"
-  | "pet_store"
-  | "pharmacy"
-  | "physiotherapist"
-  | "plumber"
-  | "police"
-  | "post_office"
-  | "real_estate_agency"
-  | "restaurant"
-  | "roofing_contractor"
-  | "rv_park"
-  | "school"
-  | "shoe_store"
-  | "shopping_mall"
-  | "spa"
-  | "stadium"
-  | "storage"
-  | "store"
-  | "subway_station"
-  | "supermarket"
-  | "synagogue"
-  | "taxi_stand"
-  | "train_station"
-  | "transit_station"
-  | "travel_agency"
-  | "veterinary_care"
-  | "zoo";
-
-/**
- * Table 2: Additional types returned by the Places service
- *
- * The following types may be returned in the results of a place search, in addition to the types in table 1 above.
- * For more details on these types, refer to [Address Types](https://developers.google.com/maps/documentation/geocoding/intro#Types)
- * in Geocoding Responses.
- *
- * @see https://developers.google.com/places/web-service/supported_types#table2
- */
-export type PlaceType2 =
-  | "administrative_area_level_1"
-  | "administrative_area_level_2"
-  | "administrative_area_level_3"
-  | "administrative_area_level_4"
-  | "administrative_area_level_5"
-  | "colloquial_area"
-  | "country"
-  | "establishment"
-  | "finance"
-  | "floor"
-  | "food"
-  | "general_contractor"
-  | "geocode"
-  | "health"
-  | "intersection"
-  | "locality"
-  | "natural_feature"
-  | "neighborhood"
-  | "place_of_worship"
-  | "political"
-  | "point_of_interest"
-  | "post_box"
-  | "postal_code"
-  | "postal_code_prefix"
-  | "postal_code_suffix"
-  | "postal_town"
-  | "premise"
-  | "room"
-  | "route"
-  | "street_address"
-  | "street_number"
-  | "sublocality"
-  | "sublocality_level_4"
-  | "sublocality_level_5"
-  | "sublocality_level_3"
-  | "sublocality_level_2"
-  | "sublocality_level_1"
-  | "subpremise";
 
 export interface PlaceReview {
   /**
@@ -415,9 +268,9 @@ interface PlaceData {
   reviews: PlaceReview[];
   /**
    * contains an array of feature types describing the given result.
-   * XML responses include multiple `<type>` elements if more than one type is assigned to the result.
+   * @see https://developers.google.com/places/web-service/supported_types
    */
-  types: AddressType[];
+  types: string[];
   /**
    * contains the URL of the official Google page for this place.
    * This will be the Google-owned page that contains the best available information about the place.
@@ -751,8 +604,10 @@ export interface GeocodedWaypoint {
    * indicates the *address type* of the geocoding result used for calculating directions.
    *
    * An empty list of types indicates there are no known types for the particular address component, for example, Lieu-dit in France.
+   * 
+   * @see https://developers.google.com/places/web-service/supported_types
    */
-  types: AddressType[];
+  types: string[];
 }
 
 export type GeocodedWaypointStatus =
@@ -764,81 +619,6 @@ export type GeocodedWaypointStatus =
    */
   | "ZERO_RESULTS";
 
-export type AddressType =
-  /** indicates a precise street address. */
-  | "street_address"
-  /** indicates a named route (such as "US 101"). */
-  | "route"
-  /** indicates a major intersection, usually of two major roads. */
-  | "intersection"
-  /** indicates a political entity. Usually, this type indicates a polygon of some civil administration. */
-  | "political"
-  /** indicates the national political entity, and is typically the highest order type returned by the Geocoder. */
-  | "country"
-  /**
-   * indicates a first-order civil entity below the country level. Within the United States, these administrative levels are states.
-   * Not all nations exhibit these administrative levels. In most cases, `administrative_area_level_1` short names will closely match
-   * ISO 3166-2 subdivisions and other widely circulated lists; however this is not guaranteed as our geocoding results are based
-   * on a variety of signals and location data.
-   */
-  | "administrative_area_level_1"
-  /**
-   * indicates a second-order civil entity below the country level. Within the United States, these administrative levels are counties.
-   * Not all nations exhibit these administrative levels.
-   */
-  | "administrative_area_level_2"
-  /**
-   * indicates a third-order civil entity below the country level. This type indicates a minor civil division.
-   * Not all nations exhibit these administrative levels.
-   */
-  | "administrative_area_level_3"
-  /**
-   * indicates a fourth-order civil entity below the country level. This type indicates a minor civil division.
-   * Not all nations exhibit these administrative levels.
-   */
-  | "administrative_area_level_4"
-  /**
-   * indicates a fifth-order civil entity below the country level. This type indicates a minor civil division.
-   * Not all nations exhibit these administrative levels.
-   */
-  | "administrative_area_level_5"
-  /** indicates a commonly-used alternative name for the entity. */
-  | "colloquial_area"
-  /** indicates an incorporated city or town political entity. */
-  | "locality"
-  /**
-   * indicates a specific type of Japanese locality, to facilitate distinction between multiple locality components within a
-   * Japanese address.
-   */
-  | "ward"
-  /**
-   * indicates a first-order civil entity below a locality. For some locations may receive one of the additional types:
-   * `sublocality_level_1` to `sublocality_level_5`. Each sublocality level is a civil entity. Larger numbers indicate a smaller
-   * geographic area.
-   */
-  | "sublocality"
-  /** indicates a named neighborhood */
-  | "neighborhood"
-  /** indicates a named location, usually a building or collection of buildings with a common name */
-  | "premise"
-  /**
-   * indicates a first-order entity below a named location, usually a singular building within a collection of buildings with a
-   * common name.
-   */
-  | "subpremise"
-  /** indicates a postal code as used to address postal mail within the country. */
-  | "postal_code"
-  /** indicates a prominent natural feature. */
-  | "natural_feature"
-  /** indicates an airport. */
-  | "airport"
-  /** indicates a named park. */
-  | "park"
-  /**
-   * indicates a named point of interest. Typically, these "POI"s are prominent local entities that don't easily fit in another category,
-   * such as "Empire State Building" or "Statue of Liberty".
-   */
-  | "point_of_interest";
 
 /**
  * This route may consist of one or more `legs` depending on whether any waypoints were specified. As well, the route also contains
@@ -1271,8 +1051,10 @@ export interface GeocodeResult {
    * This array contains a set of zero or more tags identifying the type of feature returned in the result.
    * For example, a geocode of "Chicago" returns "locality" which indicates that "Chicago" is a city,
    * and also returns "political" which indicates it is a political entity.
+   * 
+   * @see https://developers.google.com/places/web-service/supported_types
    */
-  types: AddressType[];
+  types: string[];
   /**
    * is a string containing the human-readable address of this location.
    *
@@ -1340,33 +1122,13 @@ export interface GeocodeResult {
   place_id: string;
 }
 
-export type GeocodingAddressComponentType =
-  /** indicates the floor of a building address. */
-  | "floor"
-  /** typically indicates a place that has not yet been categorized. */
-  | "establishment"
-  /** indicates a named point of interest. */
-  | "point_of_interest"
-  /** indicates a parking lot or parking structure. */
-  | "parking"
-  /** indicates a specific postal box. */
-  | "post_box"
-  /** indicates a grouping of geographic areas, such as locality and sublocality, used for mailing addresses in some countries. */
-  | "postal_town"
-  /** indicates the room of a building address. */
-  | "room"
-  /** indicates the precise street number. */
-  | "street_number"
-  /**  indicate the location of a bus. */
-  | "bus_station"
-  /**  indicate the location of a train. */
-  | "train_station"
-  /**  indicate the location of a public transit stop. */
-  | "transit_station";
-
 export interface AddressComponent {
-  /** is an array indicating the *type* of the address component. */
-  types: Array<AddressType | GeocodingAddressComponentType>;
+  /** 
+   * is an array indicating the *type* of the address component.
+   * 
+   * @see https://developers.google.com/places/web-service/supported_types
+   */
+  types: string[];
   /** is the full text description or name of the address component as returned by the Geocoder. */
   long_name: string;
   /**

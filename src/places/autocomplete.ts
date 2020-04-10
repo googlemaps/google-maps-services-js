@@ -1,15 +1,15 @@
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
-
 import {
-  AddressType,
   LatLng,
   PredictionSubstring,
   PredictionTerm,
+  RequestParams,
   ResponseData,
-  StructuredFormatting, RequestParams
+  StructuredFormatting
 } from "../common";
-import { defaultAxiosInstance } from "../client";
 import { latLngToString, serializer } from "../serialize";
+
+import { defaultAxiosInstance } from "../client";
 
 export type PlaceAutocompleteType =
   /**
@@ -115,8 +115,10 @@ export interface PlaceAutocompleteResult {
   /**
    * contains an array of types that apply to this place.
    * For example: `[ "political", "locality" ]` or `[ "establishment", "geocode" ]`.
+   * 
+   * @see https://developers.google.com/places/web-service/supported_types
    */
-  types: AddressType[];
+  types: string[];
   /**
    * contains an array with `offset` value and `length`. These describe the location of
    * the entered term in the prediction result text, so that the term can be highlighted if desired.

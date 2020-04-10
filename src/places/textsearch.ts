@@ -1,7 +1,8 @@
-import { ResponseData, LatLng, Language, PlaceType1, Place, RequestParams } from "../common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { Language, LatLng, Place, RequestParams, ResponseData } from "../common";
+import { latLngToString, serializer } from "../serialize";
+
 import { defaultAxiosInstance } from "../client";
-import { serializer, latLngToString } from "../serialize";
 
 export interface TextSearchRequest extends Partial<AxiosRequestConfig> {
   params: {
@@ -66,8 +67,10 @@ export interface TextSearchRequest extends Partial<AxiosRequestConfig> {
     /**
      * Restricts the results to places matching the specified type.
      * Only one type may be specified (if more than one type is provided, all types following the first entry are ignored).
+     * 
+     * @see https://developers.google.com/places/web-service/supported_types
      */
-    type?: PlaceType1;
+    type?: string;
     } & RequestParams;
 }
 
