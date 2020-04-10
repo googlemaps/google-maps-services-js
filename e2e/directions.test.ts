@@ -16,4 +16,7 @@ test("directions should get correct result", async () => {
   expect(
     decodePath(r.data.routes[0].overview_polyline.points)[0].lat
   ).toBeDefined();
+  expect(
+    decodePath(r.data.routes[0].legs[0].steps[0].polyline.points)[0].lat
+  ).toBeDefined();
 });
