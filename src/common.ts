@@ -830,6 +830,11 @@ export enum AddressType {
    * geographic area.
    */
   sublocality = "sublocality",
+  sublocality_level_1 = "sublocality_level_1",
+  sublocality_level_2 = "sublocality_level_2",
+  sublocality_level_3 = "sublocality_level_3",
+  sublocality_level_4 = "sublocality_level_4",
+  sublocality_level_5 = "sublocality_level_5",
   /** indicates a named neighborhood */
   neighborhood = "neighborhood",
   /** indicates a named location, usually a building or collection of buildings with a common name */
@@ -852,6 +857,7 @@ export enum AddressType {
    * such as "Empire State Building" or "Statue of Liberty".
    */
   point_of_interest = "point_of_interest",
+  establishment = "establishment",
 }
 
 /**
