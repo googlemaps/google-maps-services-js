@@ -20,13 +20,21 @@ import { directions } from "../src/directions";
 
 test("directions should get correct result", async () => {
   const params = {
-    origin: "Seattle, WA",
-    destination: "San Francisco, CA",
-    waypoints: [{ lat: 40, lng: -120 }],
+    origin: "Adelaide,SA",
+    destination: "Adelaide,SA",
+    waypoints: [
+      "Barossa+Valley,SA",
+      "Clare,SA",
+      "Connawarra,SA",
+      "McLaren+Vale,SA",
+    ],
+    optimize: true,
     key: process.env.GOOGLE_MAPS_API_KEY,
   };
   const r = await directions({ params: params });
-
+  expect(r.request.path).toMatch(
+    "waypoints=optimize%3Atrue|Barossa"
+  );
   expect(r.data.status).toEqual(Status.OK);
   expect(r.data.routes[0].legs[0].distance.value).toBeGreaterThan(0);
   expect(
@@ -35,4 +43,5 @@ test("directions should get correct result", async () => {
   expect(
     decodePath(r.data.routes[0].legs[0].steps[0].polyline.points)[0].lat
   ).toBeDefined();
+  expect(r.data.routes[0].waypoint_order).toEqual([3, 2, 0, 1]);
 });
