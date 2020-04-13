@@ -27,7 +27,7 @@ import {
   TransitRoutingPreference,
   TravelMode,
   TravelRestriction,
-  UnitSystem
+  UnitSystem,
 } from "./common";
 import { latLngToString, serializer, toTimestamp } from "./serialize";
 
@@ -75,7 +75,7 @@ export interface DirectionsRequest extends Partial<AxiosRequestConfig> {
      * The place ID may only be specified if the request includes an API key or a Google Maps APIs Premium Plan client ID.
      * Waypoints are only supported for driving, walking and bicycling directions.
      */
-    waypoints?: LatLng[];
+    waypoints?: (string | LatLng)[];
     /**
      * If set to `true`, specifies that the Directions service may provide more than one route alternative in the response.
      * Note that providing route alternatives may increase the response time from the server.
@@ -192,9 +192,9 @@ export const defaultUrl =
 export const defaultParamsSerializer = serializer({
   origin: latLngToString,
   destination: latLngToString,
-  waypoints: o => o.map(latLngToString),
+  waypoints: (o) => o.map(latLngToString),
   arrival_time: toTimestamp,
-  departure_time: toTimestamp
+  departure_time: toTimestamp,
 });
 
 export function directions(
@@ -207,11 +207,21 @@ export function directions(
   }: DirectionsRequest,
   axiosInstance: AxiosInstance = defaultAxiosInstance
 ): Promise<DirectionsResponse> {
+  const { optimize } = params;
+
+  // optimize is passed as the first of the waypoint pipe array
+  // &waypoints=optimize:true|Barossa+Valley,SA|Clare,SA|Connawarra,SA|McLaren+Vale,SA
+  if (optimize) {
+    params.waypoints = ["optimize:true", ...params.waypoints];
+  }
+
+  delete params.optimize;
+
   return axiosInstance({
     params,
     method,
     url,
     paramsSerializer,
-    ...config
+    ...config,
   }) as Promise<DirectionsResponse>;
 }
