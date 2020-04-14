@@ -103,9 +103,9 @@
 				</a>
 				<pre><code>$ <span class="hljs-built_in">npm</span> install @googlemaps/google-maps-services-js</code></pre><p>Below is a simple example calling the elevation method on the client class.</p>
 				<p>Import the Google Maps Client using Typescript and ES6 module:</p>
-				<pre><code class="language-js"><span class="hljs-keyword">import</span> {Client} <span class="hljs-keyword">from</span> <span class="hljs-string">"@googlemaps/google-maps-services-js"</span>;</code></pre>
+				<pre><code class="language-js"><span class="hljs-keyword">import</span> {Client, Status} <span class="hljs-keyword">from</span> <span class="hljs-string">"@googlemaps/google-maps-services-js"</span>;</code></pre>
 				<p>Alternatively using JavaScript without ES6 module support:</p>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> Client = <span class="hljs-built_in">require</span>(<span class="hljs-string">"@googlemaps/google-maps-services-js"</span>).Client;</code></pre>
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> {Client, Status} = <span class="hljs-built_in">require</span>(<span class="hljs-string">"@googlemaps/google-maps-services-js"</span>);</code></pre>
 				<p>Now instantiate the client to make a call to one of the APIs.</p>
 				<pre><code class="language-js"><span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> Client({});
 
@@ -113,14 +113,18 @@ client
   .elevation({
     <span class="hljs-attr">params</span>: {
       <span class="hljs-attr">locations</span>: [{ <span class="hljs-attr">lat</span>: <span class="hljs-number">45</span>, <span class="hljs-attr">lng</span>: <span class="hljs-number">-110</span> }],
-      <span class="hljs-attr">key</span>: process.env.GOOGLE_MAPS_API_KEY
+      <span class="hljs-attr">key</span>: <span class="hljs-string">"asdf"</span>,
     },
-    <span class="hljs-attr">timeout</span>: <span class="hljs-number">1000</span> <span class="hljs-comment">// milliseconds</span>
+    <span class="hljs-attr">timeout</span>: <span class="hljs-number">1000</span>, <span class="hljs-comment">// milliseconds</span>
   })
-  .then(<span class="hljs-function"><span class="hljs-params">r</span> =&gt;</span> {
-    <span class="hljs-built_in">console</span>.log(r.data.results[<span class="hljs-number">0</span>].elevation);
+  .then(<span class="hljs-function">(<span class="hljs-params">r</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (r.data.status === Status.OK) {
+      <span class="hljs-built_in">console</span>.log(r.data.results[<span class="hljs-number">0</span>].elevation);
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-built_in">console</span>.log(r.data.error_message);
+    }
   })
-  .catch(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> {
+  .catch(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
     <span class="hljs-built_in">console</span>.log(e);
   });</code></pre>
 				<a href="#reference-documentation" id="reference-documentation" style="color: inherit; text-decoration: none;">
