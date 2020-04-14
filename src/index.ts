@@ -52,4 +52,5 @@ export { SnapToRoadsRequest, SnapToRoadsResponse } from "./roads/snaptoroads";
 export { TextSearchRequest, TextSearchResponse } from "./places/textsearch";
 export { TimeZoneRequest, TimeZoneResponse } from "./timezone";
 
+export * from "./common";
 export * from "./client";
