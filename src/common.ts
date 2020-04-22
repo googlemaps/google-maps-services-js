@@ -407,7 +407,7 @@ interface PlaceData {
   /**
    * is a string indicating the operational status of the place, if it is a business.
    */
-  business_data: string;
+  business_status: string;
   /**
    * an array of photo objects, each containing a reference to an image.
    * A Place Details request may return up to ten photos.
