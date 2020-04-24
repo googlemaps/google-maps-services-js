@@ -405,6 +405,10 @@ interface PlaceData {
    */
   permanently_closed: boolean;
   /**
+   * is a string indicating the operational status of the place, if it is a business.
+   */
+  business_status: string;
+  /**
    * an array of photo objects, each containing a reference to an image.
    * A Place Details request may return up to ten photos.
    * More information about place photos and how you can use the images in your application can be found in the Place Photos documentation.
