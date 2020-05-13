@@ -85,6 +85,8 @@ export enum Status {
   UNKNOWN_ERROR = "UNKNOWN_ERROR",
   /** indicates that the request was successful but returned no results. */
   ZERO_RESULTS = "ZERO_RESULTS",
+  /** indicates that the referenced location (place_id) was not found in the Places database. */
+  NOT_FOUND = "NOT_FOUND",
 }
 
 export interface PlacePhoto {
