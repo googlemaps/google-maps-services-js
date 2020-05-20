@@ -403,7 +403,7 @@ interface PlaceData {
   opening_hours: OpeningHours;
   /**
    * is a boolean flag indicating whether the place has permanently shut down (value `true`).
-   * If the place is not permanently closed, the flag is absent from the response.
+   * If the place is not permanently closed, the flag is absent from the response. This field is deprecated in favor of `business_status`.
    */
   permanently_closed: boolean;
   /**
