@@ -19,71 +19,72 @@ import * as rax from "retry-axios";
 import {
   DirectionsRequest,
   DirectionsResponse,
-  directions
+  directions,
 } from "./directions";
 import {
   DistanceMatrixRequest,
   DistanceMatrixResponse,
-  distancematrix
+  distancematrix,
 } from "./distance";
 import { ElevationRequest, ElevationResponse, elevation } from "./elevation";
 import {
   FindPlaceFromTextRequest,
   FindPlaceFromTextResponse,
-  findPlaceFromText
+  findPlaceFromText,
 } from "./places/findplacefromtext";
 import { GeocodeRequest, GeocodeResponse, geocode } from "./geocode/geocode";
 import { GeolocateRequest, GeolocateResponse, geolocate } from "./geolocate";
 import {
   NearestRoadsRequest,
   NearestRoadsResponse,
-  nearestRoads
+  nearestRoads,
 } from "./roads/nearestroads";
 import {
   PlaceAutocompleteRequest,
   PlaceAutocompleteResponse,
-  placeAutocomplete
+  placeAutocomplete,
 } from "./places/autocomplete";
 import {
   PlaceDetailsRequest,
   PlaceDetailsResponse,
-  placeDetails
+  placeDetails,
 } from "./places/details";
 import {
   PlacePhotoRequest,
   PlacePhotoResponse,
-  placePhoto
+  placePhoto,
 } from "./places/photo";
 import {
   PlaceQueryAutocompleteRequest,
   PlaceQueryAutocompleteResponse,
-  placeQueryAutocomplete
+  placeQueryAutocomplete,
 } from "./places/queryautocomplete";
 import {
   PlacesNearbyRequest,
   PlacesNearbyResponse,
-  placesNearby
+  placesNearby,
 } from "./places/placesnearby";
 import {
   ReverseGeocodeRequest,
   ReverseGeocodeResponse,
-  reverseGeocode
+  reverseGeocode,
 } from "./geocode/reversegeocode";
 import {
   SnapToRoadsRequest,
   SnapToRoadsResponse,
-  snapToRoads
+  snapToRoads,
 } from "./roads/snaptoroads";
 import {
   TextSearchRequest,
   TextSearchResponse,
-  textSearch
+  textSearch,
 } from "./places/textsearch";
 import { TimeZoneRequest, TimeZoneResponse, timezone } from "./timezone";
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 
 import { HttpsAgent } from "agentkeepalive";
 import { version } from "./index";
+import { customAdapter } from "./adapter";
 
 export const defaultHttpsAgent = new HttpsAgent({ keepAlive: true });
 export const defaultTimeout = 10000;
@@ -91,13 +92,14 @@ export const userAgent = `google-maps-services-node-${version}`;
 export const acceptEncoding = "gzip";
 export const X_GOOG_MAPS_EXPERIENCE_ID = "X-GOOG-MAPS-EXPERIENCE-ID";
 
-const defaultConfig = {
+const defaultConfig: AxiosRequestConfig = {
   timeout: defaultTimeout,
   httpsAgent: defaultHttpsAgent,
+  adapter: customAdapter,
   headers: {
     "User-Agent": userAgent,
-    "Accept-Encoding": acceptEncoding
-  }
+    "Accept-Encoding": acceptEncoding,
+  },
 };
 
 export const defaultAxiosInstance = axios.create(defaultConfig);
@@ -115,19 +117,19 @@ export interface ClientOptions {
   experienceId?: string[];
 }
 /**
- * Client is a light wrapper around API methods providing shared configuration for Axios 
+ * Client is a light wrapper around API methods providing shared configuration for Axios
  * settings such as retry logic using the default retry-axios settings and gzip encoding.
- * 
+ *
  * ### Instantiate with defaults
  * ```
  * const client = Client()
  * ```
- * 
+ *
  * ### Instantiate with config
  * ```
  * const client = Client({config})
  * ```
- * 
+ *
  * ### Instantiate with axiosInstance **Advanced**
  * ```
  * const axiosInstance = axios.create(config)
@@ -147,7 +149,7 @@ export class Client {
       this.axiosInstance = axiosInstance;
       this.axiosInstance.defaults.headers = {
         ...defaultConfig.headers,
-        ...this.axiosInstance.defaults.headers
+        ...this.axiosInstance.defaults.headers,
       };
     } else if (config) {
       config = { ...defaultConfig, ...config };
@@ -286,5 +288,5 @@ export {
   TextSearchRequest,
   TextSearchResponse,
   TimeZoneRequest,
-  TimeZoneResponse
+  TimeZoneResponse,
 };
