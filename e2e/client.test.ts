@@ -15,6 +15,7 @@
  */
 
 import { Client, defaultAxiosInstance, defaultHttpsAgent } from "../src";
+import { AxiosError } from "axios";
 
 test("client should work with defaults", async () => {
   const location = { lat: 10, lng: 20 };
@@ -61,7 +62,7 @@ test("readme example using client", async () => {
   const { Client, Status } = require("../src");
   const client = new Client({});
 
-  client
+  await client
     .elevation({
       params: {
         locations: [{ lat: 45, lng: -110 }],
@@ -84,7 +85,7 @@ test("readme example using client fails correctly", async () => {
   const { Client, Status } = require("../src");
   const client = new Client({});
 
-  client
+  await client
     .elevation({
       params: {
         locations: [{ lat: 45, lng: -110 }],
@@ -92,11 +93,8 @@ test("readme example using client fails correctly", async () => {
       },
       timeout: 1000, // milliseconds
     })
-    .then((r) => {
-      expect(r.data.status).toEqual(Status.REQUEST_DENIED);
-    })
-    .catch((e) => {
-      console.log(e);
-      throw "Should not error";
+    .catch((e: AxiosError) => {
+      expect(e.response.status).toEqual(403);
+      expect(e.response.data.status).toEqual(Status.REQUEST_DENIED);
     });
 });
