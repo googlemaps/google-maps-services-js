@@ -78,4 +78,5 @@ test("statusToCode returns correct value", () => {
   expect(statusToCode(Status.OVER_DAILY_LIMIT)).toEqual(429);
   expect(statusToCode(Status.OVER_QUERY_LIMIT)).toEqual(429);
   expect(statusToCode(Status.UNKNOWN_ERROR)).toEqual(500);
+  expect(statusToCode("foo" as Status)).toEqual(200);
 });
