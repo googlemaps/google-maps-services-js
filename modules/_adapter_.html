@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>StructuredFormatting | Google Maps Services Node Client</title>
+	<title>&quot;adapter&quot; | Google Maps Services Node Client</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,89 +56,77 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_common_.html">&quot;common&quot;</a>
-				</li>
-				<li>
-					<a href="_common_.structuredformatting.html">StructuredFormatting</a>
+					<a href="_adapter_.html">&quot;adapter&quot;</a>
 				</li>
 			</ul>
-			<h1>Interface StructuredFormatting</h1>
+			<h1>External module &quot;adapter&quot;</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="target">StructuredFormatting</span>
-					</li>
-				</ul>
-			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
+							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_common_.structuredformatting.html#main_text" class="tsd-kind-icon">main_<wbr>text</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_common_.structuredformatting.html#main_text_matched_substrings" class="tsd-kind-icon">main_<wbr>text_<wbr>matched_<wbr>substrings</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_common_.structuredformatting.html#secondary_text" class="tsd-kind-icon">secondary_<wbr>text</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_adapter_.html#customadapter" class="tsd-kind-icon">custom<wbr>Adapter</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_adapter_.html#statustocode" class="tsd-kind-icon">status<wbr>ToCode</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="main_text" class="tsd-anchor"></a>
-					<h3>main_<wbr>text</h3>
-					<div class="tsd-signature tsd-kind-icon">main_<wbr>text<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/0ac353d/src/common.ts#L1533">src/common.ts:1533</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>contains the main text of a prediction, usually the name of the place.</p>
-						</div>
-					</div>
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="customadapter" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> custom<wbr>Adapter</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">custom<wbr>Adapter<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AxiosRequestConfig</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AxiosPromise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/0ac353d/src/adapter.ts#L53">src/adapter.ts:53</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>config: <span class="tsd-signature-type">AxiosRequestConfig</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AxiosPromise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="main_text_matched_substrings" class="tsd-anchor"></a>
-					<h3>main_<wbr>text_<wbr>matched_<wbr>substrings</h3>
-					<div class="tsd-signature tsd-kind-icon">main_<wbr>text_<wbr>matched_<wbr>substrings<span class="tsd-signature-symbol">:</span> <a href="_common_.predictionsubstring.html" class="tsd-signature-type">PredictionSubstring</a><span class="tsd-signature-symbol">[]</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/0ac353d/src/common.ts#L1538">src/common.ts:1538</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>contains an array with <code>offset</code> value and <code>length</code>. These describe the location of
-							the entered term in the prediction result text, so that the term can be highlighted if desired.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="secondary_text" class="tsd-anchor"></a>
-					<h3>secondary_<wbr>text</h3>
-					<div class="tsd-signature tsd-kind-icon">secondary_<wbr>text<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/0ac353d/src/common.ts#L1540">src/common.ts:1540</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>contains the secondary text of a prediction, usually the location of the place.</p>
-						</div>
-					</div>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="statustocode" class="tsd-anchor"></a>
+					<h3>status<wbr>ToCode</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">status<wbr>ToCode<span class="tsd-signature-symbol">(</span>status<span class="tsd-signature-symbol">: </span><a href="../enums/_common_.status.html" class="tsd-signature-type">Status</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/0ac353d/src/adapter.ts#L23">src/adapter.ts:23</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>status: <a href="../enums/_common_.status.html" class="tsd-signature-type">Status</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -148,94 +136,82 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_adapter_.html">&quot;adapter&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_client_.html">&quot;client&quot;</a>
-					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_common_.html">&quot;common&quot;</a>
+						<a href="_adapter_.html">&quot;adapter&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_directions_.html">&quot;directions&quot;</a>
+						<a href="_client_.html">&quot;client&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_distance_.html">&quot;distance&quot;</a>
+						<a href="_common_.html">&quot;common&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_elevation_.html">&quot;elevation&quot;</a>
+						<a href="_directions_.html">&quot;directions&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_geocode_geocode_.html">&quot;geocode/geocode&quot;</a>
+						<a href="_distance_.html">&quot;distance&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_geocode_reversegeocode_.html">&quot;geocode/reversegeocode&quot;</a>
+						<a href="_elevation_.html">&quot;elevation&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_geolocate_.html">&quot;geolocate&quot;</a>
+						<a href="_geocode_geocode_.html">&quot;geocode/geocode&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_index_.html">&quot;index&quot;</a>
+						<a href="_geocode_reversegeocode_.html">&quot;geocode/reversegeocode&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_places_autocomplete_.html">&quot;places/autocomplete&quot;</a>
+						<a href="_geolocate_.html">&quot;geolocate&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_places_details_.html">&quot;places/details&quot;</a>
+						<a href="_index_.html">&quot;index&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_places_findplacefromtext_.html">&quot;places/findplacefromtext&quot;</a>
+						<a href="_places_autocomplete_.html">&quot;places/autocomplete&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_places_photo_.html">&quot;places/photo&quot;</a>
+						<a href="_places_details_.html">&quot;places/details&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_places_placesnearby_.html">&quot;places/placesnearby&quot;</a>
+						<a href="_places_findplacefromtext_.html">&quot;places/findplacefromtext&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_places_queryautocomplete_.html">&quot;places/queryautocomplete&quot;</a>
+						<a href="_places_photo_.html">&quot;places/photo&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_places_textsearch_.html">&quot;places/textsearch&quot;</a>
+						<a href="_places_placesnearby_.html">&quot;places/placesnearby&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_roads_nearestroads_.html">&quot;roads/nearestroads&quot;</a>
+						<a href="_places_queryautocomplete_.html">&quot;places/queryautocomplete&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_roads_snaptoroads_.html">&quot;roads/snaptoroads&quot;</a>
+						<a href="_places_textsearch_.html">&quot;places/textsearch&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_serialize_.html">&quot;serialize&quot;</a>
+						<a href="_roads_nearestroads_.html">&quot;roads/nearestroads&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_timezone_.html">&quot;timezone&quot;</a>
+						<a href="_roads_snaptoroads_.html">&quot;roads/snaptoroads&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_util_.html">&quot;util&quot;</a>
+						<a href="_serialize_.html">&quot;serialize&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_timezone_.html">&quot;timezone&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_util_.html">&quot;util&quot;</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_common_.structuredformatting.html" class="tsd-kind-icon">Structured<wbr>Formatting</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_common_.structuredformatting.html#main_text" class="tsd-kind-icon">main_<wbr>text</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_common_.structuredformatting.html#main_text_matched_substrings" class="tsd-kind-icon">main_<wbr>text_<wbr>matched_<wbr>substrings</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_common_.structuredformatting.html#secondary_text" class="tsd-kind-icon">secondary_<wbr>text</a>
-							</li>
-						</ul>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="_adapter_.html#customadapter" class="tsd-kind-icon">custom<wbr>Adapter</a>
 					</li>
-				</ul>
-				<ul class="after-current">
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="_adapter_.html#statustocode" class="tsd-kind-icon">status<wbr>ToCode</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
