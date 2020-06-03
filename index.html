@@ -118,14 +118,10 @@ client
     <span class="hljs-attr">timeout</span>: <span class="hljs-number">1000</span>, <span class="hljs-comment">// milliseconds</span>
   })
   .then(<span class="hljs-function">(<span class="hljs-params">r</span>) =&gt;</span> {
-    <span class="hljs-keyword">if</span> (r.data.status === Status.OK) {
-      <span class="hljs-built_in">console</span>.log(r.data.results[<span class="hljs-number">0</span>].elevation);
-    } <span class="hljs-keyword">else</span> {
-      <span class="hljs-built_in">console</span>.log(r.data.error_message);
-    }
+    <span class="hljs-built_in">console</span>.log(r.data.results[<span class="hljs-number">0</span>].elevation);
   })
   .catch(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
-    <span class="hljs-built_in">console</span>.log(e);
+    <span class="hljs-built_in">console</span>.log(e.response.data.error_message);
   });</code></pre>
 				<a href="#reference-documentation" id="reference-documentation" style="color: inherit; text-decoration: none;">
 					<h2>Reference Documentation</h2>
