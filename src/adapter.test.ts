@@ -14,13 +14,21 @@
  * limitations under the License.
  */
 
-import { statusToCode } from "./adapter";
-import { Status } from "./common";
 import * as nock from "nock";
-import { Client } from "./client";
-import { AxiosResponse } from "axios";
 
-nock.disableNetConnect();
+import { AxiosResponse } from "axios";
+import { Client } from "./client";
+import { Status } from "./common";
+import { statusToCode } from "./adapter";
+
+beforeAll(() => {
+  nock.disableNetConnect();
+});
+
+afterAll(() => {
+  nock.cleanAll();
+  nock.enableNetConnect();
+});
 
 test("httpadapter rejects Status.NOT_FOUND", async () => {
   nock("https://maps.googleapis.com")
