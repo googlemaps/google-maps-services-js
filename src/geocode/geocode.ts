@@ -41,6 +41,10 @@ export interface GeocodeComponents {
 export interface GeocodeRequest extends Partial<AxiosRequestConfig> {
   params: {
     /**
+     * The place_id that you want to geocode. You can retrieve this information from Places API for example.
+     */
+    place_id?: string;
+    /**
      * The street address that you want to geocode, in the format used by the national postal service of the country concerned.
      * Additional address elements such as business names and unit, suite or floor numbers should be avoided.
      */
