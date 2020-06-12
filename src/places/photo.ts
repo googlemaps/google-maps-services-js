@@ -40,6 +40,7 @@ export interface PlacePhotoRequest extends Partial<AxiosRequestConfig> {
      */
     maxheight?: number;
     } & RequestParams;
+  responseType: 'arraybuffer' | 'blob' | 'stream';
 }
 
 /**
@@ -59,13 +60,18 @@ export interface PlacePhotoResponse extends AxiosResponse {}
 export const defaultUrl = "https://maps.googleapis.com/maps/api/place/photo";
 
 export function placePhoto(
-  { params, method = "get", url = defaultUrl, ...config }: PlacePhotoRequest,
+  { params, method = "get", url = defaultUrl, responseType, ...config }: PlacePhotoRequest,
   axiosInstance: AxiosInstance = defaultAxiosInstance
 ): Promise<PlacePhotoResponse> {
+  if (!responseType) {
+    responseType = 'arraybuffer'
+  }
+
   return axiosInstance({
     params,
     method,
     url,
+    responseType,
     ...config
   }) as Promise<PlacePhotoResponse>;
 }
