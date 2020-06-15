@@ -43,5 +43,4 @@ test("directions should get correct result", async () => {
   expect(
     decodePath(r.data.routes[0].legs[0].steps[0].polyline.points)[0].lat
   ).toBeDefined();
-  expect(r.data.routes[0].waypoint_order).toEqual([3, 2, 0, 1]);
 });
