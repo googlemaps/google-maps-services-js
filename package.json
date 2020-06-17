@@ -46,7 +46,7 @@
     "agentkeepalive": "^4.1.0",
     "axios": "^0.19.0",
     "query-string": "^6.11.0",
-    "retry-axios": "^2.1.2"
+    "retry-axios": "^2.2.1"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^5.0.0",
