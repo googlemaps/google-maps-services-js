@@ -32,7 +32,8 @@ export {
 } from "./roads/nearestroads";
 export {
   PlaceAutocompleteRequest,
-  PlaceAutocompleteResponse
+  PlaceAutocompleteResponse,
+  PlaceAutocompleteType
 } from "./places/autocomplete";
 export { PlaceDetailsRequest, PlaceDetailsResponse } from "./places/details";
 export { PlacePhotoRequest, PlacePhotoResponse } from "./places/photo";
