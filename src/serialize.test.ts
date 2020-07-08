@@ -22,7 +22,7 @@ import {
   objectToString,
   serializer,
   toLatLngLiteral,
-  toTimestamp
+  toTimestamp,
 } from "./serialize";
 
 test("latLngToString is correct", () => {
@@ -41,22 +41,22 @@ test("latLngBoundsToString is correct", () => {
   expect(
     latLngBoundsToString({
       southwest: { lat: 1, lng: 2 },
-      northeast: { lat: 3, lng: 4 }
+      northeast: { lat: 3, lng: 4 },
     })
   ).toBe("1,2|3,4");
 });
 
 test("serializer", () => {
-  expect(serializer({ quz: o => o })({ foo: ["bar"] })).toBe("foo=bar");
+  expect(serializer({ quz: (o) => o })({ foo: ["bar"] })).toBe("foo=bar");
   expect(
-    serializer({ foo: o => o.map((latLng: LatLng) => latLngToString(latLng)) })(
-      {
-        foo: [
-          [0, 1],
-          [2, 3]
-        ]
-      }
-    )
+    serializer({
+      foo: (o) => o.map((latLng: LatLng) => latLngToString(latLng)),
+    })({
+      foo: [
+        [0, 1],
+        [2, 3],
+      ],
+    })
   ).toBe("foo=0%2C1|2%2C3");
 });
 
@@ -75,7 +75,7 @@ test("latLngArrayToStringMaybeEncoded", () => {
   expect(
     latLngArrayToStringMaybeEncoded([
       [40.714728, -73.998672],
-      [-34.397, 150.644]
+      [-34.397, 150.644],
     ])
   ).toEqual("enc:abowFtzsbMhgmiMuobzi@");
 });
@@ -85,11 +85,11 @@ test("toLatLngLiteral", () => {
   expect(toLatLngLiteral([0, 1])).toEqual({ lat: 0, lng: 1 });
   expect(toLatLngLiteral({ lat: 0, lng: 1 })).toEqual({
     lat: 0,
-    lng: 1
+    lng: 1,
   });
   expect(toLatLngLiteral({ latitude: 0, longitude: 1 })).toEqual({
     lat: 0,
-    lng: 1
+    lng: 1,
   });
   expect(() => {
     toLatLngLiteral({} as LatLngLiteral);
@@ -98,10 +98,9 @@ test("toLatLngLiteral", () => {
 
 test("toTimestamp", () => {
   expect(toTimestamp(100)).toEqual(100);
-  
+
   const dt = new Date();
-  const seconds = Number(dt) / 1000
+  const seconds = Number(dt) / 1000;
   expect(toTimestamp(dt)).toEqual(seconds);
-
+  expect(toTimestamp("now")).toEqual("now");
 });
-

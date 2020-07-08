@@ -29,12 +29,11 @@ test("directions should get correct result", async () => {
       "McLaren+Vale,SA",
     ],
     optimize: true,
+    departure_time: "now" as const,
     key: process.env.GOOGLE_MAPS_API_KEY,
   };
   const r = await directions({ params: params });
-  expect(r.request.path).toMatch(
-    "waypoints=optimize%3Atrue|Barossa"
-  );
+  expect(r.request.path).toMatch("waypoints=optimize%3Atrue|Barossa");
   expect(r.data.status).toEqual(Status.OK);
   expect(r.data.routes[0].legs[0].distance.value).toBeGreaterThan(0);
   expect(
