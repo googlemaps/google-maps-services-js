@@ -35,7 +35,7 @@ export function latLngToString(o: LatLng) {
   }
 
   return o
-    .map(x => {
+    .map((x) => {
       return x.toString();
     })
     .join(",");
@@ -47,7 +47,7 @@ export function objectToString(o: string | object): string {
   } else {
     let keys = Object.keys(o);
     keys.sort();
-    return keys.map(k => k + ":" + o[k]).join(separator);
+    return keys.map((k) => k + ":" + o[k]).join(separator);
   }
 }
 
@@ -101,7 +101,7 @@ export function serializer(
   format: serializerFormat,
   queryStringOptions: object = {
     arrayFormat: "separator",
-    arrayFormatSeparator: separator
+    arrayFormatSeparator: separator,
   }
 ) {
   return (params: { [key: string]: any }) => {
@@ -114,9 +114,12 @@ export function serializer(
   };
 }
 
-export function toTimestamp(o: number | Date) {
+export function toTimestamp(o: "now" | number | Date): number | "now" {
+  if (o === "now") {
+    return o;
+  }
   if (o instanceof Date) {
     return Number(o) / 1000;
   }
-  return o
+  return o;
 }
