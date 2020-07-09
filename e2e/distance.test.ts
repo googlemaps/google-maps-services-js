@@ -16,11 +16,11 @@
 
 import { distancematrix } from "../src/distance";
 
-test("elevation should return correct result", async () => {
+test("distance should return correct result", async () => {
   const params = {
     origins: ["Seattle, WA"],
     destinations: ["San Francisco, CA", "New York, NY"],
-    key: process.env.GOOGLE_MAPS_API_KEY
+    key: process.env.GOOGLE_MAPS_API_KEY,
   };
 
   const r = await distancematrix({ params: params });
@@ -28,4 +28,19 @@ test("elevation should return correct result", async () => {
 
   expect(matrix.length).toEqual(1);
   expect(matrix[0].elements.length).toEqual(2);
+});
+
+test("distance between two latlngs", async () => {
+  const params = {
+    origins: [{ lat: 22.2805459, lng: 70.8011263 }],
+    destinations: [{ lat: 22.2970336, lng: 70.8148468 }],
+    key: process.env.GOOGLE_MAPS_API_KEY,
+  };
+
+  const r = await distancematrix({ params: params });
+
+  const matrix = r.data.rows;
+
+  expect(matrix[0].elements[0].distance.value).toBeGreaterThan(0);
+  expect(matrix[0].elements[0].duration.value).toBeGreaterThan(0);
 });
