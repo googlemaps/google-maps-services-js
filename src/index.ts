@@ -33,6 +33,7 @@ export {
 export {
   PlaceAutocompleteRequest,
   PlaceAutocompleteResponse,
+  PlaceAutocompleteResult,
   PlaceAutocompleteType
 } from "./places/autocomplete";
 export { PlaceDetailsRequest, PlaceDetailsResponse } from "./places/details";
