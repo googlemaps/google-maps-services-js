@@ -60,6 +60,16 @@ test("serializer", () => {
   ).toBe("foo=0%2C1|2%2C3");
 });
 
+test("serializer should not mutate params", () => {
+  const location = { lat: 0, lng: 1 };
+  const params = {
+    location,
+  };
+
+  serializer({ location: latLngToString })(params);
+  expect(params.location).toBe(location);
+});
+
 test("serializer should return pipe joined arrays by default", () => {
   expect(serializer({})({ foo: ["b", "a", "r"] })).toBe("foo=b|a|r");
 });
