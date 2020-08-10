@@ -105,12 +105,16 @@ export function serializer(
   }
 ) {
   return (params: { [key: string]: any }) => {
+    // avoid mutating params
+    const serializedParams = { ...params };
+
     Object.keys(format).forEach((key: string) => {
-      if (key in params) {
-        params[key] = format[key](params[key]);
+      if (key in serializedParams) {
+        serializedParams[key] = format[key](serializedParams[key]);
       }
     });
-    return qs(params, queryStringOptions);
+
+    return qs(serializedParams, queryStringOptions);
   };
 }
 
