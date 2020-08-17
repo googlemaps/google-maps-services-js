@@ -60,7 +60,7 @@
     "nock": "^13.0.4",
     "semantic-release": "^17.0.2",
     "ts-jest": "^25.2.1",
-    "typedoc": "^0.16.11",
+    "typedoc": "^0.18.0",
     "typescript": "^3.7.4"
   },
   "publishConfig": {
