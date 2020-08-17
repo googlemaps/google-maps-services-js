@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Client | Google Maps Services Node Client</title>
-	<meta name="description" content="">
+	<meta name="description" content="Documentation for Google Maps Services Node Client">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -13,7 +13,7 @@
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -83,7 +83,7 @@
 						<h3>Instantiate with config</h3>
 					</a>
 					<pre><code>const<span class="hljs-built_in"> client </span>= Client({config})</code></pre>
-					<a href="#instantiate-with-axiosinstance-strongadvancedstrong" id="instantiate-with-axiosinstance-strongadvancedstrong" style="color: inherit; text-decoration: none;">
+					<a href="#instantiate-with-axiosinstance-advanced" id="instantiate-with-axiosinstance-advanced" style="color: inherit; text-decoration: none;">
 						<h3>Instantiate with axiosInstance <strong>Advanced</strong></h3>
 					</a>
 					<pre><code>const axiosInstance = axios.create(config)
@@ -149,25 +149,25 @@ const<span class="hljs-built_in"> client </span>= Client({axiosInstance})</code>
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Client<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>axiosInstance<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AxiosInstance</span><span class="tsd-signature-symbol">; </span>config<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>raxConfig<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">RetryConfig</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">AxiosRequestConfig</span><span class="tsd-signature-symbol">; </span>experienceId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_client_.client.html" class="tsd-signature-type">Client</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Client<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>axiosInstance<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AxiosInstance</span><span class="tsd-signature-symbol">; </span>config<span class="tsd-signature-symbol">: </span><a href="../modules/_client_.html#config" class="tsd-signature-type">Config</a><span class="tsd-signature-symbol">; </span>experienceId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_client_.client.html" class="tsd-signature-type">Client</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/68ed802/src/client.ts#L141">src/client.ts:141</a></li>
+									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f378d6c/src/client.ts#L141">src/client.ts:141</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> __namedParameters: <span class="tsd-signature-symbol">{ </span>axiosInstance<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AxiosInstance</span><span class="tsd-signature-symbol">; </span>config<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>raxConfig<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">RetryConfig</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">AxiosRequestConfig</span><span class="tsd-signature-symbol">; </span>experienceId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> = {}</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> __namedParameters: <span class="tsd-signature-symbol">{ </span>axiosInstance<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AxiosInstance</span><span class="tsd-signature-symbol">; </span>config<span class="tsd-signature-symbol">: </span><a href="../modules/_client_.html#config" class="tsd-signature-type">Config</a><span class="tsd-signature-symbol">; </span>experienceId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> = {}</span></h5>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter">
 											<h5>axios<wbr>Instance<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AxiosInstance</span></h5>
 										</li>
 										<li class="tsd-parameter">
-											<h5>config<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>raxConfig<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">RetryConfig</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">AxiosRequestConfig</span></h5>
+											<h5>config<span class="tsd-signature-symbol">: </span><a href="../modules/_client_.html#config" class="tsd-signature-type">Config</a></h5>
 										</li>
 										<li class="tsd-parameter">
 											<h5>experience<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
@@ -188,7 +188,7 @@ const<span class="hljs-built_in"> client </span>= Client({axiosInstance})</code>
 					<div class="tsd-signature tsd-kind-icon">axios<wbr>Instance<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AxiosInstance</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/68ed802/src/client.ts#L140">src/client.ts:140</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f378d6c/src/client.ts#L140">src/client.ts:140</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -198,7 +198,7 @@ const<span class="hljs-built_in"> client </span>= Client({axiosInstance})</code>
 					<div class="tsd-signature tsd-kind-icon">experience<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/68ed802/src/client.ts#L141">src/client.ts:141</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f378d6c/src/client.ts#L141">src/client.ts:141</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -215,7 +215,7 @@ const<span class="hljs-built_in"> client </span>= Client({axiosInstance})</code>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/68ed802/src/client.ts#L175">src/client.ts:175</a></li>
+									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f378d6c/src/client.ts#L175">src/client.ts:175</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -232,7 +232,7 @@ const<span class="hljs-built_in"> client </span>= Client({axiosInstance})</code>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/68ed802/src/client.ts#L180">src/client.ts:180</a></li>
+									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f378d6c/src/client.ts#L180">src/client.ts:180</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -249,7 +249,7 @@ const<span class="hljs-built_in"> client </span>= Client({axiosInstance})</code>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/68ed802/src/client.ts#L188">src/client.ts:188</a></li>
+									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f378d6c/src/client.ts#L188">src/client.ts:188</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -272,7 +272,7 @@ const<span class="hljs-built_in"> client </span>= Client({axiosInstance})</code>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/68ed802/src/client.ts#L192">src/client.ts:192</a></li>
+									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f378d6c/src/client.ts#L192">src/client.ts:192</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -295,7 +295,7 @@ const<span class="hljs-built_in"> client </span>= Client({axiosInstance})</code>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/68ed802/src/client.ts#L198">src/client.ts:198</a></li>
+									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f378d6c/src/client.ts#L198">src/client.ts:198</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -318,7 +318,7 @@ const<span class="hljs-built_in"> client </span>= Client({axiosInstance})</code>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/68ed802/src/client.ts#L228">src/client.ts:228</a></li>
+									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f378d6c/src/client.ts#L228">src/client.ts:228</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -341,7 +341,7 @@ const<span class="hljs-built_in"> client </span>= Client({axiosInstance})</code>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/68ed802/src/client.ts#L208">src/client.ts:208</a></li>
+									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f378d6c/src/client.ts#L208">src/client.ts:208</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -364,7 +364,7 @@ const<span class="hljs-built_in"> client </span>= Client({axiosInstance})</code>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/68ed802/src/client.ts#L205">src/client.ts:205</a></li>
+									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f378d6c/src/client.ts#L205">src/client.ts:205</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -387,7 +387,7 @@ const<span class="hljs-built_in"> client </span>= Client({axiosInstance})</code>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/68ed802/src/client.ts#L184">src/client.ts:184</a></li>
+									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f378d6c/src/client.ts#L184">src/client.ts:184</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
@@ -404,7 +404,7 @@ const<span class="hljs-built_in"> client </span>= Client({axiosInstance})</code>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/68ed802/src/client.ts#L251">src/client.ts:251</a></li>
+									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f378d6c/src/client.ts#L251">src/client.ts:251</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -427,7 +427,7 @@ const<span class="hljs-built_in"> client </span>= Client({axiosInstance})</code>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/68ed802/src/client.ts#L218">src/client.ts:218</a></li>
+									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f378d6c/src/client.ts#L218">src/client.ts:218</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -450,7 +450,7 @@ const<span class="hljs-built_in"> client </span>= Client({axiosInstance})</code>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/68ed802/src/client.ts#L224">src/client.ts:224</a></li>
+									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f378d6c/src/client.ts#L224">src/client.ts:224</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -473,7 +473,7 @@ const<span class="hljs-built_in"> client </span>= Client({axiosInstance})</code>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/68ed802/src/client.ts#L234">src/client.ts:234</a></li>
+									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f378d6c/src/client.ts#L234">src/client.ts:234</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -496,7 +496,7 @@ const<span class="hljs-built_in"> client </span>= Client({axiosInstance})</code>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/68ed802/src/client.ts#L242">src/client.ts:242</a></li>
+									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f378d6c/src/client.ts#L242">src/client.ts:242</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -519,7 +519,7 @@ const<span class="hljs-built_in"> client </span>= Client({axiosInstance})</code>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/68ed802/src/client.ts#L238">src/client.ts:238</a></li>
+									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f378d6c/src/client.ts#L238">src/client.ts:238</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -542,7 +542,7 @@ const<span class="hljs-built_in"> client </span>= Client({axiosInstance})</code>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/68ed802/src/client.ts#L212">src/client.ts:212</a></li>
+									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f378d6c/src/client.ts#L212">src/client.ts:212</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -565,7 +565,7 @@ const<span class="hljs-built_in"> client </span>= Client({axiosInstance})</code>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/68ed802/src/client.ts#L168">src/client.ts:168</a></li>
+									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f378d6c/src/client.ts#L168">src/client.ts:168</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -588,7 +588,7 @@ const<span class="hljs-built_in"> client </span>= Client({axiosInstance})</code>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/68ed802/src/client.ts#L254">src/client.ts:254</a></li>
+									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f378d6c/src/client.ts#L254">src/client.ts:254</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -611,7 +611,7 @@ const<span class="hljs-built_in"> client </span>= Client({axiosInstance})</code>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/68ed802/src/client.ts#L248">src/client.ts:248</a></li>
+									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f378d6c/src/client.ts#L248">src/client.ts:248</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -634,7 +634,7 @@ const<span class="hljs-built_in"> client </span>= Client({axiosInstance})</code>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/68ed802/src/client.ts#L202">src/client.ts:202</a></li>
+									<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f378d6c/src/client.ts#L202">src/client.ts:202</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -655,70 +655,70 @@ const<span class="hljs-built_in"> client </span>= Client({axiosInstance})</code>
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/_adapter_.html">&quot;adapter&quot;</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class="current tsd-kind-module">
 						<a href="../modules/_client_.html">&quot;client&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/_common_.html">&quot;common&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/_directions_.html">&quot;directions&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/_distance_.html">&quot;distance&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/_elevation_.html">&quot;elevation&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/_geocode_geocode_.html">&quot;geocode/geocode&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/_geocode_reversegeocode_.html">&quot;geocode/reversegeocode&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/_geolocate_.html">&quot;geolocate&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/_index_.html">&quot;index&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/_places_autocomplete_.html">&quot;places/autocomplete&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/_places_details_.html">&quot;places/details&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/_places_findplacefromtext_.html">&quot;places/findplacefromtext&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/_places_photo_.html">&quot;places/photo&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/_places_placesnearby_.html">&quot;places/placesnearby&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/_places_queryautocomplete_.html">&quot;places/queryautocomplete&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/_places_textsearch_.html">&quot;places/textsearch&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/_roads_nearestroads_.html">&quot;roads/nearestroads&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/_roads_snaptoroads_.html">&quot;roads/snaptoroads&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/_serialize_.html">&quot;serialize&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/_timezone_.html">&quot;timezone&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/_util_.html">&quot;util&quot;</a>
 					</li>
 				</ul>
@@ -727,7 +727,7 @@ const<span class="hljs-built_in"> client </span>= Client({axiosInstance})</code>
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class tsd-parent-kind-external-module">
+					<li class="current tsd-kind-class tsd-parent-kind-module">
 						<a href="_client_.client.html" class="tsd-kind-icon">Client</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
@@ -803,31 +803,31 @@ const<span class="hljs-built_in"> client </span>= Client({axiosInstance})</code>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
 						<a href="../interfaces/_client_.clientoptions.html" class="tsd-kind-icon">Client<wbr>Options</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported">
 						<a href="../modules/_client_.html#config" class="tsd-kind-icon">Config</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
 						<a href="../modules/_client_.html#x_goog_maps_experience_id" class="tsd-kind-icon">X_<wbr>GOOG_<wbr>MAPS_<wbr>EXPERIENCE_<wbr>ID</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
 						<a href="../modules/_client_.html#acceptencoding" class="tsd-kind-icon">accept<wbr>Encoding</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
 						<a href="../modules/_client_.html#defaultaxiosinstance" class="tsd-kind-icon">default<wbr>Axios<wbr>Instance</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
 						<a href="../modules/_client_.html#defaulthttpsagent" class="tsd-kind-icon">default<wbr>Https<wbr>Agent</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
 						<a href="../modules/_client_.html#defaulttimeout" class="tsd-kind-icon">default<wbr>Timeout</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
 						<a href="../modules/_client_.html#useragent" class="tsd-kind-icon">user<wbr>Agent</a>
 					</li>
-					<li class=" tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-object-literal tsd-parent-kind-module tsd-is-not-exported">
 						<a href="../modules/_client_.html#defaultconfig" class="tsd-kind-icon">default<wbr>Config</a>
 					</li>
 				</ul>
@@ -840,57 +840,26 @@ const<span class="hljs-built_in"> client </span>= Client({axiosInstance})</code>
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
 				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
 				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
-				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
-				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
 				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
-				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
-				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
 			</ul>
 		</div>
 	</div>
@@ -900,6 +869,5 @@ const<span class="hljs-built_in"> client </span>= Client({axiosInstance})</code>
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>
