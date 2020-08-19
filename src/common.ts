@@ -294,6 +294,8 @@ export interface PlaceReview {
    * For example, all the English reviews are tagged as 'en', and not 'en-AU' or 'en-UK' and so on.
    */
   language: string;
+  /** the URL to the user's profile photo, if available. */
+  profile_photo_url: string;
   /** the user's overall rating for this place. This is a whole number, ranging from 1 to 5. */
   rating: number;
   /* The time since review in relative terms, for example '7 months ago' */

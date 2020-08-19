@@ -20,9 +20,54 @@ test("details should return correct result", async () => {
   const params = {
     place_id: "ChIJKxDbe_lYwokRVf__s8CPn-o",
     key: process.env.GOOGLE_MAPS_API_KEY,
-    fields: ["place_id", "name", "formatted_address"]
+    fields: ["place_id", "name", "formatted_address"],
   };
 
   const r = await placeDetails({ params: params });
   expect(r.data.result.place_id).toBeDefined();
+});
+
+test("details should return all fields", async () => {
+  const params = {
+    place_id: "ChIJKxDbe_lYwokRVf__s8CPn-o",
+    key: process.env.GOOGLE_MAPS_API_KEY,
+  };
+
+  const r = await placeDetails({ params: params });
+
+  expect(r.data.result.address_components).toBeDefined();
+  expect(r.data.result.adr_address).toBeDefined();
+  expect(r.data.result.business_status).toBeDefined();
+  expect(r.data.result.formatted_address).toBeDefined();
+  expect(r.data.result.formatted_phone_number).toBeDefined();
+  expect(r.data.result.geometry).toBeDefined();
+  expect(r.data.result.icon).toBeDefined();
+  expect(r.data.result.international_phone_number).toBeDefined();
+  expect(r.data.result.name).toBeDefined();
+  expect(r.data.result.permanently_closed).toBeDefined();
+  expect(r.data.result.photos).toBeDefined();
+  expect(r.data.result.place_id).toBeDefined();
+  expect(r.data.result.plus_code).toBeDefined();
+  expect(r.data.result.rating).toBeDefined();
+  expect(r.data.result.reviews).toBeDefined();
+  expect(r.data.result.types).toBeDefined();
+  expect(r.data.result.url).toBeDefined();
+  expect(r.data.result.user_ratings_total).toBeDefined();
+  expect(r.data.result.utc_offset).toBeDefined();
+  expect(r.data.result.vicinity).toBeDefined();
+  expect(r.data.result.website).toBeDefined();
+
+  expect(r.data.result.reviews[0].author_name).toBeDefined();
+  expect(r.data.result.reviews[0].author_url).toBeDefined();
+  expect(r.data.result.reviews[0].language).toBeDefined();
+  expect(r.data.result.reviews[0].profile_photo_url).toBeDefined();
+  expect(r.data.result.reviews[0].rating).toBeDefined();
+  expect(r.data.result.reviews[0].relative_time_description).toBeDefined();
+  expect(r.data.result.reviews[0].text).toBeDefined();
+  expect(r.data.result.reviews[0].time).toBeDefined();
+
+  expect(r.data.result.photos[0].height).toBeDefined();
+  expect(r.data.result.photos[0].html_attributions).toBeDefined();
+  expect(r.data.result.photos[0].photo_reference).toBeDefined();
+  expect(r.data.result.photos[0].width).toBeDefined();
 });
