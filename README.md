@@ -44,12 +44,12 @@ Below is a simple example calling the elevation method on the client class.
 Import the Google Maps Client using Typescript and ES6 module:
 
 ```js
-import {Client, Status} from "@googlemaps/google-maps-services-js";
+import {Client} from "@googlemaps/google-maps-services-js";
 ```
 
 Alternatively using JavaScript without ES6 module support:
 ```js
-const {Client, Status} = require("@googlemaps/google-maps-services-js");
+const {Client} = require("@googlemaps/google-maps-services-js");
 ```
 
 Now instantiate the client to make a call to one of the APIs.
