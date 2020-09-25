@@ -294,8 +294,12 @@ export interface PlaceReview {
    * For example, all the English reviews are tagged as 'en', and not 'en-AU' or 'en-UK' and so on.
    */
   language: string;
+  /** the URL to the user's profile photo, if available. */
+  profile_photo_url: string;
   /** the user's overall rating for this place. This is a whole number, ranging from 1 to 5. */
   rating: number;
+  /* The time since review in relative terms, for example '7 months ago' */
+  relative_time_description: string;
   /**
    * the user's review. When reviewing a location with Google Places, text reviews are considered optional.
    * Therefore, this field may by empty. Note that this field may include simple HTML markup.
@@ -435,6 +439,8 @@ interface PlaceData {
   price_level: number;
   /** contains the place's rating, from 1.0 to 5.0, based on aggregated user reviews. */
   rating: number;
+  /** The total number of ratings from users */
+  user_ratings_total: number;
   /**
    * a JSON array of up to five reviews. If a `language` parameter was specified in the Place Details request,
    * the Places Service will bias the results to prefer reviews written in that language.
