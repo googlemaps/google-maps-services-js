@@ -77,6 +77,11 @@ export interface PlaceAutocompleteRequest extends Partial<AxiosRequestConfig> {
      * The `offset` should generally be set to the position of the text caret.
      */
     offset?: number;
+    /**
+     * The origin point from which to calculate straight-line distance to the destination (returned as distance_meters).
+     * If this value is omitted, straight-line distance will not be returned.
+     */
+    origin?: LatLng;
     /** The point around which you wish to retrieve place information. */
     location?: LatLng;
     /**
@@ -121,6 +126,12 @@ export interface PlaceAutocompleteResult {
    */
   description: string;
   /**
+   * contains an integer indicating the straight-line distance between the predicted place, and the specified origin point, in meters.
+   * This field is only returned when the origin point is specified in the request.
+   * This field is not returned in predictions of type route.
+   */
+  distance_meters?: number;
+  /**
    * is a textual identifier that uniquely identifies a place.
    * To retrieve information about the place, pass this identifier in the `placeId` field of a Places API request.
    */
@@ -158,7 +169,8 @@ export interface PlaceAutocompleteResponse extends AxiosResponse {
 }
 
 export const defaultParamsSerializer = serializer({
-  location: latLngToString
+  location: latLngToString,
+  origin: latLngToString
 });
 
 export const defaultUrl =
