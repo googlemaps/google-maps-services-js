@@ -85,6 +85,7 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_places_autocomplete_.placeautocompleteresult.html#description" class="tsd-kind-icon">description</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_places_autocomplete_.placeautocompleteresult.html#distance_meters" class="tsd-kind-icon">distance_<wbr>meters</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_places_autocomplete_.placeautocompleteresult.html#matched_substrings" class="tsd-kind-icon">matched_<wbr>substrings</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_places_autocomplete_.placeautocompleteresult.html#place_id" class="tsd-kind-icon">place_<wbr>id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_places_autocomplete_.placeautocompleteresult.html#structured_formatting" class="tsd-kind-icon">structured_<wbr>formatting</a></li>
@@ -103,7 +104,7 @@
 					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/d5af9e1/src/places/autocomplete.ts#L122">src/places/autocomplete.ts:122</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f26cfe1/src/places/autocomplete.ts#L127">src/places/autocomplete.ts:127</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -114,12 +115,29 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="distance_meters" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> distance_<wbr>meters</h3>
+					<div class="tsd-signature tsd-kind-icon">distance_<wbr>meters<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f26cfe1/src/places/autocomplete.ts#L133">src/places/autocomplete.ts:133</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>contains an integer indicating the straight-line distance between the predicted place, and the specified origin point, in meters.
+								This field is only returned when the origin point is specified in the request.
+							This field is not returned in predictions of type route.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="matched_substrings" class="tsd-anchor"></a>
 					<h3>matched_<wbr>substrings</h3>
 					<div class="tsd-signature tsd-kind-icon">matched_<wbr>substrings<span class="tsd-signature-symbol">:</span> <a href="_common_.predictionsubstring.html" class="tsd-signature-type">PredictionSubstring</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/d5af9e1/src/places/autocomplete.ts#L142">src/places/autocomplete.ts:142</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f26cfe1/src/places/autocomplete.ts#L153">src/places/autocomplete.ts:153</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -135,7 +153,7 @@
 					<div class="tsd-signature tsd-kind-icon">place_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/d5af9e1/src/places/autocomplete.ts#L127">src/places/autocomplete.ts:127</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f26cfe1/src/places/autocomplete.ts#L138">src/places/autocomplete.ts:138</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -151,7 +169,7 @@
 					<div class="tsd-signature tsd-kind-icon">structured_<wbr>formatting<span class="tsd-signature-symbol">:</span> <a href="_common_.structuredformatting.html" class="tsd-signature-type">StructuredFormatting</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/d5af9e1/src/places/autocomplete.ts#L144">src/places/autocomplete.ts:144</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f26cfe1/src/places/autocomplete.ts#L155">src/places/autocomplete.ts:155</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -166,7 +184,7 @@
 					<div class="tsd-signature tsd-kind-icon">terms<span class="tsd-signature-symbol">:</span> <a href="_common_.predictionterm.html" class="tsd-signature-type">PredictionTerm</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/d5af9e1/src/places/autocomplete.ts#L132">src/places/autocomplete.ts:132</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f26cfe1/src/places/autocomplete.ts#L143">src/places/autocomplete.ts:143</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -182,7 +200,7 @@
 					<div class="tsd-signature tsd-kind-icon">types<span class="tsd-signature-symbol">:</span> <a href="../enums/_common_.addresstype.html" class="tsd-signature-type">AddressType</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/d5af9e1/src/places/autocomplete.ts#L137">src/places/autocomplete.ts:137</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f26cfe1/src/places/autocomplete.ts#L148">src/places/autocomplete.ts:148</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -289,6 +307,9 @@
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_places_autocomplete_.placeautocompleteresult.html#description" class="tsd-kind-icon">description</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_places_autocomplete_.placeautocompleteresult.html#distance_meters" class="tsd-kind-icon">distance_<wbr>meters</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_places_autocomplete_.placeautocompleteresult.html#matched_substrings" class="tsd-kind-icon">matched_<wbr>substrings</a>
