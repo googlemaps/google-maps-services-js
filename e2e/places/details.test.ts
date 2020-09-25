@@ -44,7 +44,6 @@ test("details should return all fields", async () => {
   expect(r.data.result.icon).toBeDefined();
   expect(r.data.result.international_phone_number).toBeDefined();
   expect(r.data.result.name).toBeDefined();
-  expect(r.data.result.permanently_closed).toBeDefined();
   expect(r.data.result.photos).toBeDefined();
   expect(r.data.result.place_id).toBeDefined();
   expect(r.data.result.plus_code).toBeDefined();
