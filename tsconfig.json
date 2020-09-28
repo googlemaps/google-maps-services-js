@@ -10,7 +10,8 @@
         ],
         "declaration": true,
         "declarationDir": "./dist",
-        "resolveJsonModule": true
+        "resolveJsonModule": true,
+        "lib": []
     },
     "include": [
         "src/**/*.ts"
