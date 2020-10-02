@@ -36,9 +36,13 @@ jobs:
           "@semantic-release/commit-analyzer"
           "@semantic-release/changelog"
           "@semantic-release/release-notes-generator"
+          "@semantic-release/npm
           "@semantic-release/git
           "@semantic-release/github
-          "@semantic-release/npm
       env:
         GH_TOKEN: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
         NPM_TOKEN: ${{ secrets.NPM_WOMBAT_TOKEN }}
+        GIT_AUTHOR_NAME: googlemaps-bot
+        GIT_AUTHOR_EMAIL: googlemaps-bot@users.noreply.github.com
+        GIT_COMMITTER_NAME: googlemaps-bot
+        GIT_COMMITTER_EMAIL: googlemaps-bot@users.noreply.github.com
