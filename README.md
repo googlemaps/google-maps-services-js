@@ -75,7 +75,7 @@ client
 
 ## Reference Documentation
 
-The generated reference documentationcan be found [here](https://googlemaps.github.io/google-maps-services-js/). The TypeScript types are the authoritative documentation for this library and may differ slightly from the descriptions.
+The generated reference documentation can be found [here](https://googlemaps.github.io/google-maps-services-js/). The TypeScript types are the authoritative documentation for this library and may differ slightly from the descriptions.
 
 ## Developing
 
