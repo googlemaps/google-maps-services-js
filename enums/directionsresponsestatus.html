@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Status | Google Maps Services Node Client</title>
+	<title>DirectionsResponseStatus | Google Maps Services Node Client</title>
 	<meta name="description" content="Documentation for Google Maps Services Node Client">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,16 +55,24 @@
 					<a href="../modules.html">Google Maps Services Node Client</a>
 				</li>
 				<li>
-					<a href="status.html">Status</a>
+					<a href="directionsresponsestatus.html">DirectionsResponseStatus</a>
 				</li>
 			</ul>
-			<h1>Enumeration Status</h1>
+			<h1>Enumeration DirectionsResponseStatus</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>The <code>status</code> field within the Directions response object contains the status of the request, and may contain debugging information
+						to help you track down why the Directions service failed.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
@@ -72,16 +80,16 @@
 						<section class="tsd-index-section ">
 							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="status.html#invalid_request" class="tsd-kind-icon">INVALID_<wbr>REQUEST</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="status.html#max_route_length_exceeded" class="tsd-kind-icon">MAX_<wbr>ROUTE_<wbr>LENGTH_<wbr>EXCEEDED</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="status.html#max_waypoints_exceeded" class="tsd-kind-icon">MAX_<wbr>WAYPOINTS_<wbr>EXCEEDED</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="status.html#not_found" class="tsd-kind-icon">NOT_<wbr>FOUND</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="status.html#ok" class="tsd-kind-icon">OK</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="status.html#over_daily_limit" class="tsd-kind-icon">OVER_<wbr>DAILY_<wbr>LIMIT</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="status.html#over_query_limit" class="tsd-kind-icon">OVER_<wbr>QUERY_<wbr>LIMIT</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="status.html#request_denied" class="tsd-kind-icon">REQUEST_<wbr>DENIED</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="status.html#unknown_error" class="tsd-kind-icon">UNKNOWN_<wbr>ERROR</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="status.html#zero_results" class="tsd-kind-icon">ZERO_<wbr>RESULTS</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="directionsresponsestatus.html#invalid_request" class="tsd-kind-icon">INVALID_<wbr>REQUEST</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="directionsresponsestatus.html#max_route_length_exceeded" class="tsd-kind-icon">MAX_<wbr>ROUTE_<wbr>LENGTH_<wbr>EXCEEDED</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="directionsresponsestatus.html#max_waypoints_exceeded" class="tsd-kind-icon">MAX_<wbr>WAYPOINTS_<wbr>EXCEEDED</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="directionsresponsestatus.html#not_found" class="tsd-kind-icon">NOT_<wbr>FOUND</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="directionsresponsestatus.html#ok" class="tsd-kind-icon">OK</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="directionsresponsestatus.html#over_daily_limit" class="tsd-kind-icon">OVER_<wbr>DAILY_<wbr>LIMIT</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="directionsresponsestatus.html#over_query_limit" class="tsd-kind-icon">OVER_<wbr>QUERY_<wbr>LIMIT</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="directionsresponsestatus.html#request_denied" class="tsd-kind-icon">REQUEST_<wbr>DENIED</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="directionsresponsestatus.html#unknown_error" class="tsd-kind-icon">UNKNOWN_<wbr>ERROR</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="directionsresponsestatus.html#zero_results" class="tsd-kind-icon">ZERO_<wbr>RESULTS</a></li>
 							</ul>
 						</section>
 					</div>
@@ -95,12 +103,12 @@
 					<div class="tsd-signature tsd-kind-icon">INVALID_<wbr>REQUEST<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;INVALID_REQUEST&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/d9c1104/src/common.ts#L58">src/common.ts:58</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/d9c1104/src/common.ts#L752">src/common.ts:752</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>indicates that the provided request was invalid.</p>
+							<p>indicates that the provided request was invalid. Common causes of this status include an invalid parameter or parameter value.</p>
 						</div>
 					</div>
 				</section>
@@ -110,7 +118,7 @@
 					<div class="tsd-signature tsd-kind-icon">MAX_<wbr>ROUTE_<wbr>LENGTH_<wbr>EXCEEDED<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;MAX_ROUTE_LENGTH_EXCEEDED&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/d9c1104/src/common.ts#L70">src/common.ts:70</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/d9c1104/src/common.ts#L750">src/common.ts:750</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -127,7 +135,7 @@
 					<div class="tsd-signature tsd-kind-icon">MAX_<wbr>WAYPOINTS_<wbr>EXCEEDED<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;MAX_WAYPOINTS_EXCEEDED&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/d9c1104/src/common.ts#L64">src/common.ts:64</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/d9c1104/src/common.ts#L744">src/common.ts:744</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -144,12 +152,12 @@
 					<div class="tsd-signature tsd-kind-icon">NOT_<wbr>FOUND<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;NOT_FOUND&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/d9c1104/src/common.ts#L89">src/common.ts:89</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/d9c1104/src/common.ts#L736">src/common.ts:736</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>indicates that the referenced location (place_id) was not found in the Places database.</p>
+							<p>indicates at least one of the locations specified in the request&#39;s origin, destination, or waypoints could not be geocoded.</p>
 						</div>
 					</div>
 				</section>
@@ -159,12 +167,12 @@
 					<div class="tsd-signature tsd-kind-icon">OK<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;OK&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/d9c1104/src/common.ts#L56">src/common.ts:56</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/d9c1104/src/common.ts#L734">src/common.ts:734</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>indicates the response contains a valid result.</p>
+							<p>indicates the response contains a valid <code>result</code>.</p>
 						</div>
 					</div>
 				</section>
@@ -174,7 +182,7 @@
 					<div class="tsd-signature tsd-kind-icon">OVER_<wbr>DAILY_<wbr>LIMIT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;OVER_DAILY_LIMIT&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/d9c1104/src/common.ts#L79">src/common.ts:79</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/d9c1104/src/common.ts#L761">src/common.ts:761</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -196,7 +204,7 @@
 					<div class="tsd-signature tsd-kind-icon">OVER_<wbr>QUERY_<wbr>LIMIT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;OVER_QUERY_LIMIT&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/d9c1104/src/common.ts#L81">src/common.ts:81</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/d9c1104/src/common.ts#L763">src/common.ts:763</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -211,12 +219,12 @@
 					<div class="tsd-signature tsd-kind-icon">REQUEST_<wbr>DENIED<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;REQUEST_DENIED&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/d9c1104/src/common.ts#L83">src/common.ts:83</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/d9c1104/src/common.ts#L765">src/common.ts:765</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>indicates that the service denied use of the Distance Matrix service by your application.</p>
+							<p>indicates that the service denied use of the directions service by your application.</p>
 						</div>
 					</div>
 				</section>
@@ -226,12 +234,12 @@
 					<div class="tsd-signature tsd-kind-icon">UNKNOWN_<wbr>ERROR<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;UNKNOWN_ERROR&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/d9c1104/src/common.ts#L85">src/common.ts:85</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/d9c1104/src/common.ts#L767">src/common.ts:767</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>indicates a Distance Matrix request could not be processed due to a server error. The request may succeed if you try again.</p>
+							<p>indicates a directions request could not be processed due to a server error. The request may succeed if you try again.</p>
 						</div>
 					</div>
 				</section>
@@ -241,12 +249,12 @@
 					<div class="tsd-signature tsd-kind-icon">ZERO_<wbr>RESULTS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;ZERO_RESULTS&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/d9c1104/src/common.ts#L87">src/common.ts:87</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/d9c1104/src/common.ts#L738">src/common.ts:738</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>indicates that the request was successful but returned no results.</p>
+							<p>indicates no route could be found between the origin and destination.</p>
 						</div>
 					</div>
 				</section>
@@ -265,37 +273,37 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-enum">
-						<a href="status.html" class="tsd-kind-icon">Status</a>
+						<a href="directionsresponsestatus.html" class="tsd-kind-icon">Directions<wbr>Response<wbr>Status</a>
 						<ul>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="status.html#invalid_request" class="tsd-kind-icon">INVALID_<wbr>REQUEST</a>
+								<a href="directionsresponsestatus.html#invalid_request" class="tsd-kind-icon">INVALID_<wbr>REQUEST</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="status.html#max_route_length_exceeded" class="tsd-kind-icon">MAX_<wbr>ROUTE_<wbr>LENGTH_<wbr>EXCEEDED</a>
+								<a href="directionsresponsestatus.html#max_route_length_exceeded" class="tsd-kind-icon">MAX_<wbr>ROUTE_<wbr>LENGTH_<wbr>EXCEEDED</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="status.html#max_waypoints_exceeded" class="tsd-kind-icon">MAX_<wbr>WAYPOINTS_<wbr>EXCEEDED</a>
+								<a href="directionsresponsestatus.html#max_waypoints_exceeded" class="tsd-kind-icon">MAX_<wbr>WAYPOINTS_<wbr>EXCEEDED</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="status.html#not_found" class="tsd-kind-icon">NOT_<wbr>FOUND</a>
+								<a href="directionsresponsestatus.html#not_found" class="tsd-kind-icon">NOT_<wbr>FOUND</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="status.html#ok" class="tsd-kind-icon">OK</a>
+								<a href="directionsresponsestatus.html#ok" class="tsd-kind-icon">OK</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="status.html#over_daily_limit" class="tsd-kind-icon">OVER_<wbr>DAILY_<wbr>LIMIT</a>
+								<a href="directionsresponsestatus.html#over_daily_limit" class="tsd-kind-icon">OVER_<wbr>DAILY_<wbr>LIMIT</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="status.html#over_query_limit" class="tsd-kind-icon">OVER_<wbr>QUERY_<wbr>LIMIT</a>
+								<a href="directionsresponsestatus.html#over_query_limit" class="tsd-kind-icon">OVER_<wbr>QUERY_<wbr>LIMIT</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="status.html#request_denied" class="tsd-kind-icon">REQUEST_<wbr>DENIED</a>
+								<a href="directionsresponsestatus.html#request_denied" class="tsd-kind-icon">REQUEST_<wbr>DENIED</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="status.html#unknown_error" class="tsd-kind-icon">UNKNOWN_<wbr>ERROR</a>
+								<a href="directionsresponsestatus.html#unknown_error" class="tsd-kind-icon">UNKNOWN_<wbr>ERROR</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="status.html#zero_results" class="tsd-kind-icon">ZERO_<wbr>RESULTS</a>
+								<a href="directionsresponsestatus.html#zero_results" class="tsd-kind-icon">ZERO_<wbr>RESULTS</a>
 							</li>
 						</ul>
 					</li>
