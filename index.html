@@ -7,6 +7,7 @@
 	<meta name="description" content="Documentation for Google Maps Services Node Client">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
 </head>
 <body>
 <header>
@@ -40,8 +41,6 @@
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
 							<input type="checkbox" id="tsd-filter-externals" checked />
 							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-							<input type="checkbox" id="tsd-filter-only-exported" />
-							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -51,12 +50,7 @@
 	</div>
 	<div class="tsd-page-title">
 		<div class="container">
-			<ul class="tsd-breadcrumb">
-				<li>
-					<a href="globals.html">Globals</a>
-				</li>
-			</ul>
-			<h1>Google Maps Services Node Client</h1>
+			<h1>Project Google Maps Services Node Client</h1>
 		</div>
 	</div>
 </header>
@@ -101,29 +95,33 @@
 				<a href="#quick-start" id="quick-start" style="color: inherit; text-decoration: none;">
 					<h2>Quick Start</h2>
 				</a>
-				<pre><code>$ <span class="hljs-built_in">npm</span> install @googlemaps/google-maps-services-js</code></pre>
+				<pre><code><span style="color: #001080">$</span><span style="color: #000000"> </span><span style="color: #001080">npm</span><span style="color: #000000"> </span><span style="color: #001080">install</span><span style="color: #000000"> @</span><span style="color: #001080">googlemaps</span><span style="color: #000000">/</span><span style="color: #001080">google</span><span style="color: #000000">-</span><span style="color: #001080">maps</span><span style="color: #000000">-</span><span style="color: #001080">services</span><span style="color: #000000">-</span><span style="color: #001080">js</span>
+</code></pre>
 				<p>Below is a simple example calling the elevation method on the client class.</p>
 				<p>Import the Google Maps Client using Typescript and ES6 module:</p>
-				<pre><code class="language-js"><span class="hljs-keyword">import</span> {Client} <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@googlemaps/google-maps-services-js&quot;</span>;</code></pre>
+				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">Client</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;@googlemaps/google-maps-services-js&quot;</span><span style="color: #000000">;</span>
+</code></pre>
 				<p>Alternatively using JavaScript without ES6 module support:</p>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> {Client} = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@googlemaps/google-maps-services-js&quot;</span>);</code></pre>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> {</span><span style="color: #0070C1">Client</span><span style="color: #000000">} = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;@googlemaps/google-maps-services-js&quot;</span><span style="color: #000000">);</span>
+</code></pre>
 				<p>Now instantiate the client to make a call to one of the APIs.</p>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> Client({});
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">client</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Client</span><span style="color: #000000">({});</span>
 
-client
-  .elevation({
-    <span class="hljs-attr">params</span>: {
-      <span class="hljs-attr">locations</span>: [{ <span class="hljs-attr">lat</span>: <span class="hljs-number">45</span>, <span class="hljs-attr">lng</span>: -<span class="hljs-number">110</span> }],
-      <span class="hljs-attr">key</span>: <span class="hljs-string">&quot;asdf&quot;</span>,
-    },
-    <span class="hljs-attr">timeout</span>: <span class="hljs-number">1000</span>, <span class="hljs-comment">// milliseconds</span>
-  })
-  .then(<span class="hljs-function">(<span class="hljs-params">r</span>) =&gt;</span> {
-    <span class="hljs-built_in">console</span>.log(r.data.results[<span class="hljs-number">0</span>].elevation);
-  })
-  .catch(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
-    <span class="hljs-built_in">console</span>.log(e.response.data.error_message);
-  });</code></pre>
+<span style="color: #001080">client</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">elevation</span><span style="color: #000000">({</span>
+<span style="color: #000000">    </span><span style="color: #001080">params:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">locations:</span><span style="color: #000000"> [{ </span><span style="color: #001080">lat:</span><span style="color: #000000"> </span><span style="color: #098658">45</span><span style="color: #000000">, </span><span style="color: #001080">lng:</span><span style="color: #000000"> -</span><span style="color: #098658">110</span><span style="color: #000000"> }],</span>
+<span style="color: #000000">      </span><span style="color: #001080">key:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;asdf&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">    </span><span style="color: #001080">timeout:</span><span style="color: #000000"> </span><span style="color: #098658">1000</span><span style="color: #000000">, </span><span style="color: #008000">// milliseconds</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">r</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">r</span><span style="color: #000000">.</span><span style="color: #001080">data</span><span style="color: #000000">.</span><span style="color: #001080">results</span><span style="color: #000000">[</span><span style="color: #098658">0</span><span style="color: #000000">].</span><span style="color: #001080">elevation</span><span style="color: #000000">);</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">e</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">e</span><span style="color: #000000">.</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">data</span><span style="color: #000000">.</span><span style="color: #001080">error_message</span><span style="color: #000000">);</span>
+<span style="color: #000000">  });</span>
+</code></pre>
 				<a href="#reference-documentation" id="reference-documentation" style="color: inherit; text-decoration: none;">
 					<h2>Reference Documentation</h2>
 				</a>
@@ -133,8 +131,9 @@ client
 				</a>
 				<p>In order to run the end-to-end tests, you&#39;ll need to supply your API key via an
 				environment variable.</p>
-				<pre><code>$ <span class="hljs-builtin-name">export</span> <span class="hljs-attribute">GOOGLE_MAPS_API_KEY</span>=AIza-your-api-key
-$ npm test</code></pre>
+				<pre><code><span style="color: #001080">$</span><span style="color: #000000"> </span><span style="color: #0000FF">export</span><span style="color: #000000"> </span><span style="color: #0070C1">GOOGLE_MAPS_API_KEY</span><span style="color: #000000">=</span><span style="color: #001080">AIza</span><span style="color: #000000">-</span><span style="color: #001080">your</span><span style="color: #000000">-</span><span style="color: #001080">api</span><span style="color: #000000">-</span><span style="color: #001080">key</span>
+<span style="color: #001080">$</span><span style="color: #000000"> </span><span style="color: #001080">npm</span><span style="color: #000000"> </span><span style="color: #001080">test</span>
+</code></pre>
 				<a href="#migration" id="migration" style="color: inherit; text-decoration: none;">
 					<h2>Migration</h2>
 				</a>
@@ -146,40 +145,42 @@ $ npm test</code></pre>
 				<a href="#old-googlemaps" id="old-googlemaps" style="color: inherit; text-decoration: none;">
 					<h3>Old (<code>@google/maps</code>):</h3>
 				</a>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> googleMapsClient = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;@google/maps&#x27;</span>).createClient({
-  <span class="hljs-attr">key</span>: <span class="hljs-string">&#x27;your API key here&#x27;</span>
-});
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">googleMapsClient</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@google/maps&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">createClient</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">key:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;your API key here&#039;</span>
+<span style="color: #000000">});</span>
 
-googleMapsClient
-  .elevation({
-    <span class="hljs-attr">locations</span>: {<span class="hljs-attr">lat</span>: <span class="hljs-number">45</span>, <span class="hljs-attr">lng</span>: -<span class="hljs-number">110</span>}
-  })
-  .asPromise()
-  .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">r</span>) </span>{
-    <span class="hljs-built_in">console</span>.log(r.json.results[<span class="hljs-number">0</span>].elevation);
-  })
-  .catch(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> {
-  <span class="hljs-built_in">console</span>.log(e);
-  });</code></pre>
+<span style="color: #001080">googleMapsClient</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">elevation</span><span style="color: #000000">({</span>
+<span style="color: #000000">    </span><span style="color: #001080">locations:</span><span style="color: #000000"> {</span><span style="color: #001080">lat:</span><span style="color: #000000"> </span><span style="color: #098658">45</span><span style="color: #000000">, </span><span style="color: #001080">lng:</span><span style="color: #000000"> -</span><span style="color: #098658">110</span><span style="color: #000000">}</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">asPromise</span><span style="color: #000000">()</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #0000FF">function</span><span style="color: #000000">(</span><span style="color: #001080">r</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">r</span><span style="color: #000000">.</span><span style="color: #001080">json</span><span style="color: #000000">.</span><span style="color: #001080">results</span><span style="color: #000000">[</span><span style="color: #098658">0</span><span style="color: #000000">].</span><span style="color: #001080">elevation</span><span style="color: #000000">);</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">catch</span><span style="color: #000000">(</span><span style="color: #001080">e</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">e</span><span style="color: #000000">);</span>
+<span style="color: #000000">  });</span>
+</code></pre>
 				<a href="#new-googlemapsgoogle-maps-services-js" id="new-googlemapsgoogle-maps-services-js" style="color: inherit; text-decoration: none;">
 					<h3>New (<code>@googlemaps/google-maps-services-js</code>):</h3>
 				</a>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> Client({});
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">client</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Client</span><span style="color: #000000">({});</span>
 
-client
-  .elevation({
-    <span class="hljs-attr">params</span>: {
-      <span class="hljs-attr">locations</span>: [{ <span class="hljs-attr">lat</span>: <span class="hljs-number">45</span>, <span class="hljs-attr">lng</span>: -<span class="hljs-number">110</span> }],
-      <span class="hljs-attr">key</span>: process.env.GOOGLE_MAPS_API_KEY
-    },
-    <span class="hljs-attr">timeout</span>: <span class="hljs-number">1000</span> <span class="hljs-comment">// milliseconds</span>
-  }, axiosInstance)
-  .then(<span class="hljs-function"><span class="hljs-params">r</span> =&gt;</span> {
-    <span class="hljs-built_in">console</span>.log(r.data.results[<span class="hljs-number">0</span>].elevation);
-  })
-  .catch(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> {
-    <span class="hljs-built_in">console</span>.log(e);
-  });</code></pre>
+<span style="color: #001080">client</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">elevation</span><span style="color: #000000">({</span>
+<span style="color: #000000">    </span><span style="color: #001080">params:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">locations:</span><span style="color: #000000"> [{ </span><span style="color: #001080">lat:</span><span style="color: #000000"> </span><span style="color: #098658">45</span><span style="color: #000000">, </span><span style="color: #001080">lng:</span><span style="color: #000000"> -</span><span style="color: #098658">110</span><span style="color: #000000"> }],</span>
+<span style="color: #000000">      </span><span style="color: #001080">key:</span><span style="color: #000000"> </span><span style="color: #001080">process</span><span style="color: #000000">.</span><span style="color: #001080">env</span><span style="color: #000000">.</span><span style="color: #0070C1">GOOGLE_MAPS_API_KEY</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">    </span><span style="color: #001080">timeout:</span><span style="color: #000000"> </span><span style="color: #098658">1000</span><span style="color: #000000"> </span><span style="color: #008000">// milliseconds</span>
+<span style="color: #000000">  }, </span><span style="color: #001080">axiosInstance</span><span style="color: #000000">)</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">r</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">r</span><span style="color: #000000">.</span><span style="color: #001080">data</span><span style="color: #000000">.</span><span style="color: #001080">results</span><span style="color: #000000">[</span><span style="color: #098658">0</span><span style="color: #000000">].</span><span style="color: #001080">elevation</span><span style="color: #000000">);</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">catch</span><span style="color: #000000">(</span><span style="color: #001080">e</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">e</span><span style="color: #000000">);</span>
+<span style="color: #000000">  });</span>
+</code></pre>
 				<p>The primary differences are in the following table.</p>
 				<table>
 					<thead>
@@ -241,79 +242,328 @@ client
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals  ">
-						<a href="globals.html"><em>Globals</em></a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_adapter_.html">&quot;adapter&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_client_.html">&quot;client&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_common_.html">&quot;common&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_directions_.html">&quot;directions&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_distance_.html">&quot;distance&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_elevation_.html">&quot;elevation&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_geocode_geocode_.html">&quot;geocode/geocode&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_geocode_reversegeocode_.html">&quot;geocode/reversegeocode&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_geolocate_.html">&quot;geolocate&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_index_.html">&quot;index&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_places_autocomplete_.html">&quot;places/autocomplete&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_places_details_.html">&quot;places/details&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_places_findplacefromtext_.html">&quot;places/findplacefromtext&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_places_photo_.html">&quot;places/photo&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_places_placesnearby_.html">&quot;places/placesnearby&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_places_queryautocomplete_.html">&quot;places/queryautocomplete&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_places_textsearch_.html">&quot;places/textsearch&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_roads_nearestroads_.html">&quot;roads/nearestroads&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_roads_snaptoroads_.html">&quot;roads/snaptoroads&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_serialize_.html">&quot;serialize&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_timezone_.html">&quot;timezone&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_util_.html">&quot;util&quot;</a>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-enum">
+						<a href="enums/addresstype.html" class="tsd-kind-icon">Address<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="enums/aspectratingtype.html" class="tsd-kind-icon">Aspect<wbr>Rating<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="enums/directionsreponsestatus.html" class="tsd-kind-icon">Directions<wbr>Reponse<wbr>Status</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="enums/geocodedwaypointstatus.html" class="tsd-kind-icon">Geocoded<wbr>Waypoint<wbr>Status</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="enums/geocodingaddresscomponenttype.html" class="tsd-kind-icon">Geocoding<wbr>Address<wbr>Component<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="enums/language.html" class="tsd-kind-icon">Language</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="enums/locationtype.html" class="tsd-kind-icon">Location<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="enums/maneuver.html" class="tsd-kind-icon">Maneuver</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="enums/placeautocompletetype.html" class="tsd-kind-icon">Place<wbr>Autocomplete<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="enums/placeidscope.html" class="tsd-kind-icon">Place<wbr>IdScope</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="enums/placeinputtype.html" class="tsd-kind-icon">Place<wbr>Input<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="enums/placetype1.html" class="tsd-kind-icon">Place<wbr>Type1</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="enums/placetype2.html" class="tsd-kind-icon">Place<wbr>Type2</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="enums/radiotype.html" class="tsd-kind-icon">Radio<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="enums/status.html" class="tsd-kind-icon">Status</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="enums/trafficmodel.html" class="tsd-kind-icon">Traffic<wbr>Model</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="enums/transitmode.html" class="tsd-kind-icon">Transit<wbr>Mode</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="enums/transitroutingpreference.html" class="tsd-kind-icon">Transit<wbr>Routing<wbr>Preference</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="enums/travelmode.html" class="tsd-kind-icon">Travel<wbr>Mode</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="enums/travelrestriction.html" class="tsd-kind-icon">Travel<wbr>Restriction</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="enums/unitsystem.html" class="tsd-kind-icon">Unit<wbr>System</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="enums/vehicletype.html" class="tsd-kind-icon">Vehicle<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/client.html" class="tsd-kind-icon">Client</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/addresscomponent.html" class="tsd-kind-icon">Address<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/addressgeometry.html" class="tsd-kind-icon">Address<wbr>Geometry</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/alternativeplaceid.html" class="tsd-kind-icon">Alternative<wbr>Place<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/aspectrating.html" class="tsd-kind-icon">Aspect<wbr>Rating</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/celltower.html" class="tsd-kind-icon">Cell<wbr>Tower</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/clientoptions.html" class="tsd-kind-icon">Client<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/directionsrequest.html" class="tsd-kind-icon">Directions<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/directionsresponse.html" class="tsd-kind-icon">Directions<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/directionsroute.html" class="tsd-kind-icon">Directions<wbr>Route</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/directionsstep.html" class="tsd-kind-icon">Directions<wbr>Step</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/distance.html" class="tsd-kind-icon">Distance</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/distancematrixrequest.html" class="tsd-kind-icon">Distance<wbr>Matrix<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/distancematrixresponse.html" class="tsd-kind-icon">Distance<wbr>Matrix<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/distancematrixrow.html" class="tsd-kind-icon">Distance<wbr>Matrix<wbr>Row</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/distancematrixrowelement.html" class="tsd-kind-icon">Distance<wbr>Matrix<wbr>Row<wbr>Element</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/duration.html" class="tsd-kind-icon">Duration</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/elevationrequest.html" class="tsd-kind-icon">Elevation<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/elevationresponse.html" class="tsd-kind-icon">Elevation<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/findplacefromtextrequest.html" class="tsd-kind-icon">Find<wbr>Place<wbr>From<wbr>Text<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/findplacefromtextresponse.html" class="tsd-kind-icon">Find<wbr>Place<wbr>From<wbr>Text<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/geocoderequest.html" class="tsd-kind-icon">Geocode<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/geocoderesponse.html" class="tsd-kind-icon">Geocode<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/geocoderesult.html" class="tsd-kind-icon">Geocode<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/geocodedwaypoint.html" class="tsd-kind-icon">Geocoded<wbr>Waypoint</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/geolocaterequest.html" class="tsd-kind-icon">Geolocate<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/latlngbounds.html" class="tsd-kind-icon">Lat<wbr>Lng<wbr>Bounds</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/latlngliteral.html" class="tsd-kind-icon">Lat<wbr>Lng<wbr>Literal</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/latlngliteralverbose.html" class="tsd-kind-icon">Lat<wbr>Lng<wbr>Literal<wbr>Verbose</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/nearestroadsrequest.html" class="tsd-kind-icon">Nearest<wbr>Roads<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/nearestroadsresponse.html" class="tsd-kind-icon">Nearest<wbr>Roads<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/openinghours.html" class="tsd-kind-icon">Opening<wbr>Hours</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/openinghourstime.html" class="tsd-kind-icon">Opening<wbr>Hours<wbr>Time</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/openingperiod.html" class="tsd-kind-icon">Opening<wbr>Period</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/placeautocompleterequest.html" class="tsd-kind-icon">Place<wbr>Autocomplete<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/placeautocompleteresponse.html" class="tsd-kind-icon">Place<wbr>Autocomplete<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/placeautocompleteresult.html" class="tsd-kind-icon">Place<wbr>Autocomplete<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/placedetailsrequest.html" class="tsd-kind-icon">Place<wbr>Details<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/placedetailsresponse.html" class="tsd-kind-icon">Place<wbr>Details<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/placephoto.html" class="tsd-kind-icon">Place<wbr>Photo</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/placephotorequest.html" class="tsd-kind-icon">Place<wbr>Photo<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/placephotoresponse.html" class="tsd-kind-icon">Place<wbr>Photo<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/placequeryautocompleterequest.html" class="tsd-kind-icon">Place<wbr>Query<wbr>Autocomplete<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/placequeryautocompleteresponse.html" class="tsd-kind-icon">Place<wbr>Query<wbr>Autocomplete<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/placereview.html" class="tsd-kind-icon">Place<wbr>Review</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/placesnearbyrequest.html" class="tsd-kind-icon">Places<wbr>Nearby<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/placesnearbyresponse.html" class="tsd-kind-icon">Places<wbr>Nearby<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/pluscode.html" class="tsd-kind-icon">Plus<wbr>Code</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/predictionsubstring.html" class="tsd-kind-icon">Prediction<wbr>Substring</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/predictionterm.html" class="tsd-kind-icon">Prediction<wbr>Term</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/requestparams.html" class="tsd-kind-icon">Request<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/responsedata.html" class="tsd-kind-icon">Response<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/reversegeocoderequest.html" class="tsd-kind-icon">Reverse<wbr>Geocode<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/reversegeocoderesponse.html" class="tsd-kind-icon">Reverse<wbr>Geocode<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/routeleg.html" class="tsd-kind-icon">Route<wbr>Leg</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/snaptoroadsrequest.html" class="tsd-kind-icon">Snap<wbr>ToRoads<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/snaptoroadsresponse.html" class="tsd-kind-icon">Snap<wbr>ToRoads<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/snappedpoint.html" class="tsd-kind-icon">Snapped<wbr>Point</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/structuredformatting.html" class="tsd-kind-icon">Structured<wbr>Formatting</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/textsearchrequest.html" class="tsd-kind-icon">Text<wbr>Search<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/textsearchresponse.html" class="tsd-kind-icon">Text<wbr>Search<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/time.html" class="tsd-kind-icon">Time</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/timezonerequest.html" class="tsd-kind-icon">Time<wbr>Zone<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/timezoneresponse.html" class="tsd-kind-icon">Time<wbr>Zone<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/transitagency.html" class="tsd-kind-icon">Transit<wbr>Agency</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/transitdetails.html" class="tsd-kind-icon">Transit<wbr>Details</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/transitfare.html" class="tsd-kind-icon">Transit<wbr>Fare</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/transitline.html" class="tsd-kind-icon">Transit<wbr>Line</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/transitstop.html" class="tsd-kind-icon">Transit<wbr>Stop</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/transitvehicle.html" class="tsd-kind-icon">Transit<wbr>Vehicle</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/wifiaccesspoint.html" class="tsd-kind-icon">Wifi<wbr>Access<wbr>Point</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#geolocateresponse" class="tsd-kind-icon">Geolocate<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#latlng" class="tsd-kind-icon">Lat<wbr>Lng</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#latlngarray" class="tsd-kind-icon">Lat<wbr>Lng<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#latlngstring" class="tsd-kind-icon">Lat<wbr>Lng<wbr>String</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#place" class="tsd-kind-icon">Place</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#x_goog_maps_experience_id" class="tsd-kind-icon">X_<wbr>GOOG_<wbr>MAPS_<wbr>EXPERIENCE_<wbr>ID</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#acceptencoding" class="tsd-kind-icon">accept<wbr>Encoding</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#defaultaxiosinstance" class="tsd-kind-icon">default<wbr>Axios<wbr>Instance</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#defaulthttpsagent" class="tsd-kind-icon">default<wbr>Https<wbr>Agent</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#defaulttimeout" class="tsd-kind-icon">default<wbr>Timeout</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#useragent" class="tsd-kind-icon">user<wbr>Agent</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#version" class="tsd-kind-icon">version</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
@@ -324,20 +574,15 @@ client
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
-				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
-				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 		</div>
 	</div>

@@ -1,0 +1,339 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>GeocodeResult | Google Maps Services Node Client</title>
+	<meta name="description" content="Documentation for Google Maps Services Node Client">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+	<script async src="../assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">Google Maps Services Node Client</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../modules.html">Google Maps Services Node Client</a>
+				</li>
+				<li>
+					<a href="geocoderesult.html">GeocodeResult</a>
+				</li>
+			</ul>
+			<h1>Interface GeocodeResult</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">GeocodeResult</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="geocoderesult.html#address_components" class="tsd-kind-icon">address_<wbr>components</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="geocoderesult.html#formatted_address" class="tsd-kind-icon">formatted_<wbr>address</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="geocoderesult.html#geometry" class="tsd-kind-icon">geometry</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="geocoderesult.html#partial_match" class="tsd-kind-icon">partial_<wbr>match</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="geocoderesult.html#place_id" class="tsd-kind-icon">place_<wbr>id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="geocoderesult.html#plus_code" class="tsd-kind-icon">plus_<wbr>code</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="geocoderesult.html#postcode_localities" class="tsd-kind-icon">postcode_<wbr>localities</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="geocoderesult.html#types" class="tsd-kind-icon">types</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="address_components" class="tsd-anchor"></a>
+					<h3>address_<wbr>components</h3>
+					<div class="tsd-signature tsd-kind-icon">address_<wbr>components<span class="tsd-signature-symbol">:</span> <a href="addresscomponent.html" class="tsd-signature-type" data-tsd-kind="Interface">AddressComponent</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/eb734e0/src/common.ts#L1355">src/common.ts:1355</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>is an array containing the separate components applicable to this address.</p>
+						</div>
+						<p>Note the following facts about the <code>address_components[]</code> array:</p>
+						<ul>
+							<li>The array of address components may contain more components than the <code>formatted_address</code>.</li>
+							<li>The array does not necessarily include all the political entities that contain an address,
+								apart from those included in the <code>formatted_address</code>. To retrieve all the political entities that contain a specific address,
+							you should use reverse geocoding, passing the latitude/longitude of the address as a parameter to the request.</li>
+							<li>The format of the response is not guaranteed to remain the same between requests.
+								In particular, the number of <code>address_components</code> varies based on the address requested and can change
+								over time for the same address. A component can change position in the array.
+							The type of the component can change. A particular component may be missing in a later response.</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="formatted_address" class="tsd-anchor"></a>
+					<h3>formatted_<wbr>address</h3>
+					<div class="tsd-signature tsd-kind-icon">formatted_<wbr>address<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/eb734e0/src/common.ts#L1341">src/common.ts:1341</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>is a string containing the human-readable address of this location.</p>
+						</div>
+						<p>Often this address is equivalent to the postal address. Note that some countries, such as the United Kingdom,
+						do not allow distribution of true postal addresses due to licensing restrictions.</p>
+						<p>The formatted address is logically composed of one or more address components.
+							For example, the address &quot;111 8th Avenue, New York, NY&quot; consists of the following components: &quot;111&quot; (the street number),
+						&quot;8th Avenue&quot; (the route), &quot;New York&quot; (the city) and &quot;NY&quot; (the US state).</p>
+						<p>Do not parse the formatted address programmatically. Instead you should use the individual address components,
+						which the API response includes in addition to the formatted address field.</p>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="geometry" class="tsd-anchor"></a>
+					<h3>geometry</h3>
+					<div class="tsd-signature tsd-kind-icon">geometry<span class="tsd-signature-symbol">:</span> <a href="addressgeometry.html" class="tsd-signature-type" data-tsd-kind="Interface">AddressGeometry</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/eb734e0/src/common.ts#L1362">src/common.ts:1362</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>address geometry.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="partial_match" class="tsd-anchor"></a>
+					<h3>partial_<wbr>match</h3>
+					<div class="tsd-signature tsd-kind-icon">partial_<wbr>match<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/eb734e0/src/common.ts#L1390">src/common.ts:1390</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>indicates that the geocoder did not return an exact match for the original request,
+								though it was able to match part of the requested address.
+							You may wish to examine the original request for misspellings and/or an incomplete address.</p>
+						</div>
+						<p>Partial matches most often occur for street addresses that do not exist within the locality you pass in the request.
+							Partial matches may also be returned when a request matches two or more locations in the same locality.
+							For example, &quot;21 Henr St, Bristol, UK&quot; will return a partial match for both Henry Street and Henrietta Street.
+							Note that if a request includes a misspelled address component, the geocoding service may suggest an alternative address.
+						Suggestions triggered in this way will also be marked as a partial match.</p>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="place_id" class="tsd-anchor"></a>
+					<h3>place_<wbr>id</h3>
+					<div class="tsd-signature tsd-kind-icon">place_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/eb734e0/src/common.ts#L1392">src/common.ts:1392</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>is a unique identifier that can be used with other Google APIs.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="plus_code" class="tsd-anchor"></a>
+					<h3>plus_<wbr>code</h3>
+					<div class="tsd-signature tsd-kind-icon">plus_<wbr>code<span class="tsd-signature-symbol">:</span> <a href="pluscode.html" class="tsd-signature-type" data-tsd-kind="Interface">PlusCode</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/eb734e0/src/common.ts#L1378">src/common.ts:1378</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>is an encoded location reference, derived from latitude and longitude coordinates,
+								that represents an area: 1/8000th of a degree by 1/8000th of a degree (about 14m x 14m at the equator) or smaller.
+								Plus codes can be used as a replacement for street addresses in places where they do not exist
+							(where buildings are not numbered or streets are not named).</p>
+						</div>
+						<p>The plus code is formatted as a global code and a compound code:</p>
+						<ul>
+							<li><code>global_code</code> is a 4 character area code and 6 character or longer local code (849VCWC8+R9).</li>
+							<li><code>compound_code</code> is a 6 character or longer local code with an explicit location (CWC8+R9, Mountain View, CA, USA).
+								Typically, both the global code and compound code are returned. However, if the result is in a remote location
+							(for example, an ocean or desert) only the global code may be returned.</li>
+						</ul>
+						<dl class="tsd-comment-tags">
+							<dt>see</dt>
+							<dd><p><a href="https://en.wikipedia.org/wiki/Open_Location_Code">Open Location Code</a></p>
+							</dd>
+							<dt>see</dt>
+							<dd><p><a href="https://plus.codes/">plus codes</a></p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="postcode_localities" class="tsd-anchor"></a>
+					<h3>postcode_<wbr>localities</h3>
+					<div class="tsd-signature tsd-kind-icon">postcode_<wbr>localities<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/eb734e0/src/common.ts#L1360">src/common.ts:1360</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>is an array denoting all the localities contained in a postal code.
+							This is only present when the result is a postal code that contains multiple localities.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="types" class="tsd-anchor"></a>
+					<h3>types</h3>
+					<div class="tsd-signature tsd-kind-icon">types<span class="tsd-signature-symbol">:</span> <a href="../enums/addresstype.html" class="tsd-signature-type" data-tsd-kind="Enumeration">AddressType</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/eb734e0/src/common.ts#L1327">src/common.ts:1327</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>array indicates the type of the returned result.
+								This array contains a set of zero or more tags identifying the type of feature returned in the result.
+								For example, a geocode of &quot;Chicago&quot; returns &quot;locality&quot; which indicates that &quot;Chicago&quot; is a city,
+							and also returns &quot;political&quot; which indicates it is a political entity.</p>
+						</div>
+					</div>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="../modules.html">Exports</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface">
+						<a href="geocoderesult.html" class="tsd-kind-icon">Geocode<wbr>Result</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="geocoderesult.html#address_components" class="tsd-kind-icon">address_<wbr>components</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="geocoderesult.html#formatted_address" class="tsd-kind-icon">formatted_<wbr>address</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="geocoderesult.html#geometry" class="tsd-kind-icon">geometry</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="geocoderesult.html#partial_match" class="tsd-kind-icon">partial_<wbr>match</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="geocoderesult.html#place_id" class="tsd-kind-icon">place_<wbr>id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="geocoderesult.html#plus_code" class="tsd-kind-icon">plus_<wbr>code</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="geocoderesult.html#postcode_localities" class="tsd-kind-icon">postcode_<wbr>localities</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="geocoderesult.html#types" class="tsd-kind-icon">types</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
