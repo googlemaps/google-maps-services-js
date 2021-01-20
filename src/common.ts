@@ -1020,7 +1020,7 @@ export interface RouteLeg {
    *  - The request includes a `departure_time` parameter.
    *  - Traffic conditions are available for the requested route.
    */
-  duration_in_traffic: Duration;
+  duration_in_traffic?: Duration;
   /** contains the estimated time of arrival for this leg. This property is only returned for transit directions. */
   arrival_time: Time;
   /**
