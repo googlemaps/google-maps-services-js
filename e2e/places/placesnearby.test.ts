@@ -16,12 +16,25 @@
 
 import { placesNearby } from "../../src/places/placesnearby";
 
-test("autocomplete should return correct result", async () => {
+test("placesNearby should return correct result", async () => {
   const params = {
     location: { lat: 35, lng: -110 },
     radius: 500000,
-    key: process.env.GOOGLE_MAPS_API_KEY
+    key: process.env.GOOGLE_MAPS_API_KEY,
   };
   const r = await placesNearby({ params: params });
   expect(r.data.results.length).toBeTruthy();
+  expect(Object.keys(r.data.results[0]).sort()).toMatchInlineSnapshot(`
+    Array [
+      "geometry",
+      "icon",
+      "name",
+      "photos",
+      "place_id",
+      "reference",
+      "scope",
+      "types",
+      "vicinity",
+    ]
+  `);
 });

@@ -25,6 +25,7 @@ test("details should return correct result", async () => {
 
   const r = await placeDetails({ params: params });
   expect(r.data.result.place_id).toBeDefined();
+  expect(Object.keys(r.data.result).sort()).toEqual(params.fields.sort());
 });
 
 test("details should return all fields", async () => {
@@ -69,4 +70,31 @@ test("details should return all fields", async () => {
   expect(r.data.result.photos[0].html_attributions).toBeDefined();
   expect(r.data.result.photos[0].photo_reference).toBeDefined();
   expect(r.data.result.photos[0].width).toBeDefined();
+
+  expect(Object.keys(r.data.result).sort()).toMatchInlineSnapshot(`
+    Array [
+      "address_components",
+      "adr_address",
+      "business_status",
+      "formatted_address",
+      "formatted_phone_number",
+      "geometry",
+      "icon",
+      "international_phone_number",
+      "name",
+      "opening_hours",
+      "photos",
+      "place_id",
+      "plus_code",
+      "rating",
+      "reference",
+      "reviews",
+      "types",
+      "url",
+      "user_ratings_total",
+      "utc_offset",
+      "vicinity",
+      "website",
+    ]
+  `);
 });

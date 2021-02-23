@@ -18,7 +18,7 @@ import { PlaceInputType, Status } from "../../src/common";
 
 import { findPlaceFromText } from "../../src/places/findplacefromtext";
 
-test("autocomplete should return correct result", async () => {
+test("findPlaceFromText should return correct result", async () => {
   const params = {
     input: "Museum of Modern Art",
     inputtype: PlaceInputType.textQuery,
@@ -29,4 +29,7 @@ test("autocomplete should return correct result", async () => {
   const r = await findPlaceFromText({ params: params });
 
   expect(r.data.status).toEqual(Status.OK);
+  expect(Object.keys(r.data.candidates[0]).sort()).toEqual(
+    params.fields.sort()
+  );
 });
