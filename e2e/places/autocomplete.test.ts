@@ -20,8 +20,19 @@ test("autocomplete should return correct result", async () => {
   const params = {
     input: "Seattle, WA",
     sessiontoken: "123",
-    key: process.env.GOOGLE_MAPS_API_KEY
+    key: process.env.GOOGLE_MAPS_API_KEY,
   };
   const r = await placeAutocomplete({ params: params });
   expect(r.data.predictions.length).toBeTruthy();
+  expect(Object.keys(r.data.predictions[0]).sort()).toMatchInlineSnapshot(`
+    Array [
+      "description",
+      "matched_substrings",
+      "place_id",
+      "reference",
+      "structured_formatting",
+      "terms",
+      "types",
+    ]
+  `);
 });
