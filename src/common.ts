@@ -137,6 +137,7 @@ export enum PlaceInputType {
  */
 export enum PlaceType1 {
   accounting = "accounting",
+  /** indicates an airport. */
   airport = "airport",
   amusement_park = "amusement_park",
   aquarium = "aquarium",
@@ -198,6 +199,7 @@ export enum PlaceType1 {
   museum = "museum",
   night_club = "night_club",
   painter = "painter",
+  /** indicates a named park. */
   park = "park",
   parking = "parking",
   pet_store = "pet_store",
@@ -211,6 +213,7 @@ export enum PlaceType1 {
   roofing_contractor = "roofing_contractor",
   rv_park = "rv_park",
   school = "school",
+  secondary_school = "secondary_school",
   shoe_store = "shoe_store",
   shopping_mall = "shopping_mall",
   spa = "spa",
@@ -221,6 +224,7 @@ export enum PlaceType1 {
   supermarket = "supermarket",
   synagogue = "synagogue",
   taxi_stand = "taxi_stand",
+  tourist_attraction = "tourist_attraction",
   train_station = "train_station",
   transit_station = "transit_station",
   travel_agency = "travel_agency",
@@ -238,12 +242,38 @@ export enum PlaceType1 {
  * @see https://developers.google.com/places/web-service/supported_types#table2
  */
 export enum PlaceType2 {
+  /**
+   * indicates a first-order civil entity below the country level. Within the United States, these administrative levels are states.
+   * Not all nations exhibit these administrative levels. In most cases, `administrative_area_level_1` short names will closely match
+   * ISO 3166-2 subdivisions and other widely circulated lists; however this is not guaranteed as our geocoding results are based
+   * on a variety of signals and location data.
+   */
   administrative_area_level_1 = "administrative_area_level_1",
+  /**
+   * indicates a second-order civil entity below the country level. Within the United States, these administrative levels are counties.
+   * Not all nations exhibit these administrative levels.
+   */
   administrative_area_level_2 = "administrative_area_level_2",
+  /**
+   * indicates a third-order civil entity below the country level. This type indicates a minor civil division.
+   * Not all nations exhibit these administrative levels.
+   */
   administrative_area_level_3 = "administrative_area_level_3",
+  /**
+   * indicates a fourth-order civil entity below the country level. This type indicates a minor civil division.
+   * Not all nations exhibit these administrative levels.
+   */
   administrative_area_level_4 = "administrative_area_level_4",
+  /**
+   * indicates a fifth-order civil entity below the country level. This type indicates a minor civil division.
+   * Not all nations exhibit these administrative levels.
+   */
   administrative_area_level_5 = "administrative_area_level_5",
+  archipelago = "archipelago",
+  /** indicates a commonly-used alternative name for the entity. */
   colloquial_area = "colloquial_area",
+  continent = "continent",
+  /** indicates the national political entity, and is typically the highest order type returned by the Geocoder. */
   country = "country",
   establishment = "establishment",
   finance = "finance",
@@ -252,30 +282,50 @@ export enum PlaceType2 {
   general_contractor = "general_contractor",
   geocode = "geocode",
   health = "health",
+  /** indicates a major intersection, usually of two major roads. */
   intersection = "intersection",
+  landmark = "landmark",
+  /** indicates an incorporated city or town political entity. */
   locality = "locality",
+  /** indicates a prominent natural feature. */
   natural_feature = "natural_feature",
+  /** indicates a named neighborhood */
   neighborhood = "neighborhood",
   place_of_worship = "place_of_worship",
-  political = "political",
+  plus_code = "plus_code",
   point_of_interest = "point_of_interest",
+  /** indicates a political entity. Usually, this type indicates a polygon of some civil administration. */
+  political = "political",
   post_box = "post_box",
+  /** indicates a postal code as used to address postal mail within the country. */
   postal_code = "postal_code",
   postal_code_prefix = "postal_code_prefix",
   postal_code_suffix = "postal_code_suffix",
   postal_town = "postal_town",
+  /** indicates a named location, usually a building or collection of buildings with a common name */
   premise = "premise",
   room = "room",
+  /** indicates a named route (such as "US 101"). */
   route = "route",
   street_address = "street_address",
   street_number = "street_number",
+  /**
+   * indicates a first-order civil entity below a locality. For some locations may receive one of the additional types:
+   * `sublocality_level_1` to `sublocality_level_5`. Each sublocality level is a civil entity. Larger numbers indicate a smaller
+   * geographic area.
+   */
   sublocality = "sublocality",
+  sublocality_level_1 = "sublocality_level_1",
+  sublocality_level_2 = "sublocality_level_2",
+  sublocality_level_3 = "sublocality_level_3",
   sublocality_level_4 = "sublocality_level_4",
   sublocality_level_5 = "sublocality_level_5",
-  sublocality_level_3 = "sublocality_level_3",
-  sublocality_level_2 = "sublocality_level_2",
-  sublocality_level_1 = "sublocality_level_1",
+  /**
+   * indicates a first-order entity below a named location, usually a singular building within a collection of buildings with a
+   * common name.
+   */
   subpremise = "subpremise",
+  town_square = "town_square",
 }
 
 export interface PlaceReview {
@@ -848,88 +898,8 @@ export enum GeocodedWaypointStatus {
   ZERO_RESULTS = "ZERO_RESULTS",
 }
 
-export enum AddressType {
-  /** indicates a precise street address. */
-  street_address = "street_address",
-  /** indicates a named route (such as "US 101"). */
-  route = "route",
-  /** indicates a major intersection, usually of two major roads. */
-  intersection = "intersection",
-  /** indicates a political entity. Usually, this type indicates a polygon of some civil administration. */
-  political = "political",
-  /** indicates the national political entity, and is typically the highest order type returned by the Geocoder. */
-  country = "country",
-  /**
-   * indicates a first-order civil entity below the country level. Within the United States, these administrative levels are states.
-   * Not all nations exhibit these administrative levels. In most cases, `administrative_area_level_1` short names will closely match
-   * ISO 3166-2 subdivisions and other widely circulated lists; however this is not guaranteed as our geocoding results are based
-   * on a variety of signals and location data.
-   */
-  administrative_area_level_1 = "administrative_area_level_1",
-  /**
-   * indicates a second-order civil entity below the country level. Within the United States, these administrative levels are counties.
-   * Not all nations exhibit these administrative levels.
-   */
-  administrative_area_level_2 = "administrative_area_level_2",
-  /**
-   * indicates a third-order civil entity below the country level. This type indicates a minor civil division.
-   * Not all nations exhibit these administrative levels.
-   */
-  administrative_area_level_3 = "administrative_area_level_3",
-  /**
-   * indicates a fourth-order civil entity below the country level. This type indicates a minor civil division.
-   * Not all nations exhibit these administrative levels.
-   */
-  administrative_area_level_4 = "administrative_area_level_4",
-  /**
-   * indicates a fifth-order civil entity below the country level. This type indicates a minor civil division.
-   * Not all nations exhibit these administrative levels.
-   */
-  administrative_area_level_5 = "administrative_area_level_5",
-  /** indicates a commonly-used alternative name for the entity. */
-  colloquial_area = "colloquial_area",
-  /** indicates an incorporated city or town political entity. */
-  locality = "locality",
-  /**
-   * indicates a specific type of Japanese locality, to facilitate distinction between multiple locality components within a
-   * Japanese address.
-   */
-  ward = "ward",
-  /**
-   * indicates a first-order civil entity below a locality. For some locations may receive one of the additional types:
-   * `sublocality_level_1` to `sublocality_level_5`. Each sublocality level is a civil entity. Larger numbers indicate a smaller
-   * geographic area.
-   */
-  sublocality = "sublocality",
-  sublocality_level_1 = "sublocality_level_1",
-  sublocality_level_2 = "sublocality_level_2",
-  sublocality_level_3 = "sublocality_level_3",
-  sublocality_level_4 = "sublocality_level_4",
-  sublocality_level_5 = "sublocality_level_5",
-  /** indicates a named neighborhood */
-  neighborhood = "neighborhood",
-  /** indicates a named location, usually a building or collection of buildings with a common name */
-  premise = "premise",
-  /**
-   * indicates a first-order entity below a named location, usually a singular building within a collection of buildings with a
-   * common name.
-   */
-  subpremise = "subpremise",
-  /** indicates a postal code as used to address postal mail within the country. */
-  postal_code = "postal_code",
-  /** indicates a prominent natural feature. */
-  natural_feature = "natural_feature",
-  /** indicates an airport. */
-  airport = "airport",
-  /** indicates a named park. */
-  park = "park",
-  /**
-   * indicates a named point of interest. Typically, these "POI"s are prominent local entities that don't easily fit in another category,
-   * such as "Empire State Building" or "Statue of Liberty".
-   */
-  point_of_interest = "point_of_interest",
-  establishment = "establishment",
-}
+export const AddressType = Object.assign({}, PlaceType1, PlaceType2);
+export type AddressType = PlaceType1 | PlaceType2;
 
 /**
  * This route may consist of one or more `legs` depending on whether any waypoints were specified. As well, the route also contains
