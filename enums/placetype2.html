@@ -92,7 +92,9 @@
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="placetype2.html#administrative_area_level_3" class="tsd-kind-icon">administrative_<wbr>area_<wbr>level_<wbr>3</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="placetype2.html#administrative_area_level_4" class="tsd-kind-icon">administrative_<wbr>area_<wbr>level_<wbr>4</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="placetype2.html#administrative_area_level_5" class="tsd-kind-icon">administrative_<wbr>area_<wbr>level_<wbr>5</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="placetype2.html#archipelago" class="tsd-kind-icon">archipelago</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="placetype2.html#colloquial_area" class="tsd-kind-icon">colloquial_<wbr>area</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="placetype2.html#continent" class="tsd-kind-icon">continent</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="placetype2.html#country" class="tsd-kind-icon">country</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="placetype2.html#establishment" class="tsd-kind-icon">establishment</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="placetype2.html#finance" class="tsd-kind-icon">finance</a></li>
@@ -102,10 +104,12 @@
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="placetype2.html#geocode" class="tsd-kind-icon">geocode</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="placetype2.html#health" class="tsd-kind-icon">health</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="placetype2.html#intersection" class="tsd-kind-icon">intersection</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="placetype2.html#landmark" class="tsd-kind-icon">landmark</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="placetype2.html#locality" class="tsd-kind-icon">locality</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="placetype2.html#natural_feature" class="tsd-kind-icon">natural_<wbr>feature</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="placetype2.html#neighborhood" class="tsd-kind-icon">neighborhood</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="placetype2.html#place_of_worship" class="tsd-kind-icon">place_<wbr>of_<wbr>worship</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="placetype2.html#plus_code" class="tsd-kind-icon">plus_<wbr>code</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="placetype2.html#point_of_interest" class="tsd-kind-icon">point_<wbr>of_<wbr>interest</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="placetype2.html#political" class="tsd-kind-icon">political</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="placetype2.html#post_box" class="tsd-kind-icon">post_<wbr>box</a></li>
@@ -125,6 +129,7 @@
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="placetype2.html#sublocality_level_4" class="tsd-kind-icon">sublocality_<wbr>level_<wbr>4</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="placetype2.html#sublocality_level_5" class="tsd-kind-icon">sublocality_<wbr>level_<wbr>5</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="placetype2.html#subpremise" class="tsd-kind-icon">subpremise</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="placetype2.html#town_square" class="tsd-kind-icon">town_<wbr>square</a></li>
 							</ul>
 						</section>
 					</div>
@@ -138,9 +143,17 @@
 					<div class="tsd-signature tsd-kind-icon">administrative_<wbr>area_<wbr>level_<wbr>1<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;administrative_area_level_1&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L241">src/common.ts:241</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L251">src/common.ts:251</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>indicates a first-order civil entity below the country level. Within the United States, these administrative levels are states.
+								Not all nations exhibit these administrative levels. In most cases, <code>administrative_area_level_1</code> short names will closely match
+								ISO 3166-2 subdivisions and other widely circulated lists; however this is not guaranteed as our geocoding results are based
+							on a variety of signals and location data.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
 					<a name="administrative_area_level_2" class="tsd-anchor"></a>
@@ -148,9 +161,15 @@
 					<div class="tsd-signature tsd-kind-icon">administrative_<wbr>area_<wbr>level_<wbr>2<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;administrative_area_level_2&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L242">src/common.ts:242</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L256">src/common.ts:256</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>indicates a second-order civil entity below the country level. Within the United States, these administrative levels are counties.
+							Not all nations exhibit these administrative levels.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
 					<a name="administrative_area_level_3" class="tsd-anchor"></a>
@@ -158,9 +177,15 @@
 					<div class="tsd-signature tsd-kind-icon">administrative_<wbr>area_<wbr>level_<wbr>3<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;administrative_area_level_3&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L243">src/common.ts:243</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L261">src/common.ts:261</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>indicates a third-order civil entity below the country level. This type indicates a minor civil division.
+							Not all nations exhibit these administrative levels.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
 					<a name="administrative_area_level_4" class="tsd-anchor"></a>
@@ -168,9 +193,15 @@
 					<div class="tsd-signature tsd-kind-icon">administrative_<wbr>area_<wbr>level_<wbr>4<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;administrative_area_level_4&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L244">src/common.ts:244</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L266">src/common.ts:266</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>indicates a fourth-order civil entity below the country level. This type indicates a minor civil division.
+							Not all nations exhibit these administrative levels.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
 					<a name="administrative_area_level_5" class="tsd-anchor"></a>
@@ -178,7 +209,23 @@
 					<div class="tsd-signature tsd-kind-icon">administrative_<wbr>area_<wbr>level_<wbr>5<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;administrative_area_level_5&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L245">src/common.ts:245</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L271">src/common.ts:271</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>indicates a fifth-order civil entity below the country level. This type indicates a minor civil division.
+							Not all nations exhibit these administrative levels.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="archipelago" class="tsd-anchor"></a>
+					<h3>archipelago</h3>
+					<div class="tsd-signature tsd-kind-icon">archipelago<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;archipelago&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L272">src/common.ts:272</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -188,7 +235,22 @@
 					<div class="tsd-signature tsd-kind-icon">colloquial_<wbr>area<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;colloquial_area&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L246">src/common.ts:246</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L274">src/common.ts:274</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>indicates a commonly-used alternative name for the entity.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="continent" class="tsd-anchor"></a>
+					<h3>continent</h3>
+					<div class="tsd-signature tsd-kind-icon">continent<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;continent&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L275">src/common.ts:275</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -198,9 +260,14 @@
 					<div class="tsd-signature tsd-kind-icon">country<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;country&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L247">src/common.ts:247</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L277">src/common.ts:277</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>indicates the national political entity, and is typically the highest order type returned by the Geocoder.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
 					<a name="establishment" class="tsd-anchor"></a>
@@ -208,7 +275,7 @@
 					<div class="tsd-signature tsd-kind-icon">establishment<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;establishment&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L248">src/common.ts:248</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L278">src/common.ts:278</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -218,7 +285,7 @@
 					<div class="tsd-signature tsd-kind-icon">finance<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;finance&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L249">src/common.ts:249</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L279">src/common.ts:279</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -228,7 +295,7 @@
 					<div class="tsd-signature tsd-kind-icon">floor<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;floor&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L250">src/common.ts:250</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L280">src/common.ts:280</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -238,7 +305,7 @@
 					<div class="tsd-signature tsd-kind-icon">food<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;food&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L251">src/common.ts:251</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L281">src/common.ts:281</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -248,7 +315,7 @@
 					<div class="tsd-signature tsd-kind-icon">general_<wbr>contractor<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;general_contractor&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L252">src/common.ts:252</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L282">src/common.ts:282</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -258,7 +325,7 @@
 					<div class="tsd-signature tsd-kind-icon">geocode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;geocode&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L253">src/common.ts:253</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L283">src/common.ts:283</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -268,7 +335,7 @@
 					<div class="tsd-signature tsd-kind-icon">health<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;health&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L254">src/common.ts:254</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L284">src/common.ts:284</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -278,7 +345,22 @@
 					<div class="tsd-signature tsd-kind-icon">intersection<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;intersection&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L255">src/common.ts:255</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L286">src/common.ts:286</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>indicates a major intersection, usually of two major roads.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="landmark" class="tsd-anchor"></a>
+					<h3>landmark</h3>
+					<div class="tsd-signature tsd-kind-icon">landmark<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;landmark&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L287">src/common.ts:287</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -288,9 +370,14 @@
 					<div class="tsd-signature tsd-kind-icon">locality<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;locality&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L256">src/common.ts:256</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L289">src/common.ts:289</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>indicates an incorporated city or town political entity.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
 					<a name="natural_feature" class="tsd-anchor"></a>
@@ -298,9 +385,14 @@
 					<div class="tsd-signature tsd-kind-icon">natural_<wbr>feature<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;natural_feature&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L257">src/common.ts:257</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L291">src/common.ts:291</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>indicates a prominent natural feature.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
 					<a name="neighborhood" class="tsd-anchor"></a>
@@ -308,9 +400,14 @@
 					<div class="tsd-signature tsd-kind-icon">neighborhood<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;neighborhood&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L258">src/common.ts:258</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L293">src/common.ts:293</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>indicates a named neighborhood</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
 					<a name="place_of_worship" class="tsd-anchor"></a>
@@ -318,7 +415,17 @@
 					<div class="tsd-signature tsd-kind-icon">place_<wbr>of_<wbr>worship<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;place_of_worship&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L259">src/common.ts:259</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L294">src/common.ts:294</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="plus_code" class="tsd-anchor"></a>
+					<h3>plus_<wbr>code</h3>
+					<div class="tsd-signature tsd-kind-icon">plus_<wbr>code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;plus_code&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L295">src/common.ts:295</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -328,7 +435,7 @@
 					<div class="tsd-signature tsd-kind-icon">point_<wbr>of_<wbr>interest<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;point_of_interest&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L261">src/common.ts:261</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L296">src/common.ts:296</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -338,9 +445,14 @@
 					<div class="tsd-signature tsd-kind-icon">political<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;political&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L260">src/common.ts:260</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L298">src/common.ts:298</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>indicates a political entity. Usually, this type indicates a polygon of some civil administration.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
 					<a name="post_box" class="tsd-anchor"></a>
@@ -348,7 +460,7 @@
 					<div class="tsd-signature tsd-kind-icon">post_<wbr>box<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;post_box&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L262">src/common.ts:262</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L299">src/common.ts:299</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -358,9 +470,14 @@
 					<div class="tsd-signature tsd-kind-icon">postal_<wbr>code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;postal_code&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L263">src/common.ts:263</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L301">src/common.ts:301</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>indicates a postal code as used to address postal mail within the country.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
 					<a name="postal_code_prefix" class="tsd-anchor"></a>
@@ -368,7 +485,7 @@
 					<div class="tsd-signature tsd-kind-icon">postal_<wbr>code_<wbr>prefix<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;postal_code_prefix&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L264">src/common.ts:264</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L302">src/common.ts:302</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -378,7 +495,7 @@
 					<div class="tsd-signature tsd-kind-icon">postal_<wbr>code_<wbr>suffix<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;postal_code_suffix&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L265">src/common.ts:265</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L303">src/common.ts:303</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -388,7 +505,7 @@
 					<div class="tsd-signature tsd-kind-icon">postal_<wbr>town<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;postal_town&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L266">src/common.ts:266</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L304">src/common.ts:304</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -398,9 +515,14 @@
 					<div class="tsd-signature tsd-kind-icon">premise<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;premise&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L267">src/common.ts:267</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L306">src/common.ts:306</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>indicates a named location, usually a building or collection of buildings with a common name</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
 					<a name="room" class="tsd-anchor"></a>
@@ -408,7 +530,7 @@
 					<div class="tsd-signature tsd-kind-icon">room<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;room&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L268">src/common.ts:268</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L307">src/common.ts:307</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -418,9 +540,14 @@
 					<div class="tsd-signature tsd-kind-icon">route<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;route&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L269">src/common.ts:269</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L309">src/common.ts:309</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>indicates a named route (such as &quot;US 101&quot;).</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
 					<a name="street_address" class="tsd-anchor"></a>
@@ -428,7 +555,7 @@
 					<div class="tsd-signature tsd-kind-icon">street_<wbr>address<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;street_address&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L270">src/common.ts:270</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L310">src/common.ts:310</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -438,7 +565,7 @@
 					<div class="tsd-signature tsd-kind-icon">street_<wbr>number<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;street_number&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L271">src/common.ts:271</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L311">src/common.ts:311</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -448,9 +575,16 @@
 					<div class="tsd-signature tsd-kind-icon">sublocality<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;sublocality&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L272">src/common.ts:272</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L317">src/common.ts:317</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>indicates a first-order civil entity below a locality. For some locations may receive one of the additional types:
+								<code>sublocality_level_1</code> to <code>sublocality_level_5</code>. Each sublocality level is a civil entity. Larger numbers indicate a smaller
+							geographic area.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
 					<a name="sublocality_level_1" class="tsd-anchor"></a>
@@ -458,7 +592,7 @@
 					<div class="tsd-signature tsd-kind-icon">sublocality_<wbr>level_<wbr>1<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;sublocality_level_1&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L277">src/common.ts:277</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L318">src/common.ts:318</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -468,7 +602,7 @@
 					<div class="tsd-signature tsd-kind-icon">sublocality_<wbr>level_<wbr>2<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;sublocality_level_2&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L276">src/common.ts:276</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L319">src/common.ts:319</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -478,7 +612,7 @@
 					<div class="tsd-signature tsd-kind-icon">sublocality_<wbr>level_<wbr>3<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;sublocality_level_3&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L275">src/common.ts:275</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L320">src/common.ts:320</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -488,7 +622,7 @@
 					<div class="tsd-signature tsd-kind-icon">sublocality_<wbr>level_<wbr>4<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;sublocality_level_4&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L273">src/common.ts:273</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L321">src/common.ts:321</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -498,7 +632,7 @@
 					<div class="tsd-signature tsd-kind-icon">sublocality_<wbr>level_<wbr>5<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;sublocality_level_5&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L274">src/common.ts:274</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L322">src/common.ts:322</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -508,7 +642,23 @@
 					<div class="tsd-signature tsd-kind-icon">subpremise<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;subpremise&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/4d07209/src/common.ts#L278">src/common.ts:278</a></li>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L327">src/common.ts:327</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>indicates a first-order entity below a named location, usually a singular building within a collection of buildings with a
+							common name.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="town_square" class="tsd-anchor"></a>
+					<h3>town_<wbr>square</h3>
+					<div class="tsd-signature tsd-kind-icon">town_<wbr>square<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;town_square&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/googlemaps/google-maps-services-js/blob/f1efebe/src/common.ts#L328">src/common.ts:328</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -545,7 +695,13 @@
 								<a href="placetype2.html#administrative_area_level_5" class="tsd-kind-icon">administrative_<wbr>area_<wbr>level_<wbr>5</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="placetype2.html#archipelago" class="tsd-kind-icon">archipelago</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
 								<a href="placetype2.html#colloquial_area" class="tsd-kind-icon">colloquial_<wbr>area</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="placetype2.html#continent" class="tsd-kind-icon">continent</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
 								<a href="placetype2.html#country" class="tsd-kind-icon">country</a>
@@ -575,6 +731,9 @@
 								<a href="placetype2.html#intersection" class="tsd-kind-icon">intersection</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="placetype2.html#landmark" class="tsd-kind-icon">landmark</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
 								<a href="placetype2.html#locality" class="tsd-kind-icon">locality</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
@@ -585,6 +744,9 @@
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
 								<a href="placetype2.html#place_of_worship" class="tsd-kind-icon">place_<wbr>of_<wbr>worship</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="placetype2.html#plus_code" class="tsd-kind-icon">plus_<wbr>code</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
 								<a href="placetype2.html#point_of_interest" class="tsd-kind-icon">point_<wbr>of_<wbr>interest</a>
@@ -642,6 +804,9 @@
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
 								<a href="placetype2.html#subpremise" class="tsd-kind-icon">subpremise</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="placetype2.html#town_square" class="tsd-kind-icon">town_<wbr>square</a>
 							</li>
 						</ul>
 					</li>
