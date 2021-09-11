@@ -168,13 +168,13 @@ export interface PlaceAutocompleteResponse extends AxiosResponse {
   data: PlaceAutocompleteResponseData;
 }
 
+export const defaultUrl =
+  "https://maps.googleapis.com/maps/api/place/autocomplete/json";
+
 export const defaultParamsSerializer = serializer({
   location: latLngToString,
   origin: latLngToString
-});
-
-export const defaultUrl =
-  "https://maps.googleapis.com/maps/api/place/autocomplete/json";
+}, defaultUrl);
 
 export function placeAutocomplete(
   {

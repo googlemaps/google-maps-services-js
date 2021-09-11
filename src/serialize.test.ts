@@ -47,11 +47,11 @@ test("latLngBoundsToString is correct", () => {
 });
 
 test("serializer", () => {
-  expect(serializer({ quz: (o) => o })({ foo: ["bar"] })).toBe("foo=bar");
+  expect(serializer({ quz: (o) => o }, 'http://mock.url')({ foo: ["bar"] })).toBe("foo=bar");
   expect(
     serializer({
       foo: (o) => o.map((latLng: LatLng) => latLngToString(latLng)),
-    })({
+    }, 'http://mock.url')({
       foo: [
         [0, 1],
         [2, 3],
@@ -66,12 +66,12 @@ test("serializer should not mutate params", () => {
     location,
   };
 
-  serializer({ location: latLngToString })(params);
+  serializer({ location: latLngToString }, 'http://mock.url')(params);
   expect(params.location).toBe(location);
 });
 
 test("serializer should return pipe joined arrays by default", () => {
-  expect(serializer({})({ foo: ["b", "a", "r"] })).toBe("foo=b|a|r");
+  expect(serializer({}, 'http://mock.url')({ foo: ["b", "a", "r"] })).toBe("foo=b|a|r");
 });
 
 test("objectToString", () => {

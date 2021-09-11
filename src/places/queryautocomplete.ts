@@ -93,7 +93,7 @@ export interface PlaceQueryAutocompleteResponse extends AxiosResponse {
 export const defaultUrl =
   "https://maps.googleapis.com/maps/api/place/queryautocomplete/json";
 
-export const defaultParamsSerializer = serializer({ location: latLngToString });
+export const defaultParamsSerializer = serializer({ location: latLngToString }, defaultUrl);
 
 export function placeQueryAutocomplete(
   {

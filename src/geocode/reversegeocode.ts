@@ -101,7 +101,7 @@ export const defaultUrl = "https://maps.googleapis.com/maps/api/geocode/json";
 
 export const defaultParamsSerializer = serializer({
   latlng: latLngToString
-});
+}, defaultUrl);
 
 export function reverseGeocode(
   {

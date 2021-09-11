@@ -174,7 +174,7 @@ export const defaultParamsSerializer = serializer({
   destinations: o => o.map(latLngToString),
   arrival_time: toTimestamp,
   departure_time: toTimestamp
-});
+}, defaultUrl);
 
 export function distancematrix(
   {
