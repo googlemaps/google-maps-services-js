@@ -38,6 +38,7 @@ export interface ApiKeyParams {
  * The Google Maps Platform Premium Plan is no longer available for sign up or new customers. This option is
  * only provided for maintaining existing legacy applications that use client IDs. For new applications,
  * please use API keys.
+ * @deprecated
  */
 export interface PremiumPlanParams {
   /** project client ID */
