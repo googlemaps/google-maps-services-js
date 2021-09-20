@@ -117,7 +117,7 @@ export function serializer(
       }
     });
 
-    if ('client_id' in serializedParams && 'client_secret' in serializedParams) {
+    if ("client_id" in serializedParams && "client_secret" in serializedParams) {
       // Special case to handle premium plan signature
       return createPremiumPlanQueryString(serializedParams, queryStringOptions, baseUrl);
     }
@@ -159,11 +159,11 @@ export function createPremiumPlanSignature(unsignedUrl: string, clientSecret: st
   const fullUrl = new URL(unsignedUrl);
   const pathAndQuery = `${fullUrl.pathname}${fullUrl.search}`;
   // Convert from 'web safe' base64 to true base64
-  const unsafeClientSecret = clientSecret.replace(/-/g, '+').replace(/_/g, '/');
+  const unsafeClientSecret = clientSecret.replace(/-/g, "+").replace(/_/g, "/");
   // Base64 decode the secret
-  const decodedSecret = Buffer.from(unsafeClientSecret, 'base64');
+  const decodedSecret = Buffer.from(unsafeClientSecret, "base64");
   // Sign the url with the decoded secret
-  const unsafeSignature = createHmac('sha1', decodedSecret).update(pathAndQuery).digest('base64');
+  const unsafeSignature = createHmac("sha1", decodedSecret).update(pathAndQuery).digest("base64");
   // Convert from true base64 to 'web safe' base64
-  return unsafeSignature.replace(/\+/g, '-').replace(/\//g, '_');
+  return unsafeSignature.replace(/\+/g, "-").replace(/\//g, "_");
 }
