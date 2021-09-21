@@ -145,6 +145,30 @@ The primary differences are in the following table.
 | Does not support interceptors | Supports [interceptors](https://github.com/axios/axios#interceptors)|
 | Does not support cancelalation | Supports [cancellation](https://github.com/axios/axios#cancellation) |
 
+## Premium Plan Authentication
+
+Authentication via client ID and URL signing secret is provided to support legacy applications that use the Google Maps Platform Premium Plan. The Google Maps Platform Premium Plan is no longer available for sign up or new customers. All new applications must use API keys.
+
+```js
+const client = new Client({});
+
+client
+  .elevation({
+    params: {
+      locations: [{ lat: 45, lng: -110 }],
+      client_id: process.env.GOOGLE_MAPS_CLIENT_ID,
+      client_secret: process.env.GOOGLE_MAPS_CLIENT_SECRET
+    },
+    timeout: 1000 // milliseconds
+  })
+  .then(r => {
+    console.log(r.data.results[0].elevation);
+  })
+  .catch(e => {
+    console.log(e.response.data.error_message);
+  });
+```
+
 
 ## Support
 
