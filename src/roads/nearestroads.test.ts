@@ -42,3 +42,10 @@ test("nearestRoads should call axios correctly", () => {
     url: defaultUrl
   });
 });
+
+test("serializer should transform correctly", () => {
+  const params = { points: ["0,0"], key: "foo" };
+
+  expect(defaultParamsSerializer(params))
+    .toEqual("key=foo&points=0%2C0");
+});

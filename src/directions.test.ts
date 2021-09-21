@@ -42,3 +42,14 @@ test("elevation should call axios correctly", () => {
     url: defaultUrl
   });
 });
+
+test("serializer should transform correctly", () => {
+  const params = {
+    origin: "Seattle, WA",
+    destination: "San Francisco, CA",
+    key: "foo"
+  };
+
+  expect(defaultParamsSerializer(params))
+    .toEqual("destination=San%20Francisco%2C%20CA&key=foo&origin=Seattle%2C%20WA");
+});
