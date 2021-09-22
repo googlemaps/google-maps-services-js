@@ -98,7 +98,7 @@ export interface TextSearchResponse extends AxiosResponse {
 export const defaultUrl =
   "https://maps.googleapis.com/maps/api/place/textsearch/json";
 
-export const defaultParamsSerializer = serializer({ location: latLngToString });
+export const defaultParamsSerializer = serializer({ location: latLngToString }, defaultUrl);
 
 export function textSearch(
   {

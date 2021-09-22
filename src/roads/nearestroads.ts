@@ -40,7 +40,7 @@ export interface NearestRoadsResponse extends AxiosResponse {
 export const defaultUrl = "https://roads.googleapis.com/v1/nearestRoads";
 export const defaultParamsSerializer = serializer({
   points: o => o.map(latLng => latLngToString(latLng))
-});
+}, defaultUrl);
 
 export function nearestRoads(
   {

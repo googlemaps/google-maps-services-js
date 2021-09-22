@@ -14,8 +14,10 @@
  * limitations under the License.
  */
 
-export interface RequestParams {
-  /**
+export type RequestParams = ApiKeyParams | PremiumPlanParams;
+
+export interface ApiKeyParams {
+/**
    * You must include an API key with every API request. We strongly recommend that you restrict your API key.
    * Restrictions provide added security and help ensure only authorized requests are made with your API key.
    *
@@ -30,6 +32,19 @@ export interface RequestParams {
    * key will fail.
    */
   key: string;
+}
+
+/**
+ * The Google Maps Platform Premium Plan is no longer available for sign up or new customers. This option is
+ * only provided for maintaining existing legacy applications that use client IDs. For new applications,
+ * please use API keys.
+ * @deprecated
+ */
+export interface PremiumPlanParams {
+  /** project client ID */
+  client_id: string;
+  /** project URL signing secret. Used to create the request signature */
+  client_secret: string;
 }
 
 export interface ResponseData {

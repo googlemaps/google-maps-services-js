@@ -115,7 +115,7 @@ export interface PlacesNearbyResponse extends AxiosResponse {
 export const defaultUrl =
   "https://maps.googleapis.com/maps/api/place/nearbysearch/json";
 
-export const defaultParamsSerializer = serializer({ location: latLngToString });
+export const defaultParamsSerializer = serializer({ location: latLngToString }, defaultUrl);
 
 export function placesNearby(
   {

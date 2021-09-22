@@ -59,3 +59,17 @@ test("elevation should call axios correctly with path params", () => {
     url: defaultUrl
   });
 });
+
+test("serializer should transform correctly", () => {
+  const params = {
+    path: [
+      { lat: 35, lng: -110 },
+      { lat: 45, lng: -110 }
+    ],
+    samples: 10,
+    key: "foo"
+  };
+
+  expect(defaultParamsSerializer(params))
+    .toEqual("key=foo&path=35%2C-110|45%2C-110&samples=10");
+});

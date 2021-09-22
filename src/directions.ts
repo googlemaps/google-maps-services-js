@@ -195,7 +195,7 @@ export const defaultParamsSerializer = serializer({
   waypoints: (o) => o.map(latLngToString),
   arrival_time: toTimestamp,
   departure_time: toTimestamp,
-});
+}, defaultUrl);
 
 export function directions(
   {

@@ -74,7 +74,7 @@ export const defaultUrl = "https://maps.googleapis.com/maps/api/timezone/json";
 export const defaultParamsSerializer = serializer({
   timestamp: toTimestamp,
   location: latLngToString
-});
+}, defaultUrl);
 export function timezone(
   {
     params,

@@ -100,7 +100,7 @@ export interface GeocodeResponse extends AxiosResponse {
 export const defaultParamsSerializer = serializer({
   bounds: latLngBoundsToString,
   components: objectToString
-});
+}, defaultUrl);
 
 export function geocode(
   {

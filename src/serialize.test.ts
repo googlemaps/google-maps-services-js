@@ -16,6 +16,8 @@
 
 import { LatLng, LatLngLiteral } from "./common";
 import {
+  createPremiumPlanQueryString,
+  createPremiumPlanSignature,
   latLngArrayToStringMaybeEncoded,
   latLngBoundsToString,
   latLngToString,
@@ -47,11 +49,11 @@ test("latLngBoundsToString is correct", () => {
 });
 
 test("serializer", () => {
-  expect(serializer({ quz: (o) => o })({ foo: ["bar"] })).toBe("foo=bar");
+  expect(serializer({ quz: (o) => o }, "http://mock.url")({ foo: ["bar"] })).toBe("foo=bar");
   expect(
     serializer({
       foo: (o) => o.map((latLng: LatLng) => latLngToString(latLng)),
-    })({
+    }, "http://mock.url")({
       foo: [
         [0, 1],
         [2, 3],
@@ -66,12 +68,37 @@ test("serializer should not mutate params", () => {
     location,
   };
 
-  serializer({ location: latLngToString })(params);
+  serializer({ location: latLngToString }, "http://mock.url")(params);
   expect(params.location).toBe(location);
 });
 
 test("serializer should return pipe joined arrays by default", () => {
-  expect(serializer({})({ foo: ["b", "a", "r"] })).toBe("foo=b|a|r");
+  expect(serializer({}, "http://mock.url")({ foo: ["b", "a", "r"] })).toBe("foo=b|a|r");
+});
+
+
+test("serializer creates premium plan query string if premium plan params are included", () => {
+  const params = {
+    avoid: "ferries",
+    destination: {
+      lat: "38.8977",
+      lng: "-77.0365",
+    },
+    mode: "driving",
+    origin: {
+      lat: "33.8121",
+      lng: "-117.9190",
+    },
+    units: "imperial",
+    client_id: "testClient",
+    client_secret: "testClientSecret",
+  };
+
+  expect(serializer({
+    origin: latLngToString,
+    destination: latLngToString,
+  }, "https://test.url/maps/api/directions/json")(params))
+    .toEqual('avoid=ferries&client=testClient&destination=38.8977%2C-77.0365&mode=driving&origin=33.8121%2C-117.9190&units=imperial&signature=YRJoTd6ohbpsR14WkWv3S7H6MqU=');
 });
 
 test("objectToString", () => {
@@ -113,4 +140,31 @@ test("toTimestamp", () => {
   const seconds = Number(dt) / 1000;
   expect(toTimestamp(dt)).toEqual(seconds);
   expect(toTimestamp("now")).toEqual("now");
+});
+
+test("createPremiumPlanQueryString", () => {
+  const serializedParams = {
+    avoid: "ferries",
+    destination: "38.8977,-77.0365",
+    mode: "driving",
+    origin: "33.8121,-117.9190",
+    units: "imperial",
+    client_id: "testClient",
+    client_secret: "testClientSecret",
+  };
+  const queryStringOptions = {
+    arrayFormat: "separator",
+    arrayFormatSeparator: "|",
+  };
+  const baseUrl = "https://test.url/maps/api/directions/json";
+
+  expect(createPremiumPlanQueryString(serializedParams, queryStringOptions, baseUrl))
+    .toEqual('avoid=ferries&client=testClient&destination=38.8977%2C-77.0365&mode=driving&origin=33.8121%2C-117.9190&units=imperial&signature=YRJoTd6ohbpsR14WkWv3S7H6MqU=');
+});
+
+test("createPremiumPlanSignature", () => {
+  const unsignedUrl = "https://test.url/maps/api/directions/json?avoid=ferries&client=testClient&destination=38.8977%2C-77.0365&mode=driving&origin=33.8121%2C-117.9190&units=imperial";
+  const clientSecret = "testClientSecret";
+
+  expect(createPremiumPlanSignature(unsignedUrl, clientSecret)).toEqual("YRJoTd6ohbpsR14WkWv3S7H6MqU=");
 });

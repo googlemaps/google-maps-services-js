@@ -55,7 +55,7 @@ export interface FindPlaceFromTextResponse extends AxiosResponse {
 export const defaultUrl =
   "https://maps.googleapis.com/maps/api/place/findplacefromtext/json";
 
-export const defaultParamsSerializer = serializer({}, {arrayFormat: "comma"});
+export const defaultParamsSerializer = serializer({}, defaultUrl, {arrayFormat: "comma"});
 
 export function findPlaceFromText(
   {

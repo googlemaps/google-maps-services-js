@@ -19,7 +19,7 @@ import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "./client";
 import { serializer, latLngToString } from "./serialize";
 
-export interface PositionalElevationParams extends RequestParams {
+export interface PositionalElevationParams {
   /**
    * defines the location(s) on the earth from which to return elevation data.
    * This parameter takes either a single location as a comma-separated {latitude,longitude} pair (e.g. "40.714728,-73.998672")
@@ -28,7 +28,7 @@ export interface PositionalElevationParams extends RequestParams {
   locations: LatLng[];
 }
 
-export interface SampledPathElevationParams extends RequestParams {
+export interface SampledPathElevationParams {
   /**
    * defines a path on the earth for which to return elevation data. This parameter defines a
    * set of two or more ordered pairs defining a path along the surface of the earth. This
@@ -44,7 +44,7 @@ export interface SampledPathElevationParams extends RequestParams {
 }
 
 export interface ElevationRequest extends Partial<AxiosRequestConfig> {
-  params: PositionalElevationParams | SampledPathElevationParams;
+  params: (PositionalElevationParams | SampledPathElevationParams) & RequestParams;
 }
 export interface ElevationResponseData extends ResponseData {
   results: {
@@ -74,7 +74,7 @@ export const defaultUrl = "https://maps.googleapis.com/maps/api/elevation/json";
 export const defaultParamsSerializer = serializer({
   locations: o => o.map(latLngToString),
   path: o => o.map(latLngToString)
-});
+}, defaultUrl);
 
 export function elevation(
   {

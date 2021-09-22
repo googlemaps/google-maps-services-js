@@ -17,7 +17,9 @@
 import { LatLng, LatLngBounds, LatLngLiteral } from "./common";
 
 import { encodePath } from "./util";
+import { createHmac } from "crypto";
 import { stringify as qs } from "query-string";
+import { URL } from "url";
 
 const separator = "|";
 
@@ -99,6 +101,7 @@ export type serializerFormat = { [key: string]: serializerFunction };
 
 export function serializer(
   format: serializerFormat,
+  baseUrl: string,
   queryStringOptions: object = {
     arrayFormat: "separator",
     arrayFormatSeparator: separator,
@@ -114,6 +117,11 @@ export function serializer(
       }
     });
 
+    if ("client_id" in serializedParams && "client_secret" in serializedParams) {
+      // Special case to handle premium plan signature
+      return createPremiumPlanQueryString(serializedParams, queryStringOptions, baseUrl);
+    }
+
     return qs(serializedParams, queryStringOptions);
   };
 }
@@ -126,4 +134,36 @@ export function toTimestamp(o: "now" | number | Date): number | "now" {
     return Number(o) / 1000;
   }
   return o;
+}
+
+export function createPremiumPlanQueryString(
+  serializedParams: { [key: string]: string },
+  queryStringOptions: object,
+  baseUrl: string,
+): string {
+  serializedParams.client = serializedParams.client_id;
+  const clientSecret = serializedParams.client_secret;
+  delete serializedParams.client_id;
+  delete serializedParams.client_secret;
+
+  const partialQueryString = qs(serializedParams, queryStringOptions);
+  const unsignedUrl = `${baseUrl}?${partialQueryString}`;
+  const signature = createPremiumPlanSignature(unsignedUrl, clientSecret);
+
+  // The signature must come last
+  return `${partialQueryString}&signature=${signature}`;
+}
+
+export function createPremiumPlanSignature(unsignedUrl: string, clientSecret: string): string {
+  // Strip off the protocol, scheme, and host portions of the URL, leaving only the path and the query
+  const fullUrl = new URL(unsignedUrl);
+  const pathAndQuery = `${fullUrl.pathname}${fullUrl.search}`;
+  // Convert from 'web safe' base64 to true base64
+  const unsafeClientSecret = clientSecret.replace(/-/g, "+").replace(/_/g, "/");
+  // Base64 decode the secret
+  const decodedSecret = Buffer.from(unsafeClientSecret, "base64");
+  // Sign the url with the decoded secret
+  const unsafeSignature = createHmac("sha1", decodedSecret).update(pathAndQuery).digest("base64");
+  // Convert from true base64 to 'web safe' base64
+  return unsafeSignature.replace(/\+/g, "-").replace(/\//g, "_");
 }
