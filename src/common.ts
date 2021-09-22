@@ -1095,6 +1095,8 @@ export interface DirectionsStep {
   steps: DirectionsStep;
   /** contains transit specific information. This field is only returned with travel_mode is set to "transit". */
   transit_details: TransitDetails;
+  /** contains the type of travel mode used. */
+  travel_mode: TravelMode;
 }
 
 export interface Distance {
