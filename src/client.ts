@@ -106,7 +106,7 @@ const defaultConfig: AxiosRequestConfig = {
 export const defaultAxiosInstance = axios.create(defaultConfig);
 rax.attach(defaultAxiosInstance);
 
-type Config = {
+export type Config = {
   raxConfig?: rax.RetryConfig;
 } & AxiosRequestConfig;
 

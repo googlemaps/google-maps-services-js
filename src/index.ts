@@ -14,42 +14,88 @@
  * limitations under the License.
  */
 
-export { DirectionsRequest, DirectionsResponse } from "./directions";
-export { DistanceMatrixRequest, DistanceMatrixResponse } from "./distance";
-export { ElevationRequest, ElevationResponse } from "./elevation";
+export {
+  DirectionsRequest,
+  DirectionsResponse,
+  DirectionsResponseData,
+} from "./directions";
+export {
+  DistanceMatrixRequest,
+  DistanceMatrixResponse,
+  DistanceMatrixResponseData,
+} from "./distance";
+export {
+  ElevationRequest,
+  ElevationResponse,
+  PositionalElevationParams,
+  SampledPathElevationParams,
+  ElevationResponseData,
+} from "./elevation";
 export {
   FindPlaceFromTextRequest,
-  FindPlaceFromTextResponse
+  FindPlaceFromTextResponse,
+  FindPlaceFromTextResponseData,
 } from "./places/findplacefromtext";
-export { GeocodeRequest, GeocodeResponse } from "./geocode/geocode";
-export { GeolocateRequest, GeolocateResponse } from "./geolocate";
+export {
+  GeocodeRequest,
+  GeocodeResponse,
+  GeocodeResponseData,
+  GeocodeComponents,
+} from "./geocode/geocode";
+export {
+  GeolocateRequest,
+  GeolocateResponse,
+  GeolocateResponseSuccess,
+  GeolocateResponseError,
+  GeolocateResponseData,
+  GeolocateErrorReason,
+} from "./geolocate";
 export {
   NearestRoadsRequest,
-  NearestRoadsResponse
+  NearestRoadsResponse,
 } from "./roads/nearestroads";
 export {
   PlaceAutocompleteRequest,
   PlaceAutocompleteResponse,
   PlaceAutocompleteResult,
-  PlaceAutocompleteType
+  PlaceAutocompleteType,
+  PlaceAutocompleteResponseData,
 } from "./places/autocomplete";
-export { PlaceDetailsRequest, PlaceDetailsResponse } from "./places/details";
+export {
+  PlaceDetailsRequest,
+  PlaceDetailsResponse,
+  PlaceDetailsResponseData,
+} from "./places/details";
 export { PlacePhotoRequest, PlacePhotoResponse } from "./places/photo";
 export {
   PlaceQueryAutocompleteRequest,
-  PlaceQueryAutocompleteResponse
+  PlaceQueryAutocompleteResponse,
+  PlaceQueryAutocompleteResponseData,
+  PlaceQueryAutocompletePrediction,
 } from "./places/queryautocomplete";
 export {
   PlacesNearbyRequest,
-  PlacesNearbyResponse
+  PlacesNearbyResponse,
+  PlacesNearbyResponseData,
+  PlacesNearbyRanking,
 } from "./places/placesnearby";
 export {
   ReverseGeocodeRequest,
-  ReverseGeocodeResponse
+  ReverseGeocodeResponse,
+  ReverseGeocodeResponseData,
+  ReverseGeocodingLocationType,
 } from "./geocode/reversegeocode";
 export { SnapToRoadsRequest, SnapToRoadsResponse } from "./roads/snaptoroads";
-export { TextSearchRequest, TextSearchResponse } from "./places/textsearch";
-export { TimeZoneRequest, TimeZoneResponse } from "./timezone";
+export {
+  TextSearchRequest,
+  TextSearchResponse,
+  TextSearchResponseData,
+} from "./places/textsearch";
+export {
+  TimeZoneRequest,
+  TimeZoneResponse,
+  TimeZoneResponseData,
+} from "./timezone";
 
 export * from "./common";
 export * from "./client";
