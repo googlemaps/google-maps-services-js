@@ -83,9 +83,10 @@ import { TimeZoneRequest, TimeZoneResponse, timezone } from "./timezone";
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 
 import { HttpsAgent } from "agentkeepalive";
-import { version } from "./index";
 import { customAdapter } from "./adapter";
 
+// Cannot be `import` as it's not under TS root dir
+export const version = require("../package.json").version;
 export const defaultHttpsAgent = new HttpsAgent({ keepAlive: true });
 export const defaultTimeout = 10000;
 export const userAgent = `google-maps-services-node-${version}`;
