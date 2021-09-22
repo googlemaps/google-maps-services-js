@@ -33,10 +33,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci      
       - run: npm test
+      - uses: codecov/codecov-action@v1
       - run: npm run test:all
         if: github.event_name == 'push' && github.actor != 'dependabot[bot]'
         env:
           GOOGLE_MAPS_API_KEY: ${{ secrets.SYNCED_GOOGLE_MAPS_API_KEY_SERVICES }}
-      - uses: codecov/codecov-action@v1
-        with:
-          fail_ci_if_error: true
