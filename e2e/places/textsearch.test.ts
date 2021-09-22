@@ -30,6 +30,8 @@ test("textsearch should return correct result", async () => {
       "formatted_address",
       "geometry",
       "icon",
+      "icon_background_color",
+      "icon_mask_base_uri",
       "name",
       "photos",
       "place_id",
