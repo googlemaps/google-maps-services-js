@@ -28,6 +28,8 @@ test("placesNearby should return correct result", async () => {
     Array [
       "geometry",
       "icon",
+      "icon_background_color",
+      "icon_mask_base_uri",
       "name",
       "photos",
       "place_id",

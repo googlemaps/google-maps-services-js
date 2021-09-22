@@ -80,6 +80,8 @@ test("details should return all fields", async () => {
       "formatted_phone_number",
       "geometry",
       "icon",
+      "icon_background_color",
+      "icon_mask_base_uri",
       "international_phone_number",
       "name",
       "opening_hours",
