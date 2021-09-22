@@ -50,17 +50,17 @@
     "retry-axios": "^2.2.1"
   },
   "devDependencies": {
-    "@semantic-release/changelog": "^5.0.0",
-    "@semantic-release/git": "^9.0.0",
-    "@semantic-release/github": "^7.0.3",
-    "@semantic-release/release-notes-generator": "^9.0.1",
+    "@semantic-release/changelog": "^6.0.0",
+    "@semantic-release/git": "^10.0.0",
+    "@semantic-release/github": "^8.0.0",
+    "@semantic-release/release-notes-generator": "^10.0.2",
     "@types/jest": "^26.0.10",
     "@types/node": "^16.9.6",
     "codecov": ">=3.6.5",
     "jest": "^25.2.2",
     "nock": "^13.0.4",
     "prettier": "^2.0.5",
-    "semantic-release": "^17.0.2",
+    "semantic-release": "^18.0.0",
     "ts-jest": "^25.2.1",
     "typedoc": "^0.20.10",
     "typescript": "^3.7.4"
