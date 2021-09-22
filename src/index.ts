@@ -14,9 +14,6 @@
  * limitations under the License.
  */
 
-// Cannot be `import` as it's not under TS root dir
-export const version = require("../package.json").version;
-
 export { DirectionsRequest, DirectionsResponse } from "./directions";
 export { DistanceMatrixRequest, DistanceMatrixResponse } from "./distance";
 export { ElevationRequest, ElevationResponse } from "./elevation";
