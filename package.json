@@ -45,6 +45,7 @@
   "dependencies": {
     "agentkeepalive": "^4.1.0",
     "axios": "^0.21.1",
+    "crypto": "^1.0.1",
     "query-string": "^6.11.0",
     "retry-axios": "^2.2.1"
   },
