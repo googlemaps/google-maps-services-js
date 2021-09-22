@@ -29,16 +29,17 @@ jobs:
     - run: npm run test:all
       env:
         GOOGLE_MAPS_API_KEY: ${{ secrets.SYNCED_GOOGLE_MAPS_API_KEY_SERVICES }}
-    - name: Semantic Release
+    - name: Release
       uses: cycjimmy/semantic-release-action@v2
-      if: success()
       with:
         extra_plugins: |
-          "@semantic-release/commit-analyzer"
-          "@semantic-release/release-notes-generator"
-          "@semantic-release/npm
-          "@semantic-release/git
-          "@semantic-release/github
+          @semantic-release/commit-analyzer
+          semantic-release-interval
+          @semantic-release/release-notes-generator
+          @semantic-release/git
+          @semantic-release/github
+          @semantic-release/npm
+          @googlemaps/semantic-release-config
       env:
         GH_TOKEN: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
         NPM_TOKEN: ${{ secrets.NPM_WOMBAT_TOKEN }}
