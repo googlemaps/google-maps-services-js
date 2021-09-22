@@ -1,10 +1,56 @@
-branches:
-- master
-plugins:
-- "@semantic-release/commit-analyzer"
-- "@semantic-release/release-notes-generator"
-- "@semantic-release/npm"
-- "@semantic-release/git"
-- "@semantic-release/github"
-options:
-  debug: true
+{
+  plugins:
+    [
+      [
+        "@semantic-release/commit-analyzer",
+        { releaseRules: [{ type: "docs", scope: "README", release: "patch" }] },
+      ],
+      ["semantic-release-interval", { duration: 1, units: "week" }],
+      [
+        "@semantic-release/release-notes-generator",
+        {
+          preset: "conventionalcommits",
+          presetConfig:
+            {
+              types:
+                [
+                  { type: "feat", section: "Features" },
+                  { type: "feature", section: "Features" },
+                  { type: "fix", section: "Bug Fixes" },
+                  { type: "perf", section: "Performance Improvements" },
+                  { type: "revert", section: "Reverts" },
+                  { type: "docs", section: "Documentation", hidden: false },
+                  { type: "style", section: "Styles", hidden: false },
+                  {
+                    type: "chore",
+                    section: "Miscellaneous Chores",
+                    hidden: false,
+                  },
+                  {
+                    type: "refactor",
+                    section: "Code Refactoring",
+                    hidden: false,
+                  },
+                  { type: "test", section: "Tests", hidden: false },
+                  { type: "build", section: "Build System", hidden: false },
+                  {
+                    type: "ci",
+                    section: "Continuous Integration",
+                    hidden: false,
+                  },
+                ],
+            },
+        },
+      ],
+      "@semantic-release/github",
+      "@semantic-release/npm",
+      "@semantic-release/git",
+    ],
+  options: { debug: true },
+  branches:
+    [
+      "master",
+      { name: "beta", prerelease: true },
+      { name: "alpha", prerelease: true },
+    ],
+}
