@@ -222,6 +222,28 @@
 							<td align="center">Supports <a href="https://github.com/axios/axios#cancellation">cancellation</a></td>
 						</tr>
 				</tbody></table>
+				<a href="#premium-plan-authentication" id="premium-plan-authentication" style="color: inherit; text-decoration: none;">
+					<h2>Premium Plan Authentication</h2>
+				</a>
+				<p>Authentication via client ID and URL signing secret is provided to support legacy applications that use the Google Maps Platform Premium Plan. The Google Maps Platform Premium Plan is no longer available for sign up or new customers. All new applications must use API keys.</p>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">client</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Client</span><span style="color: #000000">({});</span>
+
+<span style="color: #001080">client</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">elevation</span><span style="color: #000000">({</span>
+<span style="color: #000000">    </span><span style="color: #001080">params:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">locations:</span><span style="color: #000000"> [{ </span><span style="color: #001080">lat:</span><span style="color: #000000"> </span><span style="color: #098658">45</span><span style="color: #000000">, </span><span style="color: #001080">lng:</span><span style="color: #000000"> -</span><span style="color: #098658">110</span><span style="color: #000000"> }],</span>
+<span style="color: #000000">      </span><span style="color: #001080">client_id:</span><span style="color: #000000"> </span><span style="color: #001080">process</span><span style="color: #000000">.</span><span style="color: #001080">env</span><span style="color: #000000">.</span><span style="color: #0070C1">GOOGLE_MAPS_CLIENT_ID</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">client_secret:</span><span style="color: #000000"> </span><span style="color: #001080">process</span><span style="color: #000000">.</span><span style="color: #001080">env</span><span style="color: #000000">.</span><span style="color: #0070C1">GOOGLE_MAPS_CLIENT_SECRET</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">    </span><span style="color: #001080">timeout:</span><span style="color: #000000"> </span><span style="color: #098658">1000</span><span style="color: #000000"> </span><span style="color: #008000">// milliseconds</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">r</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">r</span><span style="color: #000000">.</span><span style="color: #001080">data</span><span style="color: #000000">.</span><span style="color: #001080">results</span><span style="color: #000000">[</span><span style="color: #098658">0</span><span style="color: #000000">].</span><span style="color: #001080">elevation</span><span style="color: #000000">);</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">catch</span><span style="color: #000000">(</span><span style="color: #001080">e</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">e</span><span style="color: #000000">.</span><span style="color: #001080">response</span><span style="color: #000000">.</span><span style="color: #001080">data</span><span style="color: #000000">.</span><span style="color: #001080">error_message</span><span style="color: #000000">);</span>
+<span style="color: #000000">  });</span>
+</code></pre>
 				<a href="#support" id="support" style="color: inherit; text-decoration: none;">
 					<h2>Support</h2>
 				</a>
@@ -326,6 +348,9 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/alternativeplaceid.html" class="tsd-kind-icon">Alternative<wbr>Place<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/apikeyparams.html" class="tsd-kind-icon">Api<wbr>Key<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/aspectrating.html" class="tsd-kind-icon">Aspect<wbr>Rating</a>
@@ -466,7 +491,7 @@
 						<a href="interfaces/predictionterm.html" class="tsd-kind-icon">Prediction<wbr>Term</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/requestparams.html" class="tsd-kind-icon">Request<wbr>Params</a>
+						<a href="interfaces/premiumplanparams.html" class="tsd-kind-icon">Premium<wbr>Plan<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/responsedata.html" class="tsd-kind-icon">Response<wbr>Data</a>
@@ -545,6 +570,9 @@
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="modules.html#place" class="tsd-kind-icon">Place</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#requestparams" class="tsd-kind-icon">Request<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="modules.html#addresstype" class="tsd-kind-icon">Address<wbr>Type</a>
