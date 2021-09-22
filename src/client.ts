@@ -84,7 +84,6 @@ import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 
 import { HttpsAgent } from "agentkeepalive";
 import { customAdapter } from "./adapter";
-import { version } from "./index";
 
 // Cannot be `import` as it's not under TS root dir
 export const version = require("../package.json").version;
