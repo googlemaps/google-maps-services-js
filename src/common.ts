@@ -395,7 +395,7 @@ export enum AspectRatingType {
 
 export type Place = Partial<PlaceData>;
 
-interface PlaceData {
+export interface PlaceData {
   /**
    * is an array containing the separate components applicable to this address.
    *
