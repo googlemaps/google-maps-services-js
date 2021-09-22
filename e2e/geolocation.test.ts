@@ -16,7 +16,7 @@
 
 import { geolocate } from "../src/geolocate";
 
-test.skip("geolocate should call axios correctly", async () => {
+test("geolocate should call axios correctly", async () => {
   const params = { key: process.env.GOOGLE_MAPS_API_KEY };
   const data = { considerIp: false };
 

@@ -35,7 +35,7 @@ jobs:
       - run: npm test
         if: github.event_name == 'pull_request'
       - run: npm run test:all
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && github.actor != 'dependabot[bot]'
         env:
           GOOGLE_MAPS_API_KEY: ${{ secrets.SYNCED_GOOGLE_MAPS_API_KEY_SERVICES }}
       - uses: codecov/codecov-action@v1
