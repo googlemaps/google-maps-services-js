@@ -1585,6 +1585,11 @@ export interface StructuredFormatting {
   main_text_matched_substrings: PredictionSubstring[];
   /** contains the secondary text of a prediction, usually the location of the place. */
   secondary_text: string;
+  /**
+   * contains an array with `offset` value and `length`. These describe the location of
+   * the entered term in the prediction result secondary text, so that the term can be highlighted if desired.
+   */
+  secondary_text_matched_substrings: PredictionSubstring[];
 }
 
 export interface SnappedPoint {
