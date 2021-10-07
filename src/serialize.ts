@@ -17,7 +17,7 @@
 import { LatLng, LatLngBounds, LatLngLiteral } from "./common";
 
 import { encodePath } from "./util";
-import { createHmac } from "crypto";
+import * as CryptoJS from "crypto-js";
 import { stringify as qs } from "query-string";
 import { URL } from "url";
 
@@ -161,9 +161,9 @@ export function createPremiumPlanSignature(unsignedUrl: string, clientSecret: st
   // Convert from 'web safe' base64 to true base64
   const unsafeClientSecret = clientSecret.replace(/-/g, "+").replace(/_/g, "/");
   // Base64 decode the secret
-  const decodedSecret = Buffer.from(unsafeClientSecret, "base64");
+  const decodedSecret = CryptoJS.enc.Base64.parse(unsafeClientSecret)
   // Sign the url with the decoded secret
-  const unsafeSignature = createHmac("sha1", decodedSecret).update(pathAndQuery).digest("base64");
+  const unsafeSignature = CryptoJS.algo.HMAC.create(CryptoJS.algo.SHA1, decodedSecret).update(pathAndQuery).finalize().toString(CryptoJS.enc.Base64)
   // Convert from true base64 to 'web safe' base64
   return unsafeSignature.replace(/\+/g, "-").replace(/\//g, "_");
 }
