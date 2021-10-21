@@ -167,3 +167,9 @@ export function createPremiumPlanSignature(unsignedUrl: string, clientSecret: st
   // Convert from true base64 to 'web safe' base64
   return unsafeSignature.replace(/\+/g, "-").replace(/\//g, "_");
 }
+
+// code to create signatures for signed Static Maps and Streetview API requests
+// this is functionally the same thing as creating a Premium Plan signature, so this just wraps it
+export function createImageAPISignature(unsignedUrl: string, signingSecret:string): string {
+  return createPremiumPlanSignature(unsignedUrl, signingSecret);
+}

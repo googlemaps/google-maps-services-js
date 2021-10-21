@@ -25,6 +25,7 @@ import {
   serializer,
   toLatLngLiteral,
   toTimestamp,
+  createImageAPISignature,
 } from "./serialize";
 
 test("latLngToString is correct", () => {
@@ -167,4 +168,11 @@ test("createPremiumPlanSignature", () => {
   const clientSecret = "testClientSecret";
 
   expect(createPremiumPlanSignature(unsignedUrl, clientSecret)).toEqual("YRJoTd6ohbpsR14WkWv3S7H6MqU=");
+});
+
+test("createImageAPISignature", () => {
+  const unsignedUrl = "https://maps.googleapis.com/maps/api/staticmap?center=Berkeley,CA&zoom=14&size=400x400&key=YOUR_API_KEY";
+  const sharedSecret = "sharedSecret";
+
+  expect(createImageAPISignature(unsignedUrl, sharedSecret)).toEqual("unyttU2Yp4v_AfS6-WGNko2PVX4=");
 });
