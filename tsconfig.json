@@ -11,7 +11,7 @@
         "declaration": true,
         "declarationDir": "./dist",
         "resolveJsonModule": true,
-        "lib": []
+        "lib": ["ESNext"]
     },
     "include": [
         "src/**/*.ts"
