@@ -43,9 +43,9 @@
     "test:all": "jest"
   },
   "dependencies": {
+    "@googlemaps/url-signature": "^1.0.2",
     "agentkeepalive": "^4.1.0",
     "axios": "^0.21.1",
-    "crypto-js": "4.1.1",
     "query-string": "^7.0.1",
     "retry-axios": "^2.2.1"
   },

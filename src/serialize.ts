@@ -17,9 +17,8 @@
 import { LatLng, LatLngBounds, LatLngLiteral } from "./common";
 
 import { encodePath } from "./util";
-import * as CryptoJS from "crypto-js";
+import { createSignature} from "@googlemaps/url-signature";
 import { stringify as qs } from "query-string";
-import { URL } from "url";
 
 const separator = "|";
 
@@ -148,22 +147,8 @@ export function createPremiumPlanQueryString(
 
   const partialQueryString = qs(serializedParams, queryStringOptions);
   const unsignedUrl = `${baseUrl}?${partialQueryString}`;
-  const signature = createPremiumPlanSignature(unsignedUrl, clientSecret);
+  const signature =  createSignature(unsignedUrl, clientSecret);
 
   // The signature must come last
   return `${partialQueryString}&signature=${signature}`;
-}
-
-export function createPremiumPlanSignature(unsignedUrl: string, clientSecret: string): string {
-  // Strip off the protocol, scheme, and host portions of the URL, leaving only the path and the query
-  const fullUrl = new URL(unsignedUrl);
-  const pathAndQuery = `${fullUrl.pathname}${fullUrl.search}`;
-  // Convert from 'web safe' base64 to true base64
-  const unsafeClientSecret = clientSecret.replace(/-/g, "+").replace(/_/g, "/");
-  // Base64 decode the secret
-  const decodedSecret = CryptoJS.enc.Base64.parse(unsafeClientSecret)
-  // Sign the url with the decoded secret
-  const unsafeSignature = CryptoJS.algo.HMAC.create(CryptoJS.algo.SHA1, decodedSecret).update(pathAndQuery).finalize().toString(CryptoJS.enc.Base64)
-  // Convert from true base64 to 'web safe' base64
-  return unsafeSignature.replace(/\+/g, "-").replace(/\//g, "_");
 }
