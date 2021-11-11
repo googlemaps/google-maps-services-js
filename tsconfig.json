@@ -3,15 +3,11 @@
         "target": "es6",
         "module": "commonjs",
         "outDir": "dist",
-        "sourceMap": true,
-        "types": [
-            "node",
-            "jest"
-        ],
+        "sourceMap": true,        
         "declaration": true,
         "declarationDir": "./dist",
         "resolveJsonModule": true,
-        "lib": ["ESNext"]
+        "lib": ["ESNext", "DOM"]
     },
     "include": [
         "src/**/*.ts"
