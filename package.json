@@ -43,7 +43,7 @@
     "test:all": "jest"
   },
   "dependencies": {
-    "@googlemaps/url-signature": "^1.0.2",
+    "@googlemaps/url-signature": "^1.0.4",
     "agentkeepalive": "^4.1.0",
     "axios": "^0.24.0",
     "query-string": "^7.0.1",
