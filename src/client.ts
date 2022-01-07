@@ -206,6 +206,33 @@ export class Client {
   geolocate(request: GeolocateRequest): Promise<GeolocateResponse> {
     return geolocate(request, this.axiosInstance);
   }
+  /**
+   * An example use of this function.
+   *
+   * ```javascript
+   * import { Client } from '@googlemaps/google-maps-services-js';
+   * 
+   * const getFirstResult = async (theAddress) => {
+   *   const args = {
+   *     params: {
+   *       key: '<your-api-key>',
+   *       address: theAddress,
+   *     }
+   *   };
+   *   const client = new Client();
+   *   const result = await client.geocode(args);
+   *   if (result.status === 200) {
+   *     return result.data.results[0];
+   *   }
+   *   return null;
+   * };
+   * 
+   * getFirstResult('Perth 4WD & Commercial Centre')
+   *   .then(result => {
+   *     console.log(`First result is: ${JSON.stringify(result)}`);
+   *   });
+   * ```
+   */
   geocode(request: GeocodeRequest): Promise<GeocodeResponse> {
     return geocode(request, this.axiosInstance);
   }
