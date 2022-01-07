@@ -212,25 +212,17 @@ export class Client {
    * ```javascript
    * import { Client } from '@googlemaps/google-maps-services-js';
    * 
-   * const getFirstResult = async (theAddress) => {
-   *   const args = {
-   *     params: {
-   *       key: '<your-api-key>',
-   *       address: theAddress,
-   *     }
-   *   };
-   *   const client = new Client();
-   *   const result = await client.geocode(args);
-   *   if (result.status === 200) {
-   *     return result.data.results[0];
+   * const args = {
+   *   params: {
+   *     key: '<your-api-key>',
+   *     address: 'Perth 4WD & Commercial Centre',
    *   }
-   *   return null;
    * };
-   * 
-   * getFirstResult('Perth 4WD & Commercial Centre')
-   *   .then(result => {
-   *     console.log(`First result is: ${JSON.stringify(result)}`);
-   *   });
+   * const client = new Client();
+   * client.geocode(args).then(gcResponse => {
+   *   const str = JSON.stringify(gcResponse.data.results[0]);
+   *   console.log(`First result is: ${str}`);)
+   * });
    * ```
    */
   geocode(request: GeocodeRequest): Promise<GeocodeResponse> {
