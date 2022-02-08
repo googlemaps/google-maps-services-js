@@ -1475,7 +1475,7 @@ export interface AddressGeometry {
   /** contains the geocoded latitude, longitude value. For normal address lookups, this field is typically the most important. */
   location: LatLngLiteral;
   /** stores additional data about the specified location. */
-  location_type: LocationType;
+  location_type?: LocationType;
   /**
    * contains the recommended viewport for displaying the returned result, specified as two latitude, longitude values
    * defining the `southwest` and `northeast` corner of the viewport bounding box.
@@ -1488,7 +1488,7 @@ export interface AddressGeometry {
    * (For example, San Francisco includes the [Farallon islands](https://en.wikipedia.org/wiki/Farallon_Islands),
    * which are technically part of the city, but probably should not be returned in the viewport.)
    */
-  bounds: LatLngBounds;
+  bounds?: LatLngBounds;
 }
 
 export enum LocationType {
