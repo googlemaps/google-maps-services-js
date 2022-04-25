@@ -45,7 +45,7 @@
   "dependencies": {
     "@googlemaps/url-signature": "^1.0.4",
     "agentkeepalive": "^4.1.0",
-    "axios": "^0.26.0",
+    "axios": "^0.27.0",
     "query-string": "^7.0.1",
     "retry-axios": "^2.2.1"
   },
