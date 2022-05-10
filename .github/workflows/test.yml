@@ -12,13 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: CI
+name: Test
 
 on:
   - push
   - pull_request
 jobs:
-  build:
+  matrix:
     runs-on: ubuntu-latest
 
     strategy:
@@ -38,3 +38,9 @@ jobs:
         if: github.event_name == 'push' && github.actor != 'dependabot[bot]'
         env:
           GOOGLE_MAPS_API_KEY: ${{ secrets.SYNCED_GOOGLE_MAPS_API_KEY_SERVICES }}
+  test:
+    name: Wait for matrix to finish
+    needs: [matrix]
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo "Test matrix finished"
