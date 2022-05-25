@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Client, defaultAxiosInstance, defaultHttpsAgent } from "../src";
+import { Client, defaultAxiosInstance, defaultHttpsAgent, type ElevationResponse } from "../src";
 import { AxiosError } from "axios";
 
 test("client should work with defaults", async () => {
@@ -94,7 +94,8 @@ test("readme example using client fails correctly", async () => {
       timeout: 1000, // milliseconds
     })
     .catch((e: AxiosError) => {
-      expect(e.response.status).toEqual(403);
-      expect(e.response.data.status).toEqual(Status.REQUEST_DENIED);
+      const response = e.response as ElevationResponse;
+      expect(response.status).toEqual(403);
+      expect(response.data.status).toEqual(Status.REQUEST_DENIED);
     });
 });
