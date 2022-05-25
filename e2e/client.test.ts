@@ -95,7 +95,7 @@ test("readme example using client fails correctly", async () => {
     })
     .catch((e: AxiosError) => {
       const response = e.response as ElevationResponse;
-      expect(response).toEqual(403);
-      expect(response.status).toEqual(Status.REQUEST_DENIED);
+      expect(response.status).toEqual(403);
+      expect(response.data.status).toEqual(Status.REQUEST_DENIED);
     });
 });
