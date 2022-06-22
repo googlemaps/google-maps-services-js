@@ -136,9 +136,11 @@ test("toTimestamp", () => {
   expect(toTimestamp(100)).toEqual(100);
 
   const dt = new Date();
-  const seconds = Number(dt) / 1000;
+  const seconds = Math.round(Number(dt) / 1000);
   expect(toTimestamp(dt)).toEqual(seconds);
   expect(toTimestamp("now")).toEqual("now");
+
+  expect(toTimestamp(new Date('2022-06-22T09:03:33.430Z'))).toEqual(1655888613);
 });
 
 test("createPremiumPlanQueryString", () => {
