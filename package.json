@@ -1,6 +1,6 @@
 {
   "name": "@googlemaps/google-maps-services-js",
-  "version": "3.3.17",
+  "version": "3.3.18",
   "description": "Node.js client library for Google Maps API Web Services",
   "keywords": [
     "google",
