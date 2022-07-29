@@ -45,5 +45,5 @@ test("elevation should call axios correctly", () => {
 
 test("serializer should handle date object", () => {
   const dt = new Date();
-  expect(defaultParamsSerializer({timestamp: dt})).toEqual(`timestamp=${Number(dt)/1000}`)
+  expect(defaultParamsSerializer({timestamp: dt})).toEqual(`timestamp=${Math.round(Number(dt)/1000)}`)
 });

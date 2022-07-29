@@ -130,7 +130,7 @@ export function toTimestamp(o: "now" | number | Date): number | "now" {
     return o;
   }
   if (o instanceof Date) {
-    return Number(o) / 1000;
+    return Math.round(Number(o) / 1000);
   }
   return o;
 }
