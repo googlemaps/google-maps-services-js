@@ -48,7 +48,7 @@
     "agentkeepalive": "^4.1.0",
     "axios": "^1.1.2",
     "query-string": "^7.0.1",
-    "retry-axios": "^2.2.1"
+    "retry-axios": "^3.0.0"
   },
   "devDependencies": {
     "@types/jest": "^27.0.0",
