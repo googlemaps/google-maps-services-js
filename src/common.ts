@@ -182,6 +182,7 @@ export enum PlaceType1 {
   dentist = "dentist",
   department_store = "department_store",
   doctor = "doctor",
+  drugstore = "drugstore",
   electrician = "electrician",
   electronics_store = "electronics_store",
   embassy = "embassy",
@@ -201,6 +202,7 @@ export enum PlaceType1 {
   laundry = "laundry",
   lawyer = "lawyer",
   library = "library",
+  light_rail_station = "light_rail_station",
   liquor_store = "liquor_store",
   local_government_office = "local_government_office",
   locksmith = "locksmith",
@@ -243,6 +245,7 @@ export enum PlaceType1 {
   train_station = "train_station",
   transit_station = "transit_station",
   travel_agency = "travel_agency",
+  university = "university",
   veterinary_care = "veterinary_care",
   zoo = "zoo",
 }
