@@ -76,6 +76,8 @@ test("details should return all fields", async () => {
       "address_components",
       "adr_address",
       "business_status",
+      "current_opening_hours",
+      "editorial_summary",
       "formatted_address",
       "formatted_phone_number",
       "geometry",
