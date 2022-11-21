@@ -1997,9 +1997,9 @@ resolve@^1.20.0:
     path-parse "^1.0.7"
     supports-preserve-symlinks-flag "^1.0.0"
 
-retry-axios@^2.6.0:
-  version "2.6.0"
-  resolved "https://registry.npmjs.org/retry-axios/-/retry-axios-2.6.0.tgz"
+retry-axios@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/retry-axios/-/retry-axios-3.0.0.tgz#5fd54f65330d155c36d01e3685238889375b9aa0"
 
 rimraf@^3.0.0:
   version "3.0.2"
