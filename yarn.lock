@@ -2240,8 +2240,8 @@ typedarray-to-buffer@^3.1.5:
     is-typedarray "^1.0.0"
 
 typedoc@^0.23.1:
-  version "0.23.21"
-  resolved "https://registry.npmjs.org/typedoc/-/typedoc-0.23.21.tgz"
+  version "0.23.22"
+  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.23.22.tgz#e25281ca816cd92ecfdaf3ec336d27e7bebb69ac"
   dependencies:
     lunr "^2.3.9"
     marked "^4.0.19"
