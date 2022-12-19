@@ -1959,8 +1959,8 @@ punycode@^2.1.1:
   resolved "https://registry.npmjs.org/punycode/-/punycode-2.1.1.tgz"
 
 query-string@^8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/query-string/-/query-string-8.0.0.tgz#6fe8b0efcfea80dabe470f64a2e46eaf8beae357"
+  version "8.0.3"
+  resolved "https://registry.yarnpkg.com/query-string/-/query-string-8.0.3.tgz#c6f18a1ce18005fb5d3dcd6507dbcdc165615c49"
   dependencies:
     decode-uri-component "^0.2.2"
     filter-obj "^5.1.0"
