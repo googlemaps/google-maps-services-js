@@ -257,8 +257,8 @@
   resolved "https://registry.npmjs.org/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz"
 
 "@googlemaps/url-signature@^1.0.4":
-  version "1.0.28"
-  resolved "https://registry.npmjs.org/@googlemaps/url-signature/-/url-signature-1.0.28.tgz"
+  version "1.0.29"
+  resolved "https://registry.yarnpkg.com/@googlemaps/url-signature/-/url-signature-1.0.29.tgz#3752501f1e4d828eb207985c3254136b34e07339"
   dependencies:
     crypto-js "^4.1.1"
 
