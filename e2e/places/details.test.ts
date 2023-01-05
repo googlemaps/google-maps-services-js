@@ -99,6 +99,7 @@ test("details should return all fields", async () => {
       "utc_offset",
       "vicinity",
       "website",
+      "wheelchair_accessible_entrance",
     ]
   `);
 });
