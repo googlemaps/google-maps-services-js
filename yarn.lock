@@ -1684,9 +1684,9 @@ json5@2.x, json5@^2.1.2:
   version "2.2.3"
   resolved "https://registry.npmjs.org/json5/-/json5-2.2.3.tgz"
 
-jsonc-parser@^3.0.0:
+jsonc-parser@^3.2.0:
   version "3.2.0"
-  resolved "https://registry.npmjs.org/jsonc-parser/-/jsonc-parser-3.2.0.tgz"
+  resolved "https://registry.yarnpkg.com/jsonc-parser/-/jsonc-parser-3.2.0.tgz#31ff3f4c2b9793f89c67212627c51c6394f88e76"
 
 kleur@^3.0.3:
   version "3.0.3"
@@ -1747,9 +1747,9 @@ makeerror@1.0.12:
   dependencies:
     tmpl "1.0.5"
 
-marked@^4.2.4:
-  version "4.2.4"
-  resolved "https://registry.npmjs.org/marked/-/marked-4.2.4.tgz"
+marked@^4.2.5:
+  version "4.2.5"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-4.2.5.tgz#979813dfc1252cc123a79b71b095759a32f42a5d"
 
 merge-stream@^2.0.0:
   version "2.0.0"
@@ -1782,9 +1782,9 @@ minimatch@^3.0.4:
   dependencies:
     brace-expansion "^1.1.7"
 
-minimatch@^5.1.1:
-  version "5.1.1"
-  resolved "https://registry.npmjs.org/minimatch/-/minimatch-5.1.1.tgz"
+minimatch@^5.1.2:
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-5.1.2.tgz#0939d7d6f0898acbd1508abe534d1929368a8fff"
   dependencies:
     brace-expansion "^2.0.1"
 
@@ -2035,13 +2035,13 @@ shebang-regex@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/shebang-regex/-/shebang-regex-3.0.0.tgz"
 
-shiki@^0.11.1:
-  version "0.11.1"
-  resolved "https://registry.npmjs.org/shiki/-/shiki-0.11.1.tgz"
+shiki@^0.12.1:
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/shiki/-/shiki-0.12.1.tgz#26fce51da12d055f479a091a5307470786f300cd"
   dependencies:
-    jsonc-parser "^3.0.0"
-    vscode-oniguruma "^1.6.1"
-    vscode-textmate "^6.0.0"
+    jsonc-parser "^3.2.0"
+    vscode-oniguruma "^1.7.0"
+    vscode-textmate "^8.0.0"
 
 signal-exit@^3.0.2, signal-exit@^3.0.3:
   version "3.0.7"
@@ -2239,13 +2239,13 @@ typedarray-to-buffer@^3.1.5:
     is-typedarray "^1.0.0"
 
 typedoc@^0.23.1:
-  version "0.23.23"
-  resolved "https://registry.npmjs.org/typedoc/-/typedoc-0.23.23.tgz"
+  version "0.23.24"
+  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.23.24.tgz#01cf32c09f2c19362e72a9ce1552d6e5b48c4fef"
   dependencies:
     lunr "^2.3.9"
-    marked "^4.2.4"
-    minimatch "^5.1.1"
-    shiki "^0.11.1"
+    marked "^4.2.5"
+    minimatch "^5.1.2"
+    shiki "^0.12.1"
 
 typescript@^4.0.0:
   version "4.9.4"
@@ -2263,13 +2263,13 @@ v8-to-istanbul@^8.1.0:
     convert-source-map "^1.6.0"
     source-map "^0.7.3"
 
-vscode-oniguruma@^1.6.1:
-  version "1.6.2"
-  resolved "https://registry.npmjs.org/vscode-oniguruma/-/vscode-oniguruma-1.6.2.tgz"
+vscode-oniguruma@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/vscode-oniguruma/-/vscode-oniguruma-1.7.0.tgz#439bfad8fe71abd7798338d1cd3dc53a8beea94b"
 
-vscode-textmate@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.npmjs.org/vscode-textmate/-/vscode-textmate-6.0.0.tgz"
+vscode-textmate@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/vscode-textmate/-/vscode-textmate-8.0.0.tgz#2c7a3b1163ef0441097e0b5d6389cd5504b59e5d"
 
 w3c-hr-time@^1.0.2:
   version "1.0.2"
