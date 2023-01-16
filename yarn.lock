@@ -1797,8 +1797,8 @@ natural-compare@^1.4.0:
   resolved "https://registry.npmjs.org/natural-compare/-/natural-compare-1.4.0.tgz"
 
 nock@^13.0.4:
-  version "13.2.9"
-  resolved "https://registry.npmjs.org/nock/-/nock-13.2.9.tgz"
+  version "13.3.0"
+  resolved "https://registry.yarnpkg.com/nock/-/nock-13.3.0.tgz#b13069c1a03f1ad63120f994b04bfd2556925768"
   dependencies:
     debug "^4.1.0"
     json-stringify-safe "^5.0.1"
