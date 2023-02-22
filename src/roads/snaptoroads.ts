@@ -15,7 +15,7 @@
  */
 
 import { LatLng, SnappedPoint, RequestParams } from "../common";
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse, ParamsSerializerOptions } from "axios";
 import { defaultAxiosInstance } from "../client";
 import { serializer, latLngToString } from "../serialize";
 
@@ -54,7 +54,7 @@ export interface SnapToRoadsResponse extends AxiosResponse {
 export const defaultUrl = "https://roads.googleapis.com/v1/snapToRoads";
 export const defaultParamsSerializer = serializer({
   path: o => o.map(latLngToString)
-}, defaultUrl);
+}, defaultUrl) as ParamsSerializerOptions;
 
 export function snapToRoads(
   {

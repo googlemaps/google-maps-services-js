@@ -15,7 +15,7 @@
  */
 
 import { LatLngBounds, GeocodeResult, ResponseData, RequestParams } from "../common";
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse, ParamsSerializerOptions } from "axios";
 import { defaultAxiosInstance } from "../client";
 import { serializer, latLngBoundsToString, objectToString } from "../serialize";
 
@@ -100,7 +100,7 @@ export interface GeocodeResponse extends AxiosResponse {
 export const defaultParamsSerializer = serializer({
   bounds: latLngBoundsToString,
   components: objectToString
-}, defaultUrl);
+}, defaultUrl) as ParamsSerializerOptions;
 
 export function geocode(
   {

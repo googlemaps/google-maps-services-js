@@ -24,7 +24,7 @@ import {
   PredictionSubstring,
   StructuredFormatting
 } from "../common";
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse, ParamsSerializerOptions } from "axios";
 import { defaultAxiosInstance } from "../client";
 import { serializer, latLngToString } from "../serialize";
 
@@ -93,7 +93,7 @@ export interface PlaceQueryAutocompleteResponse extends AxiosResponse {
 export const defaultUrl =
   "https://maps.googleapis.com/maps/api/place/queryautocomplete/json";
 
-export const defaultParamsSerializer = serializer({ location: latLngToString }, defaultUrl);
+export const defaultParamsSerializer = serializer({ location: latLngToString }, defaultUrl) as ParamsSerializerOptions;
 
 export function placeQueryAutocomplete(
   {

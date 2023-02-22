@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse, ParamsSerializerOptions } from "axios";
 import { Language, Place, RequestParams, ResponseData } from "../common";
 
 import { defaultAxiosInstance } from "../client";
@@ -67,7 +67,7 @@ export interface PlaceDetailsResponse extends AxiosResponse {
 export const defaultUrl =
   "https://maps.googleapis.com/maps/api/place/details/json";
 
-export const defaultParamsSerializer = serializer({}, defaultUrl, {arrayFormat: "comma"});
+export const defaultParamsSerializer = serializer({}, defaultUrl, {arrayFormat: "comma"}) as ParamsSerializerOptions;
 
 export function placeDetails(
   {

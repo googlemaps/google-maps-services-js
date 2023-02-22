@@ -15,7 +15,7 @@
  */
 
 import { Language, ResponseData, Place, PlaceInputType, RequestParams } from "../common";
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse, ParamsSerializerOptions } from "axios";
 import { defaultAxiosInstance } from "../client";
 import { serializer } from "../serialize";
 
@@ -55,7 +55,7 @@ export interface FindPlaceFromTextResponse extends AxiosResponse {
 export const defaultUrl =
   "https://maps.googleapis.com/maps/api/place/findplacefromtext/json";
 
-export const defaultParamsSerializer = serializer({}, defaultUrl, {arrayFormat: "comma"});
+export const defaultParamsSerializer = serializer({}, defaultUrl, {arrayFormat: "comma"}) as ParamsSerializerOptions;
 
 export function findPlaceFromText(
   {

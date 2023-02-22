@@ -15,7 +15,7 @@
  */
 
 import { ResponseData, LatLng, Language, PlaceType1, Place, RequestParams } from "../common";
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse, ParamsSerializerOptions } from "axios";
 import { defaultAxiosInstance } from "../client";
 import { serializer, latLngToString } from "../serialize";
 
@@ -98,7 +98,7 @@ export interface TextSearchResponse extends AxiosResponse {
 export const defaultUrl =
   "https://maps.googleapis.com/maps/api/place/textsearch/json";
 
-export const defaultParamsSerializer = serializer({ location: latLngToString }, defaultUrl);
+export const defaultParamsSerializer = serializer({ location: latLngToString }, defaultUrl) as ParamsSerializerOptions;
 
 export function textSearch(
   {

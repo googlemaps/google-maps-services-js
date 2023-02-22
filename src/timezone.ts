@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse, ParamsSerializerOptions } from "axios";
 import { Language, LatLng, RequestParams, ResponseData } from "./common";
 import { latLngToString, serializer, toTimestamp } from "./serialize";
 
@@ -74,7 +74,7 @@ export const defaultUrl = "https://maps.googleapis.com/maps/api/timezone/json";
 export const defaultParamsSerializer = serializer({
   timestamp: toTimestamp,
   location: latLngToString
-}, defaultUrl);
+}, defaultUrl) as ParamsSerializerOptions;
 export function timezone(
   {
     params,

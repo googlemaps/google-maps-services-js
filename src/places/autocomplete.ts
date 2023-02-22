@@ -23,7 +23,7 @@ import {
   ResponseData,
   StructuredFormatting
 } from "../common";
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse, ParamsSerializerOptions } from "axios";
 import { latLngToString, serializer } from "../serialize";
 
 import { defaultAxiosInstance } from "../client";
@@ -174,7 +174,7 @@ export const defaultUrl =
 export const defaultParamsSerializer = serializer({
   location: latLngToString,
   origin: latLngToString
-}, defaultUrl);
+}, defaultUrl) as  ParamsSerializerOptions;
 
 export function placeAutocomplete(
   {

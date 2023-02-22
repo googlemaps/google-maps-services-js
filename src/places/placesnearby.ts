@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse, ParamsSerializerOptions } from "axios";
 import {
   Language,
   LatLng,
@@ -115,7 +115,7 @@ export interface PlacesNearbyResponse extends AxiosResponse {
 export const defaultUrl =
   "https://maps.googleapis.com/maps/api/place/nearbysearch/json";
 
-export const defaultParamsSerializer = serializer({ location: latLngToString }, defaultUrl);
+export const defaultParamsSerializer = serializer({ location: latLngToString }, defaultUrl) as ParamsSerializerOptions;
 
 export function placesNearby(
   {

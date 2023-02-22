@@ -15,7 +15,7 @@
  */
 
 import { LatLng, SnappedPoint, RequestParams } from "../common";
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse, ParamsSerializerOptions } from "axios";
 import { defaultAxiosInstance } from "../client";
 import { serializer, latLngToString } from "../serialize";
 
@@ -40,7 +40,7 @@ export interface NearestRoadsResponse extends AxiosResponse {
 export const defaultUrl = "https://roads.googleapis.com/v1/nearestRoads";
 export const defaultParamsSerializer = serializer({
   points: o => o.map(latLng => latLngToString(latLng))
-}, defaultUrl);
+}, defaultUrl) as ParamsSerializerOptions;
 
 export function nearestRoads(
   {

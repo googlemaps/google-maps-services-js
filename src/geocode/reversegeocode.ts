@@ -15,7 +15,7 @@
  */
 
 import { AddressType, Language, LatLng, RequestParams } from "../common";
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse, ParamsSerializerOptions } from "axios";
 import { GeocodeResult, ResponseData } from "../common";
 import { latLngToString, serializer } from "../serialize";
 
@@ -101,7 +101,7 @@ export const defaultUrl = "https://maps.googleapis.com/maps/api/geocode/json";
 
 export const defaultParamsSerializer = serializer({
   latlng: latLngToString
-}, defaultUrl);
+}, defaultUrl) as ParamsSerializerOptions;
 
 export function reverseGeocode(
   {

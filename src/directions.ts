@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse, ParamsSerializerOptions } from "axios";
 import {
   DirectionsRoute,
   GeocodedWaypoint,
@@ -195,7 +195,7 @@ export const defaultParamsSerializer = serializer({
   waypoints: (o) => o.map(latLngToString),
   arrival_time: toTimestamp,
   departure_time: toTimestamp,
-}, defaultUrl);
+}, defaultUrl) as ParamsSerializerOptions;
 
 export function directions(
   {
