@@ -18,7 +18,7 @@ import { LatLng, LatLngBounds, LatLngLiteral } from "./common";
 
 import { encodePath } from "./util";
 import { createSignature} from "@googlemaps/url-signature";
-import queryString from "query-string";
+import { stringify as qs } from "query-string";
 
 const separator = "|";
 
@@ -121,7 +121,7 @@ export function serializer(
       return createPremiumPlanQueryString(serializedParams, queryStringOptions, baseUrl);
     }
 
-    return queryString.stringify(serializedParams, queryStringOptions);
+    return qs(serializedParams, queryStringOptions);
   };
 }
 
@@ -145,7 +145,7 @@ export function createPremiumPlanQueryString(
   delete serializedParams.client_id;
   delete serializedParams.client_secret;
 
-  const partialQueryString = queryString.stringify(serializedParams, queryStringOptions);
+  const partialQueryString = qs(serializedParams, queryStringOptions);
   const unsignedUrl = `${baseUrl}?${partialQueryString}`;
   const signature =  createSignature(unsignedUrl, clientSecret);
 
