@@ -524,8 +524,8 @@
     pretty-format "^27.0.0"
 
 "@types/node@*", "@types/node@^18.0.0":
-  version "18.15.5"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.15.5.tgz#3af577099a99c61479149b716183e70b5239324a"
+  version "18.15.10"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.15.10.tgz#4ee2171c3306a185d1208dad5f44dae3dee4cfe3"
 
 "@types/prettier@^2.1.5":
   version "2.4.4"
