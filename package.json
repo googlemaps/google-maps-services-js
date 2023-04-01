@@ -40,7 +40,6 @@
     "docs": "rm -rf docs/ && typedoc src/index.ts",
     "prepare": "tsc",
     "test": "jest src",
-    "test:e2e": "jest e2e",
     "test:all": "jest"
   },
   "dependencies": {
