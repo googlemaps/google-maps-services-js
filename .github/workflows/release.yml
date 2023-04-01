@@ -24,7 +24,7 @@ jobs:
     - uses: actions/checkout@v2
       with:
         token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }} 
-    - uses: actions/setup-node@v1
+    - uses: actions/setup-node@v3
     - run: npm ci
     - run: npm run test:all
       env:
