@@ -40,7 +40,8 @@
     "docs": "rm -rf docs/ && typedoc src/index.ts",
     "prepare": "tsc",
     "test": "jest src",
-    "test:all": "jest"
+    "test:e2e": "jest e2e",
+    "test:all": "jest src"
   },
   "dependencies": {
     "@googlemaps/url-signature": "^1.0.4",
