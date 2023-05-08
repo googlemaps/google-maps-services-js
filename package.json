@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@types/jest": "^27.0.0",
-    "@types/node": "^18.0.0",
+    "@types/node": "^20.1.1",
     "jest": "^27.0.0",
     "nock": "^13.0.4",
     "prettier": "^2.0.5",
