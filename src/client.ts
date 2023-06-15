@@ -221,7 +221,7 @@ export class Client {
    * const client = new Client();
    * client.geocode(args).then(gcResponse => {
    *   const str = JSON.stringify(gcResponse.data.results[0]);
-   *   console.log(`First result is: ${str}`);)
+   *   console.log(`First result is: ${str}`);
    * });
    * ```
    */
