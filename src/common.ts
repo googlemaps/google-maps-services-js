@@ -436,6 +436,11 @@ export interface PlaceData {
   /** is a representation of the place's address in the [adr microformat](http://microformats.org/wiki/adr). */
   adr_address: string;
   /**
+   * Contains a summary of the place. A summary is comprised of a textual overview, and also includes the language code 
+   * for these if applicable. Summary text must be presented as-is and can not be modified or altered.
+   */
+  editorial_summary: PlaceEditorialSummary;
+  /**
    * contains the following information:
    *  - `location`: contains the geocoded latitude,longitude value for this place.
    *  - `viewport`: contains the preferred viewport when displaying this place on a map as a `LatLngBounds` if it is known.
@@ -1512,6 +1517,13 @@ export enum LocationType {
   GEOMETRIC_CENTER = "GEOMETRIC_CENTER",
   /** indicates that the returned result is approximate. */
   APPROXIMATE = "APPROXIMATE",
+}
+
+export interface PlaceEditorialSummary {
+  /** The language of the previous fields. May not always be present. */
+  language?: string;
+  /** A medium-length textual summary of the place. */
+  overview?: string;
 }
 
 export interface PlusCode {
