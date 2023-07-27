@@ -61,7 +61,7 @@ client
   .elevation({
     params: {
       locations: [{ lat: 45, lng: -110 }],
-      key: "asdf",
+      key: process.env.GOOGLE_MAPS_API_KEY,
     },
     timeout: 1000, // milliseconds
   })
