@@ -41,7 +41,7 @@ This library is designed for server-side Node.js applications. Attempting to use
 
 Below is a simple example calling the elevation method on the client class.
 
-Import the Google Maps Client using Typescript and ES6 module:
+Import the Google Maps Client using TypeScript and ES6 module:
 
 ```js
 import {Client} from "@googlemaps/google-maps-services-js";
