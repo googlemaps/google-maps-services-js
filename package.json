@@ -1,6 +1,6 @@
 {
   "name": "@googlemaps/google-maps-services-js",
-  "version": "3.3.34",
+  "version": "3.3.37",
   "description": "Node.js client library for Google Maps API Web Services",
   "keywords": [
     "google",
@@ -57,7 +57,7 @@
     "nock": "^13.0.4",
     "prettier": "^3.0.0",
     "ts-jest": "^27.0.5",
-    "typedoc": "^0.24.1",
+    "typedoc": "^0.25.0",
     "typescript": "^4.0.0"
   },
   "publishConfig": {
