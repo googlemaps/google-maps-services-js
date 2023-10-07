@@ -25,7 +25,7 @@ test("autocomplete should return correct result", async () => {
   const r = await placeAutocomplete({ params: params });
   expect(r.data.predictions.length).toBeTruthy();
   expect(Object.keys(r.data.predictions[0]).sort()).toMatchInlineSnapshot(`
-    Array [
+    [
       "description",
       "matched_substrings",
       "place_id",

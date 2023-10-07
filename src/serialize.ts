@@ -17,8 +17,10 @@
 import { LatLng, LatLngBounds, LatLngLiteral } from "./common";
 
 import { encodePath } from "./util";
-import { createSignature} from "@googlemaps/url-signature";
-import { stringify as qs } from "query-string";
+import {createSignature} from "@googlemaps/url-signature";
+import queryString from 'query-string';
+
+const qs = queryString.stringify;
 
 const separator = "|";
 

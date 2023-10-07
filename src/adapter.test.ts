@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import * as nock from "nock";
+import nock from "nock";
 
 import { AxiosResponse } from "axios";
 import { Client } from "./client";

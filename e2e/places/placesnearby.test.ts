@@ -25,7 +25,7 @@ test("placesNearby should return correct result", async () => {
   const r = await placesNearby({ params: params });
   expect(r.data.results.length).toBeTruthy();
   expect(Object.keys(r.data.results[0]).sort()).toMatchInlineSnapshot(`
-    Array [
+    [
       "geometry",
       "icon",
       "icon_background_color",
