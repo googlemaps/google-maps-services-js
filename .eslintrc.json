@@ -1,0 +1,34 @@
+{
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["jest"],
+  "rules": {
+    "no-var": 2,
+    "prefer-arrow-callback": 2
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parser": "@typescript-eslint/parser",
+      "plugins": ["@typescript-eslint"],
+      "extends": ["plugin:@typescript-eslint/recommended"],
+      "rules": {
+        "@typescript-eslint/ban-ts-comment": 0,
+        "@typescript-eslint/ban-types": 1,
+        "@typescript-eslint/no-empty-function": 1,
+        "@typescript-eslint/no-var-requires": 0,
+        "@typescript-eslint/member-ordering": 1
+      }
+    }
+  ],
+  "env": {
+    "browser": false,
+    "node": true,
+    "es6": true,
+    "jest/globals": true
+  },
+  "globals": { "google": "readonly" }
+}

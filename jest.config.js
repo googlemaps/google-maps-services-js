@@ -19,7 +19,9 @@ module.exports = {
   preset: "ts-jest/presets/js-with-ts",
   testEnvironment: "node",
   // some dependencies are esm and need to be compiled to work in jest
-  transformIgnorePatterns: ['/node_modules/(?!(axios|retry-axios|query-string|decode-uri-component|split-on-first|filter-obj)/)'],
+  transformIgnorePatterns: [
+    "/node_modules/(?!(axios|retry-axios|query-string|decode-uri-component|split-on-first|filter-obj)/)",
+  ],
   collectCoverage: true,
-  collectCoverageFrom: ["src/**/([a-zA-Z_]*).{js,ts}", "!**/*.test.{js,ts}"]
+  collectCoverageFrom: ["src/**/([a-zA-Z_]*).{js,ts}", "!**/*.test.{js,ts}"],
 };

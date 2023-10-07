@@ -18,7 +18,7 @@ import axios from "axios";
 import {
   nearestRoads,
   defaultParamsSerializer,
-  defaultUrl
+  defaultUrl,
 } from "./nearestroads";
 
 jest.mock("axios");
@@ -39,13 +39,12 @@ test("nearestRoads should call axios correctly", () => {
     method: "get",
     params: params,
     paramsSerializer: defaultParamsSerializer,
-    url: defaultUrl
+    url: defaultUrl,
   });
 });
 
 test("serializer should transform correctly", () => {
   const params = { points: ["0,0"], key: "foo" };
 
-  expect(defaultParamsSerializer(params))
-    .toEqual("key=foo&points=0%2C0");
+  expect(defaultParamsSerializer(params)).toEqual("key=foo&points=0%2C0");
 });

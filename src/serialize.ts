@@ -17,8 +17,8 @@
 import { LatLng, LatLngBounds, LatLngLiteral } from "./common";
 
 import { encodePath } from "./util";
-import {createSignature} from "@googlemaps/url-signature";
-import queryString from 'query-string';
+import { createSignature } from "@googlemaps/url-signature";
+import queryString from "query-string";
 
 const qs = queryString.stringify;
 
@@ -48,7 +48,7 @@ export function objectToString(o: string | object): string {
   if (typeof o === "string") {
     return o;
   } else {
-    let keys = Object.keys(o);
+    const keys = Object.keys(o);
     keys.sort();
     return keys.map((k) => k + ":" + o[k]).join(separator);
   }
@@ -108,19 +108,27 @@ export function serializer(
     arrayFormatSeparator: separator,
   }
 ) {
-  return (params: { [key: string]: any }) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return (params: Record<string, any>) => {
     // avoid mutating params
     const serializedParams = { ...params };
 
-    Object.keys(format).forEach((key: string) => {
+    for (const key of Object.keys(format)) {
       if (key in serializedParams) {
         serializedParams[key] = format[key](serializedParams[key]);
       }
-    });
+    }
 
-    if ("client_id" in serializedParams && "client_secret" in serializedParams) {
+    if (
+      "client_id" in serializedParams &&
+      "client_secret" in serializedParams
+    ) {
       // Special case to handle premium plan signature
-      return createPremiumPlanQueryString(serializedParams, queryStringOptions, baseUrl);
+      return createPremiumPlanQueryString(
+        serializedParams,
+        queryStringOptions,
+        baseUrl
+      );
     }
 
     return qs(serializedParams, queryStringOptions);
@@ -140,7 +148,7 @@ export function toTimestamp(o: "now" | number | Date): number | "now" {
 export function createPremiumPlanQueryString(
   serializedParams: { [key: string]: string },
   queryStringOptions: object,
-  baseUrl: string,
+  baseUrl: string
 ): string {
   serializedParams.client = serializedParams.client_id;
   const clientSecret = serializedParams.client_secret;
@@ -149,7 +157,7 @@ export function createPremiumPlanQueryString(
 
   const partialQueryString = qs(serializedParams, queryStringOptions);
   const unsignedUrl = `${baseUrl}?${partialQueryString}`;
-  const signature =  createSignature(unsignedUrl, clientSecret);
+  const signature = createSignature(unsignedUrl, clientSecret);
 
   // The signature must come last
   return `${partialQueryString}&signature=${signature}`;

@@ -18,7 +18,7 @@ import axios from "axios";
 import {
   snapToRoads,
   defaultParamsSerializer,
-  defaultUrl
+  defaultUrl,
 } from "./snaptoroads";
 
 jest.mock("axios");
@@ -39,13 +39,12 @@ test("snapToRoads should call axios correctly", () => {
     method: "get",
     params: params,
     paramsSerializer: defaultParamsSerializer,
-    url: defaultUrl
+    url: defaultUrl,
   });
 });
 
 test("serializer should transform correctly", () => {
   const params = { path: ["0,0"], key: "foo" };
 
-  expect(defaultParamsSerializer(params))
-    .toEqual("key=foo&path=0%2C0");
+  expect(defaultParamsSerializer(params)).toEqual("key=foo&path=0%2C0");
 });

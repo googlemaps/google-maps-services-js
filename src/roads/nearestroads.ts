@@ -27,7 +27,7 @@ export interface NearestRoadsRequest extends Partial<AxiosRequestConfig> {
      * For example: `points=60.170880,24.942795|60.170879,24.942796|60.170877,24.942796`.
      */
     points: LatLng[];
-    } & RequestParams;
+  } & RequestParams;
 }
 
 export interface NearestRoadsResponse extends AxiosResponse {
@@ -38,9 +38,12 @@ export interface NearestRoadsResponse extends AxiosResponse {
 }
 
 export const defaultUrl = "https://roads.googleapis.com/v1/nearestRoads";
-export const defaultParamsSerializer = serializer({
-  points: o => o.map(latLng => latLngToString(latLng))
-}, defaultUrl);
+export const defaultParamsSerializer = serializer(
+  {
+    points: (o) => o.map((latLng) => latLngToString(latLng)),
+  },
+  defaultUrl
+);
 
 export function nearestRoads(
   {
@@ -57,6 +60,6 @@ export function nearestRoads(
     method,
     url,
     paramsSerializer,
-    ...config
+    ...config,
   }) as Promise<NearestRoadsResponse>;
 }

@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-import axios from "axios";
 import { elevation } from "../src/elevation";
 
 test("elevation should return correct result", async () => {
@@ -22,7 +21,7 @@ test("elevation should return correct result", async () => {
 
   const params = {
     locations: [location, location],
-    key: process.env.GOOGLE_MAPS_API_KEY
+    key: process.env.GOOGLE_MAPS_API_KEY,
   };
 
   const r = await elevation({ params: params });
@@ -33,13 +32,13 @@ test("elevation should return correct result", async () => {
 test("elevation should return correct result with path params", async () => {
   const path = [
     { lat: 35, lng: -110 },
-    { lat: 45, lng: -110 }
+    { lat: 45, lng: -110 },
   ];
 
   const params = {
     path: path,
     samples: 10,
-    key: process.env.GOOGLE_MAPS_API_KEY
+    key: process.env.GOOGLE_MAPS_API_KEY,
   };
 
   const r = await elevation({ params: params });

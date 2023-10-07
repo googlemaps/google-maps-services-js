@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { geocode, GeocodeRequest } from "../../src/geocode/geocode";
+import { geocode } from "../../src/geocode/geocode";
 
 test("geocode should call axios correctly", async () => {
   const params = {
@@ -22,9 +22,9 @@ test("geocode should call axios correctly", async () => {
     components: { country: "us" },
     bounds: {
       northeast: { lat: 50, lng: -110 },
-      southwest: { lat: 35, lng: -130 }
+      southwest: { lat: 35, lng: -130 },
     },
-    key: process.env.GOOGLE_MAPS_API_KEY
+    key: process.env.GOOGLE_MAPS_API_KEY,
   };
 
   const r = await geocode({ params: params });

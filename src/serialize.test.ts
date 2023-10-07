@@ -48,11 +48,16 @@ test("latLngBoundsToString is correct", () => {
 });
 
 test("serializer", () => {
-  expect(serializer({ quz: (o) => o }, "http://mock.url")({ foo: ["bar"] })).toBe("foo=bar");
   expect(
-    serializer({
-      foo: (o) => o.map((latLng: LatLng) => latLngToString(latLng)),
-    }, "http://mock.url")({
+    serializer({ quz: (o) => o }, "http://mock.url")({ foo: ["bar"] })
+  ).toBe("foo=bar");
+  expect(
+    serializer(
+      {
+        foo: (o) => o.map((latLng: LatLng) => latLngToString(latLng)),
+      },
+      "http://mock.url"
+    )({
       foo: [
         [0, 1],
         [2, 3],
@@ -72,9 +77,10 @@ test("serializer should not mutate params", () => {
 });
 
 test("serializer should return pipe joined arrays by default", () => {
-  expect(serializer({}, "http://mock.url")({ foo: ["b", "a", "r"] })).toBe("foo=b|a|r");
+  expect(serializer({}, "http://mock.url")({ foo: ["b", "a", "r"] })).toBe(
+    "foo=b|a|r"
+  );
 });
-
 
 test("serializer creates premium plan query string if premium plan params are included", () => {
   const params = {
@@ -93,11 +99,17 @@ test("serializer creates premium plan query string if premium plan params are in
     client_secret: "testClientSecret",
   };
 
-  expect(serializer({
-    origin: latLngToString,
-    destination: latLngToString,
-  }, "https://test.url/maps/api/directions/json")(params))
-    .toEqual('avoid=ferries&client=testClient&destination=38.8977%2C-77.0365&mode=driving&origin=33.8121%2C-117.9190&units=imperial&signature=YRJoTd6ohbpsR14WkWv3S7H6MqU=');
+  expect(
+    serializer(
+      {
+        origin: latLngToString,
+        destination: latLngToString,
+      },
+      "https://test.url/maps/api/directions/json"
+    )(params)
+  ).toEqual(
+    "avoid=ferries&client=testClient&destination=38.8977%2C-77.0365&mode=driving&origin=33.8121%2C-117.9190&units=imperial&signature=YRJoTd6ohbpsR14WkWv3S7H6MqU="
+  );
 });
 
 test("objectToString", () => {
@@ -140,7 +152,7 @@ test("toTimestamp", () => {
   expect(toTimestamp(dt)).toEqual(seconds);
   expect(toTimestamp("now")).toEqual("now");
 
-  expect(toTimestamp(new Date('2022-06-22T09:03:33.430Z'))).toEqual(1655888613);
+  expect(toTimestamp(new Date("2022-06-22T09:03:33.430Z"))).toEqual(1655888613);
 });
 
 test("createPremiumPlanQueryString", () => {
@@ -159,6 +171,9 @@ test("createPremiumPlanQueryString", () => {
   };
   const baseUrl = "https://test.url/maps/api/directions/json";
 
-  expect(createPremiumPlanQueryString(serializedParams, queryStringOptions, baseUrl))
-    .toEqual('avoid=ferries&client=testClient&destination=38.8977%2C-77.0365&mode=driving&origin=33.8121%2C-117.9190&units=imperial&signature=YRJoTd6ohbpsR14WkWv3S7H6MqU=');
+  expect(
+    createPremiumPlanQueryString(serializedParams, queryStringOptions, baseUrl)
+  ).toEqual(
+    "avoid=ferries&client=testClient&destination=38.8977%2C-77.0365&mode=driving&origin=33.8121%2C-117.9190&units=imperial&signature=YRJoTd6ohbpsR14WkWv3S7H6MqU="
+  );
 });

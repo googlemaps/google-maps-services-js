@@ -42,7 +42,7 @@ export interface SnapToRoadsRequest extends Partial<AxiosRequestConfig> {
      * @default false
      */
     interpolate?: boolean;
-    } & RequestParams;
+  } & RequestParams;
 }
 
 export interface SnapToRoadsResponse extends AxiosResponse {
@@ -52,9 +52,12 @@ export interface SnapToRoadsResponse extends AxiosResponse {
   };
 }
 export const defaultUrl = "https://roads.googleapis.com/v1/snapToRoads";
-export const defaultParamsSerializer = serializer({
-  path: o => o.map(latLngToString)
-}, defaultUrl);
+export const defaultParamsSerializer = serializer(
+  {
+    path: (o) => o.map(latLngToString),
+  },
+  defaultUrl
+);
 
 export function snapToRoads(
   {
@@ -71,6 +74,6 @@ export function snapToRoads(
     method,
     url,
     paramsSerializer,
-    ...config
+    ...config,
   }) as Promise<SnapToRoadsResponse>;
 }

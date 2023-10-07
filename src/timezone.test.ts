@@ -30,7 +30,7 @@ test("elevation should call axios correctly", () => {
   const params = {
     location: { lat: 35, lng: -110 },
     timestamp: 999999999,
-    key: "foo"
+    key: "foo",
   };
   timezone({ params: params }, mockedAxios);
 
@@ -39,11 +39,13 @@ test("elevation should call axios correctly", () => {
     method: "get",
     params: params,
     paramsSerializer: defaultParamsSerializer,
-    url: defaultUrl
+    url: defaultUrl,
   });
 });
 
 test("serializer should handle date object", () => {
   const dt = new Date();
-  expect(defaultParamsSerializer({timestamp: dt})).toEqual(`timestamp=${Math.round(Number(dt)/1000)}`)
+  expect(defaultParamsSerializer({ timestamp: dt })).toEqual(
+    `timestamp=${Math.round(Number(dt) / 1000)}`
+  );
 });

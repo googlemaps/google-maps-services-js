@@ -14,7 +14,12 @@
  * limitations under the License.
  */
 
-import { Client, defaultAxiosInstance, defaultHttpsAgent, type ElevationResponse } from "../src";
+import {
+  Client,
+  defaultAxiosInstance,
+  defaultHttpsAgent,
+  type ElevationResponse,
+} from "../src";
 import { AxiosError } from "axios";
 
 test("client should work with defaults", async () => {

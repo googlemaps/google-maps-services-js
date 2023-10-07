@@ -18,7 +18,7 @@ import axios from "axios";
 import {
   placeAutocomplete,
   defaultParamsSerializer,
-  defaultUrl
+  defaultUrl,
 } from "./autocomplete";
 
 jest.mock("axios");
@@ -39,6 +39,6 @@ test("autocomplete should call axios correctly", () => {
     method: "get",
     params: params,
     paramsSerializer: defaultParamsSerializer,
-    url: defaultUrl
+    url: defaultUrl,
   });
 });

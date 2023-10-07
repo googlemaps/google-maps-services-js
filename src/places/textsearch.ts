@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
-import { ResponseData, LatLng, Language, PlaceType1, Place, RequestParams } from "../common";
+import {
+  ResponseData,
+  LatLng,
+  Language,
+  PlaceType1,
+  Place,
+  RequestParams,
+} from "../common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "../client";
 import { serializer, latLngToString } from "../serialize";
@@ -84,7 +91,7 @@ export interface TextSearchRequest extends Partial<AxiosRequestConfig> {
      * Only one type may be specified (if more than one type is provided, all types following the first entry are ignored).
      */
     type?: PlaceType1;
-    } & RequestParams;
+  } & RequestParams;
 }
 
 export interface TextSearchResponseData extends ResponseData {
@@ -98,7 +105,10 @@ export interface TextSearchResponse extends AxiosResponse {
 export const defaultUrl =
   "https://maps.googleapis.com/maps/api/place/textsearch/json";
 
-export const defaultParamsSerializer = serializer({ location: latLngToString }, defaultUrl);
+export const defaultParamsSerializer = serializer(
+  { location: latLngToString },
+  defaultUrl
+);
 
 export function textSearch(
   {
@@ -115,6 +125,6 @@ export function textSearch(
     method,
     url,
     paramsSerializer,
-    ...config
+    ...config,
   }) as Promise<TextSearchResponse>;
 }

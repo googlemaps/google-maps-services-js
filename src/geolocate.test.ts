@@ -35,6 +35,6 @@ test("elevation should call axios correctly", () => {
     method: "post",
     params: params,
     data: data,
-    url: defaultUrl
+    url: defaultUrl,
   });
 });

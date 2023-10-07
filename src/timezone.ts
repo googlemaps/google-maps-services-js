@@ -71,10 +71,13 @@ export interface TimeZoneResponse extends AxiosResponse {
 }
 
 export const defaultUrl = "https://maps.googleapis.com/maps/api/timezone/json";
-export const defaultParamsSerializer = serializer({
-  timestamp: toTimestamp,
-  location: latLngToString
-}, defaultUrl);
+export const defaultParamsSerializer = serializer(
+  {
+    timestamp: toTimestamp,
+    location: latLngToString,
+  },
+  defaultUrl
+);
 export function timezone(
   {
     params,
@@ -90,6 +93,6 @@ export function timezone(
     method,
     url,
     paramsSerializer,
-    ...config
+    ...config,
   }) as Promise<TimeZoneResponse>;
 }

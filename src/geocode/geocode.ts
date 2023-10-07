@@ -14,7 +14,12 @@
  * limitations under the License.
  */
 
-import { LatLngBounds, GeocodeResult, ResponseData, RequestParams } from "../common";
+import {
+  LatLngBounds,
+  GeocodeResult,
+  ResponseData,
+  RequestParams,
+} from "../common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "../client";
 import { serializer, latLngBoundsToString, objectToString } from "../serialize";
@@ -80,7 +85,7 @@ export interface GeocodeRequest extends Partial<AxiosRequestConfig> {
      * Each element in the components filter consists of a `component:value` pair, and fully restricts the results from the geocoder.
      */
     components?: string | GeocodeComponents;
-    } & RequestParams;
+  } & RequestParams;
 }
 
 export interface GeocodeResponseData extends ResponseData {
@@ -97,10 +102,13 @@ export interface GeocodeResponse extends AxiosResponse {
   data: GeocodeResponseData;
 }
 
-export const defaultParamsSerializer = serializer({
-  bounds: latLngBoundsToString,
-  components: objectToString
-}, defaultUrl);
+export const defaultParamsSerializer = serializer(
+  {
+    bounds: latLngBoundsToString,
+    components: objectToString,
+  },
+  defaultUrl
+);
 
 export function geocode(
   {
@@ -117,6 +125,6 @@ export function geocode(
     method,
     url,
     paramsSerializer,
-    ...config
+    ...config,
   }) as Promise<GeocodeResponse>;
 }

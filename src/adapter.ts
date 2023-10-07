@@ -17,7 +17,7 @@
 import { Status } from "./common";
 
 import axios from "axios";
-import type {AxiosResponse} from "axios";
+import type { AxiosResponse } from "axios";
 
 export function statusToCode(status: Status): number {
   switch (status) {
@@ -54,38 +54,43 @@ function settle(resolve, reject, response) {
   if (!response.status || !validateStatus || validateStatus(response.status)) {
     resolve(response);
   } else {
-    reject(new axios.AxiosError(
-        'Request failed with status code ' + response.status,
-        [axios.AxiosError.ERR_BAD_REQUEST, axios.AxiosError.ERR_BAD_RESPONSE][Math.floor(response.status / 100) - 4],
+    reject(
+      new axios.AxiosError(
+        "Request failed with status code " + response.status,
+        [axios.AxiosError.ERR_BAD_REQUEST, axios.AxiosError.ERR_BAD_RESPONSE][
+          Math.floor(response.status / 100) - 4
+        ],
         response.config,
         response.request,
         response
-    ));
+      )
+    );
   }
 }
 
-
-export const customAdapter = axios.getAdapter(config => {
-  const httpAdapter = axios.getAdapter('http');
+export const customAdapter = axios.getAdapter((config) => {
+  const httpAdapter = axios.getAdapter("http");
 
   return new Promise((resolve, reject) => {
     httpAdapter(config)
-        .then((r: AxiosResponse) => {
-          // unfortunately data is transformed after the adapter
-          let data = r.data;
-          if (config.transformResponse) {
-            const t = Array.isArray(config.transformResponse) ? config.transformResponse : [config.transformResponse];
-            for (let fn of t) {
-              data = fn.call(config, data, r.headers, r.status);
-            }
+      .then((r: AxiosResponse) => {
+        // unfortunately data is transformed after the adapter
+        let data = r.data;
+        if (config.transformResponse) {
+          const t = Array.isArray(config.transformResponse)
+            ? config.transformResponse
+            : [config.transformResponse];
+          for (const fn of t) {
+            data = fn.call(config, data, r.headers, r.status);
           }
+        }
 
-          if (r.status === 200 && data.status) {
-            r.status = statusToCode(data.status);
-          }
+        if (r.status === 200 && data.status) {
+          r.status = statusToCode(data.status);
+        }
 
-          settle(resolve, reject, r);
-        })
-        .catch(reject);
+        settle(resolve, reject, r);
+      })
+      .catch(reject);
   });
 });

@@ -25,7 +25,7 @@ import {
   TransitRoutingPreference,
   TravelMode,
   TravelRestriction,
-  UnitSystem
+  UnitSystem,
 } from "./common";
 import { latLngToString, serializer, toTimestamp } from "./serialize";
 
@@ -169,12 +169,15 @@ export interface DistanceMatrixResponse extends AxiosResponse {
 export const defaultUrl =
   "https://maps.googleapis.com/maps/api/distancematrix/json";
 
-export const defaultParamsSerializer = serializer({
-  origins: o => o.map(latLngToString),
-  destinations: o => o.map(latLngToString),
-  arrival_time: toTimestamp,
-  departure_time: toTimestamp
-}, defaultUrl);
+export const defaultParamsSerializer = serializer(
+  {
+    origins: (o) => o.map(latLngToString),
+    destinations: (o) => o.map(latLngToString),
+    arrival_time: toTimestamp,
+    departure_time: toTimestamp,
+  },
+  defaultUrl
+);
 
 export function distancematrix(
   {
@@ -191,6 +194,6 @@ export function distancematrix(
     method,
     url,
     paramsSerializer,
-    ...config
+    ...config,
   }) as Promise<DistanceMatrixResponse>;
 }

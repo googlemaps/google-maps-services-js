@@ -17,7 +17,7 @@
 export type RequestParams = ApiKeyParams | PremiumPlanParams;
 
 export interface ApiKeyParams {
-/**
+  /**
    * You must include an API key with every API request. We strongly recommend that you restrict your API key.
    * Restrictions provide added security and help ensure only authorized requests are made with your API key.
    *
@@ -436,7 +436,7 @@ export interface PlaceData {
   /** is a representation of the place's address in the [adr microformat](http://microformats.org/wiki/adr). */
   adr_address: string;
   /**
-   * Contains a summary of the place. A summary is comprised of a textual overview, and also includes the language code 
+   * Contains a summary of the place. A summary is comprised of a textual overview, and also includes the language code
    * for these if applicable. Summary text must be presented as-is and can not be modified or altered.
    */
   editorial_summary: PlaceEditorialSummary;
@@ -465,12 +465,12 @@ export interface PlaceData {
   plus_code: PlusCode;
   /** contains the URL of a suggested icon which may be displayed to the user when indicating this result on a map. */
   icon: string;
-  /** 
-   * The default HEX color code for the place's category. 
+  /**
+   * The default HEX color code for the place's category.
    * @see https://developers.google.com/maps/documentation/places/web-service/icons
    */
   icon_background_color: string;
-  /** 
+  /**
    * The base URL for a non-colored icon, minus the file type extension (append `.svg` or `.png`).
    * @see https://developers.google.com/maps/documentation/places/web-service/icons
    */
@@ -480,7 +480,7 @@ export interface PlaceData {
    * International format includes the country code, and is prefixed with the plus (+) sign.
    * For example, the `international_phone_number` for Google's Sydney, Australia office is `+61 2 9374 4000`.
    */
-  
+
   international_phone_number: string;
   /**
    * contains the human-readable name for the returned result.
