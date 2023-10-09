@@ -26,7 +26,7 @@ test("textsearch should return correct result", async () => {
 
   expect(r.data.results.length).toBeTruthy();
   expect(Object.keys(r.data.results[0]).sort()).toMatchInlineSnapshot(`
-    Array [
+    [
       "formatted_address",
       "geometry",
       "icon",

@@ -27,7 +27,7 @@ test("query autocomplete should return correct result", async () => {
   expect(r.data.predictions.length).toBeTruthy();
   expect(r.data.predictions[0].terms.length).toBeTruthy();
   expect(Object.keys(r.data.predictions[0]).sort()).toMatchInlineSnapshot(`
-    Array [
+    [
       "description",
       "matched_substrings",
       "place_id",

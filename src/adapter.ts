@@ -14,11 +14,10 @@
  * limitations under the License.
  */
 
-import * as settle from "axios/lib/core/settle";
-import * as defaults from "axios/lib/defaults";
-import * as transformData from "axios/lib/core/transformData";
 import { Status } from "./common";
-import { AxiosRequestConfig, AxiosResponse, AxiosPromise } from "axios";
+
+import axios from "axios";
+import type {AxiosResponse} from "axios";
 
 export function statusToCode(status: Status): number {
   switch (status) {
@@ -50,17 +49,43 @@ export function statusToCode(status: Status): number {
   }
 }
 
-export const customAdapter = (config: AxiosRequestConfig): AxiosPromise<any> =>
-  new Promise((resolve, reject) => {
-    defaults
-      .adapter(config)
-      .then((r: AxiosResponse) => {
-        // unfortunately data is transformed after the adapter
-        r.data = transformData(r.data, r.headers, config.transformResponse);
-        if (r.status === 200 && r.data.status) {
-          r.status = statusToCode(r.data.status);
-        }
-        settle(resolve, reject, r);
-      })
-      .catch(reject);
+function settle(resolve, reject, response) {
+  const validateStatus = response.config.validateStatus;
+  if (!response.status || !validateStatus || validateStatus(response.status)) {
+    resolve(response);
+  } else {
+    reject(new axios.AxiosError(
+        'Request failed with status code ' + response.status,
+        [axios.AxiosError.ERR_BAD_REQUEST, axios.AxiosError.ERR_BAD_RESPONSE][Math.floor(response.status / 100) - 4],
+        response.config,
+        response.request,
+        response
+    ));
+  }
+}
+
+
+export const customAdapter = axios.getAdapter(config => {
+  const httpAdapter = axios.getAdapter('http');
+
+  return new Promise((resolve, reject) => {
+    httpAdapter(config)
+        .then((r: AxiosResponse) => {
+          // unfortunately data is transformed after the adapter
+          let data = r.data;
+          if (config.transformResponse) {
+            const t = Array.isArray(config.transformResponse) ? config.transformResponse : [config.transformResponse];
+            for (let fn of t) {
+              data = fn.call(config, data, r.headers, r.status);
+            }
+          }
+
+          if (r.status === 200 && data.status) {
+            r.status = statusToCode(data.status);
+          }
+
+          settle(resolve, reject, r);
+        })
+        .catch(reject);
   });
+});
