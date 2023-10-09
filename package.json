@@ -47,8 +47,8 @@
     "@googlemaps/url-signature": "^1.0.4",
     "agentkeepalive": "^4.1.0",
     "axios": "^1.5.1",
-    "query-string": "^8.1.0",
-    "retry-axios": ">=3.0.0 <3.2.0"
+    "query-string": "<8.x",
+    "retry-axios": "<3.x"
   },
   "devDependencies": {
     "@types/jest": "^29.5.5",
