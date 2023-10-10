@@ -37,10 +37,13 @@
     "src"
   ],
   "scripts": {
+    "build": "tsc",
     "docs": "rm -rf docs/ && typedoc src/index.ts",
-    "prepack": "tsc",
-    "test": "jest src",
-    "test:e2e": "jest e2e",
+    "prepack": "npm run build",
+    "pretest": "npm run build",
+    "test": "jest ./src/* && npm run test:loading",
+    "test:loading": "./test-module-loading.sh",
+    "test:e2e": "jest ./e2e/*",
     "test:all": "jest"
   },
   "dependencies": {
@@ -48,7 +51,7 @@
     "agentkeepalive": "^4.1.0",
     "axios": "^1.5.1",
     "query-string": "<8.x",
-    "retry-axios": "<4"
+    "retry-axios": "<3.x"
   },
   "devDependencies": {
     "@types/jest": "^29.5.5",
