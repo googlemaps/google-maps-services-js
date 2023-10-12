@@ -29,7 +29,7 @@ test("elevation should call axios correctly", () => {
   const params = {
     origin: "Seattle, WA",
     destination: "San Francisco, CA",
-    key: "foo"
+    key: "foo",
   };
 
   directions({ params: params }, mockedAxios);
@@ -39,7 +39,7 @@ test("elevation should call axios correctly", () => {
     method: "get",
     params: params,
     paramsSerializer: defaultParamsSerializer,
-    url: defaultUrl
+    url: defaultUrl,
   });
 });
 
@@ -47,9 +47,10 @@ test("serializer should transform correctly", () => {
   const params = {
     origin: "Seattle, WA",
     destination: "San Francisco, CA",
-    key: "foo"
+    key: "foo",
   };
 
-  expect(defaultParamsSerializer(params))
-    .toEqual("destination=San%20Francisco%2C%20CA&key=foo&origin=Seattle%2C%20WA");
+  expect(defaultParamsSerializer(params)).toEqual(
+    "destination=San%20Francisco%2C%20CA&key=foo&origin=Seattle%2C%20WA"
+  );
 });

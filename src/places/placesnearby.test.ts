@@ -18,7 +18,7 @@ import {
   PlacesNearbyRanking,
   defaultParamsSerializer,
   defaultUrl,
-  placesNearby
+  placesNearby,
 } from "./placesnearby";
 
 import axios from "axios";
@@ -35,7 +35,7 @@ test("autocomplete should call axios correctly", () => {
   const params = {
     location: { lat: 35, lng: -110 },
     key: "foo",
-    ranking: PlacesNearbyRanking.distance
+    ranking: PlacesNearbyRanking.distance,
   };
 
   placesNearby({ params: params }, mockedAxios);
@@ -45,6 +45,6 @@ test("autocomplete should call axios correctly", () => {
     method: "get",
     params: params,
     url: defaultUrl,
-    paramsSerializer: defaultParamsSerializer
+    paramsSerializer: defaultParamsSerializer,
   });
 });

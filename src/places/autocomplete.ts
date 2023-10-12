@@ -21,7 +21,7 @@ import {
   PredictionTerm,
   RequestParams,
   ResponseData,
-  StructuredFormatting
+  StructuredFormatting,
 } from "../common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { latLngToString, serializer } from "../serialize";
@@ -116,7 +116,7 @@ export interface PlaceAutocompleteRequest extends Partial<AxiosRequestConfig> {
      * will not be returned even if they match the user input.
      */
     strictbounds?: boolean;
-    } & RequestParams;
+  } & RequestParams;
 }
 
 export interface PlaceAutocompleteResult {
@@ -171,10 +171,13 @@ export interface PlaceAutocompleteResponse extends AxiosResponse {
 export const defaultUrl =
   "https://maps.googleapis.com/maps/api/place/autocomplete/json";
 
-export const defaultParamsSerializer = serializer({
-  location: latLngToString,
-  origin: latLngToString
-}, defaultUrl);
+export const defaultParamsSerializer = serializer(
+  {
+    location: latLngToString,
+    origin: latLngToString,
+  },
+  defaultUrl
+);
 
 export function placeAutocomplete(
   {
@@ -191,6 +194,6 @@ export function placeAutocomplete(
     method,
     url,
     paramsSerializer,
-    ...config
+    ...config,
   }) as Promise<PlaceAutocompleteResponse>;
 }

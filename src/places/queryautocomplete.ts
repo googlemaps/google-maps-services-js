@@ -17,12 +17,11 @@
 import {
   LatLng,
   Language,
-  Place,
   ResponseData,
   RequestParams,
   PredictionTerm,
   PredictionSubstring,
-  StructuredFormatting
+  StructuredFormatting,
 } from "../common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "../client";
@@ -93,7 +92,10 @@ export interface PlaceQueryAutocompleteResponse extends AxiosResponse {
 export const defaultUrl =
   "https://maps.googleapis.com/maps/api/place/queryautocomplete/json";
 
-export const defaultParamsSerializer = serializer({ location: latLngToString }, defaultUrl);
+export const defaultParamsSerializer = serializer(
+  { location: latLngToString },
+  defaultUrl
+);
 
 export function placeQueryAutocomplete(
   {
@@ -110,6 +112,6 @@ export function placeQueryAutocomplete(
     method,
     url,
     paramsSerializer,
-    ...config
+    ...config,
   }) as Promise<PlaceQueryAutocompleteResponse>;
 }

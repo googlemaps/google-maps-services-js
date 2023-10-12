@@ -80,7 +80,7 @@ export interface ReverseGeocodeRequest extends Partial<AxiosRequestConfig> {
      * Note: This parameter is available only for requests that include an API key or a client ID.
      */
     location_type?: ReverseGeocodingLocationType[];
-    } & RequestParams;
+  } & RequestParams;
 }
 
 export interface ReverseGeocodeResponseData extends ResponseData {
@@ -99,9 +99,12 @@ export interface ReverseGeocodeResponse extends AxiosResponse {
 
 export const defaultUrl = "https://maps.googleapis.com/maps/api/geocode/json";
 
-export const defaultParamsSerializer = serializer({
-  latlng: latLngToString
-}, defaultUrl);
+export const defaultParamsSerializer = serializer(
+  {
+    latlng: latLngToString,
+  },
+  defaultUrl
+);
 
 export function reverseGeocode(
   {
@@ -118,6 +121,6 @@ export function reverseGeocode(
     method,
     url,
     paramsSerializer,
-    ...config
+    ...config,
   }) as Promise<ReverseGeocodeResponse>;
 }

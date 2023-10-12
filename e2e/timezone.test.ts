@@ -23,7 +23,7 @@ test("elevation should get an ok response", async () => {
     location: "30, 50",
     timestamp: new Date(),
     language: Language.en,
-    key: process.env.GOOGLE_MAPS_API_KEY
+    key: process.env.GOOGLE_MAPS_API_KEY,
   };
   const r = await timezone({ params: params });
 

@@ -189,13 +189,16 @@ export interface DirectionsResponse extends AxiosResponse {
 export const defaultUrl =
   "https://maps.googleapis.com/maps/api/directions/json";
 
-export const defaultParamsSerializer = serializer({
-  origin: latLngToString,
-  destination: latLngToString,
-  waypoints: (o) => o.map(latLngToString),
-  arrival_time: toTimestamp,
-  departure_time: toTimestamp,
-}, defaultUrl);
+export const defaultParamsSerializer = serializer(
+  {
+    origin: latLngToString,
+    destination: latLngToString,
+    waypoints: (o) => o.map(latLngToString),
+    arrival_time: toTimestamp,
+    departure_time: toTimestamp,
+  },
+  defaultUrl
+);
 
 export function directions(
   {

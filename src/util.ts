@@ -23,11 +23,11 @@ import { LatLngLiteral } from "./common";
  *
  */
 export function encodePath(path: LatLngLiteral[]): string {
-  var result: string[] = [];
-  var start: [number, number] = [0, 0];
-  var end: [number, number];
+  const result: string[] = [];
+  let start: [number, number] = [0, 0];
+  let end: [number, number];
 
-  var encodePart = function(part: number) {
+  const encodePart = function (part: number) {
     part = part < 0 ? ~(part << 1) : part << 1;
     while (part >= 0x20) {
       result.push(String.fromCharCode((0x20 | (part & 0x1f)) + 63));
@@ -52,8 +52,8 @@ export function encodePath(path: LatLngLiteral[]): string {
  * See {@link https://developers.google.com/maps/documentation/utilities/polylinealgorithm}
  */
 export function decodePath(encodedPath: string): LatLngLiteral[] {
-  let len: number = encodedPath.length || 0;
-  let path = new Array(Math.floor(encodedPath.length / 2));
+  const len: number = encodedPath.length || 0;
+  const path = new Array(Math.floor(encodedPath.length / 2));
   let index: number = 0;
   let lat: number = 0;
   let lng: number = 0;

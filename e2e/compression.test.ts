@@ -22,7 +22,7 @@ test("server responds with compressed content", async () => {
     origin: "Seattle, WA",
     destination: "San Francisco, CA",
     waypoints: [{ lat: 40, lng: -120 }],
-    key: process.env.GOOGLE_MAPS_API_KEY
+    key: process.env.GOOGLE_MAPS_API_KEY,
   };
 
   // Use of directions here is entirely arbitrary and any API that supports
@@ -36,9 +36,10 @@ test("server responds with compressed content", async () => {
   // that the server responds with a compressed response must be done via the
   // raw headers.
 
-  const {rawHeaders} = r.request.res;
-  const contentEncodingIndex = rawHeaders
-      .findIndex(i => i.toLowerCase() === "content-encoding");
+  const { rawHeaders } = r.request.res;
+  const contentEncodingIndex = rawHeaders.findIndex(
+    (i) => i.toLowerCase() === "content-encoding"
+  );
 
   expect(contentEncodingIndex).not.toBe(-1);
   expect(rawHeaders[contentEncodingIndex + 1]).toBe("gzip");

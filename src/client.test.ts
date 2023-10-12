@@ -35,7 +35,7 @@ import {
   NearestRoadsRequest,
   SnapToRoadsRequest,
   X_GOOG_MAPS_EXPERIENCE_ID,
-  defaultAxiosInstance
+  defaultAxiosInstance,
 } from "./client";
 
 import axios from "axios";
@@ -67,7 +67,7 @@ test("client instantiated with custom instance and config throws error", () => {
   expect(() => {
     new Client({
       axiosInstance: defaultAxiosInstance,
-      config: { timeout: 10000 }
+      config: { timeout: 10000 },
     });
   }).toThrowError();
 });
@@ -80,19 +80,21 @@ test("client can be instantiated with header options", () => {
     userAgent
   );
   expect(client["axiosInstance"].defaults.headers["Accept-Encoding"]).toBe(
-      acceptEncoding
+    acceptEncoding
   );
 });
 
 test("client can be override Accept-Encoding with header options", () => {
-  const client = new Client({ config: { headers: { "x-foo": "bar", "Accept-Encoding": "identity" } } });
+  const client = new Client({
+    config: { headers: { "x-foo": "bar", "Accept-Encoding": "identity" } },
+  });
   expect(client["axiosInstance"]).toBeDefined();
   expect(client["axiosInstance"].defaults.headers["x-foo"]).toEqual("bar");
   expect(client["axiosInstance"].defaults.headers["User-Agent"]).toEqual(
-      userAgent
+    userAgent
   );
   expect(client["axiosInstance"].defaults.headers["Accept-Encoding"]).toBe(
-      "identity"
+    "identity"
   );
 });
 
@@ -104,7 +106,7 @@ test("client can be instantiated without header options", () => {
     userAgent
   );
   expect(client["axiosInstance"].defaults.headers["Accept-Encoding"]).toBe(
-      acceptEncoding
+    acceptEncoding
   );
 });
 
