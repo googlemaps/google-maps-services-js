@@ -2849,10 +2849,10 @@ resolve@^1.20.0:
     path-parse "^1.0.7"
     supports-preserve-symlinks-flag "^1.0.0"
 
-retry-axios@<3.x:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/retry-axios/-/retry-axios-2.6.0.tgz#d4dc5c8a8e73982e26a705e46a33df99a28723e0"
-  integrity sha512-pOLi+Gdll3JekwuFjXO3fTq+L9lzMQGcSq7M5gIjExcl3Gu1hd4XXuf5o3+LuSBsaULQH7DiNbsqPd1chVpQGQ==
+retry-axios@<4:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/retry-axios/-/retry-axios-3.1.1.tgz#a3921c400ab335990c62d9195fa48854661e52e0"
+  integrity sha512-qqMnhSsEH0kgwwX9YxNMpvPTiCAQPsbgvAimWtNwp7cyvvlSTgMf9+lNy1itPpLfsamkA1X+IOUNfyzzdvCrBg==
 
 reusify@^1.0.4:
   version "1.0.4"
