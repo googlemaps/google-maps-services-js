@@ -27,7 +27,7 @@ afterEach(() => {
 
 test("photo should call axios correctly", () => {
   const params = { photoreference: "notaphotoreference", key: "foo" };
-  const responseType = 'arraybuffer';
+  const responseType = "arraybuffer";
   placePhoto({ params, responseType }, mockedAxios);
 
   expect(mockedAxios).toHaveBeenCalledTimes(1);

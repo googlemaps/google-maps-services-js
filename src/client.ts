@@ -138,7 +138,7 @@ export interface ClientOptions {
  * ```
  */
 export class Client {
-  private axiosInstance: AxiosInstance;
+  private readonly axiosInstance: AxiosInstance;
   private experienceId: string[];
 
   constructor({ axiosInstance, config, experienceId }: ClientOptions = {}) {
@@ -168,17 +168,12 @@ export class Client {
 
   setExperienceId(...ids: string[]) {
     this.experienceId = ids;
-    this.axiosInstance.defaults.headers[X_GOOG_MAPS_EXPERIENCE_ID] = ids.join(
-      ","
-    );
+    this.axiosInstance.defaults.headers[X_GOOG_MAPS_EXPERIENCE_ID] =
+      ids.join(",");
   }
 
   clearExperienceId() {
     this.experienceId = null;
-    this.clearExperienceIdHeader();
-  }
-
-  private clearExperienceIdHeader() {
     delete this.axiosInstance.defaults.headers[X_GOOG_MAPS_EXPERIENCE_ID];
   }
 
@@ -211,7 +206,7 @@ export class Client {
    *
    * ```javascript
    * import { Client } from '@googlemaps/google-maps-services-js';
-   * 
+   *
    * const args = {
    *   params: {
    *     key: '<your-api-key>',

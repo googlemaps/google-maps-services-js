@@ -14,7 +14,13 @@
  * limitations under the License.
  */
 
-import { Language, ResponseData, Place, PlaceInputType, RequestParams } from "../common";
+import {
+  Language,
+  ResponseData,
+  Place,
+  PlaceInputType,
+  RequestParams,
+} from "../common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { defaultAxiosInstance } from "../client";
 import { serializer } from "../serialize";
@@ -41,7 +47,7 @@ export interface FindPlaceFromTextRequest extends Partial<AxiosRequestConfig> {
      * the points of a rectangle. If this parameter is not specified, the API uses IP address biasing by default.
      */
     locationbias?: string;
-    } & RequestParams;
+  } & RequestParams;
 }
 
 export interface FindPlaceFromTextResponseData extends ResponseData {
@@ -55,7 +61,9 @@ export interface FindPlaceFromTextResponse extends AxiosResponse {
 export const defaultUrl =
   "https://maps.googleapis.com/maps/api/place/findplacefromtext/json";
 
-export const defaultParamsSerializer = serializer({}, defaultUrl, {arrayFormat: "comma"});
+export const defaultParamsSerializer = serializer({}, defaultUrl, {
+  arrayFormat: "comma",
+});
 
 export function findPlaceFromText(
   {
@@ -72,6 +80,6 @@ export function findPlaceFromText(
     method,
     url,
     paramsSerializer,
-    ...config
+    ...config,
   }) as Promise<FindPlaceFromTextResponse>;
 }

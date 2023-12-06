@@ -44,7 +44,8 @@ export interface SampledPathElevationParams {
 }
 
 export interface ElevationRequest extends Partial<AxiosRequestConfig> {
-  params: (PositionalElevationParams | SampledPathElevationParams) & RequestParams;
+  params: (PositionalElevationParams | SampledPathElevationParams) &
+    RequestParams;
 }
 export interface ElevationResponseData extends ResponseData {
   results: {
@@ -71,10 +72,13 @@ export interface ElevationResponse extends AxiosResponse {
 
 export const defaultUrl = "https://maps.googleapis.com/maps/api/elevation/json";
 
-export const defaultParamsSerializer = serializer({
-  locations: o => o.map(latLngToString),
-  path: o => o.map(latLngToString)
-}, defaultUrl);
+export const defaultParamsSerializer = serializer(
+  {
+    locations: (o) => o.map(latLngToString),
+    path: (o) => o.map(latLngToString),
+  },
+  defaultUrl
+);
 
 export function elevation(
   {
@@ -91,6 +95,6 @@ export function elevation(
     method,
     url,
     paramsSerializer,
-    ...config
+    ...config,
   }) as Promise<ElevationResponse>;
 }

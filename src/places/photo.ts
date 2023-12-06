@@ -39,8 +39,8 @@ export interface PlacePhotoRequest extends Partial<AxiosRequestConfig> {
      * restricted to its original aspect ratio. Both the `maxheight` and `maxwidth` properties accept an integer between 1 and 1600.
      */
     maxheight?: number;
-    } & RequestParams;
-  responseType: 'arraybuffer' | 'blob' | 'stream';
+  } & RequestParams;
+  responseType: "arraybuffer" | "blob" | "stream";
 }
 
 /**
@@ -60,11 +60,17 @@ export interface PlacePhotoResponse extends AxiosResponse {}
 export const defaultUrl = "https://maps.googleapis.com/maps/api/place/photo";
 
 export function placePhoto(
-  { params, method = "get", url = defaultUrl, responseType, ...config }: PlacePhotoRequest,
+  {
+    params,
+    method = "get",
+    url = defaultUrl,
+    responseType,
+    ...config
+  }: PlacePhotoRequest,
   axiosInstance: AxiosInstance = defaultAxiosInstance
 ): Promise<PlacePhotoResponse> {
   if (!responseType) {
-    responseType = 'arraybuffer'
+    responseType = "arraybuffer";
   }
 
   return axiosInstance({
@@ -72,6 +78,6 @@ export function placePhoto(
     method,
     url,
     responseType,
-    ...config
+    ...config,
   }) as Promise<PlacePhotoResponse>;
 }

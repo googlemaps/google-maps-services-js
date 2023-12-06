@@ -52,7 +52,7 @@ export interface PlaceDetailsRequest extends Partial<AxiosRequestConfig> {
      * This applies only to Place Details requests.
      */
     fields?: string[];
-    } & RequestParams;
+  } & RequestParams;
 }
 export interface PlaceDetailsResponseData extends ResponseData {
   result: Place;
@@ -67,7 +67,9 @@ export interface PlaceDetailsResponse extends AxiosResponse {
 export const defaultUrl =
   "https://maps.googleapis.com/maps/api/place/details/json";
 
-export const defaultParamsSerializer = serializer({}, defaultUrl, {arrayFormat: "comma"});
+export const defaultParamsSerializer = serializer({}, defaultUrl, {
+  arrayFormat: "comma",
+});
 
 export function placeDetails(
   {
@@ -84,6 +86,6 @@ export function placeDetails(
     method,
     url,
     paramsSerializer,
-    ...config
+    ...config,
   }) as Promise<PlaceDetailsResponse>;
 }

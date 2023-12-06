@@ -18,7 +18,7 @@ import axios from "axios";
 import {
   findPlaceFromText,
   defaultParamsSerializer,
-  defaultUrl
+  defaultUrl,
 } from "./findplacefromtext";
 import { PlaceInputType } from "../common";
 
@@ -35,7 +35,7 @@ test("autocomplete should call axios correctly", () => {
     input: "google",
     inputtype: PlaceInputType.textQuery,
     key: "foo",
-    fields: ["place_id", "name"]
+    fields: ["place_id", "name"],
   };
 
   findPlaceFromText({ params: params }, mockedAxios);
@@ -45,6 +45,6 @@ test("autocomplete should call axios correctly", () => {
     method: "get",
     params: params,
     paramsSerializer: defaultParamsSerializer,
-    url: defaultUrl
+    url: defaultUrl,
   });
 });

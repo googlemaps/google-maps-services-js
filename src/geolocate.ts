@@ -21,7 +21,7 @@ import {
   RadioType,
   RequestParams,
   ResponseData,
-  WifiAccessPoint
+  WifiAccessPoint,
 } from "./common";
 
 import { defaultAxiosInstance } from "./client";
@@ -46,7 +46,7 @@ export interface GeolocateRequest extends Partial<AxiosRequestConfig> {
     /** An array of WiFi access point objects. */
     wifiAccessPoints?: WifiAccessPoint[];
   };
-  params: {} & RequestParams;
+  params: RequestParams;
 }
 
 export interface GeolocateResponseData extends ResponseData {
@@ -133,6 +133,6 @@ export function geolocate(
     params,
     method,
     url,
-    ...config
+    ...config,
   }) as Promise<GeolocateResponse>;
 }

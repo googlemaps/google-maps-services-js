@@ -22,10 +22,10 @@ test("snapToRoads should have corect result", async () => {
     path: [
       [60.17088, 24.942795] as LatLng,
       [60.170879, 24.942796] as LatLng,
-      [60.170877, 24.942796] as LatLng
+      [60.170877, 24.942796] as LatLng,
     ],
     interpolate: false,
-    key: process.env.GOOGLE_MAPS_API_KEY
+    key: process.env.GOOGLE_MAPS_API_KEY,
   };
 
   const r = await snapToRoads({ params: params });

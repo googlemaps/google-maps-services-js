@@ -18,5 +18,5 @@ module.exports = {
   out: "docs",
   exclude: ["**/node_modules/**", "**/*.spec.ts", "**/*.test.ts", "dist"],
   name: "Google Maps Services Node Client",
-  readme: "./README.md"
+  readme: "./README.md",
 };

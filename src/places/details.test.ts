@@ -29,7 +29,7 @@ test("autocomplete should call axios correctly", () => {
   const params = {
     place_id: "notarealid",
     key: "foo",
-    fields: ["place_id", "name"]
+    fields: ["place_id", "name"],
   };
 
   placeDetails({ params: params }, mockedAxios);
@@ -39,6 +39,6 @@ test("autocomplete should call axios correctly", () => {
     method: "get",
     params: params,
     paramsSerializer: defaultParamsSerializer,
-    url: defaultUrl
+    url: defaultUrl,
   });
 });
