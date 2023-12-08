@@ -1,0 +1,75 @@
+# Copyright 2021 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+## Runs the release-please action for all new pushes to the main branch.
+##   This will create new release-PRs, create GitHub releases and update
+##   the CHANGELOG.md.
+
+on:
+  push:
+    branches: [master]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+name: Release Please
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - id: release
+        name: Release Please
+        uses: google-github-actions/release-please-action@v3
+
+        with:
+          release-type: node
+          token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
+          package-name: "@googlemaps/google-maps-services-js"
+          bump-minor-pre-major: true
+
+      # Everything below is for NPM publishing when a release is cut.
+      # Note the "if" statement on all commands to make sure that publishing
+      # only happens when a release is cut.
+
+      - if: ${{ steps.release.outputs.release_created }}
+        name: Checkout
+        uses: actions/checkout@v3
+
+      - if: ${{ steps.release.outputs.release_created }}
+        name: Setup Node for Dependency Installation
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: npm
+
+      - if: ${{ steps.release.outputs.release_created }}
+        name: Install Dependencies
+        run: npm ci
+
+      # Now configure node with the registry used for publishing
+      - if: ${{ steps.release.outputs.release_created }}
+        name: Setup Node for Publishing
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          registry-url: "https://wombat-dressing-room.appspot.com/"
+
+      - if: ${{ steps.release.outputs.release_created }}
+        name: Publish
+        # npm publish will trigger the build via the prepack hook
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_WOMBAT_TOKEN }}
