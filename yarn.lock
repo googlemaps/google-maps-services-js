@@ -335,11 +335,11 @@
   integrity sha512-qQfo2mxH5yVom1kacMtZZJFVdW+E70mqHMJvVg6WTLo+VBuQJ4TojZlfWBjK0ve5BdEeNAVxOsl/nvNMpJOaJA==
 
 "@googlemaps/url-signature@^1.0.4":
-  version "1.0.29"
-  resolved "https://registry.npmjs.org/@googlemaps/url-signature/-/url-signature-1.0.29.tgz"
-  integrity sha512-EKcL5ki6gUC02Yyrru8l37YKTNvfpoE/gMHy+tHoXjw2UuRBwGcXyMoHonGDUE9HNJrR7kXeG89ex4oGyX0NGQ==
+  version "1.0.30"
+  resolved "https://registry.yarnpkg.com/@googlemaps/url-signature/-/url-signature-1.0.30.tgz#6f82bd504c39a691628bfa66fc568e6937af29ed"
+  integrity sha512-iT2Ju1t+DiAloAZa3wsRPRNIxxtCPN0v9iRCzlMM/7U3NQlmiIcTWoY6+OY3ZFZUYE1a7Z0kC6AmtbYVtSILCQ==
   dependencies:
-    crypto-js "^4.1.1"
+    crypto-js "^4.2.0"
 
 "@humanwhocodes/config-array@^0.11.13":
   version "0.11.13"
@@ -1296,7 +1296,7 @@ cross-spawn@^7.0.2, cross-spawn@^7.0.3:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
-crypto-js@^4.1.1:
+crypto-js@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-4.2.0.tgz#4d931639ecdfd12ff80e8186dba6af2c2e856631"
   integrity sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==
