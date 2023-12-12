@@ -22,6 +22,5 @@ module.exports = {
   transformIgnorePatterns: [
     "/node_modules/(?!(axios|retry-axios|query-string|decode-uri-component|split-on-first|filter-obj)/)",
   ],
-  collectCoverage: true,
   collectCoverageFrom: ["src/**/([a-zA-Z_]*).{js,ts}", "!**/*.test.{js,ts}"],
 };

@@ -15,13 +15,25 @@
  */
 
 import { placePhoto } from "../../src/places/photo";
+import { placeDetails } from "../../src/places/details";
 
 test("photo should return correct result", async () => {
+  const placeDetailsResponse = await placeDetails({
+    params: {
+      // The Museum of Modern Art, 11 W 53rd St, New York
+      place_id: "ChIJKxDbe_lYwokRVf__s8CPn-o",
+      key: process.env.GOOGLE_MAPS_API_KEY,
+      fields: ["place_id", "photo"],
+    },
+  });
+
+  const [photo] = placeDetailsResponse.data.result.photos;
+  const { photo_reference: photoreference } = photo;
+
   const params = {
-    photoreference:
-      "AZose0kqzNAxzQSLYC-kxAidG_FkCelqG6lXa-05yhbKfwfGd0Agu4YXSjvArtNEYLC8CiCvQb4uxQzfn2fZi2kzxeMBgtOHmbo0c8eqMx_YPVNRCjjPL_kA77NOWF5wOS2ub6ZQlM0G8XibN93burBky0JLCE5sf-C6gLVEG74yiPYoK8id",
-    maxwidth: 100,
-    maxheight: 100,
+    photoreference,
+    maxwidth: 1000,
+    maxheight: 1000,
     key: process.env.GOOGLE_MAPS_API_KEY,
   };
   const r = await placePhoto({ params: params, responseType: "arraybuffer" });
