@@ -41,10 +41,10 @@
     "docs": "rm -rf docs/ && typedoc src/index.ts",
     "prepack": "npm run build",
     "pretest": "npm run build",
-    "test": "jest ./src/* && npm run test:loading",
+    "test": "jest --runInBand --collectCoverage ./src/* && npm run test:loading",
     "test:loading": "./test-module-loading.sh",
-    "test:e2e": "jest ./e2e/*",
-    "test:all": "jest",
+    "test:e2e": "jest --runInBand ./e2e/*",
+    "test:all": "jest --runInBand",
     "format": "eslint . --fix",
     "lint": "eslint ."
   },
