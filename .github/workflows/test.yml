@@ -18,27 +18,35 @@ on:
   - push
   - pull_request
   - workflow_call
+
 jobs:
   matrix:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [16.x, 18.x, 20.x]
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm ci
-      - run: npm test
-      - uses: codecov/codecov-action@v1
-      - run: npm run test:all
-        if: github.event_name == 'push' && github.actor != 'dependabot[bot]'
+          cache: npm
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run Tests
+        run: npm test
+      - name: Collect Coverage Data
+        uses: codecov/codecov-action@v1
+      - if: github.event_name == 'push' && github.actor != 'dependabot[bot]'
+        name: Run Extended Test Suite
+        run: npm run test:all
         env:
           GOOGLE_MAPS_API_KEY: ${{ secrets.SYNCED_GOOGLE_MAPS_API_KEY_SERVICES }}
+
   test:
     needs: [matrix]
     runs-on: ubuntu-latest
