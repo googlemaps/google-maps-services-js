@@ -1,7 +1,7 @@
 # Logs
 logs
 *.log
-dist/
+# dist/
 docs/
 # Runtime data
 pids
