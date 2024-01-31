@@ -1,5 +1,5 @@
 {
-  "name": "@googlemaps/google-maps-services-js",
+  "name": "@zircon-tech/google-maps-services",
   "version": "3.3.42",
   "description": "Node.js client library for Google Maps API Web Services",
   "keywords": [
@@ -15,21 +15,18 @@
     "directions",
     "navigation"
   ],
-  "homepage": "https://github.com/googlemaps/google-maps-services-js",
+  "homepage": "https://github.com/zircon-tech/google-maps-services-js",
   "bugs": {
-    "url": "https://github.com/googlemaps/google-maps-services-js/issues"
+    "url": "https://github.com/zircon-tech/google-maps-services-js/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/googlemaps/google-maps-services-js.git"
+    "url": "git+https://github.com/zircon-tech/google-maps-services-js.git"
   },
   "license": "Apache-2.0",
   "author": "Google Inc.",
   "contributors": [
-    {
-      "name": "Justin Poehnelt",
-      "email": "jpoehnelt@google.com"
-    }
+    "Justin Poehnelt <jpoehnelt@google.com>"
   ],
   "main": "./dist/index.js",
   "files": [
@@ -72,10 +69,11 @@
     "typescript": "^5.2.2"
   },
   "publishConfig": {
-    "registry": "https://wombat-dressing-room.appspot.com",
+    "@zircon-tech:registry": "https://npm.pkg.github.com",
     "access": "public"
   },
   "prettier": {
     "trailingComma": "es5"
-  }
+  },
+  "types": "./dist/index.d.ts"
 }
