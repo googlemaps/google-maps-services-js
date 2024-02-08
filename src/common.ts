@@ -1638,35 +1638,35 @@ export interface SnappedPoint {
 export interface AddressDescriptor {
   // A ranked list of nearby landmarks. The most useful (recognizable and
   // nearby) landmarks are ranked first.
-  landmarks?: Landmark[];
+  landmarks: Landmark[];
   // A ranked list of containing or adjacent areas. The most useful
   // (recognizable and precise) areas are ranked first.
-  areas?: Area[];
+  areas: Area[];
 }
 
 interface Landmark {
   // The Place ID of the underlying establishment serving as the landmark.
   // Can be used to resolve more information about the landmark through Place
   // Details or Place Id Lookup.
-  placeId?: string;
+  placeId: string;
   // The best name for the landmark.
-  displayName?: LocalizedText;
+  displayName: LocalizedText;
   // One or more values indicating the type of the returned result. Please see <a
   // href="https://developers.google.com/maps/documentation/places/web-service/supported_types">Types
   // </a> for more detail.
-  types?: string[];
+  types: string[];
   // Defines the spatial relationship between the target location and the
   // landmark.
-  spatialRelationship?: SpatialRelationship;
+  spatialRelationship: SpatialRelationship;
   // The straight line distance between the target location and one of the
   // landmark's access points.
-  straightLineDistanceMeters?: number;
+  straightLineDistanceMeters: number;
   // The travel distance along the road network between the target
   // location's closest point on a road, and the landmark's closest access
   // point on a road. This can be unpopulated if the landmark is disconnected
   // from the part of the road network the target is closest to OR if the
   // target location was not actually considered to be on the road network.
-  travelDistanceMeters?: number;
+  travelDistanceMeters: number;
 }
 
 /**
@@ -1698,12 +1698,12 @@ interface Area {
   // The Place ID of the underlying area feature. Can be used to
   // resolve more information about the area through Place Details or
   // Place Id Lookup.
-  placeId?: string;
+  placeId: string;
   // The best name for the area.
-  displayName?: LocalizedText;
+  displayName: LocalizedText;
   // Defines the spatial relationship between the target location and the
   // political region.
-  containment?: Containment;
+  containment: Containment;
 }
 
  /**
