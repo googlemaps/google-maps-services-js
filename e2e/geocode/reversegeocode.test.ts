@@ -48,5 +48,7 @@ test("reverseGeocode should return correct response when address descriptors are
     key: process.env.GOOGLE_MAPS_API_KEY,
   };
   const r = await reverseGeocode({ params: params });
+  console.log("Response data:", r.data);
+  console.log("Address descriptor:", r.data.address_descriptor);
   expect(r.data.address_descriptor.landmarks.length > 0).toBeTruthy();
 });
