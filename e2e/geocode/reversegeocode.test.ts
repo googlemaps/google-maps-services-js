@@ -36,3 +36,14 @@ test("reverseGeocode should return correct response using place_id", async () =>
   const r = await reverseGeocode({ params: params });
   expect(r.data.results.length).toBeTruthy();
 });
+
+
+test("reverseGeocode should return correct response when address descriptors are enabled, async () => {
+  const params = {
+    place_id: "ChIJKxDbe_lYwokRVf__s8CPn-o",
+    enabled_address_descriptor: true,
+    key: process.env.GOOGLE_MAPS_API_KEY,
+  };
+  const r = await reverseGeocode({ params: params });
+  expect(r.data.address_descriptor.landmarks.length > 0).toBeTruthy();
+});

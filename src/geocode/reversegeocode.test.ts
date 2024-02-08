@@ -36,6 +36,7 @@ test("reverseGeocode should call axios correctly", () => {
       lng: 24.9433353,
     },
     key: "foo",
+    enable_address_descriptor: true
   };
 
   reverseGeocode({ params: params }, mockedAxios);
