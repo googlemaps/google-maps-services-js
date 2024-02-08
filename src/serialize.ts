@@ -44,6 +44,16 @@ export function latLngToString(o: LatLng) {
     .join(",");
 }
 
+export function enableAddressDescriptorToString(o: boolean) {
+  if (typeof o === "string") {
+    return o;
+  } else if (o == true) {
+    return "True";
+  } else {
+    return "False";
+  }
+}
+
 export function objectToString(o: string | object): string {
   if (typeof o === "string") {
     return o;

@@ -17,7 +17,7 @@
 import { AddressType, Language, LatLng, RequestParams } from "../common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { GeocodeResult, ResponseData, AddressDescriptor } from "../common";
-import { latLngToString, serializer } from "../serialize";
+import { latLngToString, enableAddressDescriptorToString, serializer } from "../serialize";
 
 import { defaultAxiosInstance } from "../client";
 
@@ -110,6 +110,7 @@ export const defaultUrl = "https://maps.googleapis.com/maps/api/geocode/json";
 export const defaultParamsSerializer = serializer(
   {
     latlng: latLngToString,
+    enable_address_descriptor: enableAddressDescriptorToString
   },
   defaultUrl
 );
