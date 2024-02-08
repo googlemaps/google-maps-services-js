@@ -83,7 +83,7 @@ export interface ReverseGeocodeRequest extends Partial<AxiosRequestConfig> {
      /**
      * Determines whether the address descriptor is returned in the response.
      */
-     enabled_address_descriptor?: boolean;
+     enable_address_descriptor?: boolean;
   } & RequestParams;
 }
 
