@@ -16,8 +16,8 @@
 
 import { AddressType, Language, LatLng, RequestParams } from "../common";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
-import { GeocodeResult, ResponseData } from "../common";
-import { latLngToString, serializer } from "../serialize";
+import { GeocodeResult, ResponseData, AddressDescriptor } from "../common";
+import { latLngToString, enableAddressDescriptorToString, serializer } from "../serialize";
 
 import { defaultAxiosInstance } from "../client";
 
@@ -80,6 +80,10 @@ export interface ReverseGeocodeRequest extends Partial<AxiosRequestConfig> {
      * Note: This parameter is available only for requests that include an API key or a client ID.
      */
     location_type?: ReverseGeocodingLocationType[];
+     /**
+     * Determines whether the address descriptor is returned in the response.
+     */
+     enable_address_descriptor?: boolean;
   } & RequestParams;
 }
 
@@ -91,6 +95,10 @@ export interface ReverseGeocodeResponseData extends ResponseData {
    * when address queries are ambiguous.
    */
   results: GeocodeResult[];
+  /**
+   * The Address Descriptor for the target.
+   */
+  address_descriptor: AddressDescriptor;
 }
 
 export interface ReverseGeocodeResponse extends AxiosResponse {
@@ -102,6 +110,7 @@ export const defaultUrl = "https://maps.googleapis.com/maps/api/geocode/json";
 export const defaultParamsSerializer = serializer(
   {
     latlng: latLngToString,
+    enable_address_descriptor: enableAddressDescriptorToString
   },
   defaultUrl
 );
