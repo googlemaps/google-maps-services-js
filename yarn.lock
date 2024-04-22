@@ -335,9 +335,9 @@
   integrity sha512-gMsVel9D7f2HLkBma9VbtzZRehRogVRfbr++f06nL2vnCGCNlzOD+/MUov/F4p8myyAHspEhVobgjpX64q5m6A==
 
 "@googlemaps/url-signature@^1.0.4":
-  version "1.0.31"
-  resolved "https://registry.npmjs.org/@googlemaps/url-signature/-/url-signature-1.0.31.tgz"
-  integrity sha512-mXT26P1NYkRWVcaQSsoGQeu2ZZh36I4dNUStVG+rr55BzeOadqtJUkSpL2qMzeAt/X6a3g4QB+rA09SPqKfqYA==
+  version "1.0.33"
+  resolved "https://registry.yarnpkg.com/@googlemaps/url-signature/-/url-signature-1.0.33.tgz#c1c674639433e399b41c7a267ec8b285d9c46042"
+  integrity sha512-NHC3UFPnU03bY5IH8mqiERjUmtuk5ZseltWaR1XDQhhkAKLd8amCqEul3cvdPchWB14nqgDEM6ZhNtEeHW76ZA==
   dependencies:
     crypto-js "^4.2.0"
 
