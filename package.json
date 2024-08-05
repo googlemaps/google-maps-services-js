@@ -52,7 +52,7 @@
     "@googlemaps/url-signature": "^1.0.4",
     "agentkeepalive": "^4.1.0",
     "axios": "^1.5.1",
-    "query-string": "<8.x",
+    "query-string": "<10",
     "retry-axios": "<3.x"
   },
   "devDependencies": {
