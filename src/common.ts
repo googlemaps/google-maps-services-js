@@ -1632,7 +1632,7 @@ export interface SnappedPoint {
  * Represents a descriptor of an address.
  *
  * <p>Please see <a
- * href="https://mapsplatform.google.com/demos/address-descriptors/">Address 
+ * href="https://mapsplatform.google.com/demos/address-descriptors/">Address
  * Descriptors</a> for more detail.
  */
 export interface AddressDescriptor {
@@ -1706,7 +1706,7 @@ interface Area {
   containment: Containment;
 }
 
- /**
+/**
  * An enum representing the relationship in space between the area and the target.
  */
 enum Containment {
