@@ -3256,9 +3256,9 @@ type-fest@^0.21.3:
   integrity sha512-t0rzBq87m3fVcduHDUFhKmyyX+9eo6WQjZvf51Ea/M0Q7+T374Jp1aUiyUl0GKxp8M/OETVHSDvmkyPgvX+X2w==
 
 typedoc@^0.26.2:
-  version "0.26.9"
-  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.26.9.tgz#a37075a2eeecc7348ab0fbc7d103b30283c00e8c"
-  integrity sha512-Rc7QpWL7EtmrT8yxV0GmhOR6xHgFnnhphbD9Suti3fz3um7ZOrou6q/g9d6+zC5PssTLZmjaW4Upmzv8T1rCcQ==
+  version "0.26.10"
+  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.26.10.tgz#d372f171dc2c4458cbac6c473be9591042ab781d"
+  integrity sha512-xLmVKJ8S21t+JeuQLNueebEuTVphx6IrP06CdV7+0WVflUSW3SPmR+h1fnWVdAR/FQePEgsSWCUHXqKKjzuUAw==
   dependencies:
     lunr "^2.3.9"
     markdown-it "^14.1.0"
