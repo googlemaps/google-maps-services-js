@@ -68,7 +68,7 @@
     "nock": "^13.3.4",
     "prettier": "^3.0.3",
     "ts-jest": "^29.1.1",
-    "typedoc": "^0.26.2",
+    "typedoc": "^0.27.2",
     "typescript": "^5.2.2"
   },
   "publishConfig": {
