@@ -1,3 +1,4 @@
+
 Node.js Client for Google Maps Services
 =======================================
 
@@ -20,20 +21,21 @@ application.
 The Node.js Client for Google Maps Services is a Node.js Client library
 for the following Google Maps APIs:
 
- - [Directions API]
- - [Distance Matrix API]
- - [Elevation API]
- - [Geocoding API]
- - [Places API]
- - [Roads API]
- - [Time Zone API]
+- [Directions API]
+- [Distance Matrix API]
+- [Elevation API]
+- [Geocoding API]
+- [Places API]
+- [Roads API]
+- [Time Zone API]
+- [Routes API]
 
 Keep in mind that the same [terms and conditions](https://developers.google.com/maps/terms)
 apply to usage of the APIs when they're accessed through this library.
 
 ## Attention!
 
-This library is designed for server-side Node.js applications. Attempting to use it client-side, in either the browser or any other environment like React Native, may in some cases work, but mostly will not. Please refrain from reporting issues with these environments when attempting to use them, since **server-side Node.js applications is the only supported environment for this library**. For other environments, try the [Maps JavaScript API], which contains a comparable feature set, and is explicitly intended for use with client-side JavaScript.
+This library is designed for server-side Node.js applications. Attempting to use it client-side, in either the browser or any other environment like React Native, may in some cases work, but mostly will not. Please refrain from reporting issues with these environments when attempting to use them, since **server-side Node.js applications is the only supported environment for this library**. For other environments, try the [Maps JavaScript API], which contains a comparable feature set, and is explicitly in...
 
 ## Quick Start
 
@@ -54,6 +56,8 @@ const {Client} = require("@googlemaps/google-maps-services-js");
 
 Now instantiate the client to make a call to one of the APIs.
 
+### Elevation API Example
+
 ```js
 const client = new Client({});
 
@@ -67,6 +71,43 @@ client
   })
   .then((r) => {
     console.log(r.data.results[0].elevation);
+  })
+  .catch((e) => {
+    console.log(e.response.data.error_message);
+  });
+```
+
+
+### Routes API Example
+
+```js
+client.routes({
+  params: {
+    origin: {
+      location: {
+        latLng: { latitude: 37.419734, longitude: -122.0827784 }, // Origin coordinates
+      },
+    },
+    destination: {
+      location: {
+        latLng: { latitude: 37.41767, longitude: -122.079595 }, // Destination coordinates
+      },
+    },
+    travelMode: RouteTravelMode.DRIVE,
+    routingPreference: RoutingPreference.TRAFFIC_AWARE,
+    computeAlternativeRoutes: false,
+    routeModifiers: {
+      avoidTolls: false,
+      avoidHighways: false,
+      avoidFerries: false,
+    },
+    languageCode: "en-US",
+    units: RouteUnits.IMPERIAL,
+    apiKey: { key: process.env.GOOGLE_MAPS_API_KEY },
+  },
+})
+  .then((r) => {
+    console.log(r.data.routes[0].legs[0].duration.text);
   })
   .catch((e) => {
     console.log(e.response.data.error_message);
@@ -131,6 +172,7 @@ client
     console.log(e);
   });
 ```
+
 
 The primary differences are in the following table.
 
@@ -198,6 +240,7 @@ If you find a bug, or have a feature suggestion, please
 [Time Zone API]: https://developers.google.com/maps/documentation/timezone/
 [Roads API]: https://developers.google.com/maps/documentation/roads/
 [Places API]: https://developers.google.com/places/web-service/
+[Routes API]: https://developers.google.com/maps/documentation/routes
 
 [issues]: https://github.com/googlemaps/google-maps-services-js/issues
 [contrib]: https://github.com/googlemaps/google-maps-services-js/blob/master/CONTRIBUTING.md
