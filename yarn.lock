@@ -344,9 +344,9 @@
     "@shikijs/vscode-textmate" "^9.3.0"
 
 "@googlemaps/url-signature@^1.0.4":
-  version "1.0.39"
-  resolved "https://registry.yarnpkg.com/@googlemaps/url-signature/-/url-signature-1.0.39.tgz#10bdfb748978693d14a63f868248cd6ec0a53ef4"
-  integrity sha512-OMI/Y7850t3nIWfeNWWH08empXIJZw41siy6OhNWsyklO1TNKKN60x5y6TqLXQKBLiMlyC1ekzW8L7B+K2Uagg==
+  version "1.0.40"
+  resolved "https://registry.yarnpkg.com/@googlemaps/url-signature/-/url-signature-1.0.40.tgz#f23ae281a07f9e04345fb456053fd2cc6144fb28"
+  integrity sha512-Gme3JxGZWQ4NVpATajSpS2/inQzhUxRvr/FK6IFpcC7AHOAmx8blI0y1/Qi2jqil+WoQ3TkEqq/MaKVtuV68RQ==
   dependencies:
     crypto-js "^4.2.0"
 
