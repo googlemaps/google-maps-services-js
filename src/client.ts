@@ -85,7 +85,9 @@ import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { HttpsAgent } from "agentkeepalive";
 import { customAdapter } from "./adapter";
 
-// Cannot be `import` as it's not under TS root dir
+// Import Routes API
+import { RoutesRequest, RoutesResponse, routes } from "./routes";
+
 export const version = require("../package.json").version;
 export const defaultHttpsAgent = new HttpsAgent({ keepAlive: true });
 export const defaultTimeout = 10000;
@@ -117,6 +119,7 @@ export interface ClientOptions {
   config?: Config;
   experienceId?: string[];
 }
+
 /**
  * Client is a light wrapper around API methods providing shared configuration for Axios
  * settings such as retry logic using the default retry-axios settings and gzip encoding.
@@ -198,28 +201,11 @@ export class Client {
   timezone(request: TimeZoneRequest): Promise<TimeZoneResponse> {
     return timezone(request, this.axiosInstance);
   }
+
   geolocate(request: GeolocateRequest): Promise<GeolocateResponse> {
     return geolocate(request, this.axiosInstance);
   }
-  /**
-   * An example use of this function.
-   *
-   * ```javascript
-   * import { Client } from '@googlemaps/google-maps-services-js';
-   *
-   * const args = {
-   *   params: {
-   *     key: '<your-api-key>',
-   *     address: 'Perth 4WD & Commercial Centre',
-   *   }
-   * };
-   * const client = new Client();
-   * client.geocode(args).then(gcResponse => {
-   *   const str = JSON.stringify(gcResponse.data.results[0]);
-   *   console.log(`First result is: ${str}`);
-   * });
-   * ```
-   */
+
   geocode(request: GeocodeRequest): Promise<GeocodeResponse> {
     return geocode(request, this.axiosInstance);
   }
@@ -263,11 +249,17 @@ export class Client {
   textSearch(request: TextSearchRequest): Promise<TextSearchResponse> {
     return textSearch(request, this.axiosInstance);
   }
+
   nearestRoads(request: NearestRoadsRequest): Promise<NearestRoadsResponse> {
     return nearestRoads(request, this.axiosInstance);
   }
+
   snapToRoads(request: SnapToRoadsRequest): Promise<SnapToRoadsResponse> {
     return snapToRoads(request, this.axiosInstance);
+  }
+
+  routes(request: RoutesRequest): Promise<RoutesResponse> {
+    return routes(request, this.axiosInstance);
   }
 }
 
@@ -304,4 +296,6 @@ export {
   TextSearchResponse,
   TimeZoneRequest,
   TimeZoneResponse,
+  RoutesRequest,
+  RoutesResponse,
 };
