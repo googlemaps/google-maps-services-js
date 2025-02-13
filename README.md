@@ -37,7 +37,7 @@ This library is designed for server-side Node.js applications. Attempting to use
 
 ## Quick Start
 
-    $ npm install @googlemaps/google-maps-services-js
+    npm install @googlemaps/google-maps-services-js
 
 Below is a simple example calling the elevation method on the client class.
 
