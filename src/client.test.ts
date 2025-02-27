@@ -34,6 +34,7 @@ import {
   TextSearchRequest,
   NearestRoadsRequest,
   SnapToRoadsRequest,
+  RoutesRequest, // Import RoutesRequest
   X_GOOG_MAPS_EXPERIENCE_ID,
   defaultAxiosInstance,
 } from "./client";
@@ -259,6 +260,13 @@ describe("client wraps all functions correctly", () => {
     const snapToRoads = require("./roads/snaptoroads");
     const mock = (snapToRoads.snapToRoads = jest.fn());
     client.snapToRoads({} as SnapToRoadsRequest);
+    expect(mock).toBeCalledWith({}, client["axiosInstance"]);
+  });
+
+  test("client wraps routes correctly", () => {
+    const routes = require("./routes");
+    const mock = (routes.routes = jest.fn());
+    client.routes({} as RoutesRequest);
     expect(mock).toBeCalledWith({}, client["axiosInstance"]);
   });
 });
