@@ -13,21 +13,35 @@
 
 # Node.js Client for Google Maps Services
 
-> [!NOTE]
-> This library is a refactor of the older [@google/maps](https://npmjs.com/package/@google/maps) package. This replacement library is published to [@googlemaps/google-maps-services-js][npm-pkg].
+> [!IMPORTANT]
+> 
+> Some parts of this library are only compatible with [Legacy Services](https://developers.google.com/maps/legacy).
+> Using the Legacy Services requires enabling each API on your Google Cloud project by following the direct links:
+> [Places API (Legacy)](https://console.cloud.google.com/apis/library/places-backend.googleapis.com),
+> [Directions API (Legacy)](https://console.cloud.google.com/apis/library/directions-backend.googleapis.com),
+> [Distance Matrix API (Legacy)](https://console.cloud.google.com/apis/library/distance-matrix-backend.googleapis.com).
+>
+> The newer Google Maps APIs each provide their own npm-package:
+>  - [`@googlemaps/places`](https://www.npmjs.com/package/@googlemaps/places)
+>  - [`@googlemaps/routing`](https://www.npmjs.com/package/@googlemaps/routing)
+>  - [`@googlemaps/maps-platform-datasets`](https://www.npmjs.com/package/@googlemaps/maps-platform-datasets)
+>  - [`@googlemaps/addressvalidation`](https://www.npmjs.com/package/@googlemaps/addressvalidation)
 
 ## Description
 
-Use Node.js? Want to [geocode][Geocoding API] something? Looking for [directions][Directions API]? This client library brings the following [Google Maps Web Services APIs] to your server-side Node.js applications:
+This client library brings the following [Google Maps Web Services APIs] to your server-side Node.js applications:
 
 - [Maps Static API]
-- [Directions API]
-- [Distance Matrix API]
 - [Elevation API]
 - [Geocoding API]
-- [Places API]
 - [Roads API]
 - [Time Zone API]
+
+As well as the following legacy APIs:
+
+- [Directions API (Legacy)][Directions API]
+- [Places API (Legacy)][Places API]
+- [Distance Matrix API (Legacy)][Distance Matrix API]
 
 ## Requirements
 
