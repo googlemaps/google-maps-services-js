@@ -64,7 +64,7 @@ Check out the [API Security Best Practices](https://developers.google.com/maps/a
 
 ## Usage
 
-    $ npm install @googlemaps/google-maps-services-js
+    npm install @googlemaps/google-maps-services-js
 
 Below is a simple example calling the elevation method on the client class.
 
