@@ -8,19 +8,33 @@
 <a href="LICENSE"><img src="https://img.shields.io/github/license/googlemaps/google-maps-services-js?color=blue" alt="License"></a>
 <a href="https://stackoverflow.com/questions/tagged/google-maps"><img src="https://img.shields.io/stackexchange/stackoverflow/t/google-maps?color=orange&amp;label=google-maps&amp;logo=stackoverflow" alt="StackOverflow"></a>
 <a href="https://discord.gg/hYsWbmk"><img src="https://img.shields.io/discord/676948200904589322?color=6A7EC2&amp;logo=discord&amp;logoColor=ffffff" alt="Discord"></a></p>
-<a id="nodejs-client-for-google-maps-services" class="tsd-anchor"></a><h1 class="tsd-anchor-link">Node.js Client for Google Maps Services<a href="#nodejs-client-for-google-maps-services" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><div class="tsd-alert tsd-alert-note"><div class="tsd-alert-title"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><use href="assets/icons.svg#icon-alertNote"></use></svg><span>Note</span></div><p>
-This library is a refactor of the older <a href="https://npmjs.com/package/@google/maps">@google/maps</a> package. This replacement library is published to <a href="https://npmjs.com/package/@googlemaps/google-maps-services-js">@googlemaps/google-maps-services-js</a>.</p>
+<a id="nodejs-client-for-google-maps-services" class="tsd-anchor"></a><h1 class="tsd-anchor-link">Node.js Client for Google Maps Services<a href="#nodejs-client-for-google-maps-services" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><div class="tsd-alert tsd-alert-important"><div class="tsd-alert-title"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><use href="assets/icons.svg#icon-alertImportant"></use></svg><span>Important</span></div><p></p>
+<p>Some parts of this library are only compatible with <a href="https://developers.google.com/maps/legacy">Legacy Services</a>.
+Using the Legacy Services requires enabling each API on your Google Cloud project by following the direct links:
+<a href="https://console.cloud.google.com/apis/library/places-backend.googleapis.com">Places API (Legacy)</a>,
+<a href="https://console.cloud.google.com/apis/library/directions-backend.googleapis.com">Directions API (Legacy)</a>,
+<a href="https://console.cloud.google.com/apis/library/distance-matrix-backend.googleapis.com">Distance Matrix API (Legacy)</a>.</p>
+<p>The newer Google Maps APIs each provide their own npm-package:</p>
+<ul>
+<li><a href="https://www.npmjs.com/package/@googlemaps/places"><code>@googlemaps/places</code></a></li>
+<li><a href="https://www.npmjs.com/package/@googlemaps/routing"><code>@googlemaps/routing</code></a></li>
+<li><a href="https://www.npmjs.com/package/@googlemaps/maps-platform-datasets"><code>@googlemaps/maps-platform-datasets</code></a></li>
+<li><a href="https://www.npmjs.com/package/@googlemaps/addressvalidation"><code>@googlemaps/addressvalidation</code></a></li>
+</ul>
 </div>
-<a id="description" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Description<a href="#description" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Use Node.js? Want to <a href="https://developers.google.com/maps/documentation/geocoding">geocode</a> something? Looking for <a href="https://developers.google.com/maps/documentation/directions">directions</a>? This client library brings the following [Google Maps Web Services APIs] to your server-side Node.js applications:</p>
+<a id="description" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Description<a href="#description" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>This client library brings the following [Google Maps Web Services APIs] to your server-side Node.js applications:</p>
 <ul>
 <li><a href="https://developers.google.com/maps/documentation/maps-static">Maps Static API</a></li>
-<li><a href="https://developers.google.com/maps/documentation/directions">Directions API</a></li>
-<li><a href="https://developers.google.com/maps/documentation/distancematrix">Distance Matrix API</a></li>
 <li><a href="https://developers.google.com/maps/documentation/elevation">Elevation API</a></li>
 <li><a href="https://developers.google.com/maps/documentation/geocoding">Geocoding API</a></li>
-<li><a href="https://developers.google.com/places/web-service">Places API</a></li>
 <li><a href="https://developers.google.com/maps/documentation/roads">Roads API</a></li>
 <li><a href="https://developers.google.com/maps/documentation/timezone">Time Zone API</a></li>
+</ul>
+<p>As well as the following legacy APIs:</p>
+<ul>
+<li><a href="https://developers.google.com/maps/documentation/directions">Directions API (Legacy)</a></li>
+<li><a href="https://developers.google.com/places/web-service">Places API (Legacy)</a></li>
+<li><a href="https://developers.google.com/maps/documentation/distancematrix">Distance Matrix API (Legacy)</a></li>
 </ul>
 <a id="requirements" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Requirements<a href="#requirements" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ul>
 <li><a href="https://console.cloud.google.com/google/maps-apis/start">Sign up with Google Maps Platform</a></li>
