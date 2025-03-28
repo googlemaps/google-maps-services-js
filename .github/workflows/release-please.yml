@@ -32,13 +32,13 @@ jobs:
     steps:
       - id: release
         name: Release Please
-        uses: google-github-actions/release-please-action@v3
+        uses: googleapis/release-please-action@v4
 
         with:
           release-type: node
           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
           package-name: "@googlemaps/google-maps-services-js"
-          bump-minor-pre-major: true
+          config-file: .github/release-please-config.json
 
       # Everything below is for NPM publishing when a release is cut.
       # Note the "if" statement on all commands to make sure that publishing
@@ -46,13 +46,13 @@ jobs:
 
       - if: ${{ steps.release.outputs.release_created }}
         name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - if: ${{ steps.release.outputs.release_created }}
         name: Setup Node for Dependency Installation
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - if: ${{ steps.release.outputs.release_created }}
@@ -62,7 +62,7 @@ jobs:
       # Now configure node with the registry used for publishing
       - if: ${{ steps.release.outputs.release_created }}
         name: Setup Node for Publishing
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           registry-url: "https://wombat-dressing-room.appspot.com/"
