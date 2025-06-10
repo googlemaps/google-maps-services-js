@@ -191,6 +191,7 @@ export enum PlaceType1 {
   funeral_home = "funeral_home",
   furniture_store = "furniture_store",
   gas_station = "gas_station",
+  grocery_or_supermarket = "grocery_or_supermarket",
   gym = "gym",
   hair_care = "hair_care",
   hardware_store = "hardware_store",
