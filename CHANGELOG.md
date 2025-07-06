@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.2](https://github.com/googlemaps/google-maps-services-js/compare/v3.4.1...v3.4.2) (2025-07-06)
+
+
+### Documentation
+
+* update readme with remark on EEA ToS ([#1379](https://github.com/googlemaps/google-maps-services-js/issues/1379)) ([2da8802](https://github.com/googlemaps/google-maps-services-js/commit/2da880287a31022922e8c3bb5915913e7ee291a6))
+
 ## [3.4.1](https://github.com/googlemaps/google-maps-services-js/compare/v3.4.0...v3.4.1) (2025-03-28)
 
 
