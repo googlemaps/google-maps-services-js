@@ -2994,10 +2994,10 @@ resolve@^1.20.0:
     path-parse "^1.0.7"
     supports-preserve-symlinks-flag "^1.0.0"
 
-retry-axios@<3.x:
-  version "2.6.0"
-  resolved "https://registry.npmjs.org/retry-axios/-/retry-axios-2.6.0.tgz"
-  integrity sha512-pOLi+Gdll3JekwuFjXO3fTq+L9lzMQGcSq7M5gIjExcl3Gu1hd4XXuf5o3+LuSBsaULQH7DiNbsqPd1chVpQGQ==
+retry-axios@<4:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/retry-axios/-/retry-axios-3.2.1.tgz#2dc8ea26e2ca564b7bbf9941535c55eb3f672e45"
+  integrity sha512-WoIVswbInbTzGPBo+s+8afMMbZHQX72hWvqdq9QeNJDC+6vXhUaoTt+/ZV+/yVmbPBCklinuq4sG0ZTzLMcQqQ==
 
 reusify@^1.0.4:
   version "1.0.4"
