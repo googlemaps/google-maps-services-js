@@ -1100,7 +1100,7 @@ export interface DirectionsStep {
    * Substeps are only available when `travel_mode` is set to "transit".
    * The inner `steps` array is of the same type as `steps`.
    */
-  steps: DirectionsStep;
+  steps?: DirectionsStep[];
   /** contains transit specific information. This field is only returned with travel_mode is set to "transit". */
   transit_details: TransitDetails;
   /** contains the type of travel mode used. */
@@ -1632,7 +1632,7 @@ export interface SnappedPoint {
  * Represents a descriptor of an address.
  *
  * <p>Please see <a
- * href="https://mapsplatform.google.com/demos/address-descriptors/">Address 
+ * href="https://mapsplatform.google.com/demos/address-descriptors/">Address
  * Descriptors</a> for more detail.
  */
 export interface AddressDescriptor {
@@ -1706,7 +1706,7 @@ interface Area {
   containment: Containment;
 }
 
- /**
+/**
  * An enum representing the relationship in space between the area and the target.
  */
 enum Containment {
