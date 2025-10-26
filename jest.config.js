@@ -20,7 +20,7 @@ module.exports = {
   testEnvironment: "node",
   // some dependencies are esm and need to be compiled to work in jest
   transformIgnorePatterns: [
-    "/node_modules/(?!(axios|retry-axios|query-string|decode-uri-component|split-on-first|filter-obj)/)",
+    "/node_modules/(?!(axios|retry-axios|decode-uri-component|split-on-first|filter-obj)/)",
   ],
   collectCoverageFrom: ["src/**/([a-zA-Z_]*).{js,ts}", "!**/*.test.{js,ts}"],
 };

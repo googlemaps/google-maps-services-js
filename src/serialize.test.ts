@@ -168,7 +168,7 @@ test("createPremiumPlanQueryString", () => {
   const queryStringOptions = {
     arrayFormat: "separator",
     arrayFormatSeparator: "|",
-  };
+  } as const;
   const baseUrl = "https://test.url/maps/api/directions/json";
 
   expect(

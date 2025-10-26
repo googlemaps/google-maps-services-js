@@ -16,13 +16,39 @@
 
 import { LatLng, LatLngBounds, LatLngLiteral } from "./common";
 
-import { encodePath } from "./util";
 import { createSignature } from "@googlemaps/url-signature";
-import queryString from "query-string";
-
-const qs = queryString.stringify;
+import { encodePath } from "./util";
 
 const separator = "|";
+
+type QueryStringOptions =
+  | { arrayFormat: "comma" }
+  | {
+      arrayFormat: "separator";
+      arrayFormatSeparator: string;
+    };
+const qs = (params: Record<string, any>, options: QueryStringOptions) => {
+  const separator =
+    options.arrayFormat === "comma" ? "," : options.arrayFormatSeparator;
+
+  const encode = (value: any) =>
+    value === null ? "" : encodeURIComponent(value);
+
+  return Object.entries(params)
+    .filter(([, v]) => v !== undefined)
+    .map(([k, v]) => {
+      const key = encodeURIComponent(k);
+      const value = Array.isArray(v)
+        ? v
+            .filter((v) => v !== undefined)
+            .map(encode)
+            .join(separator)
+        : encode(v);
+      return value === "" ? key : `${key}=${value}`;
+    })
+    .sort()
+    .join("&");
+};
 
 export function latLngToString(o: LatLng) {
   if (typeof o === "string") {
@@ -113,7 +139,7 @@ export type serializerFormat = { [key: string]: serializerFunction };
 export function serializer(
   format: serializerFormat,
   baseUrl: string,
-  queryStringOptions: object = {
+  queryStringOptions: QueryStringOptions = {
     arrayFormat: "separator",
     arrayFormatSeparator: separator,
   }
@@ -157,7 +183,7 @@ export function toTimestamp(o: "now" | number | Date): number | "now" {
 
 export function createPremiumPlanQueryString(
   serializedParams: { [key: string]: string },
-  queryStringOptions: object,
+  queryStringOptions: QueryStringOptions,
   baseUrl: string
 ): string {
   serializedParams.client = serializedParams.client_id;
