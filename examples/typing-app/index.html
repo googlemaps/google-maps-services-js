@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Typing Practice Timer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <h1>Typing Practice</h1>
+      <section class="controls">
+        <label for="timer-select">Timer:</label>
+        <select id="timer-select" aria-label="Timer duration">
+          <option value="30">30 seconds</option>
+          <option value="60" selected>60 seconds</option>
+          <option value="120">120 seconds</option>
+        </select>
+        <button id="start-btn" type="button">Start</button>
+      </section>
+
+      <section class="status" aria-live="polite">
+        <div>Time left: <span id="time-remaining">60</span>s</div>
+        <div>Words per minute: <span id="wpm">0</span></div>
+        <div>Accuracy: <span id="accuracy">100</span>%</div>
+        <div>Mistakes: <span id="mistakes">0</span></div>
+      </section>
+
+      <p id="instructions" class="instructions">
+        Press the <strong>Start</strong> button, click inside the typing area, and begin typing.
+        Use the dropdown to choose how long you have. Every green character represents a
+        correct key press, while red indicates an error. Backspaces count as mistakes and
+        will remove the last highlighted character.
+      </p>
+
+      <section class="text-wrapper">
+        <div id="text-display" class="text-display" aria-label="Text to type"></div>
+        <div
+          id="typing-area"
+          class="typing-area"
+          role="textbox"
+          tabindex="0"
+          aria-label="Typing input area"
+          aria-describedby="instructions"
+        ></div>
+      </section>
+    </main>
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
