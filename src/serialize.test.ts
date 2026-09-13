@@ -76,6 +76,27 @@ test("serializer should not mutate params", () => {
   expect(params.location).toBe(location);
 });
 
+test("serializer should not format an explicit null/undefined value, and should drop it from the query string", () => {
+  expect(
+    serializer(
+      { location: latLngToString },
+      "http://mock.url"
+    )({
+      radius: 50000,
+      location: undefined,
+    })
+  ).toBe("radius=50000");
+  expect(
+    serializer(
+      { location: latLngToString },
+      "http://mock.url"
+    )({
+      radius: 50000,
+      location: null,
+    })
+  ).toBe("radius=50000");
+});
+
 test("serializer should return pipe joined arrays by default", () => {
   expect(serializer({}, "http://mock.url")({ foo: ["b", "a", "r"] })).toBe(
     "foo=b|a|r"
