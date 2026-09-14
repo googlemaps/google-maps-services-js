@@ -1100,9 +1100,9 @@ export interface DirectionsStep {
    * Substeps are only available when `travel_mode` is set to "transit".
    * The inner `steps` array is of the same type as `steps`.
    */
-  steps: DirectionsStep;
+  steps?: DirectionsStep[];
   /** contains transit specific information. This field is only returned with travel_mode is set to "transit". */
-  transit_details: TransitDetails;
+  transit_details?: TransitDetails;
   /** contains the type of travel mode used. */
   travel_mode: TravelMode;
 }
