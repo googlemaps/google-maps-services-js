@@ -8,19 +8,22 @@
 <a href="LICENSE"><img src="https://img.shields.io/github/license/googlemaps/google-maps-services-js?color=blue" alt="License"></a>
 <a href="https://stackoverflow.com/questions/tagged/google-maps"><img src="https://img.shields.io/stackexchange/stackoverflow/t/google-maps?color=orange&amp;label=google-maps&amp;logo=stackoverflow" alt="StackOverflow"></a>
 <a href="https://discord.gg/hYsWbmk"><img src="https://img.shields.io/discord/676948200904589322?color=6A7EC2&amp;logo=discord&amp;logoColor=ffffff" alt="Discord"></a></p>
-<h1 id="nodejs-client-for-google-maps-services" class="tsd-anchor-link">Node.js Client for Google Maps Services<a href="#nodejs-client-for-google-maps-services" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><div class="tsd-alert tsd-alert-important"><div class="tsd-alert-title"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><use href="assets/icons.svg#icon-alertImportant"></use></svg><span>Important</span></div><p></p>
-<p>Some parts of this library are only compatible with <a href="https://developers.google.com/maps/legacy">Legacy Services</a>.
-Using the Legacy Services requires enabling each API on your Google Cloud project by following the direct links:
-<a href="https://console.cloud.google.com/apis/library/places-backend.googleapis.com">Places API (Legacy)</a>,
-<a href="https://console.cloud.google.com/apis/library/directions-backend.googleapis.com">Directions API (Legacy)</a>,
-<a href="https://console.cloud.google.com/apis/library/distance-matrix-backend.googleapis.com">Distance Matrix API (Legacy)</a>.</p>
-<p>The newer Google Maps APIs each provide their own npm-package:</p>
+<h1 id="nodejs-client-for-google-maps-services" class="tsd-anchor-link">Node.js Client for Google Maps Services<a href="#nodejs-client-for-google-maps-services" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><div class="tsd-alert tsd-alert-important"><div class="tsd-alert-title"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><use href="assets/icons.svg#icon-alertImportant"></use></svg><span>Important</span></div><p>
+<strong>Legacy APIs End of Sale &amp; Newer Client Libraries</strong></p>
+<p>Several APIs supported by this library are in <a href="https://developers.google.com/maps/legacy">Legacy status</a>:</p>
 <ul>
-<li><a href="https://www.npmjs.com/package/@googlemaps/places"><code>@googlemaps/places</code></a></li>
-<li><a href="https://www.npmjs.com/package/@googlemaps/routing"><code>@googlemaps/routing</code></a></li>
-<li><a href="https://www.npmjs.com/package/@googlemaps/maps-platform-datasets"><code>@googlemaps/maps-platform-datasets</code></a></li>
-<li><a href="https://www.npmjs.com/package/@googlemaps/addressvalidation"><code>@googlemaps/addressvalidation</code></a></li>
+<li><strong>Places API (Legacy):</strong> This product is in <a href="https://developers.google.com/maps/legacy">Legacy status</a>. As of October 2026, Places API (Legacy) can no longer be enabled for new Google Cloud projects. Existing projects remain fully supported. For new features and improved performance, <a href="https://developers.google.com/maps/documentation/places/web-service/legacy/migrate-overview">migrate to Places API (New)</a>.</li>
+<li><strong>Directions API (Legacy):</strong> This product is in <a href="https://developers.google.com/maps/legacy">Legacy status</a>. As of October 2026, Directions API (Legacy) can no longer be enabled for new Google Cloud projects. Existing projects remain fully supported. For new features and improved performance, <a href="https://developers.google.com/maps/documentation/routes/migrate-routes">migrate to the Routes API</a>.</li>
+<li><strong>Distance Matrix API (Legacy):</strong> This product is in <a href="https://developers.google.com/maps/legacy">Legacy status</a>. As of October 2026, Distance Matrix API (Legacy) can no longer be enabled for new Google Cloud projects. Existing projects remain fully supported. For new features and improved performance, <a href="https://developers.google.com/maps/documentation/routes/migrate-routes">migrate to the Routes API</a>.</li>
 </ul>
+<p>For our newer APIs, see the <a href="https://github.com/googleapis/google-cloud-node">Google Maps Platform APIs in the Cloud Client Libraries for Node.js</a> (<a href="https://docs.cloud.google.com/apis/docs/cloud-client-libraries">overview</a>):</p>
+<ul>
+<li><a href="https://github.com/googleapis/google-cloud-node/tree/main/packages/google-maps-places">Places API (New)</a> (<a href="https://www.npmjs.com/package/@googlemaps/places"><code>@googlemaps/places</code></a>)</li>
+<li><a href="https://github.com/googleapis/google-cloud-node/tree/main/packages/google-maps-routing">Routes API</a> (<a href="https://www.npmjs.com/package/@googlemaps/routing"><code>@googlemaps/routing</code></a>)</li>
+<li><a href="https://github.com/googleapis/google-cloud-node/tree/main/packages/google-maps-addressvalidation">Address Validation API</a> (<a href="https://www.npmjs.com/package/@googlemaps/addressvalidation"><code>@googlemaps/addressvalidation</code></a>)</li>
+<li><a href="https://github.com/googleapis/google-cloud-node/tree/main/packages/google-maps-mapsplatformdatasets">Datasets API</a> (<a href="https://www.npmjs.com/package/@googlemaps/maps-platform-datasets"><code>@googlemaps/maps-platform-datasets</code></a>)</li>
+</ul>
+<p>The new APIs will not be added to this client library.</p>
 </div>
 <h2 id="description" class="tsd-anchor-link">Description<a href="#description" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>This client library brings the following [Google Maps Web Services APIs] to your server-side Node.js applications:</p>
 <ul>
