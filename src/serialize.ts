@@ -24,6 +24,24 @@ const qs = queryString.stringify;
 
 const separator = "|";
 
+function stringifyParams(params: object, queryStringOptions: object): string {
+  if (
+    (queryStringOptions as { arrayFormat?: string }).arrayFormat === "comma"
+  ) {
+    // query-string versions before v5 ignore the comma array format option.
+    // Serialize comma arrays as scalar values so they remain one query param.
+    const commaJoinedParams = { ...params };
+    for (const key of Object.keys(commaJoinedParams)) {
+      if (Array.isArray(commaJoinedParams[key])) {
+        commaJoinedParams[key] = commaJoinedParams[key].join(",");
+      }
+    }
+    return qs(commaJoinedParams, queryStringOptions);
+  }
+
+  return qs(params, queryStringOptions);
+}
+
 export function latLngToString(o: LatLng) {
   if (typeof o === "string") {
     return o;
@@ -141,7 +159,7 @@ export function serializer(
       );
     }
 
-    return qs(serializedParams, queryStringOptions);
+    return stringifyParams(serializedParams, queryStringOptions);
   };
 }
 
@@ -165,7 +183,10 @@ export function createPremiumPlanQueryString(
   delete serializedParams.client_id;
   delete serializedParams.client_secret;
 
-  const partialQueryString = qs(serializedParams, queryStringOptions);
+  const partialQueryString = stringifyParams(
+    serializedParams,
+    queryStringOptions
+  );
   const unsignedUrl = `${baseUrl}?${partialQueryString}`;
   const signature = createSignature(unsignedUrl, clientSecret);
 
