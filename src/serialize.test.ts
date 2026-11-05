@@ -82,6 +82,14 @@ test("serializer should return pipe joined arrays by default", () => {
   );
 });
 
+test("serializer should keep comma arrays in one query parameter", () => {
+  const result = serializer({}, "http://mock.url", { arrayFormat: "comma" })({
+    fields: ["geometry", "name"],
+  });
+
+  expect(result.replace(/%2C/gi, ",")).toBe("fields=geometry,name");
+});
+
 test("serializer creates premium plan query string if premium plan params are included", () => {
   const params = {
     avoid: "ferries",
