@@ -125,7 +125,17 @@ export function serializer(
 
     for (const key of Object.keys(format)) {
       if (key in serializedParams) {
-        serializedParams[key] = format[key](serializedParams[key]);
+        // An explicit `null`/`undefined` (e.g. `{ location: undefined }`) means
+        // "not supplied", not "format this value" — several format functions
+        // (e.g. `latLngToString`) throw on it. Deleting the key rather than
+        // leaving it as-is also sidesteps `qs()`'s inconsistent handling of
+        // the two: it drops `undefined` from the query string by default but
+        // keeps `null` as a bare, value-less key.
+        if (serializedParams[key] == null) {
+          delete serializedParams[key];
+        } else {
+          serializedParams[key] = format[key](serializedParams[key]);
+        }
       }
     }
 
